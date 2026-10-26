@@ -16,6 +16,5 @@
 - [地理與主要設施](docs/world/geography.md)：列島概要、各地區設施與參考地
 - [交通](docs/world/transport.md)：鐵路、地鐵、公路、海運與航空
 - [AKQ 航班表](docs/world/flight-schedule.md)：Asuka City 機場的一週航班與 Asuka Air 機隊
-- [地名候補](docs/world/place-names.md)：Keep 筆記中的候補地名
-- [命名](docs/world/naming.md)：命名原則、討論流程、地名分層與地名表
+- [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
 - [建造清單](docs/build-checklist.md)：Keep 筆記中的設施清單、城市細節、參考建築與品牌
