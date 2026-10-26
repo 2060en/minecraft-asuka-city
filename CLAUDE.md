@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（TuRangatira，簡稱津蘭，別稱茉波城），首都為 Asuka City（飛鳥市）。repo 裡沒有程式碼，主要是設定文件。
+這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波城），首都為 Asuka City（飛鳥市）。repo 裡沒有程式碼，主要是設定文件。
 
 ## 文件地圖
 
