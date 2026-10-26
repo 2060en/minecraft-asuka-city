@@ -9,8 +9,12 @@
 | `docs/technical.md` | 遊戲版本、工具、結構方塊、存檔備份、建造技術歷史、技術面的待辦 |
 | `docs/scale.md` | 遊戲尺寸與設定尺寸的換算、人口與量體基準 |
 | `docs/world/overview.md` | 設計原則、國家定位、氣候、歷史人文、法律、國防、人物與組織、待決定事項 |
-| `docs/world/geography.md` | 各地區的設施、參考地與交通 |
+| `docs/world/geography.md` | 各地區的設施與參考地 |
+| `docs/world/transport.md` | 鐵路、地鐵、公路、海運、航空與交通的待決定事項 |
+| `docs/world/flight-schedule.md` | AKQ 機場的一週航班與 Asuka Air 機隊（主要版本在作者的 Google 試算表） |
+| `docs/world/place-names.md` | 候補地名（正式命名另開對話） |
 | `docs/world/naming.md` | 命名原則、討論流程、命名素材、地名分層、地名表 |
+| `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
 
 討論新主題前，先讀相關文件，避免和既有設定矛盾。
 
