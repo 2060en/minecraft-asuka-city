@@ -14,3 +14,4 @@
 - [比例尺與尺寸規範](docs/scale.md)：遊戲尺寸與設定尺寸的換算原則
 - [世界觀總覽](docs/world/overview.md)：設計原則、國家定位、氣候、歷史人文、法律與人物
 - [地理與主要設施](docs/world/geography.md)：列島概要、各地區設施、參考地與交通
+- [命名](docs/world/naming.md)：命名原則、討論流程、地名分層與地名表
