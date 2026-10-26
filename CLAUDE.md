@@ -11,7 +11,9 @@
 | `docs/world/overview.md` | 設計原則、國家定位、氣候、歷史人文、法律、國防、人物與組織、待決定事項 |
 | `docs/world/geography.md` | 各地區的設施與參考地 |
 | `docs/world/transport.md` | 鐵路、地鐵、公路、海運、航空與交通的待決定事項 |
-| `docs/world/flight-schedule.md` | AKQ 機場的一週航班與星州航空機隊（主要版本在作者的 Google 試算表） |
+| `docs/world/flight-schedule.md` | AKQ 機場的一週航班與 Asuka Air 機隊（主要版本在作者的 Google 試算表） |
+| `docs/world/place-names.md` | 候補地名（正式命名另開對話） |
+| `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
 
 討論新主題前，先讀相關文件，避免和既有設定矛盾。
 
