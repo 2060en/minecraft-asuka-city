@@ -31,9 +31,15 @@ Asuka City 機場（AKQ）的一週航班。
 ### 品牌設計
 
 - **整體方針**（已定）：本世界的航線不會和紐西蘭航空（Air New Zealand）交集，所以 IS 的品牌設計直接借用紐航的元素，包括黑白主題色，其餘照抄紐航；只把紐航的蕨類（koru）標誌換成黒潮意象
-- **標誌**（暫定，作者尚未確認）：黑色圓盤，內有三條白色平行流線，由同心圓弧組成 S 形，象徵黒潮；最上面一條流線的末端有一個白點，是島（Asuka 本身）。圓盤對應紐航黑色尾翼上的白色標誌，極簡線條，單色
+- **標誌**（暫定，作者尚未確認）：黑色圓盤，內有三條白色平行流線，由同心圓弧組成 S 形，象徵黒潮；流線末端有白點，是島。圓盤對應紐航黑色尾翼上的白色標誌，極簡線條，單色
+  - 三條流線：已定
+  - 要有島的點：已定。點的數量待決定，草稿有 1 點、2 點、3 點三版；3 點像黒潮沿線的島鏈（琉球、吐噶喇），目前塗裝草稿用 3 點
 - **字標**（暫定）：小寫「asuka air」，無襯線幾何字體，沿用紐航小寫字標的做法；目前草稿用 Inter Display SemiBold，字體尚未定
-- **草稿檔**：[`assets/asuka-air-logo/`](../../assets/asuka-air-logo/)，`mark.svg` 是主要版本，`mark-alt-no-island.svg` 是沒有島的備選版，`lockup-light.svg`、`lockup-dark.svg` 是淺色、深色底的橫式組合
+- **塗裝**（暫定）：白色機身，黑色尾翼與後機身，黑色引擎，機身前段小寫字標「asuka air」，仿紐航的配色分區；黑色尾翼上只放白色流線與點，不放圓盤
+- **草稿檔**：[`assets/asuka-air-logo/`](../../assets/asuka-air-logo/)
+  - `mark-dots1.svg`、`mark-dots2.svg`、`mark-dots3.svg`：標誌的 1、2、3 點版
+  - `lockup-light.svg`、`lockup-dark.svg`：淺色、深色底的橫式組合（3 點版）
+  - `livery.svg`、`tail.svg`：整機塗裝與尾翼特寫（側視，示意，非精確機型）；`livery-preview.png`、`tail-preview.png` 是預覽圖
 
 ### 航線
 
