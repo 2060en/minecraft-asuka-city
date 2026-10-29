@@ -18,3 +18,7 @@
 - [AKQ 航班表](docs/world/flight-schedule.md)：Asuka City 機場的一週航班與 Asuka Air 機隊
 - [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
 - [建造清單](docs/build-checklist.md)：Keep 筆記中的設施清單、城市細節、參考建築與品牌
+
+## 素材
+
+- [`assets/asuka-air-logo/`](assets/asuka-air-logo/)：Asuka Air（IS）的標誌草稿，SVG，見 [AKQ 航班表](docs/world/flight-schedule.md#品牌設計)
