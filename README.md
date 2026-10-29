@@ -21,4 +21,4 @@
 
 ## 素材
 
-- [`assets/asuka-air-logo/`](assets/asuka-air-logo/)：Asuka Air（IS）的標誌、字標組合與 787-8 塗裝渲染圖，見 [AKQ 航班表](docs/world/flight-schedule.md#品牌設計)
+- [`assets/asuka-air-logo/`](assets/asuka-air-logo/)：Asuka Air（IS）的標誌、字標組合，以及給 Gemini 畫塗裝的提示詞，見 [AKQ 航班表](docs/world/flight-schedule.md#品牌設計)

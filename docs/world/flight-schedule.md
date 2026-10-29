@@ -43,9 +43,9 @@ Asuka City 機場（AKQ）的一週航班。
 - **草稿檔**：[`assets/asuka-air-logo/`](../../assets/asuka-air-logo/)
   - `mark.svg`：標誌
   - `lockup-light.svg`、`lockup-dark.svg`：淺色、深色底的橫式組合
-  - `livery-side.png`、`livery-front.png`、`livery-tail.png`：787-8 塗裝的 3D 渲染（側面、左前方、尾翼特寫）。機體是依 787-8 尺寸程序化建模，細節是近似值
-  - `render/`：渲染用的 three.js 原始碼，改塗裝後可以重新出圖
-- **待決定**：國籍登記代碼（註冊編號字首）和航空聯盟歸屬都還沒定，渲染圖暫時不放註冊編號和聯盟標誌（紐航在後機身放註冊編號、機鼻旁放星空聯盟標誌）
+  - `ref-tail-mark.png`、`lockup-light.png`：給圖像模型用的參考圖（尾翼標誌、標誌加字標）
+  - `gemini-prompts.md`：讓 Gemini 畫塗裝的英文提示詞（整機、尾翼特寫、正側面）與修正指令
+- **待決定**：國籍登記代碼（註冊編號字首）和航空聯盟歸屬都還沒定，提示詞暫時不放註冊編號和聯盟標誌（紐航在後機身放註冊編號、機鼻旁放星空聯盟標誌）
 
 ### 航線
 
