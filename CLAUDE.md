@@ -13,7 +13,9 @@
 | `docs/world/transport.md` | 鐵路、地鐵、公路、海運、航空與交通的待決定事項 |
 | `docs/world/flight-schedule.md` | AKQ 機場的一週航班與 Asuka Air 機隊（主要版本在作者的 Google 試算表） |
 | `docs/world/naming.md` | 命名原則、討論流程、黑名單、命名素材、地名分層、地區風格、地名表、候補名單 |
+| `docs/world/bunker.md` | Asuka Inc. 總部地堡：總指揮、世界控制室、生活設施、監獄、戰備地鐵 |
 | `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
+| `docs/prologue.md` | 新玩家序章：出生點、開場橋段、入境流程 |
 
 討論新主題前，先讀相關文件，避免和既有設定矛盾。
 

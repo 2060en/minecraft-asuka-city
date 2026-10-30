@@ -17,4 +17,6 @@
 - [交通](docs/world/transport.md)：鐵路、地鐵、公路、海運與航空
 - [AKQ 航班表](docs/world/flight-schedule.md)：Asuka City 機場的一週航班與 Asuka Air 機隊
 - [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
+- [總部地堡](docs/world/bunker.md)：Asuka Inc. 總部地底的總指揮中心兼末日地堡
 - [建造清單](docs/build-checklist.md)：Keep 筆記中的設施清單、城市細節、參考建築與品牌
+- [新玩家序章](docs/prologue.md)：新玩家的出生點與開場橋段
