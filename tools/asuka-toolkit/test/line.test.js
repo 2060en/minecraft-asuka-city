@@ -1,4 +1,4 @@
-// 測試快速建造的方向與座標計算：npm test（在 tools/quick-build 底下執行）
+// 測試快速建造的方向與座標計算：npm test（在 tools/asuka-toolkit 底下執行）
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {

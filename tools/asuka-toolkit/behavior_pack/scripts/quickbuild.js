@@ -1,15 +1,7 @@
-// 快速建造（Quick Build）
-//
-// 開啟後，玩家每放一顆方塊，就朝玩家面向的方向自動補上後面幾格，可以設定間隔。
-// 只使用穩定版 Script API（不需要開啟實驗性功能），只放原版方塊，拔掉行為包不影響世界。
-//
-// 操作：
-//   拿木棍右鍵          → 開選單（開關、設定、復原、說明）
-//   拿木棍蹲下右鍵      → 直接開關快速建造
-//   /qb:menu、/qb:undo → 用指令開選單、復原（備用）
+// 快速建造：開啟後，玩家每放一顆方塊，就朝玩家面向的方向自動補上後面幾格，可以設定間隔。
 
-import { world, system, CommandPermissionLevel, CustomCommandStatus } from '@minecraft/server';
-import { ActionFormData, ModalFormData, FormCancelationReason } from '@minecraft/server-ui';
+import { world, system } from '@minecraft/server';
+import { ActionFormData, ModalFormData } from '@minecraft/server-ui';
 import {
   DirectionMode,
   stepFromView,
@@ -21,6 +13,7 @@ import {
   parseIntInRange,
   describeDirection,
 } from './line.js';
+import { notify, showForm } from './ui.js';
 
 /** @typedef {import('@minecraft/server').Player} Player */
 /** @typedef {import('@minecraft/server').BlockPermutation} BlockPermutation */
@@ -32,8 +25,6 @@ import {
 // 設定值
 // ---------------------------------------------------------------------------
 
-/** 開選單用的物品 */
-const MENU_ITEM = 'minecraft:stick';
 /** 一次最多補幾顆 */
 const MAX_COUNT = 1000;
 /** 間隔最多幾格 */
@@ -90,10 +81,6 @@ const enabledPlayers = new Map();
 const undoStacks = new Map();
 /** 玩家最近一次右鍵點到的方塊與面，用來判斷第一顆方塊貼在哪 @type {Map<string, { x: number, y: number, z: number, face: string, tick: number }>} */
 const lastInteract = new Map();
-/** 防止一次右鍵觸發兩次選單 @type {Map<string, number>} */
-const lastMenuTick = new Map();
-/** 正在顯示表單的玩家 @type {Set<string>} */
-const formOpen = new Set();
 
 // ---------------------------------------------------------------------------
 // 設定的讀寫
@@ -126,7 +113,7 @@ function sanitizeSettings(raw) {
  * @param {Player} player
  * @returns {Settings}
  */
-function loadSettings(player) {
+export function loadSettings(player) {
   let parsed = {};
   try {
     const raw = player.getDynamicProperty(SETTINGS_KEY);
@@ -154,7 +141,7 @@ function shortLabel(id, options) {
 }
 
 /** @param {Settings} s */
-function settingsSummary(s) {
+export function settingsSummary(s) {
   return `數量 ${s.count}、間隔 ${s.gap}、${shortLabel(s.mode, MODE_OPTIONS)}`;
 }
 
@@ -163,23 +150,15 @@ function settingsSummary(s) {
 // ---------------------------------------------------------------------------
 
 /** @param {Player} player */
-function isEnabled(player) {
+export function isEnabled(player) {
   return enabledPlayers.get(player.id) === true;
-}
-
-/**
- * @param {Player} player
- * @param {string} text
- */
-function notify(player, text) {
-  player.onScreenDisplay.setActionBar(text);
 }
 
 /**
  * @param {Player} player
  * @param {boolean} on
  */
-function setEnabled(player, on) {
+export function setEnabled(player, on) {
   enabledPlayers.set(player.id, on);
   if (on) notify(player, `§a快速建造：開啟§r（${settingsSummary(loadSettings(player))}）`);
   else notify(player, '§7快速建造：關閉');
@@ -387,7 +366,7 @@ function quickBuild(player, block, dimension) {
  * 復原最近一次快速建造（不包含玩家自己放的第一顆）。
  * @param {Player} player
  */
-function undoLast(player) {
+export function undoLast(player) {
   const stack = undoStacks.get(player.id);
   const entry = stack?.pop();
   if (!entry) {
@@ -425,39 +404,14 @@ function undoLast(player) {
 }
 
 // ---------------------------------------------------------------------------
-// 選單
+// 快速建造選單
 // ---------------------------------------------------------------------------
 
-/** @param {number} ticks */
-function waitTicks(ticks) {
-  return new Promise((resolve) => system.runTimeout(() => resolve(undefined), ticks));
-}
-
 /**
- * 顯示表單。玩家正在打字（例如剛輸入指令）時表單會被擋下，稍等一下再試。
- * @template {{ show(player: Player): Promise<import('@minecraft/server-ui').FormResponse> }} F
  * @param {Player} player
- * @param {F} form
- * @returns {Promise<Awaited<ReturnType<F['show']>> | undefined>}
+ * @param {(player: Player) => Promise<void>} [onBack] 按「返回」時要回到的選單
  */
-async function showForm(player, form) {
-  formOpen.add(player.id);
-  try {
-    for (let attempt = 0; attempt < 30; attempt++) {
-      const response = /** @type {Awaited<ReturnType<F['show']>>} */ (await form.show(player));
-      if (response.cancelationReason !== FormCancelationReason.UserBusy) return response;
-      await waitTicks(10);
-      if (!player.isValid) return undefined;
-    }
-    return undefined;
-  } finally {
-    formOpen.delete(player.id);
-  }
-}
-
-/** @param {Player} player */
-async function openMainMenu(player) {
-  if (formOpen.has(player.id)) return;
+export async function openQuickBuildMenu(player, onBack) {
   const settings = loadSettings(player);
   const on = isEnabled(player);
   const undoCount = undoStacks.get(player.id)?.length ?? 0;
@@ -479,7 +433,8 @@ async function openMainMenu(player) {
     .button(on ? '§c關閉快速建造' : '§2開啟快速建造')
     .button('調整設定')
     .button(undoCount > 0 ? `復原上一次（還有 ${undoCount} 次）` : '§8復原上一次（沒有紀錄）')
-    .button('使用說明');
+    .button('使用說明')
+    .button('返回');
 
   const response = await showForm(player, form);
   if (!response || response.canceled) return;
@@ -494,7 +449,10 @@ async function openMainMenu(player) {
       undoLast(player);
       break;
     case 3:
-      await openHelp(player);
+      await openHelp(player, onBack);
+      break;
+    case 4:
+      if (onBack) await onBack(player);
       break;
   }
 }
@@ -559,11 +517,14 @@ async function openSettings(player) {
   notify(player, `${on ? '§a快速建造：開啟' : '§7快速建造：關閉'}§r（${settingsSummary(next)}）`);
 }
 
-/** @param {Player} player */
-async function openHelp(player) {
+/**
+ * @param {Player} player
+ * @param {(player: Player) => Promise<void>} [onBack]
+ */
+async function openHelp(player, onBack) {
   const body = [
     '§l基本用法§r',
-    '1. 拿木棍右鍵開選單，開啟快速建造。',
+    '1. 拿木棍右鍵開選單 → 快速建造 → 開啟。也可以拿木棍蹲下右鍵直接開關。',
     '2. 拿方塊，面向想要延伸的方向，放下第一顆。',
     '3. 後面的方塊會自動補上，方塊的朝向和第一顆一樣（樓梯、原木、半磚都適用）。',
     '',
@@ -584,45 +545,33 @@ async function openHelp(player) {
     '復原紀錄只存在記憶體，離開世界後就會清空。',
     '',
     '§l指令（備用）§r',
-    '/qb:menu 開選單；/qb:undo 復原上一次。',
+    '/asuka:menu 開選單；/asuka:undo 復原上一次快速建造。',
   ].join('\n');
   const response = await showForm(player, new ActionFormData().title('快速建造說明').body(body).button('返回選單'));
-  if (response && !response.canceled) await openMainMenu(player);
+  if (response && !response.canceled) await openQuickBuildMenu(player, onBack);
+}
+
+// ---------------------------------------------------------------------------
+// 給 main.js 用的事件處理
+// ---------------------------------------------------------------------------
+
+/**
+ * 玩家右鍵點到方塊時記下點到的方塊和面（放方塊前遊戲會先觸發這個事件）。
+ * @param {Player} player
+ * @param {Block} block
+ * @param {string} face
+ */
+export function recordInteract(player, block, face) {
+  lastInteract.set(player.id, { x: block.x, y: block.y, z: block.z, face, tick: system.currentTick });
 }
 
 /**
- * 拿木棍右鍵：蹲下時直接開關，否則開選單。
+ * 玩家放下方塊之後呼叫。
  * @param {Player} player
+ * @param {Block} block
+ * @param {Dimension} dimension
  */
-function onMenuItemUse(player) {
-  const now = system.currentTick;
-  const last = lastMenuTick.get(player.id);
-  if (last !== undefined && now - last < 10) return;
-  lastMenuTick.set(player.id, now);
-  if (player.isSneaking) setEnabled(player, !isEnabled(player));
-  else void openMainMenu(player);
-}
-
-// ---------------------------------------------------------------------------
-// 事件
-// ---------------------------------------------------------------------------
-
-world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
-  const { player, block } = event;
-  lastInteract.set(player.id, { x: block.x, y: block.y, z: block.z, face: event.blockFace, tick: system.currentTick });
-  // 拿木棍點方塊時不要觸發方塊本身的功能（例如開門、開箱子），改成開選單
-  if (event.itemStack?.typeId === MENU_ITEM) {
-    event.cancel = true;
-    if (event.isFirstEvent) system.run(() => onMenuItemUse(player));
-  }
-});
-
-world.afterEvents.itemUse.subscribe((event) => {
-  if (event.itemStack?.typeId === MENU_ITEM) onMenuItemUse(event.source);
-});
-
-world.afterEvents.playerPlaceBlock.subscribe((event) => {
-  const { player, block, dimension } = event;
+export function onPlayerPlaceBlock(player, block, dimension) {
   if (!isEnabled(player)) return;
   try {
     quickBuild(player, block, dimension);
@@ -630,49 +579,11 @@ world.afterEvents.playerPlaceBlock.subscribe((event) => {
     console.warn(`[快速建造] ${error}`);
     notify(player, `§c快速建造發生錯誤：${error}`);
   }
-});
+}
 
-world.afterEvents.playerLeave.subscribe(({ playerId }) => {
+/** @param {string} playerId */
+export function forgetQuickBuildPlayer(playerId) {
   enabledPlayers.delete(playerId);
   undoStacks.delete(playerId);
   lastInteract.delete(playerId);
-  lastMenuTick.delete(playerId);
-  formOpen.delete(playerId);
-});
-
-// 備用指令：/qb:menu、/qb:undo
-system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
-  /**
-   * @param {import('@minecraft/server').CustomCommandOrigin} origin
-   * @param {(player: Player) => void} action
-   * @returns {import('@minecraft/server').CustomCommandResult}
-   */
-  const runForPlayer = (origin, action) => {
-    const entity = origin.sourceEntity;
-    if (!entity || entity.typeId !== 'minecraft:player') {
-      return { status: CustomCommandStatus.Failure, message: '只有玩家可以使用這個指令' };
-    }
-    const player = /** @type {Player} */ (entity);
-    system.run(() => action(player));
-    return { status: CustomCommandStatus.Success };
-  };
-
-  customCommandRegistry.registerCommand(
-    {
-      name: 'qb:menu',
-      description: '開啟快速建造選單',
-      permissionLevel: CommandPermissionLevel.Any,
-      cheatsRequired: false,
-    },
-    (origin) => runForPlayer(origin, (player) => void openMainMenu(player)),
-  );
-  customCommandRegistry.registerCommand(
-    {
-      name: 'qb:undo',
-      description: '復原上一次快速建造',
-      permissionLevel: CommandPermissionLevel.Any,
-      cheatsRequired: false,
-    },
-    (origin) => runForPlayer(origin, undoLast),
-  );
-});
+}

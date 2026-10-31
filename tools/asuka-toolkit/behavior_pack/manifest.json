@@ -1,10 +1,10 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Quick Build 快速建造",
-    "description": "拿木棍右鍵開選單。開啟後放一顆方塊，就會朝你面向的方向自動補上後面幾格，可設定間隔。只放原版方塊，拔掉不影響世界。",
+    "name": "Asuka 工具包",
+    "description": "拿木棍右鍵開選單：快速建造、常用物品、物品收藏（旗幟、盾牌）、時間與天氣。只用原版方塊與物品，拔掉不影響世界。",
     "uuid": "257e1696-a5ae-4568-a53a-1acebef22fce",
-    "version": [1, 0, 0],
+    "version": [2, 0, 0],
     "min_engine_version": [1, 21, 100]
   },
   "modules": [
@@ -13,7 +13,7 @@
       "language": "javascript",
       "uuid": "27e9b1e4-466f-436d-ba3c-678f5d6d0969",
       "entry": "scripts/main.js",
-      "version": [1, 0, 0]
+      "version": [2, 0, 0]
     }
   ],
   "dependencies": [

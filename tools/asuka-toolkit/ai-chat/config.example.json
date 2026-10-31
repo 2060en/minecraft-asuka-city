@@ -1,0 +1,10 @@
+{
+  "apiKey": "",
+  "port": 3000,
+  "model": "claude-opus-5-5",
+  "effort": "low",
+  "prefix": "",
+  "webSearch": true,
+  "maxHistoryTurns": 10,
+  "repoRoot": "../../.."
+}

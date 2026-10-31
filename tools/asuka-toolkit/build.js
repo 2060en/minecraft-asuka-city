@@ -1,4 +1,4 @@
-// 把 behavior_pack 資料夾打包成 dist/quick-build.mcpack：npm run build（在 tools/quick-build 底下執行）
+// 把 behavior_pack 資料夾打包成 dist/asuka-toolkit.mcpack：npm run build（在 tools/asuka-toolkit 底下執行）
 // .mcpack 就是 zip 檔，雙擊就能匯入 Minecraft。只用 Node.js 內建模組，不需要安裝任何套件。
 // 檔案時間固定，內容沒變時重新打包會得到一模一樣的檔案。
 
@@ -9,7 +9,7 @@ import { deflateRawSync } from 'node:zlib';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const packDir = join(root, 'behavior_pack');
-const outFile = join(root, 'dist', 'quick-build.mcpack');
+const outFile = join(root, 'dist', 'asuka-toolkit.mcpack');
 
 /** @param {string} dir @returns {string[]} */
 function listFiles(dir) {
