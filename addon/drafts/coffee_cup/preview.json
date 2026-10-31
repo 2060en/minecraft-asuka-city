@@ -1,0 +1,57 @@
+{
+  "title": "外帶咖啡杯（草稿）",
+  "columns": 3,
+  "panelWidth": 360,
+  "panelHeight": 300,
+  "background": "#e8edf1",
+  "panels": [
+    {
+      "label": "1 杯",
+      "camera": { "azimuth": 35, "elevation": 30, "size": 26, "target": [0, 1, 0] },
+      "objects": [
+        { "type": "block", "color": { "up": "#8a6a4a", "east": "#6b4f35", "west": "#6b4f35", "south": "#6b4f35", "north": "#6b4f35", "down": "#6b4f35" } },
+        { "type": "geo", "geo": "/addon/drafts/coffee_cup/coffee_cup.geo.json", "texture": "/addon/drafts/coffee_cup/coffee_cup.png", "bones": ["count_1"] }
+      ]
+    },
+    {
+      "label": "2 杯",
+      "camera": { "azimuth": 35, "elevation": 30, "size": 26, "target": [0, 1, 0] },
+      "objects": [
+        { "type": "block", "color": { "up": "#8a6a4a", "east": "#6b4f35", "west": "#6b4f35", "south": "#6b4f35", "north": "#6b4f35", "down": "#6b4f35" } },
+        { "type": "geo", "geo": "/addon/drafts/coffee_cup/coffee_cup.geo.json", "texture": "/addon/drafts/coffee_cup/coffee_cup.png", "bones": ["count_2"] }
+      ]
+    },
+    {
+      "label": "3 杯",
+      "camera": { "azimuth": 35, "elevation": 30, "size": 26, "target": [0, 1, 0] },
+      "objects": [
+        { "type": "block", "color": { "up": "#8a6a4a", "east": "#6b4f35", "west": "#6b4f35", "south": "#6b4f35", "north": "#6b4f35", "down": "#6b4f35" } },
+        { "type": "geo", "geo": "/addon/drafts/coffee_cup/coffee_cup.geo.json", "texture": "/addon/drafts/coffee_cup/coffee_cup.png", "bones": ["count_3"] }
+      ]
+    },
+    {
+      "label": "4 杯",
+      "camera": { "azimuth": 35, "elevation": 30, "size": 26, "target": [0, 1, 0] },
+      "objects": [
+        { "type": "block", "color": { "up": "#8a6a4a", "east": "#6b4f35", "west": "#6b4f35", "south": "#6b4f35", "north": "#6b4f35", "down": "#6b4f35" } },
+        { "type": "geo", "geo": "/addon/drafts/coffee_cup/coffee_cup.geo.json", "texture": "/addon/drafts/coffee_cup/coffee_cup.png", "bones": ["count_4"] }
+      ]
+    },
+    {
+      "label": "1 杯近看",
+      "camera": { "azimuth": 25, "elevation": 20, "size": 10, "target": [0, 3, 0] },
+      "objects": [
+        { "type": "block", "color": { "up": "#8a6a4a", "east": "#6b4f35", "west": "#6b4f35", "south": "#6b4f35", "north": "#6b4f35", "down": "#6b4f35" } },
+        { "type": "geo", "geo": "/addon/drafts/coffee_cup/coffee_cup.geo.json", "texture": "/addon/drafts/coffee_cup/coffee_cup.png", "bones": ["count_1"] }
+      ]
+    },
+    {
+      "label": "4 杯俯視",
+      "camera": { "azimuth": 20, "elevation": 70, "size": 22, "target": [0, 3, 0] },
+      "objects": [
+        { "type": "block", "color": { "up": "#8a6a4a", "east": "#6b4f35", "west": "#6b4f35", "south": "#6b4f35", "north": "#6b4f35", "down": "#6b4f35" } },
+        { "type": "geo", "geo": "/addon/drafts/coffee_cup/coffee_cup.geo.json", "texture": "/addon/drafts/coffee_cup/coffee_cup.png", "bones": ["count_4"] }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 裡沒有程式碼，主要是設定文件。
+這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容的草稿，`tools/preview/` 是外觀預覽工具。
 
 ## 文件地圖
 
@@ -35,6 +35,18 @@
 - 命名時，對作者的現實意義（通常是作者喜歡的人事物）是重點，再替名字編設定上的由來；流程見 `docs/world/naming.md`
 - 提出任何名字前，先查 `docs/world/naming.md` 的黑名單，名單上的詞絕對不能用
 - 名字的漢字一律用日文漢字（例如寿豊、与那国）；作者的輸入法打出來是繁體，記錄時要轉換。文件的敘述仍用繁體中文
+
+## 外觀設計
+
+自製附加內容的外觀在對話中討論，流程見 `docs/addon.md` 的「外觀設計流程」。草稿放在 `addon/drafts/<名稱>/`，預覽圖這樣產生：
+
+```bash
+cd tools/preview && npm install && cd ../..
+python3 addon/drafts/<名稱>/build.py
+node tools/preview/render.mjs addon/drafts/<名稱>/preview.json addon/drafts/<名稱>/preview.png
+```
+
+算出來的預覽圖先自己看過，再傳給作者。
 
 ## 建造原則
 

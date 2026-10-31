@@ -19,3 +19,8 @@
 - [AKQ 航班表](docs/world/flight-schedule.md)：Asuka City 機場的一週航班與 Asuka Air 機隊
 - [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
 - [建造清單](docs/build-checklist.md)：Keep 筆記中的設施清單、城市細節、參考建築與品牌
+
+## 其他資料夾
+
+- `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
+- `tools/preview/`：把基岩版模型算成預覽圖的工具
