@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 裡沒有程式碼，主要是設定文件。
+這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；自製的工具放在 `tools/`。
 
 ## 文件地圖
 
@@ -14,6 +14,7 @@
 | `docs/world/flight-schedule.md` | AKQ 機場的一週航班與 Asuka Air 機隊（主要版本在作者的 Google 試算表） |
 | `docs/world/naming.md` | 命名原則、討論流程、黑名單、命名素材、地名分層、地區風格、地名表、候補名單 |
 | `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
+| `tools/quick-build/` | 快速建造行為包（只有腳本，穩定版 Script API）；改程式後要跑 `npm test` 和 `npm run build`，把新的 `.mcpack` 一起 commit |
 
 討論新主題前，先讀相關文件，避免和既有設定矛盾。
 
