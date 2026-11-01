@@ -35,12 +35,25 @@ BOWL_DEEP = (190, 194, 198)
 DRAIN = (120, 125, 130)
 
 
-def jitter(c, rng, amount=1):
-    return tuple(max(0, min(255, v + rng.randint(-amount, amount))) for v in c) + (255,)
+def jitter(c, rng, amount=2, extra=0):
+    return tuple(max(0, min(255, v + rng.randint(-amount, amount) + extra)) for v in c) + (255,)
+
+
+def streaks(seed, count=7):
+    """A few short horizontal streaks, the same faint grain as the doors."""
+    rng = random.Random(seed)
+    out = {}
+    for _ in range(count):
+        y, x0 = rng.randrange(16), rng.randrange(14)
+        shade = rng.choice((-4, -3, 3, 4))
+        for x in range(x0, min(16, x0 + rng.randint(3, 5))):
+            out[(x, y)] = shade
+    return out
 
 
 def outside():
     rng = random.Random(3)
+    grain = streaks(4)
     img = Image.new("RGBA", (16, 16))
     px = img.load()
     for y in range(16):
@@ -55,25 +68,28 @@ def outside():
                 c = MIDDLE if y < 11 else PORCELAIN_LO
             else:
                 c = PIPE if y < 15 else PIPE_LO
-            px[x, y] = jitter(c, rng)
+            px[x, y] = jitter(c, rng, extra=grain.get((x, y), 0))
     return img
 
 
 def top():
+    rng = random.Random(5)
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
     px = img.load()
     for y in range(16):
         for x in range(16):
             ring = min(x, y, 15 - x, 15 - y)
             if ring == 0:
-                px[x, y] = RIM + (255,)
+                px[x, y] = jitter(RIM, rng)
             elif ring == 1:
-                px[x, y] = RIM_INNER + (255,)
+                px[x, y] = jitter(RIM_INNER, rng)
             # The middle stays transparent: it is the bowl's opening.
     return img
 
 
 def inside():
+    rng = random.Random(6)
+    grain = streaks(7)
     img = Image.new("RGBA", (16, 16))
     px = img.load()
     for y in range(16):
@@ -85,7 +101,7 @@ def inside():
                 c = BOWL_DEEP
             else:
                 c = BOWL
-            px[x, y] = c + (255,)
+            px[x, y] = c + (255,) if c == DRAIN else jitter(c, rng, extra=grain.get((x, y), 0))
     return img
 
 
