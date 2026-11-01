@@ -13,6 +13,7 @@
 - **同一種尺寸裡，放畫時是隨機挑一幅**：同一種尺寸的廣告最好可以互相替換，或接受要重放幾次
 - **拔掉附加內容後**：顯示原版的畫
 - **內容由作者填**（2026-11-01）：作者在下面各表的「廣告內容」欄填寫，Claude 照著畫。Claude 曾提案每種尺寸放一類廣告（零售、觀光、銀行、科技公司等），作者決定自己填
+- **主題（暫定，2026-11-01）**：作者先列了各尺寸的主題，標語與畫面待補。「萬用」是不指定品牌的廣告；備註寫「待決定」的是作者還在猶豫的
 - **沒有填的編號**：維持原版的畫，放畫時可能會挑到原版的圖
 
 ---
@@ -29,95 +30,95 @@
 
 ## 2 × 1（1.5 × 0.75 公尺）
 
-適合：車廂裡的橫式廣告、店頭的橫幅
+適合（作者）：狹小的牆面、貨架、鐵路車廂、室內狹小的空間
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| A1 | Pool | `kz.png` (0, 32) | | |
-| A2 | Courbet | `kz.png` (32, 32) | | |
-| A3 | Sea | `kz.png` (64, 32) | | |
-| A4 | Sunset | `kz.png` (96, 32) | | |
+| A1 | Pool | `kz.png` (0, 32) | 麥當勞 | 待決定 |
+| A2 | Courbet | `kz.png` (32, 32) | 食物（萬用） | |
+| A3 | Sea | `kz.png` (64, 32) | 鼎泰豐 | 待決定。像新加坡一樣，到處都有鼎泰豐 |
+| A4 | Sunset | `kz.png` (96, 32) | 咖啡（萬用） | |
 | A5 | Creebet | `kz.png` (128, 32) | | |
 
 ## 1 × 2（0.75 × 1.5 公尺）
 
-適合：車站、機場的直式海報，柱子廣告
+適合（作者）：狹小的牆面、貨架旁
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| B1 | Wanderer | `kz.png` (0, 64) | | |
-| B2 | Graham | `kz.png` (16, 64) | | |
+| B1 | Wanderer | `kz.png` (0, 64) | 飲料：霸王茶姬（CHAGEE） | |
+| B2 | Graham | `kz.png` (16, 64) | 香水：Aesop | |
 | B3 | prairie_ride | `prairie_ride.png` | | |
 
 ## 2 × 2（1.5 × 1.5 公尺）
 
-適合：牆面海報
+適合（作者）：過道的牆壁、地鐵月台、柱子、其他小一點的牆面
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| C1 | Match | `kz.png` (0, 128) | | |
-| C2 | Bust | `kz.png` (32, 128) | | |
-| C3 | Stage | `kz.png` (64, 128) | | |
-| C4 | Void | `kz.png` (96, 128) | | |
-| C5 | SkullAndRoses | `kz.png` (128, 128) | | |
-| C6 | Wither | `kz.png` (160, 128) | | |
-| C7 | baroque | `baroque.png` | | |
-| C8 | humble | `humble.png` | | |
+| C1 | Match | `kz.png` (0, 128) | 伊藤園，大谷翔平代言 | |
+| C2 | Bust | `kz.png` (32, 128) | 保險（萬用） | |
+| C3 | Stage | `kz.png` (64, 128) | 藥品（萬用） | |
+| C4 | Void | `kz.png` (96, 128) | iPhone | |
+| C5 | SkullAndRoses | `kz.png` (128, 128) | Taco eats（外送平台） | 取自 VTuber Ina 的迷因 |
+| C6 | Wither | `kz.png` (160, 128) | 銀行（萬用） | |
+| C7 | baroque | `baroque.png` | 耳機，milet 代言 | 待決定 |
+| C8 | humble | `humble.png` | 信用卡（萬用） | 待決定 |
 
 ## 3 × 3（2.25 × 2.25 公尺）
 
-適合：大型牆面海報
+適合（作者）：過道的牆壁、地鐵月台
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| D1 | bouquet | `bouquet.png` | | |
-| D2 | cavebird | `cavebird.png` | | |
-| D3 | cotan | `cotan.png` | | |
-| D4 | endboss | `endboss.png` | | |
-| D5 | fern | `fern.png` | | |
-| D6 | owlemons | `owlemons.png` | | |
-| D7 | sunflowers | `sunflowers.png` | | |
-| D8 | tides | `tides.png` | | |
+| D1 | bouquet | `bouquet.png` | 汽車（萬用） | |
+| D2 | cavebird | `cavebird.png` | Google Cloud × Gemini | |
+| D3 | cotan | `cotan.png` | Mastercard × McLaren | |
+| D4 | endboss | `endboss.png` | YOASOBI 演唱會 | |
+| D5 | fern | `fern.png` | 飯店（萬用） | 待決定 |
+| D6 | owlemons | `owlemons.png` | 眼鏡，齋藤飛鳥代言 | |
+| D7 | sunflowers | `sunflowers.png` | MUJI | 待決定 |
+| D8 | tides | `tides.png` | 電信：Spark 或本國的電信公司 | 待決定 |
 
 ## 4 × 2（3 × 1.5 公尺）
 
-適合：橫式看板
+適合（作者）：過道的牆壁、地鐵月台
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| E1 | Fighters | `kz.png` (0, 96) | | |
-| E2 | changing | `changing.png` | | |
-| E3 | finding | `finding.png` | | |
-| E4 | lowmist | `lowmist.png` | | |
-| E5 | passage | `passage.png` | | |
+| E1 | Fighters | `kz.png` (0, 96) | 國家觀光 × 黒潮特快 | |
+| E2 | changing | `changing.png` | Minecraft Studio（主題樂園） | 見[地理](world/geography.md#minecraft-studio) |
+| E3 | finding | `finding.png` | Asuka Inc. 的地產開發 | |
+| E4 | lowmist | `lowmist.png` | Asuka Air 飛 AKL | 照 Asuka Air 的品牌設計 |
+| E5 | passage | `passage.png` | 化妝品，金采源代言 | |
 
 ## 3 × 4（2.25 × 3 公尺）
 
-適合：直式大型看板
+適合（作者）：大型公共空間的牆上
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| F1 | backyard | `backyard.png` | | |
-| F2 | pond | `pond.png` | | |
+| F1 | backyard | `backyard.png` | 三星手機，安俞真代言 | |
+| F2 | pond | `pond.png` | 電影《奧本海默》 | 作者刻意的 |
 
 ## 4 × 3（3 × 2.25 公尺）
 
-適合：橫式大型看板
+適合（作者）：大型公共空間的牆上
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| G1 | Skeleton | `kz.png` (192, 64) | | |
-| G2 | DonkeyKong | `kz.png` (192, 112) | | |
+| G1 | Skeleton | `kz.png` (192, 64) | 星宇航空：某人坐在商務艙的畫面 | 作者的標語草案：「台北ㄟ」 |
+| G2 | DonkeyKong | `kz.png` (192, 112) | F1 飛鳥大獎賽 | 賽道經過市中心的大街；賽道圖由作者提供 |
 
 ## 4 × 4（3 × 3 公尺）
 
-適合：大樓牆面、屋頂看板
+適合（作者）：外牆上滿版
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| H1 | Pointer | `kz.png` (0, 192) | | |
-| H2 | Pigscene | `kz.png` (64, 192) | | |
-| H3 | BurningSkull | `kz.png` (128, 192) | | |
+| H1 | Pointer | `kz.png` (0, 192) | 球鞋，Stephen Curry 代言 | |
+| H2 | Pigscene | `kz.png` (64, 192) | 衣服（萬用，時尚） | |
+| H3 | BurningSkull | `kz.png` (128, 192) | 衣服（萬用，戶外） | |
 | H4 | orb | `orb.png` | | |
 | H5 | unpacked | `unpacked.png` | | |
 
@@ -150,6 +151,25 @@
 ---
 
 ## 待決定事項
+
+### Claude 對主題的建議（2026-11-01）
+
+1. **空著的 4 格**
+   - A5（2 × 1）：便利商店（日式城市到處都是），或交通 IC 卡（要取名，照[命名](world/naming.md)的流程）
+   - B3（1 × 2）：寶特瓶飲料（直式的畫面剛好放一支瓶子），或沿用已經畫好的樣品「北部的雪」
+   - H4、H5（4 × 4）：Asuka Air 的長程線（黑白在外牆上很醒目）；或[建造清單](build-checklist.md#商店品牌)的品牌，例如 UNIQLO、Sony、Swatch
+2. **萬用廣告的品牌名**：現實的廣告一定有品牌。建議萬用廣告只寫品類（例如「医療保険」「頭痛薬」），配一個看不出字的抽象標誌；要有名字就照命名流程取。銀行、時尚、戶外也可以直接用建造清單的品牌，例如匯豐、國泰、UNIQLO、迪卡儂
+3. **重疊**：信用卡（C8）和 Mastercard × McLaren（D3）、銀行（C6）重疊，可以考慮換成別的
+4. **合理性**
+   - 星宇航空（G1）：AKQ 有 JX 每日飛台北，還有用第五航權直飛米蘭、蘇黎世的航班（見 [AKQ 航班表](world/flight-schedule.md)）。台北線 Asuka Air 也有飛，星宇在本國最有賣點的是直飛歐洲，商務艙的畫面也比較搭長程
+   - F1 飛鳥大獎賽（G2）：先例是新加坡的濱海灣街道賽，富裕的小國辦街道賽說得通。建造清單另有「賽道（東邊）」，兩者的關係要定，例如東邊是給其他賽事的常設賽道、F1 用街道賽（美國有常設賽道，仍然辦拉斯維加斯的街道賽）。綠線的單軌架在大街上方，畫面可以是賽車從單軌底下穿過
+   - 《奧本海默》（F2）：日本其實有上映，只是晚了約 8 個月（2024 年 3 月）。可以改成「本國比日本早上映」，呼應居中者的中立
+   - YOASOBI 演唱會（D4）：會場可以寫世界裡已有的場館，例如綠線終點的棒球場，或北流類型的展演場館
+   - 電信（D8）：Spark 是紐西蘭國內的電信公司，直接進駐本國比較牽強。可以照 Asuka Air 借用紐航設計的模式，讓本國的電信公司借用 Spark 的設計（紫色），名字照命名流程取
+   - 飯店（D5）：可以做成建造清單裡「渡假島（馬爾地夫那種）」或渡假村的廣告，順便替國內觀光打廣告
+5. **代言人**：32x 的畫只有 64～128 像素，畫不出寫實的臉。建議畫成簡化的人像加上名字，靠名字與商品辨認
+
+### 其他
 
 - **地、風、火、水（X1～X4）**：要不要用改存檔的方式放
 - **實測**：遊戲能不能正確顯示 512 × 512 的 `kz.png` 與 32x 的單幅畫（見[材質](#材質已定)）
