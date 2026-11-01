@@ -126,8 +126,9 @@ def svg(prof, bg, ink, frame):
             f'<title>Asuka Air symbol</title>{back}<g fill="{ink}">{symbol_paths(prof)}</g></svg>\n')
 
 
-for name, prof in (("a", prof_streamline), ("b", prof_leaf)):
-    open(f"{OUT}/symbol-{name}-square.svg", "w").write(svg(prof, "#000", "#fff", "square"))
-    open(f"{OUT}/symbol-{name}-circle.svg", "w").write(svg(prof, "#000", "#fff", "circle"))
-    open(f"{OUT}/symbol-{name}-lines.svg", "w").write(svg(prof, None, "#000", None))
+# adopted: streamline ends (prof_streamline). prof_leaf was the rejected alternative.
+prof = prof_streamline
+open(f"{OUT}/asuka-air-symbol-square.svg", "w").write(svg(prof, "#000", "#fff", "square"))
+open(f"{OUT}/asuka-air-symbol-circle.svg", "w").write(svg(prof, "#000", "#fff", "circle"))
+open(f"{OUT}/asuka-air-symbol-lines.svg", "w").write(svg(prof, None, "#000", None))
 print("done")
