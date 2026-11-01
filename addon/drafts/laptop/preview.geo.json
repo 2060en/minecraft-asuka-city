@@ -4,7 +4,7 @@
   {
    "description": {
     "identifier": "geometry.laptop_0",
-    "texture_width": 144,
+    "texture_width": 48,
     "texture_height": 16
    },
    "bones": [
@@ -40,7 +40,7 @@
         },
         "north": {
          "uv": [
-          128,
+          32,
           0
          ],
          "uv_size": [
@@ -50,7 +50,7 @@
         },
         "east": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -60,7 +60,7 @@
         },
         "west": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -70,7 +70,7 @@
         },
         "up": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -80,7 +80,7 @@
         },
         "down": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -97,7 +97,7 @@
   {
    "description": {
     "identifier": "geometry.laptop_1",
-    "texture_width": 144,
+    "texture_width": 48,
     "texture_height": 16
    },
    "bones": [
@@ -132,89 +132,6 @@
          ]
         },
         "north": {
-         "uv": [
-          128,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "east": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "west": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "up": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "down": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "description": {
-    "identifier": "geometry.laptop_2",
-    "texture_width": 144,
-    "texture_height": 16
-   },
-   "bones": [
-    {
-     "name": "painting",
-     "pivot": [
-      0,
-      0,
-      0
-     ],
-     "cubes": [
-      {
-       "origin": [
-        -8,
-        0,
-        -8
-       ],
-       "size": [
-        16,
-        16,
-        1
-       ],
-       "uv": {
-        "south": {
          "uv": [
           32,
           0
@@ -224,19 +141,9 @@
           16
          ]
         },
-        "north": {
-         "uv": [
-          128,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
         "east": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -246,7 +153,7 @@
         },
         "west": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -256,7 +163,7 @@
         },
         "up": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -266,472 +173,7 @@
         },
         "down": {
          "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "description": {
-    "identifier": "geometry.laptop_3",
-    "texture_width": 144,
-    "texture_height": 16
-   },
-   "bones": [
-    {
-     "name": "painting",
-     "pivot": [
-      0,
-      0,
-      0
-     ],
-     "cubes": [
-      {
-       "origin": [
-        -8,
-        0,
-        -8
-       ],
-       "size": [
-        16,
-        16,
-        1
-       ],
-       "uv": {
-        "south": {
-         "uv": [
-          48,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "north": {
-         "uv": [
-          128,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "east": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "west": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "up": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "down": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "description": {
-    "identifier": "geometry.laptop_4",
-    "texture_width": 144,
-    "texture_height": 16
-   },
-   "bones": [
-    {
-     "name": "painting",
-     "pivot": [
-      0,
-      0,
-      0
-     ],
-     "cubes": [
-      {
-       "origin": [
-        -8,
-        0,
-        -8
-       ],
-       "size": [
-        16,
-        16,
-        1
-       ],
-       "uv": {
-        "south": {
-         "uv": [
-          64,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "north": {
-         "uv": [
-          128,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "east": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "west": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "up": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "down": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "description": {
-    "identifier": "geometry.laptop_5",
-    "texture_width": 144,
-    "texture_height": 16
-   },
-   "bones": [
-    {
-     "name": "painting",
-     "pivot": [
-      0,
-      0,
-      0
-     ],
-     "cubes": [
-      {
-       "origin": [
-        -8,
-        0,
-        -8
-       ],
-       "size": [
-        16,
-        16,
-        1
-       ],
-       "uv": {
-        "south": {
-         "uv": [
-          80,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "north": {
-         "uv": [
-          128,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "east": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "west": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "up": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "down": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "description": {
-    "identifier": "geometry.laptop_6",
-    "texture_width": 144,
-    "texture_height": 16
-   },
-   "bones": [
-    {
-     "name": "painting",
-     "pivot": [
-      0,
-      0,
-      0
-     ],
-     "cubes": [
-      {
-       "origin": [
-        -8,
-        0,
-        -8
-       ],
-       "size": [
-        16,
-        16,
-        1
-       ],
-       "uv": {
-        "south": {
-         "uv": [
-          96,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "north": {
-         "uv": [
-          128,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "east": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "west": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "up": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "down": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "description": {
-    "identifier": "geometry.laptop_7",
-    "texture_width": 144,
-    "texture_height": 16
-   },
-   "bones": [
-    {
-     "name": "painting",
-     "pivot": [
-      0,
-      0,
-      0
-     ],
-     "cubes": [
-      {
-       "origin": [
-        -8,
-        0,
-        -8
-       ],
-       "size": [
-        16,
-        16,
-        1
-       ],
-       "uv": {
-        "south": {
-         "uv": [
-          112,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "north": {
-         "uv": [
-          128,
-          0
-         ],
-         "uv_size": [
-          16,
-          16
-         ]
-        },
-        "east": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "west": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "up": {
-         "uv": [
-          129,
-          1
-         ],
-         "uv_size": [
-          1,
-          1
-         ]
-        },
-        "down": {
-         "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -748,7 +190,7 @@
   {
    "description": {
     "identifier": "geometry.deck",
-    "texture_width": 144,
+    "texture_width": 48,
     "texture_height": 16
    },
    "bones": [
@@ -774,7 +216,7 @@
        "uv": {
         "north": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -784,7 +226,7 @@
         },
         "south": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -794,7 +236,7 @@
         },
         "east": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -804,7 +246,7 @@
         },
         "west": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -814,7 +256,7 @@
         },
         "up": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
@@ -824,7 +266,7 @@
         },
         "down": {
          "uv": [
-          129,
+          33,
           1
          ],
          "uv_size": [
