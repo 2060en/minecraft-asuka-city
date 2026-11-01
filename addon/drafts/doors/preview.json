@@ -1507,15 +1507,15 @@
    ]
   },
   {
-   "label": "門把近看",
+   "label": "淺灰門從房間內側看",
    "camera": {
-    "azimuth": 215,
-    "elevation": 12,
-    "size": 14,
+    "azimuth": 20,
+    "elevation": 14,
+    "size": 40,
     "target": [
-     3,
-     14,
-     -6
+     0,
+     16,
+     -4
     ]
    },
    "objects": [

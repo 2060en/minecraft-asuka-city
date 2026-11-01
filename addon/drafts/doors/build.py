@@ -12,8 +12,10 @@ Door bones (each half is its own block, drawn in its own 16-pixel space):
     lower_closed_l, lower_open_l, upper_closed_l, upper_open_l   hinge on the left
     lower_closed_r, lower_open_r, upper_closed_r, upper_open_r   hinge on the right
 Closed, the door lies along the north edge with the hinge at the west end
-(the _l bones); it opens inward, toward the south. The lower half carries a
-lever handle on both faces, away from the hinge.
+(the _l bones); it opens inward, toward the south. The lever handle is
+painted on the texture (decided: no 3D handle), on the end away from the
+hinge; faces are mirrored with negative uv sizes so the handle stays on
+that end from both sides, open or closed, hinge left or right.
 
 Trapdoor bones: bottom, top, open (standing against the north edge).
 
@@ -31,13 +33,15 @@ COLOURS = {
     "light_gray": {"panel": (192, 196, 199), "border": (168, 173, 177), "edge": (158, 163, 167)},
     "white": {"panel": (238, 239, 239), "border": (214, 217, 219), "edge": (205, 208, 211)},
 }
-HANDLE = (200, 205, 210)
+HANDLE = (206, 211, 216)
+HANDLE_DARK = (128, 134, 140)
 
 # ---------- texture layout (64 x 32) ----------
-# (0, 0)   16x32 door face: upper half rows 0-15, lower half rows 16-31
+# (0, 0)   16x32 door face: upper half rows 0-15, lower half rows 16-31;
+#          the handle is near the left edge, which is the free end when the
+#          face is seen from the north with the hinge at the west
 # (16, 0)  16x16 trapdoor face
 # (32, 0)  16x16 edge (one colour, so any strip of it fits)
-# (48, 0)  8x8   handle metal
 W, H = 64, 32
 
 
@@ -53,9 +57,12 @@ def make_texture(c):
             border = x in (0, 15) or y in (0, 15)
             px[16 + x, y] = c["border"] + (255,) if border else c["panel"] + (255,)
             px[32 + x, y] = c["edge"] + (255,)
-    for y in range(8):
-        for x in range(8):
-            px[48 + x, y] = HANDLE + (255,)
+    # Lever handle, about level with the top of the lower block:
+    # a small plate and a lever pointing toward the hinge.
+    for row in (16, 17, 18):
+        px[2, row] = HANDLE_DARK + (255,)
+    for col in (3, 4, 5):
+        px[col, 17] = HANDLE + (255,)
     return img
 
 
@@ -67,31 +74,23 @@ def edge(w, h):
     return face(32, 0, w, h)
 
 
-METAL = face(48, 0, 1, 1)
+def flip(f):
+    """Mirror a face's texture left to right (a negative uv width)."""
+    (u, v), (w, h) = f["uv"], f["uv_size"]
+    return {"uv": [u + w, v], "uv_size": [-w, h]}
 
 
 def door_slab(upper):
     """A closed door half along the north edge."""
     v = 0 if upper else 16
     panel = face(0, v, 16, 16)
+    # Seen from the north the free (east) end is on the left, where the
+    # texture has its handle; seen from the south it is on the right.
     return {
         "origin": [-8, 0, -8], "size": [16, 16, 3],
-        "uv": {"north": panel, "south": panel, "east": edge(3, 16), "west": edge(3, 16),
+        "uv": {"north": panel, "south": flip(panel), "east": edge(3, 16), "west": edge(3, 16),
                "up": edge(16, 3), "down": edge(16, 3)},
     }
-
-
-def handle_cubes():
-    """A lever handle on both faces, 3 pixels from the free end, pointing to
-    the hinge. Each side: a 1-pixel rose on the door and a lever on top."""
-    cubes = []
-    y = 14
-    for rose_z, lever_z in ((-9, -10), (-5, -4)):
-        cubes.append({"origin": [5, y, rose_z], "size": [1, 1, 1],
-                      "uv": {d: METAL for d in ("north", "south", "east", "west", "up", "down")}})
-        cubes.append({"origin": [2, y, lever_z], "size": [4, 1, 1],
-                      "uv": {d: METAL for d in ("north", "south", "east", "west", "up", "down")}})
-    return cubes
 
 
 SWAP_FACES = {"north": "west", "west": "north", "south": "east", "east": "south", "up": "up", "down": "down"}
@@ -103,12 +102,13 @@ def opened(cube):
 
     The closed door spans x from the hinge, 3 pixels deep in z; open, it spans
     z from the hinge, 3 pixels deep in x. Swapping the x and z offsets from the
-    hinge corner does exactly that for these symmetric shapes.
+    hinge corner does that; the swap is a reflection, so the textures are
+    flipped back to keep the handle on the free end.
     """
     x, y, z = cube["origin"]
     w, h, d = cube["size"]
     return {"origin": [z, y, x], "size": [d, h, w],
-            "uv": {SWAP_FACES[k]: v for k, v in cube["uv"].items()}}
+            "uv": {SWAP_FACES[k]: flip(v) for k, v in cube["uv"].items()}}
 
 
 def mirrored(cube):
@@ -116,13 +116,13 @@ def mirrored(cube):
     x, y, z = cube["origin"]
     w, h, d = cube["size"]
     return {"origin": [-(x + w), y, z], "size": [w, h, d],
-            "uv": {MIRROR_FACES[k]: v for k, v in cube["uv"].items()}}
+            "uv": {MIRROR_FACES[k]: flip(v) for k, v in cube["uv"].items()}}
 
 
 def door_bones():
     bones = {}
     for half in ("lower", "upper"):
-        closed = [door_slab(half == "upper")] + (handle_cubes() if half == "lower" else [])
+        closed = [door_slab(half == "upper")]
         bones[f"{half}_closed_l"] = closed
         bones[f"{half}_open_l"] = [opened(c) for c in closed]
         bones[f"{half}_closed_r"] = [mirrored(c) for c in closed]
@@ -219,7 +219,7 @@ for x in (-16, 0, 16):
 hatch.append(trapdoor(0, -16, 0, "light_gray", "top"))
 panels.append({"label": "淺灰地板門嵌在地板上（上半）", "camera": {"azimuth": 30, "elevation": 40, "size": 60, "target": [0, -4, 0]},
                "objects": hatch})
-panels.append({"label": "門把近看", "camera": {"azimuth": 215, "elevation": 12, "size": 14, "target": [3, 14, -6]},
+panels.append({"label": "淺灰門從房間內側看", "camera": {"azimuth": 20, "elevation": 14, "size": 40, "target": [0, 16, -4]},
                "objects": wall_around([0]) + door(0, 0, "light_gray")})
 
 sheet = {"title": "單色門與單色地板門（草稿）", "columns": 4, "panelWidth": 330, "panelHeight": 300,
