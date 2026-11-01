@@ -1,0 +1,24 @@
+{
+  "worldPath": "%APPDATA%/Minecraft Bedrock/Users/<使用者編號>/games/com.mojang/minecraftWorlds/<世界資料夾>",
+  "minecraftProcesses": ["Minecraft.Windows.exe", "Minecraft.exe"],
+  "restic": {
+    "exe": "restic",
+    "repository": "rclone:gdrive:minecraft-backup",
+    "passwordFile": "%USERPROFILE%/.config/asuka/restic-password.txt",
+    "forget": []
+  },
+  "unmined": {
+    "exe": "C:/tools/unmined-cli/unmined-cli.exe",
+    "extraArgs": []
+  },
+  "rclone": {
+    "exe": "rclone",
+    "remote": "r2:asuka-map",
+    "extraArgs": []
+  },
+  "map": {
+    "renderDir": "%USERPROFILE%/AsukaMap/render",
+    "stateDir": "%USERPROFILE%/AsukaMap/state"
+  },
+  "reportFile": "../../docs/backup-log.md"
+}

@@ -14,6 +14,7 @@
 | `docs/world/flight-schedule.md` | AKQ 機場的一週航班與 Asuka Air 機隊（主要版本在作者的 Google 試算表） |
 | `docs/world/naming.md` | 命名原則、討論流程、黑名單、命名素材、地名分層、地區風格、地名表、候補名單 |
 | `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
+| `tools/world-backup/` | 世界備份與雲端地圖：restic 備份、uNmINeD 渲染、上傳到 Cloudflare R2，Worker 提供檢視網頁與 MCP。每次備份會在 `docs/backup-log.md` 加一行紀錄。改程式後跑 `npm test` |
 | `tools/asuka-toolkit/` | Asuka 工具包：行為包（快速建造、常用物品、物品收藏、時間與天氣；只有腳本，穩定版 Script API）與 AI 聊天程式（`ai-chat/`，透過 `/connect` 連到 Claude API；擱置中）。改行為包後要跑 `npm test` 和 `npm run build`，把新的 `.mcpack` 一起 commit；改 AI 聊天後在 `ai-chat/` 跑 `npm test` |
 
 討論新主題前，先讀相關文件，避免和既有設定矛盾。

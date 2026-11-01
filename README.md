@@ -24,3 +24,4 @@
 - [Asuka 工具包](tools/asuka-toolkit/README.md)（開發中）
   - 行為包：快速建造（放一顆方塊就朝面向的方向自動補上後面幾格，可設定間隔）、常用物品、物品收藏（旗幟、盾牌）、時間與天氣
   - AI 聊天（擱置）：在遊戲聊天框打字，由讀過設定文件的 Claude 回答
+- [世界備份與雲端地圖](tools/world-backup/README.md)（開發中）：一鍵備份世界到 Google Drive 並更新雲端地圖；手機可以看每次備份的地圖，AI 可以透過 MCP 查地圖
