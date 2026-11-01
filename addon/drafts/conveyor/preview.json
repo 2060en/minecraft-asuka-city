@@ -1,162 +1,291 @@
 {
- "title": "傳送履帶（草稿）",
- "columns": 3,
- "panelWidth": 380,
- "panelHeight": 320,
+ "title": "傳送履帶：鐵軌留著，下面墊機身（草稿）",
+ "columns": 4,
+ "panelWidth": 340,
+ "panelHeight": 300,
  "background": "#e8edf1",
  "panels": [
+  {
+   "label": "直線 3 格",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 30,
+    "size": 72,
+    "target": [
+     0,
+     -8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
   {
    "label": "直線、轉彎、直線",
    "camera": {
     "azimuth": 45,
     "elevation": 40,
-    "size": 78,
+    "size": 80,
     "target": [
      12,
-     -6,
+     -10,
      12
     ]
    },
    "objects": [
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      32
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       0,
-      0,
+      -16,
       32
      ],
      "rotationY": 0
     },
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       0,
-      0,
+      -16,
       16
      ],
      "rotationY": 0
     },
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      0
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_curve",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_curve"
+     ],
      "position": [
       0,
-      0,
+      -16,
       0
      ],
      "rotationY": 0
     },
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      16,
-      0,
-      0
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       16,
-      0,
+      -16,
       0
      ],
      "rotationY": 90
     },
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      32,
-      0,
-      0
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       32,
-      0,
+      -16,
       0
      ],
      "rotationY": 90
+    }
+   ]
+  },
+  {
+   "label": "沒有鐵軌時，只有機身",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 30,
+    "size": 34,
+    "target": [
+     0,
+     -8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "動力版　左：沒通電　右：通電",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 32,
+    "size": 84,
+    "target": [
+     8,
+     -8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      -8,
+      -16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      -8,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      -8,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered_on.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      24,
+      -16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered_on.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      24,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered_on.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      24,
+      -16,
+      16
+     ],
+     "rotationY": 0
     }
    ]
   },
@@ -165,43 +294,61 @@
    "camera": {
     "azimuth": 50,
     "elevation": 28,
-    "size": 64,
+    "size": 72,
     "target": [
      0,
-     4,
+     0,
      0
     ]
    },
    "objects": [
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       0,
-      0,
+      -16,
       16
      ],
      "rotationY": 0
     },
     {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
      "type": "block",
      "color": {
       "up": "#d4d8db",
@@ -214,48 +361,8 @@
      "position": [
       0,
       0,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_ascending",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      0,
-      0
-     ],
-     "rotationY": 0
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      16,
       -16
      ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      16,
-      -16
-     ],
-     "rotationY": 0
     }
    ]
   },
@@ -264,142 +371,61 @@
    "camera": {
     "azimuth": 90,
     "elevation": 0,
-    "size": 56,
-    "target": [
-     0,
-     6,
-     0
-    ]
-   },
-   "objects": [
-    {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      0,
-      16
-     ],
-     "rotationY": 0
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_ascending",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      0,
-      0
-     ],
-     "rotationY": 0
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      16,
-      -16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      16,
-      -16
-     ],
-     "rotationY": 0
-    }
-   ]
-  },
-  {
-   "label": "動力版斜坡",
-   "camera": {
-    "azimuth": 50,
-    "elevation": 28,
     "size": 64,
     "target": [
      0,
-     4,
+     2,
      0
     ]
    },
    "objects": [
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
-     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       0,
-      0,
+      -16,
       16
      ],
      "rotationY": 0
     },
     {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
      "type": "block",
      "color": {
       "up": "#d4d8db",
@@ -412,48 +438,8 @@
      "position": [
       0,
       0,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_ascending",
-     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
-     "position": [
-      0,
-      0,
-      0
-     ],
-     "rotationY": 0
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      16,
       -16
      ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
-     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
-     "position": [
-      0,
-      16,
-      -16
-     ],
-     "rotationY": 0
     }
    ]
   },
@@ -462,59 +448,77 @@
    "camera": {
     "azimuth": 55,
     "elevation": 25,
-    "size": 90,
+    "size": 100,
     "target": [
      0,
-     12,
+     8,
      8
     ]
    },
    "objects": [
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      16,
-      -16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      32
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       0,
-      0,
+      -16,
       32
      ],
      "rotationY": 0
     },
     {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
      "type": "block",
      "color": {
       "up": "#d4d8db",
@@ -527,20 +531,8 @@
      "position": [
       0,
       0,
-      16
+      0
      ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_ascending",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      0,
-      16
-     ],
-     "rotationY": 0
     },
     {
      "type": "block",
@@ -555,20 +547,8 @@
      "position": [
       0,
       16,
-      0
+      -16
      ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_ascending",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      16,
-      0
-     ],
-     "rotationY": 0
     },
     {
      "type": "block",
@@ -582,66 +562,72 @@
      },
      "position": [
       0,
-      32,
+      0,
       -16
      ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      32,
-      -16
-     ],
-     "rotationY": 0
     }
    ]
   },
   {
-   "label": "斜坡近看（接縫）",
+   "label": "斜坡上半段的接縫",
    "camera": {
     "azimuth": 60,
-    "elevation": 20,
-    "size": 22,
+    "elevation": 25,
+    "size": 20,
     "target": [
      0,
-     2,
-     6
+     14,
+     -4
     ]
    },
    "objects": [
     {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
      "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
      "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
      "position": [
       0,
-      0,
+      -16,
       16
      ],
      "rotationY": 0
     },
     {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
      "type": "block",
      "color": {
       "up": "#d4d8db",
@@ -654,48 +640,8 @@
      "position": [
       0,
       0,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_ascending",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      0,
-      0
-     ],
-     "rotationY": 0
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d4d8db",
-      "south": "#b9bec2",
-      "north": "#b9bec2",
-      "east": "#a3a8ad",
-      "west": "#a3a8ad",
-      "down": "#8d9296"
-     },
-     "position": [
-      0,
-      16,
       -16
      ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/conveyor/conveyor.geo.json",
-     "identifier": "geometry.conveyor_straight",
-     "texture": "/addon/drafts/conveyor/conveyor.png",
-     "position": [
-      0,
-      16,
-      -16
-     ],
-     "rotationY": 0
     }
    ]
   }
