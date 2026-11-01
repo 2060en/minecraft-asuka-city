@@ -131,6 +131,17 @@ async function buildScene(panel) {
     if (obj.type === 'block') node = buildBlock(obj);
     else if (obj.type === 'geo') node = await buildGeo(obj);
     else throw new Error(`unknown object type: ${obj.type}`);
+    if (obj.rotation) {
+      // Rotate around obj.pivot (model units, default the block centre),
+      // degrees, applied Z, Y, X like the cube rotations.
+      const pivot = new THREE.Vector3(...(obj.pivot ?? [0, 8, 0]));
+      const holder = new THREE.Group();
+      holder.position.copy(pivot);
+      holder.rotation.set(...obj.rotation.map((a) => THREE.MathUtils.degToRad(a)), 'ZYX');
+      node.position.sub(pivot);
+      holder.add(node);
+      node = holder;
+    }
     if (obj.position) node.position.add(new THREE.Vector3(...obj.position));
     if (obj.rotationY) node.rotation.y = THREE.MathUtils.degToRad(obj.rotationY);
     scene.add(node);

@@ -6,7 +6,7 @@
  "background": "#e8edf1",
  "panels": [
   {
-   "label": "單一個",
+   "label": "單一個（門朝向放置的人）",
    "camera": {
     "azimuth": 30,
     "elevation": 25,
@@ -43,6 +43,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       0,
       0,
@@ -824,6 +829,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       0,
@@ -834,6 +844,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       16,
@@ -844,6 +859,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       32,
@@ -854,6 +874,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       0,
@@ -864,6 +889,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       16,
@@ -874,6 +904,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       32,
@@ -884,6 +919,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       0,
@@ -894,6 +934,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       16,
@@ -904,6 +949,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       32,
@@ -914,6 +964,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       0,
@@ -924,6 +979,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       16,
@@ -934,6 +994,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       32,
@@ -1715,6 +1780,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       0,
@@ -1725,6 +1795,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       16,
@@ -1735,6 +1810,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       32,
@@ -1745,6 +1825,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       0,
@@ -1755,6 +1840,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       16,
@@ -1765,6 +1855,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       32,
@@ -1775,6 +1870,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       0,
@@ -1785,6 +1885,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       16,
@@ -1795,6 +1900,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       32,
@@ -1805,6 +1915,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       0,
@@ -1815,6 +1930,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       16,
@@ -1825,6 +1945,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       32,
@@ -1834,7 +1959,7 @@
    ]
   },
   {
-   "label": "門的近看",
+   "label": "門的近看（淡淡的鐵板紋理）",
    "camera": {
     "azimuth": 0,
     "elevation": 0,
@@ -2606,6 +2731,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       0,
@@ -2616,6 +2746,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       16,
@@ -2626,6 +2761,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       32,
@@ -2636,6 +2776,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       0,
@@ -2646,6 +2791,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       16,
@@ -2656,6 +2806,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       32,
@@ -2666,6 +2821,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       0,
@@ -2676,6 +2836,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       16,
@@ -2686,6 +2851,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       32,
@@ -2696,6 +2866,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       0,
@@ -2706,6 +2881,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       16,
@@ -2716,6 +2896,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       32,
@@ -2725,7 +2910,7 @@
    ]
   },
   {
-   "label": "從側面看：側面也是門",
+   "label": "從側面看",
    "camera": {
     "azimuth": 70,
     "elevation": 15,
@@ -3497,6 +3682,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       0,
@@ -3507,6 +3697,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       16,
@@ -3517,6 +3712,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -24.0,
       32,
@@ -3527,6 +3727,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       0,
@@ -3537,6 +3742,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       16,
@@ -3547,6 +3757,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       -8.0,
       32,
@@ -3557,6 +3772,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       0,
@@ -3567,6 +3787,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       16,
@@ -3577,6 +3802,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       8.0,
       32,
@@ -3587,6 +3817,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       0,
@@ -3597,6 +3832,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       16,
@@ -3607,6 +3847,11 @@
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
      "position": [
       24.0,
       32,
@@ -3616,105 +3861,21 @@
    ]
   },
   {
-   "label": "從上面看",
+   "label": "往下看著放的話，門會朝上",
    "camera": {
-    "azimuth": 20,
-    "elevation": 60,
-    "size": 96,
+    "azimuth": 30,
+    "elevation": 35,
+    "size": 30,
     "target": [
      0,
-     22,
-     -4
+     7,
+     0
     ]
    },
    "objects": [
     {
      "type": "block",
      "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -48.0,
-      0,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -48.0,
-      16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -48.0,
-      32,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -48.0,
-      48,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
       "up": "#a7acb0",
       "south": "#8d9296",
       "north": "#8d9296",
@@ -3723,7 +3884,7 @@
       "down": "#6d7276"
      },
      "origin": [
-      -48.0,
+      -8,
       -16,
       -8
      ],
@@ -3734,773 +3895,17 @@
      ]
     },
     {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -48.0,
-      -16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -32.0,
-      0,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -32.0,
-      16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -32.0,
-      32,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -32.0,
-      48,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -32.0,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -32.0,
-      -16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -16.0,
-      0,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -16.0,
-      16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -16.0,
-      32,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      -16.0,
-      48,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -16.0,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -16.0,
-      -16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      0.0,
-      0,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      0.0,
-      16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      0.0,
-      32,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      0.0,
-      48,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      0.0,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      0.0,
-      -16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      16.0,
-      0,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      16.0,
-      16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      16.0,
-      32,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      16.0,
-      48,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      16.0,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      16.0,
-      -16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      32.0,
-      0,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      32.0,
-      16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      32.0,
-      32,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      32.0,
-      48,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      32.0,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      32.0,
-      -16,
-      -24
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
      "type": "geo",
      "geo": "/addon/drafts/locker/shulker_preview.geo.json",
      "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      -24.0,
+     "rotation": [
+      0,
       0,
       0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
+     ],
      "position": [
-      -24.0,
-      16,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      -24.0,
-      32,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      -8.0,
       0,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      -8.0,
-      16,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      -8.0,
-      32,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      8.0,
       0,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      8.0,
-      16,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      8.0,
-      32,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      24.0,
-      0,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      24.0,
-      16,
-      0
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
-     "texture": "/addon/drafts/locker/shulker_white.png",
-     "position": [
-      24.0,
-      32,
       0
      ]
     }
