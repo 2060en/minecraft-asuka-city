@@ -1,0 +1,373 @@
+{
+ "title": "NPC 皮膚草稿（第一輪：風格樣本，人物與格子待決定）",
+ "columns": 7,
+ "panelWidth": 200,
+ "panelHeight": 290,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "站務員（正面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/station_staff.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "機師（正面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/pilot.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "空服員（正面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/flight_attendant.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "晶圓廠無塵衣（正面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/cleanroom.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "工地工人（正面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/construction_worker.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "醫師（正面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/doctor.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "觀光客（正面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/tourist.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員（背面）",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/station_staff.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "機師（背面）",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/pilot.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "空服員（背面）",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/flight_attendant.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "晶圓廠無塵衣（背面）",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/cleanroom.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "工地工人（背面）",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/construction_worker.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "醫師（背面）",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/doctor.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "觀光客（背面）",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 10,
+    "size": 42,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/tourist.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  }
+ ]
+}
