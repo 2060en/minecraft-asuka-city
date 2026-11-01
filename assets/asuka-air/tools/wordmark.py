@@ -1,15 +1,17 @@
-"""Build ASUKA AIR wordmark options as outlined SVG, locked up with the final circle symbol."""
+"""Build the ASUKA AIR wordmark (Syne Bold, outlined) and the logo lockups.
+
+usage: python3 -I wordmark.py <Syne-Bold.ttf> <outdir>
+Syne: https://fonts.google.com/specimen/Syne (SIL Open Font License)
+"""
 import math
+import os
 import re
 import sys
 
-import numpy as np
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
 
-import os
-SYMBOL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "asuka-air-symbol-circle.svg")
 
 
 def glyph_path(font, ch, scale, x, base):
@@ -94,31 +96,73 @@ def wordmark(fontfile, cap=126, track=0.12, swoosh=None):
     return paths, width, cap
 
 
-def lockup(fontfile, out, **kw):
-    D = 364.0                         # circle diameter, as in the original lockup
-    paths, ww, cap = wordmark(fontfile, **kw)
-    sym = open(SYMBOL).read()
+HERE = os.path.dirname(os.path.abspath(__file__))
+SQUARE = os.path.join(HERE, "..", "asuka-air-symbol-square.svg")   # source of the lines (from taper.py)
+LINES_BOX = (128, 275, 895, 731)          # lines + dot bbox in the 1024 artwork
+
+
+def _inner(path, ink):
+    sym = open(path).read()
     inner = re.search(r"<svg[^>]*>(.*)</svg>", sym, re.S).group(1)
     inner = re.sub(r"<title>.*?</title>", "", inner)
-    pad = 38
-    gap = 84
-    s = D / 984.0                     # symbol svg circle r=492 -> diameter 984
-    H = D + 2 * pad
-    W = pad + D + gap + ww + pad + 20
-    ty = pad + D / 2 - cap / 2
-    body = (f'<g transform="translate({pad - 20 * s:.2f},{pad - 19 * s:.2f}) scale({s:.5f})">{inner}</g>'
-            f'<g fill="#000" transform="translate({pad + D + gap:.2f},{ty:.2f})">'
-            + "".join(f'<path d="{d}"/>' for d in paths) + "</g>")
-    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.0f} {H:.0f}" width="{W:.0f}" height="{H:.0f}">'
-           f'<title>Asuka Air</title>{body}</svg>\n')
-    open(out, "w").write(svg)
-    # wordmark only
-    wsvg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 {ww + 40:.0f} {cap + 20:.0f}" '
-            f'width="{ww + 40:.0f}" height="{cap + 20:.0f}"><title>ASUKA AIR</title><g fill="#000">'
-            + "".join(f'<path d="{d}"/>' for d in paths) + "</g></svg>\n")
-    open(out.replace(".svg", "-wordmark.svg"), "w").write(wsvg)
+    return inner.replace('fill="#000"', f'fill="{ink}"')
+
+
+def _lines(ink):
+    """lines + dot only, taken from the square artwork with its background removed."""
+    inner = _inner(SQUARE, ink)
+    inner = re.sub(r"<rect[^>]*/>", "", inner)
+    return inner.replace('fill="#fff"', f'fill="{ink}"')
+
+
+def _svg(W, H, body, title):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W:.0f} {H:.0f}" width="{W:.0f}" '
+            f'height="{H:.0f}"><title>{title}</title>{body}</svg>\n')
+
+
+def build_all(fontfile, outdir, track=0.07, sym_ratio=1.5, gap_ratio=0.55):
+    os.makedirs(outdir, exist_ok=True)
+    paths, ww, cap = wordmark(fontfile, track=track)
+    pad = 0.25 * cap
+
+    def words(ink, dx, dy):
+        return (f'<g fill="{ink}" transform="translate({dx:.2f},{dy:.2f})">'
+                + "".join(f'<path d="{d}"/>' for d in paths) + "</g>")
+
+    x0, y0, x1, y1 = LINES_BOX
+    for ink, tag in (("#000", ""), ("#fff", "-white")):
+        # primary: frameless symbol + wordmark, transparent background
+        hs = sym_ratio * cap
+        s = hs / (y1 - y0)
+        sw = (x1 - x0) * s
+        H = hs + 2 * pad
+        W = pad + sw + gap_ratio * cap + ww + pad
+        body = (f'<g transform="translate({pad - x0 * s:.2f},{pad - y0 * s:.2f}) scale({s:.5f})">'
+                f'{_lines(ink)}</g>' + words(ink, pad + sw + gap_ratio * cap, pad + (hs - cap) / 2))
+        open(f"{outdir}/asuka-air-logo{tag}.svg", "w").write(_svg(W, H, body, "Asuka Air"))
+        # wordmark only
+        m = 0.04 * cap
+        open(f"{outdir}/asuka-air-wordmark{tag}.svg", "w").write(
+            _svg(ww + 2 * m, cap + 2 * m, words(ink, m, m), "ASUKA AIR"))
+        # symbol only (tight crop, transparent)
+        m = 0.06 * (y1 - y0)
+        body = (f'<g transform="translate({m - x0:.2f},{m - y0:.2f})">{_lines(ink)}</g>')
+        open(f"{outdir}/asuka-air-symbol-lines{tag}.svg", "w").write(
+            _svg(x1 - x0 + 2 * m, y1 - y0 + 2 * m, body, "Asuka Air symbol"))
+
+    # secondary: circle emblem + wordmark (light backgrounds only), original proportions
+    D = cap / 0.35
+    s = D / 984.0
+    gap = 0.23 * D
+    pad = 0.1 * D
+    circle = _inner(os.path.join(HERE, "..", "asuka-air-symbol-circle.svg"), "#000")
+    body = (f'<g transform="translate({pad - 20 * s:.2f},{pad - 19 * s:.2f}) scale({s:.5f})">{circle}</g>'
+            + words("#000", pad + D + gap, pad + D / 2 - cap / 2))
+    open(f"{outdir}/asuka-air-logo-circle.svg", "w").write(
+        _svg(pad + D + gap + ww + pad, D + 2 * pad, body, "Asuka Air"))
 
 
 if __name__ == "__main__":
     import json
-    lockup(sys.argv[1], sys.argv[2], **json.loads(sys.argv[3]) if len(sys.argv) > 3 else {})
+    kw = json.loads(sys.argv[3]) if len(sys.argv) > 3 else {}
+    build_all(sys.argv[1], sys.argv[2], **kw)

@@ -130,5 +130,5 @@ def svg(prof, bg, ink, frame):
 prof = prof_streamline
 open(f"{OUT}/asuka-air-symbol-square.svg", "w").write(svg(prof, "#000", "#fff", "square"))
 open(f"{OUT}/asuka-air-symbol-circle.svg", "w").write(svg(prof, "#000", "#fff", "circle"))
-open(f"{OUT}/asuka-air-symbol-lines.svg", "w").write(svg(prof, None, "#000", None))
+# the frameless (transparent) versions are cropped and written by wordmark.py
 print("done")
