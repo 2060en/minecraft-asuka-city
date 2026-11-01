@@ -1,13 +1,14 @@
-"""Three sample advertisements, each drawn at 16x and 32x, to decide the
-texture resolution with the author before drawing the whole set.
+"""Sample advertisements at 32x, kept as style references until the author
+fills in docs/ads.md. They are not assigned to any painting.
 
-Imported by build.py. Contents are placeholders for the discussion: only
-world brands that already exist (Asuka Air, the northern snow country, the
-cross-border limited express), no new names.
+The first round drew each at 16x and 32x; the author chose 32x
+(2026-11-01). Asuka Air follows its brand design: black and white, with the
+Kuroshio mark (brand.py).
 """
 from PIL import Image
 
-from pixfont import frame, put, rect, text, text_width, tiny, tiny_width, vgrad, vtext
+from brand import BLACK, mark
+from pixfont import frame, put, rect, text, tiny, vgrad, vtext
 
 SILVER = (196, 200, 206)
 WHITE = (250, 250, 248)
@@ -32,53 +33,18 @@ def canvas(w, h, k):
 
 # ---------- Asuka Air, 2 x 1 ----------
 
-PLANE7 = ["...#...", "...#...", ".#####.", "#######", "...#...", "..###..", "...#..."]
 
 
-def stamp(img, x, y, rows, color):
-    for dy, row in enumerate(rows):
-        for dx, c in enumerate(row):
-            if c == "#":
-                put(img, x + dx, y + dy, color)
 
-
-def air_16():
-    img = canvas(2, 1, 1)
-    rect(img, 1, 1, 10, 15, TEAL)
-    stamp(img, 2, 4, PLANE7, WHITE)
-    tiny(img, 11, 3, "ASUKA", TEAL_DARK)
-    tiny(img, 11, 9, "AIR", TEAL_DARK)
-    frame(img, SILVER)
-    return img
-
-
-# Side view of an airliner, 20 x 7, white body with a teal tail.
-JET = [
-    "..TT................",
-    "..TTT...............",
-    "..TTTT..............",
-    ".WWWWWWWWWWWWWWWWWW.",
-    "WWWWWWWWWWWWWWWWWWWW",
-    ".WWWWWWWWWWWWWWWWWW.",
-    ".......GGGGGG.......",
-]
 
 
 def air_32():
+    """Typographic, black and white like Air New Zealand: the mark, the
+    wordmark in wide-spaced capitals, and one line of message."""
     img = canvas(2, 1, 2)
-    vgrad(img, 2, 2, 26, 18, SKY_TOP, SKY_LOW)
-    vgrad(img, 2, 18, 26, 25, SEA_TOP, SEA_LOW)
-    for dy, row in enumerate(JET):
-        for dx, c in enumerate(row):
-            col = {"T": TEAL, "W": WHITE, "G": (170, 178, 188)}.get(c)
-            if col:
-                put(img, 4 + dx, 6 + dy, col)
-    for x in range(7, 22, 2):                   # windows
-        put(img, x, 10, (90, 110, 140))
-    text(img, 28, 4, "台北へ", NAVY, 11)
-    text(img, 28, 16, "毎日運航", GREY, 8)
-    rect(img, 2, 25, 62, 30, TEAL)              # brand bar
-    tiny(img, 62 - 1 - tiny_width("ASUKA AIR"), 25, "ASUKA AIR", WHITE)
+    img.alpha_composite(mark(22), (3, 5))
+    tiny(img, 27, 6, "ASUKA AIR", BLACK)
+    text(img, 27, 15, "台北へ", BLACK, 11)
     frame(img, SILVER, 2)
     return img
 
@@ -97,18 +63,6 @@ def mountains(img, x0, x1, base, peaks, k):
         if top < base:
             put(img, x, top, SNOW)
 
-
-def snow_16():
-    img = canvas(1, 2, 1)
-    vgrad(img, 1, 1, 15, 21, SKY_DEEP, SKY_LOW)
-    mountains(img, 1, 15, 21, [(4, 6), (11, 4)], 1)
-    rect(img, 1, 21, 15, 24, FOREST)
-    for x in range(1, 15, 2):
-        put(img, x, 20, FOREST)
-    rect(img, 1, 24, 15, 31, SNOW)
-    text(img, 2, 2, "雪", WHITE, 12)
-    frame(img, SILVER)
-    return img
 
 
 def snow_32():
@@ -151,14 +105,6 @@ def train(img, x0, x1, top, k):
         rect(img, car, top, car + 1, top + h, (180, 186, 194))
 
 
-def express_16():
-    img = canvas(4, 2, 1)
-    vgrad(img, 1, 1, 63, 31, SEA_TOP, SEA_LOW)
-    train(img, 1, 63, 18, 1)
-    text(img, 4, 3, "那覇へ直通", WHITE, 11)
-    frame(img, SILVER)
-    return img
-
 
 def express_32():
     img = canvas(4, 2, 2)
@@ -173,8 +119,8 @@ def express_32():
 
 
 SAMPLES = [
-    # (label, w, h, {res: draw})
-    ("Asuka Air（2 × 1）", 2, 1, {16: air_16, 32: air_32}),
-    ("北部的雪（1 × 2）", 1, 2, {16: snow_16, 32: snow_32}),
-    ("國際特急（4 × 2）", 4, 2, {16: express_16, 32: express_32}),
+    # (name, label, w, h, draw)
+    ("air", "Asuka Air（2 × 1）", 2, 1, air_32),
+    ("snow", "北部的雪（1 × 2）", 1, 2, snow_32),
+    ("express", "國際特急（4 × 2）", 4, 2, express_32),
 ]
