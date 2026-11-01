@@ -1,0 +1,9559 @@
+{
+ "title": "廣告的解析度比較：左 16x（原版的細緻度），右 32x（字比較清楚）。內容只是樣品",
+ "columns": 2,
+ "panelWidth": 600,
+ "panelHeight": 330,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "平面（16x）",
+   "camera": {
+    "azimuth": 0,
+    "elevation": 0,
+    "size": 58,
+    "target": [
+     -16,
+     24,
+     16
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -56,
+      32,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s1_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -56,
+      0,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s2_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -24,
+      0,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "平面（32x）",
+   "camera": {
+    "azimuth": 0,
+    "elevation": 0,
+    "size": 58,
+    "target": [
+     -16,
+     24,
+     16
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -56,
+      32,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s1_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -56,
+      0,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s2_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -24,
+      0,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "車廂：窗上的 2 × 1 廣告（16x）",
+   "camera": {
+    "azimuth": 18,
+    "elevation": 6,
+    "size": 72,
+    "target": [
+     -8,
+     26,
+     16
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -96,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -96,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -96,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -96,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -96,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -96,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -96,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -96,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -80,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -64,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -48,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -32,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -16,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      0,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      0,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      0,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      0,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      16,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      32,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      48,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      64,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      80,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -56,
+      32,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -8,
+      32,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      40,
+      32,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "車廂：窗上的 2 × 1 廣告（32x）",
+   "camera": {
+    "azimuth": 18,
+    "elevation": 6,
+    "size": 72,
+    "target": [
+     -8,
+     26,
+     16
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -96,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -96,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -96,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -96,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -96,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -96,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -96,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -96,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -80,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -64,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -48,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -32,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      -16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      -16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      -16,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      0,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      0,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      0,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      0,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      16,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      32,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      48,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      64,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "down": "#73787f",
+      "east": "#73787f",
+      "west": "#73787f",
+      "south": "#7e838a",
+      "north": "#7e838a"
+     },
+     "origin": [
+      80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#bcd6e6",
+      "down": "#9fbccf",
+      "east": "#9fbccf",
+      "west": "#9fbccf",
+      "south": "#a9c8dc",
+      "north": "#a9c8dc"
+     },
+     "origin": [
+      80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f4f4f2",
+      "down": "#dcdcda",
+      "east": "#dcdcda",
+      "west": "#dcdcda",
+      "south": "#e8e8e6",
+      "north": "#e8e8e6"
+     },
+     "origin": [
+      80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#4d6aa8",
+      "down": "#3d5790",
+      "east": "#3d5790",
+      "west": "#3d5790",
+      "south": "#45609c",
+      "north": "#45609c"
+     },
+     "origin": [
+      80,
+      0,
+      8
+     ],
+     "size": [
+      16,
+      7,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#efe9dc",
+      "down": "#d9d1c0",
+      "east": "#d9d1c0",
+      "west": "#d9d1c0",
+      "south": "#e6dfd0",
+      "north": "#e6dfd0"
+     },
+     "origin": [
+      64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -56,
+      32,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -8,
+      32,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      40,
+      32,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "車站牆面：1 × 2 海報與 4 × 2 看板（16x）",
+   "camera": {
+    "azimuth": 22,
+    "elevation": 8,
+    "size": 80,
+    "target": [
+     0,
+     20,
+     16
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -96,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -96,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -96,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -80,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -64,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -48,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -32,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -16,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      0,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      0,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      0,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      16,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      32,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      48,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      64,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      80,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s1_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -72,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s2_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -40,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s1_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      40,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_16",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      72,
+      32,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "車站牆面：1 × 2 海報與 4 × 2 看板（32x）",
+   "camera": {
+    "azimuth": 22,
+    "elevation": 8,
+    "size": 80,
+    "target": [
+     0,
+     20,
+     16
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -96,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -96,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -96,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -96,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -80,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -64,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -48,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -32,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      -16,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      0,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      0,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      0,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      16,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      16,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      16,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      32,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      32,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      32,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      48,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      48,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      48,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      64,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      64,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      64,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      64,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      80,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      80,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#b9b4aa",
+      "down": "#9d988e",
+      "east": "#9d988e",
+      "west": "#9d988e",
+      "south": "#aaa59b",
+      "north": "#aaa59b"
+     },
+     "origin": [
+      80,
+      -16,
+      40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      80,
+      48,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s1_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -72,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s2_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -40,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s1_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      40,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.s0_32",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      72,
+      32,
+      16
+     ]
+    }
+   ]
+  }
+ ]
+}
