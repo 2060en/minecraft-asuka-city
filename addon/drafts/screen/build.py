@@ -1,25 +1,25 @@
-"""Build the general-purpose small screen draft: glow item frame textures.
+"""Build the general-purpose small screen: the glow item frame texture.
 
 Run from the repository root:
     python3 addon/drafts/screen/build.py
 
-Resource pack only: the chosen design replaces textures/blocks/glow_item_frame.png,
+Resource pack only: glow_item_frame.png replaces textures/blocks/glow_item_frame.png,
 so an empty glow item frame looks like a small screen for vending machines,
 ticket machines, locker control panels and so on. A special picture goes on
 top by putting an Image map into the frame. The vanilla export is simply the
 glow item frame.
 
-Bedrock draws the whole frame, border and background, from this one 16x16
-texture (the vanilla one has a 1-pixel dark edge and a leather background).
-The exact model is built into the game, so the design keeps a 2-pixel bezel
-that reads as a bezel however the border samples the edge. Whether the empty
-frame stays bright in the dark needs a test; if not, a light block (invisible,
-vanilla) next to it does the job.
+Decided 2026-11-01: the standby picture (option b of the first draft: a blue
+screen with a title bar, menu lines and a yellow button) inside a black
+border. The frame keeps the vanilla model's raised border, which a resource
+pack cannot change anyway; only its colour changes.
 
-Three candidates for the default picture:
-    a  off: a dark screen with a reflection
-    b  standby: a blue screen with a title bar and a few menu lines
-    c  touch menu: a dark screen with four coloured buttons
+Bedrock draws the whole frame, border and background, from this one 16x16
+texture, and the exact model is built into the game. So the outer 2 pixels
+are black, whatever part of them the border uses, and the picture keeps its
+details inside pixels 3-12 in case the background shows only the middle.
+Whether the empty frame stays bright in the dark needs a test; if not, a
+light block (invisible, vanilla) next to it does the job.
 """
 import json
 from pathlib import Path
@@ -29,67 +29,70 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 REL = "/addon/drafts/screen"
 
-BEZEL = (27, 29, 32)
-BEZEL_EDGE = (44, 47, 52)
+BLACK = (16, 17, 19)
+BLACK_EDGE = (30, 32, 35)
+BLUE = (47, 111, 179)
+BAR = (36, 87, 142)
+TEXT = (226, 236, 246)
+DOT = (232, 240, 248)
+BUTTON = (242, 193, 78)
 
 
-def screen(kind):
-    img = Image.new("RGBA", (16, 16), BEZEL + (255,))
+def screen():
+    img = Image.new("RGBA", (16, 16), BLACK + (255,))
     px = img.load()
-    for i in range(16):
-        px[i, 0] = px[i, 15] = px[0, i] = px[15, i] = BEZEL_EDGE + (255,)
 
     def put(x, y, c):
         px[x, y] = c + (255,)
 
-    inner = [(x, y) for y in range(2, 14) for x in range(2, 14)]
-    if kind == "a":
-        for x, y in inner:
-            put(x, y, (35, 39, 44))
-        # Two diagonal glints from the top left.
-        for i in range(2, 9):
-            put(i + 1, 12 - i + 2 - 3, (58, 64, 72))
-        for i in range(2, 6):
-            put(i + 4, 12 - i - 1, (50, 56, 63))
-    elif kind == "b":
-        for x, y in inner:
-            put(x, y, (47, 111, 179))
+    for i in range(16):
+        for j in (0, 15):
+            put(i, j, BLACK_EDGE)
+            put(j, i, BLACK_EDGE)
+    for y in range(2, 14):
         for x in range(2, 14):
-            for y in (2, 3):
-                put(x, y, (36, 87, 142))
-        put(3, 2, (232, 240, 248))
-        for y, (x0, x1) in ((5, (3, 11)), (7, (3, 9)), (9, (3, 10))):
-            for x in range(x0, x1):
-                put(x, y, (226, 236, 246))
-        for y in (11, 12):
-            for x in range(9, 13):
-                put(x, y, (242, 193, 78))
-    elif kind == "c":
-        for x, y in inner:
-            put(x, y, (30, 42, 53))
-        tiles = {(3, 3): (58, 167, 118), (8, 3): (224, 138, 60),
-                 (3, 8): (59, 130, 196), (8, 8): (208, 87, 75)}
-        for (x0, y0), c in tiles.items():
-            for y in range(y0, y0 + 5):
-                for x in range(x0, x0 + 5):
-                    put(x, y, c)
+            put(x, y, BLUE)
+    for y in (3, 4):
+        for x in range(2, 14):
+            put(x, y, BAR)
+    put(4, 3, DOT)
+    for y, (x0, x1) in ((6, (4, 11)), (8, (4, 9)), (10, (4, 8))):
+        for x in range(x0, x1):
+            put(x, y, TEXT)
+    for y in (10, 11):
+        for x in range(9, 12):
+            put(x, y, BUTTON)
     return img
 
 
-for k in "abc":
-    screen(k).save(HERE / f"glow_item_frame_{k}.png")
+screen().save(HERE / "glow_item_frame.png")
+for old in ("glow_item_frame_a.png", "glow_item_frame_b.png", "glow_item_frame_c.png"):
+    (HERE / old).unlink(missing_ok=True)
 
-# Preview model: a 12 x 12 panel, 1 pixel thick, against the north side of
-# its block (the side of the block the frame hangs on). The real frame is
-# built into the game; this only approximates it.
-edge = {"uv": [0, 0], "uv_size": [1, 1]}
+# Preview model, approximating the vanilla frame: a 12 x 12 outline, a
+# 1-pixel border that stands 1 pixel off the wall, and a 10 x 10 background
+# half a pixel deep. It hangs on the north side of its block. How the game
+# maps the texture onto its own model needs a test; here the background
+# shows the middle 10 x 10 and the border the black edge.
+black = {"uv": [0, 0], "uv_size": [1, 1]}
+
+
+def cube(origin, size, front):
+    faces = {d: black for d in ("north", "east", "west", "up", "down")}
+    faces["south"] = front
+    return {"origin": origin, "size": size, "uv": faces}
+
+
+cubes = [
+    cube([-5, 3, -8], [10, 10, 0.5], {"uv": [3, 3], "uv_size": [10, 10]}),   # background
+    cube([-6, 13, -8], [12, 1, 1], black),                                   # border: top
+    cube([-6, 2, -8], [12, 1, 1], black),                                    # bottom
+    cube([-6, 3, -8], [1, 10, 1], black),                                    # west
+    cube([5, 3, -8], [1, 10, 1], black),                                     # east
+]
 geo = {"format_version": "1.12.0", "minecraft:geometry": [{
     "description": {"identifier": "geometry.frame_preview", "texture_width": 16, "texture_height": 16},
-    "bones": [{"name": "frame", "pivot": [0, 0, 0], "cubes": [{
-        "origin": [-6, 2, -8], "size": [12, 12, 1],
-        "uv": {"south": {"uv": [0, 0], "uv_size": [16, 16]}, "north": edge,
-               "east": edge, "west": edge, "up": edge, "down": edge},
-    }]}],
+    "bones": [{"name": "frame", "pivot": [0, 0, 0], "cubes": cubes}],
 }]}
 (HERE / "frame_preview.geo.json").write_text(json.dumps(geo, indent=1) + "\n", encoding="utf-8")
 
@@ -105,9 +108,9 @@ def block(x, y, z, color):
     return {"type": "block", "color": color, "origin": [x - 8, y, z - 8], "size": [16, 16, 16]}
 
 
-def frame(x, y, z, kind):
+def frame(x, y, z):
     """A frame hanging on the south face of the block at (x, y, z - 16)."""
-    return {"type": "geo", "geo": f"{REL}/frame_preview.geo.json", "texture": f"{REL}/glow_item_frame_{kind}.png",
+    return {"type": "geo", "geo": f"{REL}/frame_preview.geo.json", "texture": f"{REL}/glow_item_frame.png",
             "position": [x, y, z]}
 
 
@@ -116,60 +119,56 @@ def locker(x, y, z):
             "texture": "/addon/drafts/locker/shulker_white.png", "rotation": [90, 0, 0], "position": [x, y, z]}
 
 
-def options_wall():
+def on_wall():
+    return [block(-16, 0, 0, WALL), block(0, 0, 0, WALL), block(16, 0, 0, WALL), frame(0, 0, 16)]
+
+
+def vending():
     objs = []
-    for x in (-24, -8, 8, 24):
-        objs.append(block(x, 0, 0, WALL))
-    for x, k in ((-16, "a"), (0, "b"), (16, "c")):
-        objs.append({"type": "geo", "geo": f"{REL}/frame_preview.geo.json",
-                     "texture": f"{REL}/glow_item_frame_{k}.png", "position": [x, 0, 16]})
-    return objs
-
-
-def vending(kind):
-    objs = [block(0, -16, 0, FLOOR), block(0, -16, 16, FLOOR), block(16, -16, 0, FLOOR), block(16, -16, 16, FLOOR)]
     for x, body in ((0, VENDING_RED), (16, VENDING)):
-        objs += [block(x, 0, 0, body), block(x, 16, 0, body)]
-        objs.append(frame(x, 16, 16, kind))
+        objs += [block(x, -16, 0, FLOOR), block(x, -16, 16, FLOOR), block(x, 0, 0, body), block(x, 16, 0, body)]
+        objs.append(frame(x, 16, 16))
     return objs
 
 
-def locker_panel(kind):
+def locker_panel():
     objs = []
     for x in (-24, -8, 8, 24):
         objs.append(block(x, -16, 0, FLOOR))
         for y in (0, 16, 32):
             objs.append(block(x, y, -16, WALL))
             if x == -8 and y == 16:
-                objs.append(block(x, y, 0, PANEL))
-                objs.append(frame(x, y, 16, kind))
+                objs += [block(x, y, 0, PANEL), frame(x, y, 16)]
             else:
                 objs.append(locker(x, y, 0))
     return objs
 
 
-def ticket_machines(kind):
+def ticket_machines():
     objs = []
     for x in (-16, 0, 16):
-        objs += [block(x, -16, 0, FLOOR), block(x, -16, 16, FLOOR), block(x, 0, -16, WALL), block(x, 16, -16, WALL)]
-        objs += [block(x, 0, 0, PANEL)]
-        objs.append(frame(x, 0, 16, kind))
+        objs += [block(x, -16, 0, FLOOR), block(x, -16, 16, FLOOR), block(x, 0, -16, WALL), block(x, 16, -16, WALL),
+                 block(x, 0, 0, PANEL), frame(x, 0, 16)]
     return objs
 
 
-panels = [
-    {"label": "a 關機｜b 待機｜c 觸控選單", "camera": {"azimuth": 0, "elevation": 0, "size": 40, "target": [0, 8, 8]},
-     "objects": options_wall()},
-]
-for k, name in (("a", "a 關機"), ("b", "b 待機"), ("c", "c 觸控選單")):
-    panels.append({"label": f"販賣機上（{name}）", "camera": {"azimuth": 25, "elevation": 12, "size": 54, "target": [8, 14, 6]},
-                   "objects": vending(k)})
-panels.append({"label": "置物櫃的操作面板（b）", "camera": {"azimuth": 20, "elevation": 12, "size": 80, "target": [0, 22, 0]},
-               "objects": locker_panel("b")})
-panels.append({"label": "售票機（c）", "camera": {"azimuth": 25, "elevation": 20, "size": 60, "target": [0, 8, 6]},
-               "objects": ticket_machines("c")})
-
-sheet = {"title": "萬用小螢幕：發光物品框架換材質（草稿，三種預設畫面）", "columns": 3, "panelWidth": 380, "panelHeight": 300,
-         "background": "#e8edf1", "panels": panels}
+sheet = {
+    "title": "萬用小螢幕：黑色邊框加待機畫面",
+    "columns": 3, "panelWidth": 380, "panelHeight": 300, "background": "#e8edf1",
+    "panels": [
+        {"label": "正面", "camera": {"azimuth": 0, "elevation": 0, "size": 18, "target": [0, 8, 8]},
+         "objects": on_wall()},
+        {"label": "斜看：邊框比畫面高出一點點", "camera": {"azimuth": 50, "elevation": 30, "size": 16, "target": [0, 8, 9]},
+         "objects": on_wall()},
+        {"label": "側面", "camera": {"azimuth": 85, "elevation": 5, "size": 14, "target": [0, 8, 9]},
+         "objects": on_wall()},
+        {"label": "販賣機", "camera": {"azimuth": 25, "elevation": 12, "size": 54, "target": [8, 14, 6]},
+         "objects": vending()},
+        {"label": "置物櫃的操作面板", "camera": {"azimuth": 20, "elevation": 12, "size": 80, "target": [0, 22, 0]},
+         "objects": locker_panel()},
+        {"label": "售票機", "camera": {"azimuth": 25, "elevation": 20, "size": 60, "target": [0, 8, 6]},
+         "objects": ticket_machines()},
+    ],
+}
 (HERE / "preview.json").write_text(json.dumps(sheet, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-print("wrote glow_item_frame_a/b/c.png, frame_preview.geo.json, preview.json")
+print("wrote glow_item_frame.png, frame_preview.geo.json, preview.json")

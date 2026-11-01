@@ -1,16 +1,16 @@
 {
- "title": "萬用小螢幕：發光物品框架換材質（草稿，三種預設畫面）",
+ "title": "萬用小螢幕：黑色邊框加待機畫面",
  "columns": 3,
  "panelWidth": 380,
  "panelHeight": 300,
  "background": "#e8edf1",
  "panels": [
   {
-   "label": "a 關機｜b 待機｜c 觸控選單",
+   "label": "正面",
    "camera": {
     "azimuth": 0,
     "elevation": 0,
-    "size": 40,
+    "size": 18,
     "target": [
      0,
      8,
@@ -29,7 +29,7 @@
       "down": "#b8af9f"
      },
      "origin": [
-      -32,
+      -24,
       0,
       -8
      ],
@@ -50,7 +50,7 @@
       "down": "#b8af9f"
      },
      "origin": [
-      -16,
+      -8,
       0,
       -8
      ],
@@ -71,28 +71,7 @@
       "down": "#b8af9f"
      },
      "origin": [
-      0,
-      0,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e6dfd2",
-      "south": "#d8d0c2",
-      "north": "#d8d0c2",
-      "east": "#c8bfb0",
-      "west": "#c8bfb0",
-      "down": "#b8af9f"
-     },
-     "origin": [
-      16,
+      8,
       0,
       -8
      ],
@@ -105,29 +84,9 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_a.png",
-     "position": [
-      -16,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_b.png",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       0,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_c.png",
-     "position": [
-      16,
       0,
       16
      ]
@@ -135,7 +94,183 @@
    ]
   },
   {
-   "label": "販賣機上（a 關機）",
+   "label": "斜看：邊框比畫面高出一點點",
+   "camera": {
+    "azimuth": 50,
+    "elevation": 30,
+    "size": 16,
+    "target": [
+     0,
+     8,
+     9
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/screen/frame_preview.geo.json",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
+     "position": [
+      0,
+      0,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "側面",
+   "camera": {
+    "azimuth": 85,
+    "elevation": 5,
+    "size": 14,
+    "target": [
+     0,
+     8,
+     9
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/screen/frame_preview.geo.json",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
+     "position": [
+      0,
+      0,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "販賣機",
    "camera": {
     "azimuth": 25,
     "elevation": 12,
@@ -192,6 +327,58 @@
     {
      "type": "block",
      "color": {
+      "up": "#d2463e",
+      "south": "#c13c35",
+      "north": "#c13c35",
+      "east": "#a8332d",
+      "west": "#a8332d",
+      "down": "#8e2a25"
+     },
+     "origin": [
+      -8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#d2463e",
+      "south": "#c13c35",
+      "north": "#c13c35",
+      "east": "#a8332d",
+      "west": "#a8332d",
+      "down": "#8e2a25"
+     },
+     "origin": [
+      -8,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/screen/frame_preview.geo.json",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
+     "position": [
+      0,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
       "up": "#a7acb0",
       "south": "#8d9296",
       "north": "#8d9296",
@@ -234,58 +421,6 @@
     {
      "type": "block",
      "color": {
-      "up": "#d2463e",
-      "south": "#c13c35",
-      "north": "#c13c35",
-      "east": "#a8332d",
-      "west": "#a8332d",
-      "down": "#8e2a25"
-     },
-     "origin": [
-      -8,
-      0,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d2463e",
-      "south": "#c13c35",
-      "north": "#c13c35",
-      "east": "#a8332d",
-      "west": "#a8332d",
-      "down": "#8e2a25"
-     },
-     "origin": [
-      -8,
-      16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_a.png",
-     "position": [
-      0,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
       "up": "#e9ecee",
       "south": "#d6dadd",
       "north": "#d6dadd",
@@ -328,7 +463,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_a.png",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       16,
       16,
@@ -338,413 +473,7 @@
    ]
   },
   {
-   "label": "販賣機上（b 待機）",
-   "camera": {
-    "azimuth": 25,
-    "elevation": 12,
-    "size": 54,
-    "target": [
-     8,
-     14,
-     6
-    ]
-   },
-   "objects": [
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -8,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -8,
-      -16,
-      8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      8,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      8,
-      -16,
-      8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d2463e",
-      "south": "#c13c35",
-      "north": "#c13c35",
-      "east": "#a8332d",
-      "west": "#a8332d",
-      "down": "#8e2a25"
-     },
-     "origin": [
-      -8,
-      0,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d2463e",
-      "south": "#c13c35",
-      "north": "#c13c35",
-      "east": "#a8332d",
-      "west": "#a8332d",
-      "down": "#8e2a25"
-     },
-     "origin": [
-      -8,
-      16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_b.png",
-     "position": [
-      0,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e9ecee",
-      "south": "#d6dadd",
-      "north": "#d6dadd",
-      "east": "#c3c8cc",
-      "west": "#c3c8cc",
-      "down": "#aab0b5"
-     },
-     "origin": [
-      8,
-      0,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e9ecee",
-      "south": "#d6dadd",
-      "north": "#d6dadd",
-      "east": "#c3c8cc",
-      "west": "#c3c8cc",
-      "down": "#aab0b5"
-     },
-     "origin": [
-      8,
-      16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_b.png",
-     "position": [
-      16,
-      16,
-      16
-     ]
-    }
-   ]
-  },
-  {
-   "label": "販賣機上（c 觸控選單）",
-   "camera": {
-    "azimuth": 25,
-    "elevation": 12,
-    "size": 54,
-    "target": [
-     8,
-     14,
-     6
-    ]
-   },
-   "objects": [
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -8,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      -8,
-      -16,
-      8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      8,
-      -16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#a7acb0",
-      "south": "#8d9296",
-      "north": "#8d9296",
-      "east": "#7d8286",
-      "west": "#7d8286",
-      "down": "#6d7276"
-     },
-     "origin": [
-      8,
-      -16,
-      8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d2463e",
-      "south": "#c13c35",
-      "north": "#c13c35",
-      "east": "#a8332d",
-      "west": "#a8332d",
-      "down": "#8e2a25"
-     },
-     "origin": [
-      -8,
-      0,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#d2463e",
-      "south": "#c13c35",
-      "north": "#c13c35",
-      "east": "#a8332d",
-      "west": "#a8332d",
-      "down": "#8e2a25"
-     },
-     "origin": [
-      -8,
-      16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_c.png",
-     "position": [
-      0,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e9ecee",
-      "south": "#d6dadd",
-      "north": "#d6dadd",
-      "east": "#c3c8cc",
-      "west": "#c3c8cc",
-      "down": "#aab0b5"
-     },
-     "origin": [
-      8,
-      0,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "block",
-     "color": {
-      "up": "#e9ecee",
-      "south": "#d6dadd",
-      "north": "#d6dadd",
-      "east": "#c3c8cc",
-      "west": "#c3c8cc",
-      "down": "#aab0b5"
-     },
-     "origin": [
-      8,
-      16,
-      -8
-     ],
-     "size": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_c.png",
-     "position": [
-      16,
-      16,
-      16
-     ]
-    }
-   ]
-  },
-  {
-   "label": "置物櫃的操作面板（b）",
+   "label": "置物櫃的操作面板",
    "camera": {
     "azimuth": 20,
     "elevation": 12,
@@ -987,7 +716,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_b.png",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       -8,
       16,
@@ -1291,7 +1020,7 @@
    ]
   },
   {
-   "label": "售票機（c）",
+   "label": "售票機",
    "camera": {
     "azimuth": 25,
     "elevation": 20,
@@ -1411,7 +1140,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_c.png",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       -16,
       0,
@@ -1526,7 +1255,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_c.png",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       0,
       0,
@@ -1641,7 +1370,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_c.png",
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       16,
       0,
