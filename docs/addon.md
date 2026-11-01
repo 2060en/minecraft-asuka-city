@@ -136,6 +136,26 @@
 | 履帶做成自製方塊、取代鐵軌 | 第一版草稿的做法 | 礦車不能跑 |
 | 用腳本推礦車 | 履帶維持自製方塊，腳本每一刻把上面的礦車往前推 | 只是模擬，轉彎、爬坡、加速都不會真的和原版一樣，礦車也不能直接放在自製方塊上 |
 
+#### 可以換成廣告的畫
+
+查 Mojang 官方的原版資源包（2026-11）整理。尺寸寫成「寬 × 高」，單位是格；設定尺寸照 1 格約 0.75 公尺換算。舊的畫都在 `textures/painting/kz.png` 這一張圖裡，新的畫（1.21 加入）各是一個檔案。
+
+| 尺寸 | 設定尺寸 | 數量 | 舊的畫（`kz.png`） | 新的畫（各自的檔案） | 適合的廣告 |
+| --- | --- | --- | --- | --- | --- |
+| 2 × 1 | 1.5 × 0.75 公尺 | 5 | Pool、Courbet、Sea、Sunset、Creebet | — | 車廂裡的橫式廣告、店頭的橫幅 |
+| 1 × 2 | 0.75 × 1.5 公尺 | 3 | Wanderer、Graham | prairie_ride | 車站、機場的直式海報，柱子廣告 |
+| 2 × 2 | 1.5 × 1.5 公尺 | 8 | Match、Bust、Stage、Void、SkullAndRoses、Wither | baroque、humble | 牆面海報 |
+| 3 × 3 | 2.25 × 2.25 公尺 | 8 | — | bouquet、cavebird、cotan、endboss、fern、owlemons、sunflowers、tides | 大型牆面海報 |
+| 4 × 2 | 3 × 1.5 公尺 | 5 | Fighters | changing、finding、lowmist、passage | 橫式看板 |
+| 3 × 4 | 2.25 × 3 公尺 | 2 | — | backyard、pond | 直式大型看板 |
+| 4 × 3 | 3 × 2.25 公尺 | 2 | Skeleton、DonkeyKong | — | 橫式大型看板 |
+| 4 × 4 | 3 × 3 公尺 | 5 | Pointer、Pigscene、BurningSkull | orb、unpacked | 大樓牆面、屋頂看板 |
+
+一共 8 種尺寸、38 幅。另外 `kz.png` 裡還有 4 幅 2 × 2 的 Earth、Wind、Fire、Water，一般放置時應該不會出現（待實測）。一格大小的畫有 8 幅，其中 2 幅已經是筆電。
+
+- 最大只有 4 × 4。更大的屋頂看板要用好幾幅拼，或用 Image map 的地圖畫
+- 同一種尺寸裡，放畫時是隨機挑一幅，沒辦法指定（新版能不能指定，待確認）；同一種尺寸的廣告最好可以互換，或接受要重放幾次
+
 ### 4.2 暫緩
 
 還想不到好的原版替代，先放著，想到再做。
