@@ -22,6 +22,7 @@ Trapdoor bones: bottom, top, open (standing against the north edge).
 Units are texture pixels; a block is 16 x 16 x 16 with x and z in -8..8.
 """
 import json
+import random
 from pathlib import Path
 
 from PIL import Image
@@ -45,17 +46,39 @@ HANDLE_DARK = (128, 134, 140)
 W, H = 64, 32
 
 
-def make_texture(c):
+def grain(w, h, seed, vertical):
+    """A faint surface grain, a little lighter than the locker's: a small random shift per
+    pixel plus a few short streaks (along the door's height, or across a
+    trapdoor). Returns {(x, y): shift}."""
+    rng = random.Random(seed)
+    shift = {(x, y): rng.randint(-2, 2) for x in range(w) for y in range(h)}
+    for _ in range(w * h // 28):
+        x, y = rng.randrange(w), rng.randrange(h)
+        shade = rng.choice((-4, -3, 3, 4))
+        for i in range(rng.randint(3, 6)):
+            key = (x, y + i) if vertical else (x + i, y)
+            if key in shift:
+                shift[key] += shade
+    return shift
+
+
+def shade(color, d):
+    return tuple(max(0, min(255, v + d)) for v in color) + (255,)
+
+
+def make_texture(c, seed):
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     px = img.load()
+    door_grain = grain(16, 32, seed, vertical=True)
+    trap_grain = grain(16, 16, seed + 1, vertical=False)
     for y in range(32):
         for x in range(16):
             border = x in (0, 15) or y in (0, 31)
-            px[x, y] = c["border"] + (255,) if border else c["panel"] + (255,)
+            px[x, y] = c["border"] + (255,) if border else shade(c["panel"], door_grain[(x, y)])
     for y in range(16):
         for x in range(16):
             border = x in (0, 15) or y in (0, 15)
-            px[16 + x, y] = c["border"] + (255,) if border else c["panel"] + (255,)
+            px[16 + x, y] = c["border"] + (255,) if border else shade(c["panel"], trap_grain[(x, y)])
             px[32 + x, y] = c["edge"] + (255,)
     # Lever handle, about level with the top of the lower block:
     # a small plate and a lever pointing toward the hinge.
@@ -149,8 +172,8 @@ def geometry(identifier, bones):
     }
 
 
-for name, colour in COLOURS.items():
-    make_texture(colour).save(HERE / f"door_{name}.png")
+for seed, (name, colour) in enumerate(COLOURS.items()):
+    make_texture(colour, 10 * seed).save(HERE / f"door_{name}.png")
 geo = {"format_version": "1.12.0", "minecraft:geometry": [
     geometry("geometry.solid_door", door_bones()),
     geometry("geometry.solid_trapdoor", trapdoor_bones()),
