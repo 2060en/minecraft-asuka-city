@@ -34,6 +34,7 @@ from pathlib import Path
 
 from PIL import Image
 
+import ads_2x1
 from samples import SAMPLES
 
 HERE = Path(__file__).resolve().parent
@@ -63,9 +64,10 @@ SLOTS = {
     "X4": (2, 2, "kz", (96, 160)),
 }
 
-# code: draw function returning a (16 * w * 2) x (16 * h * 2) RGBA image.
-# Filled in as the author writes the contents into docs/ads.md.
-ADS = {}
+# code: draw function returning a (w * 32) x (h * 32) RGBA image, one
+# module per size. Drawn one at a time with the author (2026-11-02).
+ADS = {**ads_2x1.ADS}
+TITLES = {**ads_2x1.TITLES}
 
 # ---------- textures ----------
 laptop = Image.open(ROOT / "addon/drafts/laptop/kz_overlay.png")
@@ -93,6 +95,7 @@ for file, img in singles.items():
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--vanilla", type=Path, help="folder with the vanilla textures/painting files")
+parser.add_argument("--focus", help="slot code the preview shows (default: the last one registered)")
 args = parser.parse_args()
 if args.vanilla:
     out = ROOT / "addon/build/textures/painting"
@@ -203,8 +206,50 @@ def flat(placements):
     return objs
 
 
+SHELF = shades("#d9dcdf", "#b9bcc0", "#c9ccd0")
+GOODS = ["#e05a4f", "#f2c14e", "#5aa0d8", "#6cbf7a", "#f08a3c", "#9b7fd1", "#ffffff", "#3c4a5c"]
+
+
+def shop(name):
+    """A convenience-store wall: shelves of goods, the advert above them."""
+    objs = []
+    for x in range(-56, 57, 16):
+        for z in (16, 32, 48):
+            objs.append(block(x, -16, z, TILE))
+        for y in (0, 16, 32, 48):
+            objs.append(block(x, y, 0, TILE))
+    for x in range(-40, 41, 16):
+        for y in (0, 14):
+            objs.append(block(x, y, 16, SHELF, (16, 2, 12)))
+        for i, gx in enumerate(range(x - 7, x + 7, 4)):
+            for y in (2, 16):
+                c = GOODS[(i + x // 16 + y) % len(GOODS)]
+                objs.append({"type": "block", "color": shades(c, c, c), "origin": [gx, y, 12], "size": [3, 6 + (i % 2) * 2, 4]})
+        objs.append(block(x, 28, 16, SHELF, (16, 2, 12)))
+    objs.append(painting(name, -8, 32))
+    return objs
+
+
+args_focus = args.focus or (list(ADS)[-1] if ADS else None)
 panels = []
-if not ADS:
+if args_focus:
+    code = args_focus
+    w, h = SLOTS[code][:2]
+    name = f"ad_{code}"
+    same = [f"ad_{c}" for c in ADS if SLOTS[c][:2] == (w, h)]
+    panels.append({"label": f"{code}（平面）", "camera": {"azimuth": 0, "elevation": 0, "size": 16 * h + 6,
+                                                       "target": [16 * w / 2 - 16, 32 + 8 * h, 16]},
+                   "objects": flat([(name, -8, 32)])})
+    if (w, h) == (2, 1):
+        others = [n for n in same if n != name] + ["sample_air"]
+        panels.append({"label": "鐵路車廂：窗上", "camera": {"azimuth": 18, "elevation": 6, "size": 72, "target": [-8, 26, 16]},
+                       "objects": train_car([others[0], name, others[-1]])})
+        panels.append({"label": "店頭：貨架上方", "camera": {"azimuth": 25, "elevation": 12, "size": 64, "target": [0, 24, 16]},
+                       "objects": shop(name)})
+        panels.append({"label": "車廂裡近看", "camera": {"azimuth": 30, "elevation": -8, "size": 30, "target": [0, 40, 16]},
+                       "objects": train_car([others[0], name, others[-1]])})
+    title = f"{code}：{TITLES.get(code, '')}（草稿）"
+else:
     samples = [
         ("sample_air", -56, 32), ("sample_snow", -56, 0), ("sample_express", -24, 0),
     ]
@@ -225,4 +270,4 @@ sheet = {
     "panels": panels,
 }
 (HERE / "preview.json").write_text(json.dumps(sheet, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-print(f"wrote kz_overlay.png, {len(singles)} single paintings, preview files")
+print(f"wrote kz_overlay.png, {len(singles)} single paintings, preview files" + (f" (focus {args_focus})" if args_focus else ""))

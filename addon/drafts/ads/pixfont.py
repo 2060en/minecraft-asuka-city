@@ -117,3 +117,28 @@ def frame(img, color, width=1):
         rect(img, i, h - 1 - i, w - i, h - i, color)
         rect(img, i, i, i + 1, h - i, color)
         rect(img, w - 1 - i, i, w - i, h - i, color)
+
+
+# ---------- shared by every advertisement ----------
+PX = 32                          # pixels per block (32x, decided 2026-11-01)
+FRAME = (196, 200, 206)          # aluminium poster frame
+FRAME_W = 2                      # 1/16 block
+
+
+def canvas(w, h, bg):
+    """A w x h block advertisement filled with bg."""
+    from PIL import Image
+    return Image.new("RGBA", (w * PX, h * PX), tuple(bg) + (255,))
+
+
+def finish(img):
+    """Add the aluminium frame every poster sits in."""
+    frame(img, FRAME, FRAME_W)
+    return img
+
+
+def ellipse(img, x0, y0, x1, y1, color, outline=None):
+    """Filled ellipse inside the box [x0, x1) x [y0, y1), no anti-aliasing."""
+    d = ImageDraw.Draw(img)
+    d.ellipse([x0, y0, x1 - 1, y1 - 1], fill=tuple(color) + (255,),
+              outline=None if outline is None else tuple(outline) + (255,))
