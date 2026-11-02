@@ -536,6 +536,536 @@
    ]
   },
   {
+   "label": "A3 的 64x 備用版（平面）",
+   "camera": {
+    "azimuth": 0,
+    "elevation": 0,
+    "size": 22,
+    "target": [
+     0.0,
+     40,
+     16
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -64,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f2f3f4",
+      "down": "#d7d9dc",
+      "east": "#d7d9dc",
+      "west": "#d7d9dc",
+      "south": "#e6e8ea",
+      "north": "#e6e8ea"
+     },
+     "origin": [
+      48,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ads/preview.geo.json",
+     "identifier": "geometry.hd_A3",
+     "texture": "/addon/drafts/ads/preview_atlas.png",
+     "position": [
+      -8,
+      32,
+      16
+     ]
+    }
+   ]
+  },
+  {
    "label": "鐵路車廂：窗上",
    "camera": {
     "azimuth": 18,

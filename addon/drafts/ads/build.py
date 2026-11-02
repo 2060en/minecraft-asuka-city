@@ -74,11 +74,16 @@ laptop = Image.open(ROOT / "addon/drafts/laptop/kz_overlay.png")
 overlay = laptop.resize((512, 512), Image.NEAREST)
 singles = {}
 drawn = {}
+hd = {}
+(HERE / "hd").mkdir(exist_ok=True)
 for code, draw in ADS.items():
     w, h, file, pos = SLOTS[code]
-    img = draw()
+    img = draw(1)
     assert img.size == (w * K, h * K), (code, img.size)
     drawn[code] = img
+    hd[code] = draw(2)                       # the 64x spare, one step finer
+    assert hd[code].size == (w * K * 2, h * K * 2), (code, hd[code].size)
+    hd[code].save(HERE / "hd" / f"{code}.png")
     if pos:
         x, y = pos
         assert not overlay.crop((2 * x, 2 * y, 2 * x + w * K, 2 * y + h * K)).getbbox(), f"{code} would cover the laptop"
@@ -107,12 +112,15 @@ if args.vanilla:
         img.save(out / f"{file}.png")
     print(f"wrote {out.relative_to(ROOT)}/kz.png and {len(singles)} single paintings")
 
-# ---------- preview atlas ----------
-lid = laptop.crop((192, 0, 208, 16)).resize((K, K), Image.NEAREST)
-entries = [(f"ad_{code}", *SLOTS[code][:2], img) for code, img in drawn.items()]
-entries += [(f"sample_{name}", w, h, draw()) for name, label, w, h, draw in SAMPLES]
+# ---------- preview atlas: 64 px per block, so the 64x spares fit ----------
+AK = 64
+lid = laptop.crop((192, 0, 208, 16)).resize((AK, AK), Image.NEAREST)
+entries = [(f"ad_{code}", *SLOTS[code][:2], img.resize((img.width * 2, img.height * 2), Image.NEAREST))
+           for code, img in drawn.items()]
+entries += [(f"hd_{code}", *SLOTS[code][:2], img) for code, img in hd.items()]
+entries += [(f"sample_{name}", w, h, draw().resize((w * AK, h * AK), Image.NEAREST)) for name, label, w, h, draw in SAMPLES]
 
-ATLAS_W = 512
+ATLAS_W = 1024
 x = y = row_h = 0
 placed = {}
 for name, w, h, img in entries + [("lid", 1, 1, lid)]:
@@ -129,8 +137,8 @@ atlas.save(HERE / "preview_atlas.png")
 
 # ---------- preview models: a w x h painting, 1 pixel thick ----------
 lx, ly, _ = placed["lid"]
-back = {"uv": [lx, ly], "uv_size": [K, K]}
-edge = {"uv": [lx + 2, ly + 2], "uv_size": [1, 1]}
+back = {"uv": [lx, ly], "uv_size": [AK, AK]}
+edge = {"uv": [lx + 4, ly + 4], "uv_size": [1, 1]}
 geos = []
 for name, w, h, img in entries:
     ax, ay, _ = placed[name]
@@ -138,7 +146,7 @@ for name, w, h, img in entries:
         "description": {"identifier": f"geometry.{name}", "texture_width": ATLAS_W, "texture_height": ATLAS_H},
         "bones": [{"name": "painting", "pivot": [0, 0, 0], "cubes": [{
             "origin": [-8, 0, -8], "size": [16 * w, 16 * h, 1],
-            "uv": {"south": {"uv": [ax, ay], "uv_size": [w * K, h * K]}, "north": back,
+            "uv": {"south": {"uv": [ax, ay], "uv_size": [w * AK, h * AK]}, "north": back,
                    "east": edge, "west": edge, "up": edge, "down": edge},
         }]}],
     })
@@ -240,6 +248,9 @@ if args_focus:
     panels.append({"label": f"{code}（平面）", "camera": {"azimuth": 0, "elevation": 0, "size": 16 * h + 6,
                                                        "target": [16 * w / 2 - 16, 32 + 8 * h, 16]},
                    "objects": flat([(name, -8, 32)])})
+    hd_panel = {"label": f"{code} 的 64x 備用版（平面）", "camera": {"azimuth": 0, "elevation": 0, "size": 16 * h + 6,
+                                                            "target": [16 * w / 2 - 16, 32 + 8 * h, 16]},
+                "objects": flat([(f"hd_{code}", -8, 32)])}
     if (w, h) == (2, 1):
         others = [n for n in same if n != name] + ["sample_air"]
         panels.append({"label": "鐵路車廂：窗上", "camera": {"azimuth": 18, "elevation": 6, "size": 72, "target": [-8, 26, 16]},
@@ -248,6 +259,7 @@ if args_focus:
                        "objects": shop(name)})
         panels.append({"label": "車廂裡近看", "camera": {"azimuth": 30, "elevation": -8, "size": 30, "target": [0, 40, 16]},
                        "objects": train_car([others[0], name, others[-1]])})
+    panels.insert(1, hd_panel)
     title = f"{code}：{TITLES.get(code, '')}（草稿）"
 else:
     samples = [

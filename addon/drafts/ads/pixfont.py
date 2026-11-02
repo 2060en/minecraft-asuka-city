@@ -120,20 +120,23 @@ def frame(img, color, width=1):
 
 
 # ---------- shared by every advertisement ----------
-PX = 32                          # pixels per block (32x, decided 2026-11-01)
+# Every advertisement is drawn by a function taking k: k = 1 is the 32x
+# texture the game uses (decided 2026-11-01), k = 2 the 64x version kept as
+# a spare and a reference (the author asked for one per ad, 2026-11-02).
+PX = 32                          # pixels per block at k = 1
 FRAME = (196, 200, 206)          # aluminium poster frame
-FRAME_W = 2                      # 1/16 block
+FRAME_W = 2                      # 1/16 block at k = 1
 
 
-def canvas(w, h, bg):
+def canvas(w, h, bg, k=1):
     """A w x h block advertisement filled with bg."""
     from PIL import Image
-    return Image.new("RGBA", (w * PX, h * PX), tuple(bg) + (255,))
+    return Image.new("RGBA", (w * PX * k, h * PX * k), tuple(bg) + (255,))
 
 
-def finish(img):
+def finish(img, k=1):
     """Add the aluminium frame every poster sits in."""
-    frame(img, FRAME, FRAME_W)
+    frame(img, FRAME, FRAME_W * k)
     return img
 
 
