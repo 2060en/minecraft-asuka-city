@@ -77,7 +77,11 @@ LAPTOP = {"S1", "S2"}        # the laptop screens; their slots are taken
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--vanilla", type=Path, help="folder with the vanilla textures/painting files")
+parser.add_argument("--images", type=Path, help="take the images from this folder instead of images/")
+parser.add_argument("--preview", type=Path, help="write the preview here instead of preview.png")
 args = parser.parse_args()
+if args.images:
+    IMAGES = args.images
 
 sources = {}
 for f in sorted(IMAGES.glob("*")) if IMAGES.exists() else []:
@@ -139,7 +143,7 @@ if args.vanilla:
     print(f"wrote {out.relative_to(ROOT)}/kz.png and {len(singles)} single paintings")
 
 # ---------- preview: every advertisement, flat, 128 px per block for viewing ----------
-preview = HERE / "preview.png"
+preview = args.preview or HERE / "preview.png"
 if images:
     font = ImageFont.truetype(FONT, 16)
     tiles = [(code, img.resize((SLOTS[code][0] * 128, SLOTS[code][1] * 128), Image.NEAREST)) for code, img in images.items()]
@@ -161,4 +165,4 @@ if images:
 else:
     preview.unlink(missing_ok=True)
 print(f"{len(sources)} images: kz_overlay.png at {scale} px per block, {len(singles)} single paintings, "
-      + ("preview.png" if images else f"no preview (put images in {IMAGES.relative_to(ROOT)}/)"))
+      + ("preview.png" if images else f"no preview (put images in {IMAGES}/)"))
