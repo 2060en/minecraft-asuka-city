@@ -484,181 +484,151 @@ def mcdonalds(k=1):
 
 
 # ---------- A4 coffee (unbranded) ----------
-# Template: the author's reference photo (2026-11-02): a dark wall and a grey
-# concrete table; behind, a tall iced black coffee; in front, an iced latte
-# with espresso being poured in from a small glass jug by a hand coming in
-# from the top right; a white milk jug at the lower left, coffee beans on
-# the table, and the name in white, wide-spaced capitals at the bottom. The
-# photo is about 4:3, so the scene keeps its proportions in the middle and
-# the wall, the table and the arm run on to the sides. Unbranded: the name
-# becomes a coffee-bean mark and COFFEE.
-C_WALL = (34, 36, 39)
-C_WALL2 = (41, 43, 46)
-C_TABLE = (122, 124, 127)
-C_TABLE_D = (114, 116, 119)
-C_TABLE_L = (130, 132, 135)
-C_GLASS = (188, 194, 198)
-C_BLACK = (54, 27, 16)
-C_BLACK_LOW = (98, 45, 22)
-C_BLACK_GLOW = (132, 62, 28)
-C_ICE = (214, 216, 218)
-C_ICE_D = (178, 182, 186)
-C_ESPRESSO = (150, 84, 40)
-C_TAN = (204, 148, 96)
-C_CREAM = (234, 214, 186)
-C_MILK = (243, 241, 235)
-C_MILK_D = (220, 218, 212)
-C_SKIN = (234, 196, 166)
-C_SKIN_D = (206, 162, 130)
-C_AMBER = (186, 98, 40)
-C_AMBER_L = (228, 158, 88)
-C_CHINA = (245, 245, 243)
-C_CHINA_D = (212, 212, 210)
-C_BEAN = (74, 42, 24)
-C_BEAN_D = (40, 22, 14)
-C_TEXT = (247, 247, 245)
-
-SC = 25 / 376                    # 32x pixels per pixel of the reference photo
-SW, SH = 503 * SC, 376 * SC
-OX, OY = 2 + (60 - SW) / 2, 2
+# Template: the author's second reference (2026-11-02), a coffee banner of
+# almost the same shape as the painting: a warm dark brown background with a
+# thin copper outline map of Africa at the top right; on the left, a small
+# tagline, the big title and a bracketed pair of origins; on the right, an
+# iced latte behind an iced black coffee, each with a NEW label. The words
+# are in Japanese (the author's request): 気軽に、いい一杯を (tagline),
+# 厳選の珈琲 (title, の small as in the reference), エチオピア × タンザニア
+# (origins), ラテ and ブラック (labels). At 32x only the title is readable;
+# the small words become fine-print lines, as small print does at a
+# distance. Coordinates are fractions of the reference.
+K_BG = (112, 72, 48)
+K_BG_EDGE = (50, 29, 19)
+K_COPPER = (176, 118, 82)
+K_TEXT = (238, 180, 140)
+K_GLASS = (206, 196, 186)
+K_GLASS_IN = (150, 128, 112)
+K_MILK = (238, 230, 216)
+K_LATTE = (150, 92, 54)
+K_LATTE_D = (112, 64, 36)
+K_BLACK = (38, 19, 12)
+K_BLACK_L = (92, 42, 20)
+K_ICE = (226, 214, 200)
+K_ICE_D = (176, 150, 128)
 
 
-def T(fx, fy):
-    """A point of the reference photo, as a fraction of its width and
-    height, in 32x units."""
-    return (OX + fx * SW, OY + fy * SH)
+def F(fx, fy):
+    """A point of the reference, in 32x units inside the frame."""
+    return (2 + fx * 60, 2 + fy * 28)
 
 
-def glass(img, pts, k, inside):
-    """A straight glass: inside(x, y) colours the contents, the two sides get
-    a thin light edge."""
-    xs = [round(x * k) for x, _ in pts]
-    left, right = min(xs), max(xs)
+AFRICA = [(0.47, -0.02), (0.86, -0.02), (0.90, 0.10), (0.93, 0.18), (0.975, 0.19), (0.96, 0.25),
+          (0.92, 0.33), (0.90, 0.42), (0.88, 0.50), (0.85, 0.58), (0.81, 0.64), (0.78, 0.60),
+          (0.76, 0.50), (0.74, 0.40), (0.72, 0.33), (0.70, 0.30), (0.60, 0.30), (0.55, 0.28),
+          (0.49, 0.25), (0.44, 0.18), (0.42, 0.10), (0.44, 0.03), (0.47, -0.02)]
+BORDERS = [[(0.60, 0.0), (0.62, 0.28)], [(0.70, 0.0), (0.71, 0.30)], [(0.74, 0.08), (0.88, 0.12)],
+           [(0.74, 0.38), (0.89, 0.40)], [(0.76, 0.50), (0.87, 0.52)], [(0.52, 0.12), (0.70, 0.16)]]
+
+
+def line(img, pts, k, color):
+    ImageDraw.Draw(img).line([(round(F(*p)[0] * k), round(F(*p)[1] * k)) for p in pts], fill=color + (255,), width=1)
+
+
+def fine_print(img, x0, x1, y, k, color):
+    """Text too small to read: a broken line, as fine print looks."""
+    for x in range(round(x0 * k), round(x1 * k)):
+        if (x // max(1, k)) % 4 != 3:
+            put(img, x, round(y * k), color)
+
+
+def iced_glass(img, x0, x1, y0, y1, k, contents):
+    """A double-walled glass seen from the front: contents(t, x, y) colours
+    the inside by height t (0 at the rim, 1 at the bottom of the drink)."""
+    X0, X1 = F(x0, 0)[0], F(x1, 0)[0]
+    Y0, Y1 = F(0, y0)[1], F(0, y1)[1]
+    base = Y1 - (Y1 - Y0) * 0.07
+    wall = 0.8
 
     def paint(x, y):
-        if x <= left or x >= right - 1:
-            return C_GLASS
-        return inside(x, y)
-    poly(img, pts, k, paint)
+        u, v = x / k, y / k
+        if u < X0 + 0.5 or u > X1 - 0.6:
+            return K_GLASS
+        if v > base:
+            return K_GLASS if (x + y) % 3 else K_GLASS_IN
+        if u < X0 + wall or u > X1 - wall - 0.4:
+            return K_GLASS_IN
+        if v < Y0 + 0.6:
+            return K_GLASS
+        return contents((v - Y0) / (base - Y0), x, y)
+    poly(img, [(X0, Y0), (X1, Y0), (X1 - 0.6, Y1), (X0 + 0.6, Y1)], k, paint)
 
 
-def spaced(img, cx, y, word, color, k):
-    """Wide-spaced capitals centred on cx: the 3 x 5 font at 32x, the outline
-    font at 64x."""
+def latte_inside(t, x, y):
+    if t < 0.12:
+        return K_ICE if (x + 2 * y) % 5 else K_ICE_D
+    swirl = 0.08 * math.sin(x * 0.9) + 0.06 * math.sin(y * 1.3)
+    if t < 0.45 + swirl:
+        return K_LATTE if (x * 3 + y) % 7 else K_LATTE_D
+    if t < 0.58 + swirl:
+        return (198, 160, 126)
+    return K_MILK
+
+
+def black_inside(t, x, y):
+    if t < 0.16:
+        return K_ICE_D if (x * 2 + y) % 4 else K_ICE
+    if (x * 5 + y * 3) % 37 == 0 and t < 0.6:
+        return (150, 96, 64)                         # a glint on an ice cube
+    return K_BLACK_L if (x + y * 2) % 9 == 0 or t > 0.85 else K_BLACK
+
+
+def badge(img, x, y, k):
+    """The round NEW badge, centred on (x, y) in pixels."""
     if k == 1:
-        gap = 1
-        width = len(word) * 3 + (len(word) - 1) * gap
-        x = round(cx - width / 2)
-        for ch in word:
-            tiny(img, x, y, ch, color)
-            x += 3 + gap
-        return
-    gap, size = 4, 11
-    widths = [text_box(ch, size)[2] - text_box(ch, size)[0] for ch in word]
-    x = round(cx - (sum(widths) + gap * (len(word) - 1)) / 2)
-    for ch, w in zip(word, widths):
-        text(img, x, y, ch, color, size)
-        x += w + gap
+        ImageDraw.Draw(img).ellipse([x - 2, y - 2, x + 2, y + 2], outline=K_TEXT + (255,))
+    else:
+        ImageDraw.Draw(img).rounded_rectangle([x - 7, y - 4, x + 7, y + 4], radius=4, outline=K_TEXT + (255,))
+        tiny(img, x - 5, y - 2, "NEW", K_TEXT)
 
 
 def coffee(k=1):
-    img = canvas(2, 1, C_WALL, k)
+    img = canvas(2, 1, K_BG_EDGE, k)
     W, H = img.size
-    horizon = T(0, 0.44)[1]
+    cx, cy = F(0.33, 0.45)
     for y in range(H):
         for x in range(W):
-            if y < horizon * k:
-                c = C_WALL2 if ((x // (3 * k)) * 7 + (y // (2 * k)) * 3) % 11 == 0 else C_WALL
-            else:
-                n = ((x // k) * 37 + (y // k) * 53 + ((x // k) * (y // k)) % 7) % 23
-                c = C_TABLE_D if n < 3 else (C_TABLE_L if n > 20 else C_TABLE)
-            put(img, x, y, c)
+            d = math.hypot((x / k - cx) / 40, (y / k - cy) / 22)
+            t = min(1, d)
+            put(img, x, y, tuple(round(a + (b - a) * t) for a, b in zip(K_BG, K_BG_EDGE)))
 
-    # iced black coffee, behind
-    top, bot = T(0, 0.21)[1], T(0, 0.74)[1]
+    copper = K_COPPER if k > 1 else (120, 78, 54)    # thin lines, quieter at 32x
+    line(img, AFRICA, k, copper)                     # the map, top right
+    for b in BORDERS:
+        line(img, b, k, (128, 84, 58) if k > 1 else (92, 58, 40))
+    mx0, my0 = F(0.925, 0.46)
+    mx1, my1 = F(0.955, 0.58)
+    ImageDraw.Draw(img).ellipse([round(mx0 * k), round(my0 * k), round(mx1 * k), round(my1 * k)], outline=copper + (255,))
 
-    def black(x, y):
-        t = (y / k - top) / (bot - top)
-        if t < 0.1:
-            return C_ICE_D if (x + y) % 3 else (150, 120, 100)
-        if t > 0.93:
-            return (150, 104, 76)                    # the thick glass base
-        c = tuple(round(a + (b - a) * t) for a, b in zip(C_BLACK, C_BLACK_LOW))
-        if (x / k - T(0.27, 0)[0]) < 2.2 and t > 0.3:
-            c = C_BLACK_GLOW
-        return c
-    glass(img, [T(0.26, 0.21), T(0.50, 0.21), T(0.49, 0.74), T(0.27, 0.74)], k, black)
+    iced_glass(img, 0.50, 0.69, 0.15, 0.75, k, latte_inside)    # latte behind
+    iced_glass(img, 0.63, 0.83, 0.27, 0.93, k, black_inside)    # black in front
 
-    # milk jug, lower left
-    jx0, jy0 = T(0.12, 0.67)
-    jx1, jy1 = T(0.27, 0.90)
-    hx0, hy0 = T(0.05, 0.69)
-    hx1, hy1 = T(0.13, 0.82)
-    oval(img, hx0, hy0, hx1, hy1, k, C_CHINA)                       # handle
-    oval(img, hx0 + 0.9, hy0 + 0.9, hx1 - 0.4, hy1 - 0.9, k, C_TABLE)
-    oval(img, jx0, jy0 - 0.5, jx1, jy1, k, lambda x, y: C_CHINA_D if x > (jx1 - 1.6) * k else C_CHINA)
-    band(img, jx0 + 0.5, jx1 - 0.5, jy0, jy0 + 0.6, k, C_CHINA_D)    # the rim
-    poly(img, [(jx1 - 1.2, jy0), (jx1 + 0.8, jy0 - 0.8), (jx1, jy0 + 1)], k, C_CHINA)   # spout
-
-    # iced latte, in front
-    ltop, lbot = T(0, 0.38)[1], T(0, 0.88)[1]
-
-    def latte(x, y):
-        t = (y / k - ltop) / (lbot - ltop)
-        u = x / k
-        if t < 0.15:                                 # ice above the coffee
-            return C_ICE if (x // max(1, k) + y // max(1, k)) % 4 else C_ICE_D
-        wave = 0.08 * math.sin(u * 1.7) + 0.05 * math.sin(u * 3.9)
-        if t < 0.22 + wave:
-            return C_ESPRESSO
-        if t < 0.33 + wave:
-            return C_TAN if (x + y) % 3 else C_ESPRESSO
-        if t < 0.40 + wave:
-            return C_CREAM
-        if t > 0.95:
-            return C_GLASS
-        return C_MILK_D if u > T(0.66, 0)[0] else C_MILK
-    glass(img, [T(0.45, 0.38), T(0.70, 0.38), T(0.69, 0.88), T(0.46, 0.88)], k, latte)
-
-    # the pour: a small glass jug of espresso held by a hand from the top right
-    sx, sy = T(0.60, 0.30)
-    ex, ey = T(0.605, 0.44)
-    for i in range(round(sy * k), round(ey * k) + 1):
-        for j in range(max(1, k // 2 + (k > 1))):
-            put(img, round(sx * k) + j, i, (88, 40, 18))
-    poly(img, [T(0.56, 0.12), T(0.70, 0.07), T(0.74, 0.22), T(0.62, 0.31), T(0.58, 0.29)], k,
-         lambda x, y: C_AMBER_L if x < T(0.62, 0)[0] * k and y < T(0, 0.2)[1] * k else C_AMBER)
-    # the forearm leaves the picture through the top edge, up to the right
-    poly(img, [T(0.63, 0.0), (52, 2), (49.6, 5.6), T(0.80, 0.22), T(0.74, 0.31), T(0.69, 0.33),
-               T(0.67, 0.25), T(0.72, 0.18), T(0.66, 0.10)], k,
-         lambda x, y: C_SKIN_D if x > 46 * k or (y > T(0, 0.24)[1] * k and x > T(0.72, 0)[0] * k) else C_SKIN)
-    for fx, fy in ((0.69, 0.30), (0.72, 0.26)):                     # finger creases
-        put(img, round(T(fx, fy)[0] * k), round(T(fx, fy)[1] * k), C_SKIN_D)
-
-    # coffee beans
-    for fx, fy in ((0.37, 0.80), (0.39, 0.865), (0.425, 0.855), (0.35, 0.915)):
-        bx, by = T(fx, fy)
-        if k == 1:
-            put(img, math.floor(bx), math.floor(by), C_BEAN)
-            put(img, math.floor(bx) + 1, math.floor(by), C_BEAN_D)
-        else:
-            oval(img, bx - 0.9, by - 0.6, bx + 0.9, by + 0.7, k, C_BEAN)
-            put(img, round(bx * k) - 1, round(by * k), C_BEAN_D)
-            put(img, round(bx * k), round(by * k), C_BEAN_D)
-
-    # the name: a bean mark and COFFEE, white, wide-spaced
-    cx = T(0.51, 0)[0]
-    word_w = (6 * 3 + 5 * 1) if k == 1 else 60 / k
-    mark_x = cx - word_w / 2 - 4
-    ty = 25 if k == 1 else 51
     if k == 1:
-        sprite(img, round(mark_x), ty, [".#.", "###", "###", ".#."], C_TEXT)
-        spaced(img, cx + 1.5, ty, "COFFEE", C_TEXT, k)
+        fine_print(img, 9, 21, 4, k, K_TEXT)                     # tagline
+        text(img, 6, 6, "厳選", K_TEXT, 11)                       # title, on two lines
+        text(img, 6, 18, "珈琲", K_TEXT, 11)
+        badge(img, 34, 26, k)                                     # NEW ラテ
+        badge(img, 54, 26, k)                                     # NEW ブラック
+        fine_print(img, 57, 60.5, 26, k, K_TEXT)
     else:
-        oval(img, mark_x - 1.6, 25.4, mark_x + 1.6, 29.6, k, C_TEXT)
-        for i in range(-3, 4):
-            put(img, round(mark_x * k) + (1 if i < 0 else 0) - (1 if i > 1 else 0), 55 + i, C_TABLE)
-        spaced(img, (cx + 1.5) * k, ty + 1, "COFFEE", C_TEXT, k)
+        text(img, 14, 12, "いい一杯を", K_TEXT, 8)                 # tagline
+        text(img, 5, 22, "厳選", K_TEXT, 12)                      # title, の small and raised
+        text(img, 30, 20, "の", K_TEXT, 8)
+        text(img, 39, 22, "珈琲", K_TEXT, 12)
+        d = ImageDraw.Draw(img)
+        d.line([(9, 39), (6, 39), (6, 58), (9, 58)], fill=K_TEXT + (255,))         # the bracketed origins
+        d.line([(57, 39), (60, 39), (60, 58), (57, 58)], fill=K_TEXT + (255,))
+        text(img, 10, 40, "エチオピア ×", K_TEXT, 8)
+        text(img, 15, 50, "タンザニア", K_TEXT, 8)
+        badge(img, 71, 48, k)                                     # NEW ラテ, under the latte
+        text(img, 64, 53, "ラテ", K_TEXT, 7)
+        badge(img, 114, 22, k)                                    # NEW ブラック, written down the right side
+        y = 29
+        for ch in "ブラック":
+            b = text_box(ch, 7)
+            text(img, 114 - (b[2] - b[0]) // 2, y, ch, K_TEXT, 7)
+            y += 8
     return finish(img, k)
 
 
