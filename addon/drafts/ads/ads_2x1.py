@@ -7,7 +7,7 @@ import math
 
 from PIL import Image, ImageDraw
 
-from pixfont import canvas, finish, put, rect, text
+from pixfont import canvas, finish, put, rect, text, text_box, tiny
 
 # ---------- A3 Din Tai Fung ----------
 # Template: the author's reference banner (2026-11-02), kept as it is:
@@ -483,5 +483,184 @@ def mcdonalds(k=1):
     return finish(img, k)
 
 
-ADS = {"A1": mcdonalds, "A3": din_tai_fung}
-TITLES = {"A1": "麥當勞（照作者給的照片）", "A3": "鼎泰豐（照作者給的橫幅）"}
+# ---------- A4 coffee (unbranded) ----------
+# Template: the author's reference photo (2026-11-02): a dark wall and a grey
+# concrete table; behind, a tall iced black coffee; in front, an iced latte
+# with espresso being poured in from a small glass jug by a hand coming in
+# from the top right; a white milk jug at the lower left, coffee beans on
+# the table, and the name in white, wide-spaced capitals at the bottom. The
+# photo is about 4:3, so the scene keeps its proportions in the middle and
+# the wall, the table and the arm run on to the sides. Unbranded: the name
+# becomes a coffee-bean mark and COFFEE.
+C_WALL = (34, 36, 39)
+C_WALL2 = (41, 43, 46)
+C_TABLE = (122, 124, 127)
+C_TABLE_D = (114, 116, 119)
+C_TABLE_L = (130, 132, 135)
+C_GLASS = (188, 194, 198)
+C_BLACK = (54, 27, 16)
+C_BLACK_LOW = (98, 45, 22)
+C_BLACK_GLOW = (132, 62, 28)
+C_ICE = (214, 216, 218)
+C_ICE_D = (178, 182, 186)
+C_ESPRESSO = (150, 84, 40)
+C_TAN = (204, 148, 96)
+C_CREAM = (234, 214, 186)
+C_MILK = (243, 241, 235)
+C_MILK_D = (220, 218, 212)
+C_SKIN = (234, 196, 166)
+C_SKIN_D = (206, 162, 130)
+C_AMBER = (186, 98, 40)
+C_AMBER_L = (228, 158, 88)
+C_CHINA = (245, 245, 243)
+C_CHINA_D = (212, 212, 210)
+C_BEAN = (74, 42, 24)
+C_BEAN_D = (40, 22, 14)
+C_TEXT = (247, 247, 245)
+
+SC = 25 / 376                    # 32x pixels per pixel of the reference photo
+SW, SH = 503 * SC, 376 * SC
+OX, OY = 2 + (60 - SW) / 2, 2
+
+
+def T(fx, fy):
+    """A point of the reference photo, as a fraction of its width and
+    height, in 32x units."""
+    return (OX + fx * SW, OY + fy * SH)
+
+
+def glass(img, pts, k, inside):
+    """A straight glass: inside(x, y) colours the contents, the two sides get
+    a thin light edge."""
+    xs = [round(x * k) for x, _ in pts]
+    left, right = min(xs), max(xs)
+
+    def paint(x, y):
+        if x <= left or x >= right - 1:
+            return C_GLASS
+        return inside(x, y)
+    poly(img, pts, k, paint)
+
+
+def spaced(img, cx, y, word, color, k):
+    """Wide-spaced capitals centred on cx: the 3 x 5 font at 32x, the outline
+    font at 64x."""
+    if k == 1:
+        gap = 1
+        width = len(word) * 3 + (len(word) - 1) * gap
+        x = round(cx - width / 2)
+        for ch in word:
+            tiny(img, x, y, ch, color)
+            x += 3 + gap
+        return
+    gap, size = 4, 11
+    widths = [text_box(ch, size)[2] - text_box(ch, size)[0] for ch in word]
+    x = round(cx - (sum(widths) + gap * (len(word) - 1)) / 2)
+    for ch, w in zip(word, widths):
+        text(img, x, y, ch, color, size)
+        x += w + gap
+
+
+def coffee(k=1):
+    img = canvas(2, 1, C_WALL, k)
+    W, H = img.size
+    horizon = T(0, 0.44)[1]
+    for y in range(H):
+        for x in range(W):
+            if y < horizon * k:
+                c = C_WALL2 if ((x // (3 * k)) * 7 + (y // (2 * k)) * 3) % 11 == 0 else C_WALL
+            else:
+                n = ((x // k) * 37 + (y // k) * 53 + ((x // k) * (y // k)) % 7) % 23
+                c = C_TABLE_D if n < 3 else (C_TABLE_L if n > 20 else C_TABLE)
+            put(img, x, y, c)
+
+    # iced black coffee, behind
+    top, bot = T(0, 0.21)[1], T(0, 0.74)[1]
+
+    def black(x, y):
+        t = (y / k - top) / (bot - top)
+        if t < 0.1:
+            return C_ICE_D if (x + y) % 3 else (150, 120, 100)
+        if t > 0.93:
+            return (150, 104, 76)                    # the thick glass base
+        c = tuple(round(a + (b - a) * t) for a, b in zip(C_BLACK, C_BLACK_LOW))
+        if (x / k - T(0.27, 0)[0]) < 2.2 and t > 0.3:
+            c = C_BLACK_GLOW
+        return c
+    glass(img, [T(0.26, 0.21), T(0.50, 0.21), T(0.49, 0.74), T(0.27, 0.74)], k, black)
+
+    # milk jug, lower left
+    jx0, jy0 = T(0.12, 0.67)
+    jx1, jy1 = T(0.27, 0.90)
+    hx0, hy0 = T(0.05, 0.69)
+    hx1, hy1 = T(0.13, 0.82)
+    oval(img, hx0, hy0, hx1, hy1, k, C_CHINA)                       # handle
+    oval(img, hx0 + 0.9, hy0 + 0.9, hx1 - 0.4, hy1 - 0.9, k, C_TABLE)
+    oval(img, jx0, jy0 - 0.5, jx1, jy1, k, lambda x, y: C_CHINA_D if x > (jx1 - 1.6) * k else C_CHINA)
+    band(img, jx0 + 0.5, jx1 - 0.5, jy0, jy0 + 0.6, k, C_CHINA_D)    # the rim
+    poly(img, [(jx1 - 1.2, jy0), (jx1 + 0.8, jy0 - 0.8), (jx1, jy0 + 1)], k, C_CHINA)   # spout
+
+    # iced latte, in front
+    ltop, lbot = T(0, 0.38)[1], T(0, 0.88)[1]
+
+    def latte(x, y):
+        t = (y / k - ltop) / (lbot - ltop)
+        u = x / k
+        if t < 0.15:                                 # ice above the coffee
+            return C_ICE if (x // max(1, k) + y // max(1, k)) % 4 else C_ICE_D
+        wave = 0.08 * math.sin(u * 1.7) + 0.05 * math.sin(u * 3.9)
+        if t < 0.22 + wave:
+            return C_ESPRESSO
+        if t < 0.33 + wave:
+            return C_TAN if (x + y) % 3 else C_ESPRESSO
+        if t < 0.40 + wave:
+            return C_CREAM
+        if t > 0.95:
+            return C_GLASS
+        return C_MILK_D if u > T(0.66, 0)[0] else C_MILK
+    glass(img, [T(0.45, 0.38), T(0.70, 0.38), T(0.69, 0.88), T(0.46, 0.88)], k, latte)
+
+    # the pour: a small glass jug of espresso held by a hand from the top right
+    sx, sy = T(0.60, 0.30)
+    ex, ey = T(0.605, 0.44)
+    for i in range(round(sy * k), round(ey * k) + 1):
+        for j in range(max(1, k // 2 + (k > 1))):
+            put(img, round(sx * k) + j, i, (88, 40, 18))
+    poly(img, [T(0.56, 0.12), T(0.70, 0.07), T(0.74, 0.22), T(0.62, 0.31), T(0.58, 0.29)], k,
+         lambda x, y: C_AMBER_L if x < T(0.62, 0)[0] * k and y < T(0, 0.2)[1] * k else C_AMBER)
+    # the forearm leaves the picture through the top edge, up to the right
+    poly(img, [T(0.63, 0.0), (52, 2), (49.6, 5.6), T(0.80, 0.22), T(0.74, 0.31), T(0.69, 0.33),
+               T(0.67, 0.25), T(0.72, 0.18), T(0.66, 0.10)], k,
+         lambda x, y: C_SKIN_D if x > 46 * k or (y > T(0, 0.24)[1] * k and x > T(0.72, 0)[0] * k) else C_SKIN)
+    for fx, fy in ((0.69, 0.30), (0.72, 0.26)):                     # finger creases
+        put(img, round(T(fx, fy)[0] * k), round(T(fx, fy)[1] * k), C_SKIN_D)
+
+    # coffee beans
+    for fx, fy in ((0.37, 0.80), (0.39, 0.865), (0.425, 0.855), (0.35, 0.915)):
+        bx, by = T(fx, fy)
+        if k == 1:
+            put(img, math.floor(bx), math.floor(by), C_BEAN)
+            put(img, math.floor(bx) + 1, math.floor(by), C_BEAN_D)
+        else:
+            oval(img, bx - 0.9, by - 0.6, bx + 0.9, by + 0.7, k, C_BEAN)
+            put(img, round(bx * k) - 1, round(by * k), C_BEAN_D)
+            put(img, round(bx * k), round(by * k), C_BEAN_D)
+
+    # the name: a bean mark and COFFEE, white, wide-spaced
+    cx = T(0.51, 0)[0]
+    word_w = (6 * 3 + 5 * 1) if k == 1 else 60 / k
+    mark_x = cx - word_w / 2 - 4
+    ty = 25 if k == 1 else 51
+    if k == 1:
+        sprite(img, round(mark_x), ty, [".#.", "###", "###", ".#."], C_TEXT)
+        spaced(img, cx + 1.5, ty, "COFFEE", C_TEXT, k)
+    else:
+        oval(img, mark_x - 1.6, 25.4, mark_x + 1.6, 29.6, k, C_TEXT)
+        for i in range(-3, 4):
+            put(img, round(mark_x * k) + (1 if i < 0 else 0) - (1 if i > 1 else 0), 55 + i, C_TABLE)
+        spaced(img, (cx + 1.5) * k, ty + 1, "COFFEE", C_TEXT, k)
+    return finish(img, k)
+
+
+ADS = {"A1": mcdonalds, "A3": din_tai_fung, "A4": coffee}
+TITLES = {"A1": "麥當勞（照作者給的照片）", "A3": "鼎泰豐（照作者給的橫幅）", "A4": "咖啡，萬用（照作者給的照片）"}
