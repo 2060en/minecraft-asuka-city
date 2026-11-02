@@ -3,12 +3,12 @@
 Run from the repository root:
     python3 addon/drafts/ads/build.py [--vanilla DIR]
 
-Resource pack only. The author makes one image per painting slot
-(docs/ads.md), already pixelated at whatever resolution they choose, and
-puts it in addon/drafts/ads/images/, named by the slot code: A1.png,
-C4.png and so on (png, jpg or webp). This script places the images as they
-are: it does not draw, crop or resample them (decided 2026-11-02), with one
-exception below.
+Resource pack only. One image per painting slot (docs/ads.md) sits in
+addon/drafts/ads/images/, named by the slot code: A1.png, C4.png and so on
+(png, jpg or webp). pixelate.py makes them from the author's originals, or
+the author pixelates an image by hand. This script places the images as
+they are: it does not draw, crop or resample them (decided 2026-11-02),
+with one exception below.
 
 - An image must have its painting's shape (w x h blocks) with a whole
   number of pixels per block; otherwise the script stops and says what
