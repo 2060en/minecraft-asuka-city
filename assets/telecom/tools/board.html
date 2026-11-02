@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>電信 logo 概念</title>
+<style>
+  :root {
+    --purple: #641F9C;      /* 紫色混凝土 */
+    --amethyst: #8561BF;    /* 紫水晶方塊 */
+    --glass: #7F3FB2;       /* 紫色玻璃 */
+    --deep: #2A0E45;
+    --ink: #1d1626;
+    --muted: #6b6475;
+    --line: #e4dfeb;
+    --white-concrete: #CFD5D6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; width: 1600px; background: #fff; color: var(--ink);
+    font-family: "WenQuanYi Zen Hei", sans-serif;
+  }
+  .wrap { padding: 56px 64px 64px; }
+  h1 { font-size: 34px; margin: 0 0 6px; letter-spacing: .02em; }
+  .sub { color: var(--muted); font-size: 18px; margin: 0 0 40px; }
+  h2 { font-size: 22px; margin: 44px 0 18px; padding-bottom: 8px; border-bottom: 2px solid var(--line); }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .card .pair { display: grid; grid-template-columns: 1fr 1fr; }
+  .card .pair > div { height: 240px; display: grid; place-items: center; }
+  .card .pair .dark { background: var(--purple); }
+  .card .pair svg { width: 180px; height: 180px; }
+  .card .meta { padding: 16px 20px 20px; border-top: 1px solid var(--line); }
+  .card .meta b { font-size: 21px; }
+  .card .meta p { margin: 6px 0 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
+  .px { display: flex; gap: 22px; align-items: flex-end; padding: 18px 20px; background: #f6f4f8; }
+  .px figure { margin: 0; text-align: center; }
+  .px figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .px canvas { image-rendering: pixelated; display: block; }
+  .swatches { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+  .sw { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .sw .chip { height: 110px; }
+  .sw .info { padding: 12px 14px; font-size: 15px; line-height: 1.55; }
+  .sw .info b { font-size: 17px; }
+  .avoid { margin-top: 16px; color: var(--muted); font-size: 16px; }
+  .avoid span { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin: 0 4px 0 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>津蘭第一大電信公司　logo 符號概念</h1>
+  <p class="sub">名稱未定，先只看符號。主色直接取紫色混凝土的顏色 #641F9C，遊戲裡蓋出來的招牌和設計稿同色。</p>
+
+  <h2>符號三案</h2>
+  <div class="row" id="cards"></div>
+
+  <h2>色彩</h2>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#641F9C"></div><div class="info"><b>主紫</b><br>#641F9C<br>紫色混凝土</div></div>
+    <div class="sw"><div class="chip" style="background:#8561BF"></div><div class="info"><b>亮紫</b>（點綴）<br>#8561BF<br>紫水晶方塊</div></div>
+    <div class="sw"><div class="chip" style="background:#7F3FB2"></div><div class="info"><b>玻璃紫</b>（發光招牌）<br>#7F3FB2<br>紫色玻璃＋後方光源</div></div>
+    <div class="sw"><div class="chip" style="background:#2A0E45"></div><div class="info"><b>深紫</b>（App 深色模式）<br>#2A0E45<br>遊戲中用黑色混凝土</div></div>
+    <div class="sw"><div class="chip" style="background:#FFFFFF; border-bottom:1px solid var(--line)"></div><div class="info"><b>白</b><br>#FFFFFF<br>白色混凝土（#CFD5D6）</div></div>
+  </div>
+  <p class="avoid">避免使用：
+    <span style="background:#A97DA9"></span>紫珀方塊（偏粉，終界的感覺）
+    <span style="background:#764656"></span>紫色陶土（偏褐）
+    <span style="background:#A9309F"></span>洋紅色混凝土（太粉）
+  </p>
+</div>
+
+<script>
+// ---------- symbol geometry (viewBox 0 0 200 200, centre 100,100) ----------
+function spindle(ri, ro, hw, angleDeg) {
+  // a ray pointing up, pointed at both ends, widest about 1/3 from the inner end
+  const L = ro - ri, h = hw / 0.75;
+  const d = `M0,${-ri} C${h},${-ri - 0.10 * L} ${h},${-ri - 0.45 * L} 0,${-ro} ` +
+            `C${-h},${-ri - 0.45 * L} ${-h},${-ri - 0.10 * L} 0,${-ri} Z`;
+  return `<path d="${d}" transform="translate(100 100) rotate(${angleDeg})"/>`;
+}
+function symbolA() {
+  let s = '';
+  for (let i = 0; i < 8; i++) {
+    const long = i % 2 === 0;
+    s += long ? spindle(14, 96, 11, i * 45) : spindle(14, 58, 8, i * 45);
+  }
+  return s;
+}
+function petal(angleDeg) {
+  const d = 'M0,-10 C28,-26 34,-62 0,-94 C-34,-62 -28,-26 0,-10 Z';
+  return `<path d="${d}" transform="translate(100 104) rotate(${angleDeg})"/>`;
+}
+function symbolB() {
+  let s = '';
+  for (let i = 0; i < 5; i++) s += petal(i * 72);
+  return s;
+}
+function sparkle(cx, cy, R, k) {
+  return `<path d="M${cx},${cy - R} Q${cx + k},${cy - k} ${cx + R},${cy} Q${cx + k},${cy + k} ${cx},${cy + R} ` +
+         `Q${cx - k},${cy + k} ${cx - R},${cy} Q${cx - k},${cy - k} ${cx},${cy - R} Z"/>`;
+}
+function symbolC() {
+  return sparkle(86, 114, 80, 8) + sparkle(163, 37, 27, 3);
+}
+const SYMBOLS = [
+  { key: 'A', name: 'A　流線光芒', body: symbolA(),
+    note: '八道光芒，兩端收尖，和 Asuka Air 的流線同一套語彙。像星星閃爍，也像訊號往外擴散。遊戲中可用旗幟的十字＋斜十字做出來。' },
+  { key: 'B', name: 'B　桔梗星', body: symbolB(),
+    note: '五片尖瓣的桔梗花，正面看就是一顆星。桔梗本來就是紫色、星形，日、韓、中都有（韓國民謠〈桔梗謠〉），呼應居中者。' },
+  { key: 'C', name: 'C　閃光', body: symbolC(),
+    note: '四芒星加一顆小星，最直接的「閃一下」。缺點：這幾年成了 AI 產品的代表圖示（例如 Google Gemini），容易被看成 AI。' },
+];
+function svg(body, fill, size) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="${size}" height="${size}" fill="${fill}">${body}</svg>`;
+}
+
+// ---------- block-grid rasterisation ----------
+function rasterise(body, n, cell, canvas) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      const tmp = document.createElement('canvas');
+      tmp.width = tmp.height = n;
+      const t = tmp.getContext('2d');
+      t.drawImage(img, 0, 0, n, n);
+      const data = t.getImageData(0, 0, n, n).data;
+      canvas.width = canvas.height = n * cell;
+      const c = canvas.getContext('2d');
+      for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+        const a = data[(y * n + x) * 4 + 3] / 255;
+        c.fillStyle = a >= 0.42 ? '#641F9C' : '#CFD5D6';
+        c.fillRect(x * cell, y * cell, cell, cell);
+      }
+      c.strokeStyle = 'rgba(0,0,0,0.10)';
+      c.lineWidth = 1;
+      for (let i = 0; i <= n; i++) {
+        c.beginPath(); c.moveTo(i * cell + .5, 0); c.lineTo(i * cell + .5, n * cell); c.stroke();
+        c.beginPath(); c.moveTo(0, i * cell + .5); c.lineTo(n * cell, i * cell + .5); c.stroke();
+      }
+      resolve();
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg(body, '#000', 200));
+  });
+}
+
+const cards = document.getElementById('cards');
+const jobs = [];
+for (const s of SYMBOLS) {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.innerHTML = `
+    <div class="pair">
+      <div>${svg(s.body, '#641F9C', 180)}</div>
+      <div class="dark">${svg(s.body, '#FFFFFF', 180)}</div>
+    </div>
+    <div class="px">
+      <figure><canvas id="p15${s.key}"></canvas><figcaption>15 × 15 格（門市招牌）</figcaption></figure>
+      <figure><canvas id="p31${s.key}"></canvas><figcaption>31 × 31 格（總部外牆）</figcaption></figure>
+    </div>
+    <div class="meta"><b>${s.name}</b><p>${s.note}</p></div>`;
+  cards.appendChild(el);
+  jobs.push(rasterise(s.body, 15, 12, el.querySelector(`#p15${s.key}`)));
+  jobs.push(rasterise(s.body, 31, 7, el.querySelector(`#p31${s.key}`)));
+}
+Promise.all(jobs).then(() => { document.body.dataset.ready = '1'; });
+window.SYMBOLS = SYMBOLS.map(s => ({ key: s.key, svg: svg(s.body, '#641F9C', 200) }));
+</script>
+</body>
+</html>
