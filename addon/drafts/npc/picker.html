@@ -1,0 +1,408 @@
+<title>NPC 皮膚替換表</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* Layout: one column of slot cards grouped by vanilla category; each card is
+   vanilla render | fields | chosen draft, stacking on phones. A sticky bar
+   carries progress and filters. Template for addon/drafts/npc/picker.py. */
+:root {
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --ink: #1b2433;
+  --muted: #5b6576;
+  --line: #d6dce4;
+  --accent: #1f6e78;
+  --accent-soft: #dcefee;
+  --yes: #1f6e78;
+  --no: #6b7280;
+  --maybe: #b7791f;
+  --maybe-soft: #fbefd9;
+  --backdrop: #dfe5ea;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-code: "DotGothic16", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161d; --surface: #1a2029; --ink: #e6eaf0; --muted: #9aa4b2; --line: #2c3542;
+    --accent: #5bbac5; --accent-soft: #17343a; --yes: #5bbac5; --no: #9aa4b2;
+    --maybe: #e2a94b; --maybe-soft: #3a2e17; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161d; --surface: #1a2029; --ink: #e6eaf0; --muted: #9aa4b2; --line: #2c3542;
+  --accent: #5bbac5; --accent-soft: #17343a; --yes: #5bbac5; --no: #9aa4b2;
+  --maybe: #e2a94b; --maybe-soft: #3a2e17; color-scheme: dark;
+}
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body);
+  font-size: 15px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg);
+}
+.wrap { max-width: 980px; margin: 0 auto; }
+header.intro { padding-block: 28px 12px; display: grid; gap: 6px; }
+header.intro h1 { margin: 0; font-size: 1.7rem; line-height: 1.25; text-wrap: balance; }
+header.intro h1 .npc { font-family: var(--font-code); font-weight: 400; letter-spacing: 0.02em; }
+header.intro p { margin: 0; color: var(--muted); max-width: 62ch; }
+.notice { margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: var(--maybe-soft); color: var(--ink); font-size: 0.9rem; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  padding-block: 10px; border-bottom: 1px solid var(--line); display: grid; gap: 8px;
+}
+.bar-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stats b { color: var(--ink); font-weight: 700; }
+.meter { flex: 1 1 160px; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; min-width: 120px; }
+.meter i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+.sync { font-size: 0.8rem; color: var(--muted); margin-left: auto; }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 0.85rem; cursor: pointer; text-decoration: none;
+}
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.chip:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.btn {
+  border: 1px solid var(--accent); background: var(--accent); color: var(--surface); border-radius: 8px;
+  padding: 5px 12px; font: inherit; font-size: 0.85rem; cursor: pointer;
+}
+
+section.cat { padding-block: 22px 4px; display: grid; gap: 12px; scroll-margin-top: 120px; }
+.cat-head { display: grid; gap: 4px; }
+.cat-head h2 { margin: 0; font-size: 1.2rem; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.cat-head h2 .range { font-family: var(--font-code); font-weight: 400; font-size: 0.95rem; color: var(--muted); }
+.cat-head p { margin: 0; color: var(--muted); font-size: 0.9rem; max-width: 70ch; }
+.cat-head .cands { font-size: 0.85rem; }
+.cat-head .cands span { color: var(--ink); }
+
+article.slot {
+  background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--line);
+  border-radius: 10px; padding: 12px; display: grid; gap: 12px 16px;
+  grid-template-columns: 200px minmax(0, 1fr) 200px; align-items: start;
+}
+article.slot[data-replace="yes"] { border-left-color: var(--yes); }
+article.slot[data-replace="no"] { border-left-color: var(--no); }
+article.slot[data-replace="maybe"] { border-left-color: var(--maybe); }
+figure { margin: 0; display: grid; gap: 4px; }
+figure img { width: 200px; max-width: 100%; aspect-ratio: 300 / 210; height: auto; border-radius: 6px; background: var(--backdrop); image-rendering: auto; }
+figcaption { font-size: 0.78rem; color: var(--muted); }
+figure.draft[hidden] { display: none; }
+.fields { display: grid; gap: 10px; min-width: 0; }
+.slot-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.code { font-family: var(--font-code); font-size: 1.5rem; line-height: 1; letter-spacing: 0.03em; }
+.file { font-size: 0.78rem; color: var(--muted); word-break: break-all; }
+.saved { font-size: 0.78rem; color: var(--muted); margin-left: auto; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; width: fit-content; max-width: 100%; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label { padding: 5px 14px; font-size: 0.88rem; cursor: pointer; border-left: 1px solid var(--line); user-select: none; }
+.seg label:first-of-type { border-left: 0; }
+.seg input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: -2px; }
+.seg input[value="yes"]:checked + label { background: var(--yes); color: var(--surface); }
+.seg input[value="no"]:checked + label { background: var(--no); color: var(--surface); }
+.seg input[value="maybe"]:checked + label { background: var(--maybe); color: var(--surface); }
+.field { display: grid; gap: 3px; }
+.field > span { font-size: 0.8rem; color: var(--muted); }
+.field input, .field textarea, .field select {
+  font: inherit; font-size: 0.95rem; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 7px; padding: 6px 9px; width: 100%; box-sizing: border-box;
+}
+.field textarea { resize: vertical; min-height: 2.6em; }
+.when-yes[hidden] { display: none; }
+.empty { color: var(--muted); padding-block: 24px; }
+
+#export-box { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+#export-box textarea { font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; width: 100%; box-sizing: border-box; min-height: 12em; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 8px; }
+footer { padding-block: 28px 40px; color: var(--muted); font-size: 0.82rem; }
+
+@media (max-width: 760px) {
+  article.slot { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  article.slot .fields { grid-column: 1 / -1; grid-row: 2; }
+  figure img { width: 100%; }
+  .sync { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .meter i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <h1><span class="npc">NPC</span> 皮膚替換表</h1>
+    <p>原版的 60 個 NPC 皮膚，照設定畫面的順序編號。每一格決定要不要換、換成什麼人物、長怎樣；有現成的草稿可以直接選來參考。輸入會自動儲存，Claude 會照這裡的內容畫皮膚。</p>
+    <div class="notice" id="offline" hidden>這個畫面連不到儲存空間，輸入只會留在這台裝置的瀏覽器裡。填完請按「複製成文字」，貼到對話裡給 Claude。</div>
+  </header>
+
+  <div class="bar" id="bar">
+    <div class="bar-row">
+      <div class="stats" id="stats"></div>
+      <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+      <span class="sync" id="sync">讀取中…</span>
+    </div>
+    <div class="bar-row">
+      <div class="chips" id="filters" role="group" aria-label="篩選">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="chip" type="button" data-filter="todo" aria-pressed="false">還沒決定</button>
+        <button class="chip" type="button" data-filter="yes" aria-pressed="false">要換</button>
+        <button class="chip" type="button" data-filter="no" aria-pressed="false">不換</button>
+        <button class="chip" type="button" data-filter="maybe" aria-pressed="false">再想想</button>
+      </div>
+      <button class="btn" type="button" id="export">複製成文字</button>
+    </div>
+    <nav class="chips" id="jump" aria-label="跳到類別"></nav>
+  </div>
+
+  <div id="export-box" hidden>
+    <span id="export-msg">已複製。也可以從下面手動選取。</span>
+    <textarea id="export-text" readonly></textarea>
+  </div>
+
+  <main id="list"></main>
+  <p class="empty" id="none" hidden>這個篩選沒有符合的格子。</p>
+
+  <footer>原版的圖是用 Mojang 公開的原版資源包算出來的預覽，只放在這個私人頁面，不放進 repo。NPC 的手固定交叉在胸前，頭比玩家高一點，鼻子已決定拿掉。</footer>
+</div>
+
+<script>
+const DATA = /*PICKER_DATA*/null;
+const REPLACE = [["yes", "換"], ["no", "不換"], ["maybe", "再想想"]];
+const LABEL = Object.fromEntries(REPLACE);
+const state = {};          // code -> {replace, character, look, draft}
+const dirty = new Set();   // codes with local edits not yet written
+const timers = {};
+const writing = {};
+let db = null, readOnly = false, filter = "all";
+const LOCAL_KEY = "npc-picker-v1";
+
+for (const s of DATA.slots) state[s.code] = { replace: "", character: "", look: "", draft: "" };
+
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "text") n.textContent = v; else if (v !== null && v !== undefined) n.setAttribute(k, v);
+  }
+  for (const k of kids) if (k) n.append(k);
+  return n;
+};
+
+function build() {
+  const list = document.getElementById("list");
+  const jump = document.getElementById("jump");
+  const draftName = Object.fromEntries(DATA.drafts.map((d) => [d.id, d.name]));
+  for (const cat of DATA.categories) {
+    const slots = DATA.slots.filter((s) => s.cat === cat.id);
+    const dl = el("datalist", { id: `dl-${cat.id}` });
+    for (const c of cat.candidates) dl.append(el("option", { value: c }));
+    const range = `${slots[0].code}–${slots[slots.length - 1].code}`;
+    const cands = el("p", { class: "cands" }, "Claude 的候補（可以不用）：", el("span", { text: cat.candidates.join("、") }));
+    const sec = el("section", { class: "cat", id: `cat-${cat.id}` },
+      el("div", { class: "cat-head" },
+        el("h2", {}, cat.name, el("span", { class: "range", text: range })),
+        el("p", { text: "原版：" + cat.vanilla }), cands), dl);
+    jump.append(el("a", { class: "chip", href: `#cat-${cat.id}`, text: cat.name }));
+    for (const s of slots) sec.append(card(s, cat, draftName));
+    list.append(sec);
+  }
+}
+
+function card(s, cat, draftName) {
+  const c = s.code;
+  const seg = el("div", { class: "seg", role: "radiogroup", "aria-label": `${c} 要不要換` });
+  for (const [v, t] of REPLACE) {
+    const id = `${c}-r-${v}`;
+    seg.append(el("input", { type: "radio", name: `${c}-replace`, id, value: v }), el("label", { for: id, text: t }));
+  }
+  const draftSel = el("select", { id: `${c}-draft` }, el("option", { value: "", text: "（沒有）" }));
+  for (const d of DATA.drafts) draftSel.append(el("option", { value: d.id, text: d.name }));
+  const draftImg = el("img", { alt: "", loading: "lazy", width: "300", height: "210" });
+  const draftFig = el("figure", { class: "draft" }, draftImg, el("figcaption", { id: `${c}-draft-cap` }));
+  draftFig.hidden = true;
+  const art = el("article", { class: "slot", id: c, "data-replace": "" },
+    el("figure", { class: "ref" },
+      el("img", { src: `img/${c}.png`, alt: `原版 ${c} 的正面與背面`, loading: "lazy", width: "300", height: "210" }),
+      el("figcaption", { text: "原版（正面、背面）" })),
+    el("div", { class: "fields" },
+      el("div", { class: "slot-head" }, el("span", { class: "code", text: c }),
+        el("span", { class: "file", text: s.file }), el("span", { class: "saved", id: `${c}-saved` })),
+      seg,
+      el("div", { class: "when-yes", id: `${c}-more` },
+        el("label", { class: "field" }, el("span", { text: "換成什麼人物" }),
+          el("input", { id: `${c}-character`, list: `dl-${cat.id}`, placeholder: "例如：站務員", autocomplete: "off" })),
+        el("label", { class: "field" }, el("span", { text: "長怎樣（服裝、顏色、配件、髮型…）" }),
+          el("textarea", { id: `${c}-look`, rows: "2", placeholder: "例如：深藍制服、帽子、白手套" })),
+        el("label", { class: "field" }, el("span", { text: "參考草稿" }), draftSel))),
+    draftFig);
+  art.addEventListener("change", (e) => {
+    if (e.target.name === `${c}-replace`) { state[c].replace = e.target.value; edited(c); }
+    if (e.target === draftSel) { state[c].draft = draftSel.value; edited(c); }
+  });
+  art.addEventListener("input", (e) => {
+    if (e.target.id === `${c}-character`) { state[c].character = e.target.value; edited(c, true); }
+    if (e.target.id === `${c}-look`) { state[c].look = e.target.value; edited(c, true); }
+  });
+  art._draftName = draftName;
+  return art;
+}
+
+function paint(c, force = false) {
+  const st = state[c];
+  const art = document.getElementById(c);
+  art.dataset.replace = st.replace;
+  for (const [v] of REPLACE) document.getElementById(`${c}-r-${v}`).checked = st.replace === v;
+  document.getElementById(`${c}-more`).hidden = st.replace === "no";
+  for (const f of ["character", "look", "draft"]) {
+    const n = document.getElementById(`${c}-${f}`);
+    if (force || document.activeElement !== n) n.value = st[f];
+  }
+  const fig = art.querySelector("figure.draft");
+  const showDraft = st.draft && st.replace !== "no";
+  fig.hidden = !showDraft;
+  if (showDraft) {
+    const img = fig.querySelector("img");
+    if (img.getAttribute("src") !== `img/d_${st.draft}.png`) img.src = `img/d_${st.draft}.png`;
+    img.alt = `草稿：${art._draftName[st.draft]}`;
+    document.getElementById(`${c}-draft-cap`).textContent = `草稿：${art._draftName[st.draft]}`;
+  }
+}
+
+function stats() {
+  const all = Object.values(state);
+  const n = (v) => all.filter((s) => s.replace === v).length;
+  const decided = n("yes") + n("no");
+  document.getElementById("stats").innerHTML = "";
+  document.getElementById("stats").append(
+    el("span", {}, "已決定 ", el("b", { text: `${decided}` }), " / 60"),
+    el("span", {}, "換 ", el("b", { text: `${n("yes")}` })),
+    el("span", {}, "不換 ", el("b", { text: `${n("no")}` })),
+    el("span", {}, "再想想 ", el("b", { text: `${n("maybe")}` })));
+  document.getElementById("meter").style.width = `${(decided / 60) * 100}%`;
+}
+
+function applyFilter() {
+  let shown = 0;
+  for (const s of DATA.slots) {
+    const r = state[s.code].replace;
+    const ok = filter === "all" || (filter === "todo" ? r !== "yes" && r !== "no" : r === filter);
+    document.getElementById(s.code).hidden = !ok;
+    if (ok) shown++;
+  }
+  for (const sec of document.querySelectorAll("section.cat")) {
+    sec.hidden = ![...sec.querySelectorAll("article.slot")].some((a) => !a.hidden);
+  }
+  document.getElementById("none").hidden = shown > 0;
+}
+
+function edited(c, typing = false) {
+  dirty.add(c);
+  paint(c);
+  stats();
+  if (!typing) applyFilter();
+  setSaved(c, "未儲存");
+  clearTimeout(timers[c]);
+  timers[c] = setTimeout(() => save(c), typing ? 900 : 150);
+}
+
+function setSaved(c, text) { document.getElementById(`${c}-saved`).textContent = text; }
+
+function saveLocal() {
+  try { localStorage.setItem(LOCAL_KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+}
+
+async function save(c) {
+  if (!db || readOnly) {
+    saveLocal(); dirty.delete(c); setSaved(c, db ? "唯讀" : "只存在這台裝置"); return;
+  }
+  if (writing[c]) { await writing[c]; }
+  const body = { ...state[c], updatedAt: new Date().toISOString() };
+  writing[c] = (async () => {
+    try {
+      await db.collection("slots").doc(c).set(body);
+      if (JSON.stringify(stripTime(body)) === JSON.stringify(state[c])) dirty.delete(c);
+      setSaved(c, "已儲存");
+    } catch (e) {
+      if (e && e.code === "invalid_argument") { readOnly = true; setSync("你沒有修改權限，只能看"); setSaved(c, "沒有儲存"); }
+      else if (e && e.code === "quota_exceeded") { setSaved(c, "儲存空間已滿"); }
+      else { setSaved(c, "儲存失敗，稍後會再試"); clearTimeout(timers[c]); timers[c] = setTimeout(() => save(c), 3000 + Math.random() * 2000); }
+    } finally { writing[c] = null; }
+  })();
+  await writing[c];
+}
+
+function stripTime(b) { const { updatedAt, ...rest } = b; return rest; }
+function setSync(t) { document.getElementById("sync").textContent = t; }
+
+function exportText() {
+  const draftName = Object.fromEntries(DATA.drafts.map((d) => [d.id, d.name]));
+  const rows = ["| 編號 | 原版檔案 | 要換嗎 | 換成什麼人物 | 長怎樣 | 參考草稿 |", "| --- | --- | --- | --- | --- | --- |"];
+  const cell = (t) => (t || "").replace(/\|/g, "／").replace(/\n+/g, " ");
+  for (const s of DATA.slots) {
+    const st = state[s.code];
+    if (!st.replace && !st.character && !st.look && !st.draft) continue;
+    rows.push(`| ${s.code} | ${s.file} | ${LABEL[st.replace] || ""} | ${cell(st.character)} | ${cell(st.look)} | ${draftName[st.draft] || ""} |`);
+  }
+  return rows.length > 2 ? rows.join("\n") : "（還沒有填任何格子）";
+}
+
+document.getElementById("export").addEventListener("click", () => {
+  const text = exportText();
+  const box = document.getElementById("export-box");
+  const ta = document.getElementById("export-text");
+  const msg = document.getElementById("export-msg");
+  ta.value = text; box.hidden = false;
+  const fallback = () => { msg.textContent = "這裡不能自動複製，請從下面手動全選、複製。"; ta.focus(); ta.select(); };
+  try {
+    navigator.clipboard.writeText(text).then(() => { msg.textContent = "已複製。也可以從下面手動選取。"; }, fallback);
+  } catch (e) { fallback(); }
+});
+
+document.getElementById("filters").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-filter]");
+  if (!b) return;
+  filter = b.dataset.filter;
+  for (const x of document.querySelectorAll("#filters .chip")) x.setAttribute("aria-pressed", String(x === b));
+  applyFilter();
+});
+
+function load(fromStore) {
+  for (const [c, v] of Object.entries(fromStore)) {
+    if (!state[c] || dirty.has(c)) continue;
+    state[c] = { replace: v.replace || "", character: v.character || "", look: v.look || "", draft: v.draft || "" };
+    paint(c);
+  }
+  stats(); applyFilter();
+}
+
+function offline() {
+  document.getElementById("offline").hidden = false;
+  setSync("只存在這台裝置");
+  try { const saved = JSON.parse(localStorage.getItem(LOCAL_KEY) || "{}"); load(saved); } catch (e) { /* nothing saved */ }
+}
+
+build();
+for (const s of DATA.slots) paint(s.code, true);
+stats(); applyFilter();
+
+(async () => {
+  db = window.claude && window.claude.use ? await window.claude.use("db") : null;
+  if (!db) { offline(); return; }
+  let settled = false;
+  const timer = setTimeout(() => { if (!settled) setSync("還連不上儲存空間，資料可能不是最新的"); }, 10000);
+  db.collection("slots").onSnapshot((snap) => {
+    const got = {};
+    for (const d of snap.docs) got[d.id] = d.data();
+    load(got);
+    if (!snap.metadata.fromCache) { settled = true; clearTimeout(timer); setSync(snap.metadata.hasPendingWrites ? "儲存中…" : "已同步"); }
+  }, (e) => {
+    settled = true; clearTimeout(timer);
+    setSync(e && e.code === "revoked" ? "沒有讀取權限" : "儲存空間中斷，請重新整理");
+  });
+})();
+</script>

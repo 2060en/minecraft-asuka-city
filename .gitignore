@@ -1,2 +1,3 @@
 # Scratch output, e.g. the vanilla NPC sheet (Mojang art, not for the repo)
 .scratch/
+__pycache__/
