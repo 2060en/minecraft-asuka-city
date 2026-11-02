@@ -3,36 +3,41 @@
 Run from the repository root:
     python3 addon/drafts/ads/build.py [--vanilla DIR]
 
-Resource pack only. The author prepares one image per painting slot
-(docs/ads.md) and puts it in addon/drafts/ads/images/, named by the slot
-code: A1.png, C4.jpg and so on (png, jpg or webp, any size). This script
-fits each image to its painting and writes the textures; it does not draw
-anything itself (decided 2026-11-02).
+Resource pack only. The author makes one image per painting slot
+(docs/ads.md), already pixelated at whatever resolution they choose, and
+puts it in addon/drafts/ads/images/, named by the slot code: A1.png,
+C4.png and so on (png, jpg or webp). This script places the images as they
+are: it does not draw, crop or resample them (decided 2026-11-02), with one
+exception below.
 
-Fitting:
-- the image is cropped around its centre to the painting's shape (w x h
-  blocks) if its shape differs; the script says so;
-- it is resized to 32 px per block (32x, decided 2026-11-01). An image that
-  is an exact multiple of that size (pixel art) is resized with
-  nearest-neighbour, anything else (a photo) with Lanczos;
-- a 64x spare of every image goes to hd/ (the author asked for one per ad).
+- An image must have its painting's shape (w x h blocks) with a whole
+  number of pixels per block; otherwise the script stops and says what
+  size it expected.
+- The 1.21 paintings are one file each: the image is copied as it is, as
+  painting/<name>.png.
+- The classic paintings share one atlas, kz.png (16 x 16 blocks), and an
+  atlas has one resolution. So the atlas takes the largest pixels-per-block
+  among its images (at least the vanilla 16), and an image with fewer is
+  enlarged with nearest-neighbour, which keeps pixel art sharp; the script
+  says so, and warns when the enlargement is not a whole number. The
+  laptop parts (addon/drafts/laptop/, 16 px per block) are enlarged the same
+  way and never covered: images for S1 and S2 are refused.
 
-Outputs, all in this folder:
-- kz_overlay.png: 512 x 512, the laptop parts (addon/drafts/laptop/, enlarged
-  2x) plus every advertisement on a classic painting, transparent elsewhere.
-  The laptop parts are never covered: S1 and S2 are refused
+Outputs, in this folder:
+- kz_overlay.png: the laptop parts plus every advertisement on a classic
+  painting, transparent elsewhere
 - painting/<name>.png: the 1.21 paintings that have an advertisement
-- hd/<code>.png: the 64x spares
-- preview.png: every advertisement in place, flat, labelled with its code
+- preview.png: every advertisement, flat, labelled with its code (enlarged
+  for viewing only)
 
 With --vanilla DIR (a folder holding the vanilla textures/painting files, for
 example from https://github.com/Mojang/bedrock-samples), it also writes the
-complete kz.png to addon/build/textures/painting/: vanilla enlarged 2x, then
-the overlay on top. addon/build/ is not committed, so no vanilla image ends
-up in the repository.
+complete kz.png to addon/build/textures/painting/: vanilla enlarged to the
+atlas resolution, then the overlay on top. addon/build/ is not committed, so
+no vanilla image ends up in the repository.
 
-Whether the game shows a 512 x 512 kz.png and 32x single paintings correctly
-needs a test in game.
+Whether the game shows a kz.png larger than 256 x 256 and single paintings
+finer than 16 px per block correctly needs a test in game.
 """
 import argparse
 from pathlib import Path
@@ -42,7 +47,6 @@ from PIL import Image, ImageDraw, ImageFont
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 IMAGES = HERE / "images"
-K = 32                       # pixels per block
 FONT = "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"
 
 # ---------- painting slots (docs/ads.md) ----------
@@ -71,24 +75,6 @@ SLOTS = {
 LAPTOP = {"S1", "S2"}        # the laptop screens; their slots are taken
 
 
-def fit(img, w, h, px, code):
-    """Crop img around its centre to w:h and resize it to px per block."""
-    img = img.convert("RGBA")
-    W, H = img.size
-    if abs(W * h - H * w) > max(W, H) * 0.01 * min(w, h):
-        if W * h > H * w:                    # too wide: trim the sides
-            nw = round(H * w / h)
-            img = img.crop(((W - nw) // 2, 0, (W - nw) // 2 + nw, H))
-        else:                                # too tall: trim top and bottom
-            nh = round(W * h / w)
-            img = img.crop((0, (H - nh) // 2, W, (H - nh) // 2 + nh))
-        if px == K:
-            print(f"  {code}: {W} x {H} is not {w}:{h}, cropped around the centre to {img.width} x {img.height}")
-    tw, th = w * px, h * px
-    exact = img.width % tw == 0 and img.height % th == 0 and img.width // tw == img.height // th
-    return img.resize((tw, th), Image.NEAREST if exact else Image.LANCZOS)
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument("--vanilla", type=Path, help="folder with the vanilla textures/painting files")
 args = parser.parse_args()
@@ -106,48 +92,57 @@ for f in sorted(IMAGES.glob("*")) if IMAGES.exists() else []:
         raise SystemExit(f"two images for {code}: {sources[code].name} and {f.name}")
     sources[code] = f
 
-laptop = Image.open(ROOT / "addon/drafts/laptop/kz_overlay.png")
-overlay = laptop.resize((512, 512), Image.NEAREST)
-singles, fitted = {}, {}
-(HERE / "hd").mkdir(exist_ok=True)
-(HERE / "painting").mkdir(exist_ok=True)
+images, per_block = {}, {}
 for code, f in sources.items():
     w, h, file, pos = SLOTS[code]
-    src = Image.open(f)
-    img = fit(src, w, h, K, code)
-    fitted[code] = img
-    fit(src, w, h, K * 2, code).save(HERE / "hd" / f"{code}.png")
-    if pos:
-        x, y = 2 * pos[0], 2 * pos[1]
-        assert not overlay.crop((x, y, x + w * K, y + h * K)).getbbox(), f"{code} would cover the laptop"
-        overlay.paste(img, (x, y))
-    else:
-        singles[file] = img
+    img = Image.open(f).convert("RGBA")
+    if img.width % w or img.height % h or img.width // w != img.height // h:
+        raise SystemExit(f"{f.name}: {img.width} x {img.height} does not fit {code}, a {w} x {h} painting; "
+                         f"it needs {w}:{h} with whole pixels per block, e.g. {w * 32} x {h * 32}")
+    images[code] = img
+    per_block[code] = img.width // w
+
+atlas_codes = [c for c in images if SLOTS[c][3]]
+scale = max([16] + [per_block[c] for c in atlas_codes])       # pixels per block in kz.png
+laptop = Image.open(ROOT / "addon/drafts/laptop/kz_overlay.png")
+overlay = laptop.resize((16 * scale, 16 * scale), Image.NEAREST)
+if scale % 16:
+    print(f"  kz.png at {scale} px per block: the 16 px laptop parts are enlarged by {scale / 16:g}, not a whole number")
+for code in atlas_codes:
+    w, h, file, (x, y) = SLOTS[code]
+    img = images[code]
+    if per_block[code] != scale:
+        note = "" if scale % per_block[code] == 0 else " (not a whole number: pixels will be uneven)"
+        print(f"  {code}: {per_block[code]} px per block, enlarged to the atlas's {scale}{note}")
+        img = img.resize((w * scale, h * scale), Image.NEAREST)
+    x, y = x * scale // 16, y * scale // 16
+    assert not overlay.crop((x, y, x + w * scale, y + h * scale)).getbbox(), f"{code} would cover the laptop"
+    overlay.paste(img, (x, y))
 overlay.save(HERE / "kz_overlay.png")
+
+singles = {SLOTS[c][2]: images[c] for c in images if not SLOTS[c][3]}
+(HERE / "painting").mkdir(exist_ok=True)
 for old in (HERE / "painting").glob("*.png"):
     if old.stem not in singles:
         old.unlink()
 for file, img in singles.items():
     img.save(HERE / "painting" / f"{file}.png")
-for old in (HERE / "hd").glob("*.png"):
-    if old.stem not in sources:
-        old.unlink()
 
 if args.vanilla:
     out = ROOT / "addon/build/textures/painting"
     out.mkdir(parents=True, exist_ok=True)
-    full = Image.open(args.vanilla / "kz.png").convert("RGBA").resize((512, 512), Image.NEAREST)
+    full = Image.open(args.vanilla / "kz.png").convert("RGBA").resize(overlay.size, Image.NEAREST)
     full.alpha_composite(overlay)
     full.save(out / "kz.png")
     for file, img in singles.items():
         img.save(out / f"{file}.png")
     print(f"wrote {out.relative_to(ROOT)}/kz.png and {len(singles)} single paintings")
 
-# ---------- preview: every advertisement, flat, at 4x ----------
+# ---------- preview: every advertisement, flat, 128 px per block for viewing ----------
 preview = HERE / "preview.png"
-if fitted:
+if images:
     font = ImageFont.truetype(FONT, 16)
-    tiles = [(code, img.resize((img.width * 4, img.height * 4), Image.NEAREST)) for code, img in fitted.items()]
+    tiles = [(code, img.resize((SLOTS[code][0] * 128, SLOTS[code][1] * 128), Image.NEAREST)) for code, img in images.items()]
     width, pad, label = 1200, 16, 24
     x = y = pad
     row_h, places = 0, []
@@ -165,5 +160,5 @@ if fitted:
     sheet.save(preview)
 else:
     preview.unlink(missing_ok=True)
-print(f"{len(sources)} images: kz_overlay.png, {len(singles)} single paintings, hd/, "
-      + ("preview.png" if fitted else f"no preview (put images in {IMAGES.relative_to(ROOT)}/)"))
+print(f"{len(sources)} images: kz_overlay.png at {scale} px per block, {len(singles)} single paintings, "
+      + ("preview.png" if images else f"no preview (put images in {IMAGES.relative_to(ROOT)}/)"))
