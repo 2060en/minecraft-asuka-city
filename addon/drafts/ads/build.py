@@ -101,6 +101,8 @@ for file, img in singles.items():
 parser = argparse.ArgumentParser()
 parser.add_argument("--vanilla", type=Path, help="folder with the vanilla textures/painting files")
 parser.add_argument("--focus", help="slot code the preview shows (default: the last one registered)")
+parser.add_argument("--scenes", action="store_true",
+                    help="also write the 3D preview sheet (train car, shop shelf) for tools/preview")
 args = parser.parse_args()
 if args.vanilla:
     out = ROOT / "addon/build/textures/painting"
@@ -111,6 +113,34 @@ if args.vanilla:
     for file, img in singles.items():
         img.save(out / f"{file}.png")
     print(f"wrote {out.relative_to(ROOT)}/kz.png and {len(singles)} single paintings")
+
+# ---------- flat preview: the 32x texture beside its 64x spare ----------
+# The author only needs the flat pictures (2026-11-02); the 3D sheet with
+# scenes is written only with --scenes.
+args_focus = args.focus or (list(ADS)[-1] if ADS else None)
+if args_focus:
+    from pixfont import font
+    code = args_focus
+    w, h = SLOTS[code][:2]
+    scale = 512 // (w * K) if w >= h else 384 // (h * K)
+    a = drawn[code].resize((w * K * scale, h * K * scale), Image.NEAREST)
+    b = hd[code].resize(a.size, Image.NEAREST)
+    pad, label = 16, 30
+    sheet = Image.new("RGBA", (a.width * 2 + pad * 3, a.height + pad * 2 + label * 2), (232, 236, 240, 255))
+    from PIL import ImageDraw
+    d = ImageDraw.Draw(sheet)
+    title_font = font(16)
+    d.text((pad, 8), f"{code}：{TITLES.get(code, '')}", font=title_font, fill=(30, 30, 30))
+    sheet.paste(a, (pad, pad + label))
+    sheet.paste(b, (pad * 2 + a.width, pad + label))
+    d.text((pad, pad + label + a.height + 6), f"32x（遊戲用，{w * K} × {h * K}）", font=title_font, fill=(60, 60, 60))
+    d.text((pad * 2 + a.width, pad + label + a.height + 6), f"64x 備用版（{w * K * 2} × {h * K * 2}）", font=title_font, fill=(60, 60, 60))
+    sheet.save(HERE / "preview.png")
+if not args.scenes:
+    for stale in ("preview.json", "preview.geo.json", "preview_atlas.png"):
+        (HERE / stale).unlink(missing_ok=True)
+    print(f"wrote kz_overlay.png, {len(singles)} single paintings, hd/, preview.png" + (f" (focus {args_focus})" if args_focus else ""))
+    raise SystemExit
 
 # ---------- preview atlas: 64 px per block, so the 64x spares fit ----------
 AK = 64
@@ -238,7 +268,6 @@ def shop(name):
     return objs
 
 
-args_focus = args.focus or (list(ADS)[-1] if ADS else None)
 panels = []
 if args_focus:
     code = args_focus

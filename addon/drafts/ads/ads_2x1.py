@@ -5,6 +5,8 @@ the game uses, 2: the 128 x 64 spare) and returns the finished image.
 """
 import math
 
+from PIL import Image, ImageDraw
+
 from pixfont import canvas, finish, put, rect, text
 
 # ---------- A3 Din Tai Fung ----------
@@ -226,5 +228,260 @@ def din_tai_fung(k=1):
     return finish(img, k)
 
 
-ADS = {"A3": din_tai_fung}
-TITLES = {"A3": "鼎泰豐（照作者給的橫幅）"}
+# ---------- A1 McDonald's ----------
+# Template: the author's reference photo (2026-11-02), kept as it is: a dark
+# grey wall and a glossy black table with reflections; behind, from the left,
+# a white cup, two dark grey Signature burger boxes with gold lines and a
+# gold M, an upright red fries carton and another white cup; in front, a red
+# fries carton lying on its side, and a slate with a beef burger and a crispy
+# chicken burger. Coordinates are in 32x pixels and scaled by k.
+WALL_TOP = (62, 62, 62)
+WALL_LOW = (36, 36, 37)
+TABLE = (14, 14, 16)
+HORIZON = 18.5
+CUP = (238, 232, 222)
+CUP_SHADE = (210, 204, 194)
+LID = (226, 226, 224)
+DOT = (232, 150, 64)
+MC_RED = (212, 32, 32)
+MC_RED_DARK = (168, 24, 26)
+GOLD = (255, 196, 30)
+BOX = (70, 68, 64)
+BOX_TOP = (84, 82, 77)
+BOX_LINE = (170, 136, 80)
+FRY = (242, 200, 92)
+FRY_LIGHT = (252, 222, 128)
+FRY_DARK = (214, 160, 64)
+SLATE = (56, 58, 62)
+SLATE_DARK = (40, 41, 45)
+SLATE_LIGHT = (70, 72, 77)
+BUN = (196, 110, 46)
+BUN_LIGHT = (224, 150, 78)
+BUN_DARK = (160, 84, 34)
+SAUCE = (240, 236, 222)
+PATTY = (98, 64, 46)
+CRUST = (224, 164, 82)
+CRUST_LIGHT = (242, 198, 118)
+TOMATO = (200, 48, 38)
+LETTUCE = (96, 168, 54)
+LETTUCE_DARK = (58, 120, 34)
+
+
+def mask(img, draw):
+    """Pixels covered by a shape drawn with ImageDraw on a blank mask."""
+    m = Image.new("1", img.size, 0)
+    draw(ImageDraw.Draw(m))
+    return [(x, y) for y in range(img.height) for x in range(img.width) if m.getpixel((x, y))]
+
+
+def poly(img, pts, k, color):
+    """Fill a polygon given in 32x units; color is a colour or f(x, y)."""
+    pix = mask(img, lambda d: d.polygon([(round(x * k), round(y * k)) for x, y in pts], fill=1))
+    for x, y in pix:
+        c = color(x, y) if callable(color) else color
+        if c:
+            put(img, x, y, c)
+    return pix
+
+
+def oval(img, x0, y0, x1, y1, k, color):
+    pix = mask(img, lambda d: d.ellipse([round(x0 * k), round(y0 * k), round(x1 * k) - 1, round(y1 * k) - 1], fill=1))
+    for x, y in pix:
+        c = color(x, y) if callable(color) else color
+        if c:
+            put(img, x, y, c)
+    return pix
+
+
+def sprite(img, x, y, rows, color):
+    for dy, row in enumerate(rows):
+        for dx, c in enumerate(row):
+            if c == "#":
+                put(img, x + dx, y + dy, color)
+
+
+# The golden arches, hand-drawn per size.
+ARCHES = {
+    (5, 3): [".#.#.",
+             "#.#.#",
+             "#...#"],
+    (7, 5): [".##.##.",
+             "#..#..#",
+             "#..#..#",
+             "#.....#",
+             "#.....#"],
+    (10, 6): [".##....##.",
+              "#..#..#..#",
+              "#...##...#",
+              "#........#",
+              "#........#",
+              "#........#"],
+    (14, 10): ["..##....##..",
+               ".####..####.",
+               "##..####..##",
+               "##...##...##",
+               "##........##",
+               "##........##",
+               "##........##",
+               "##........##",
+               "##........##",
+               "##........##"],
+}
+
+
+def arches(img, cx, top, size, color):
+    rows = ARCHES[size]
+    sprite(img, round(cx - len(rows[0]) / 2), round(top), rows, color)
+
+
+def cup(img, x0, x1, top, bottom, k, mark_at):
+    """A white paper cup with a lid, sprinkled with orange dots, and the
+    small red square with the M."""
+    poly(img, [(x0, top + 1), (x1, top + 1), (x1 - 0.6, bottom), (x0 + 0.6, bottom)], k,
+         lambda x, y: DOT if (x * 7 + y * 5) % (11 * k) == 0 and (x + y) % 2 == 0 else (CUP_SHADE if x > (x1 - 1.2) * k else CUP))
+    rect(img, round((x0 - 0.3) * k), round(top * k), round((x1 + 0.3) * k), round((top + 1.2) * k), LID)
+    rect(img, round((x0 - 0.3) * k), round((top + 1.2) * k), round((x1 + 0.3) * k), round((top + 1.2) * k) + 1, CUP_SHADE)
+    mx, my = mark_at
+    n = 3 if k == 1 else 6
+    rect(img, round(mx * k) - n // 2, round(my * k) - n // 2, round(mx * k) - n // 2 + n, round(my * k) - n // 2 + n, MC_RED)
+    if k == 1:
+        put(img, round(mx), round(my) - 1 + 1, GOLD)
+    else:
+        arches(img, mx * k, my * k - 1, (5, 3), GOLD)
+
+
+def burger_box(img, x0, x1, top, bottom, k):
+    """A dark grey clamshell box seen from the front: the lid's top face, the
+    front face with the word SIGNATURE (a faint light line at this size),
+    large gold diamond lines and a gold M near the bottom."""
+    mid = top + (bottom - top) * 0.32
+    poly(img, [(x0 + 1, top), (x1 - 1, top), (x1, mid), (x0, mid)], k, BOX_TOP)
+    w = x1 - x0
+    period = w / 2 * k
+
+    def face(x, y):
+        u = x - x0 * k
+        v = y - mid * k
+        on_line = min((u - v) % period, (u + v) % period) < (1 if k == 1 else 1.4)
+        if on_line and y < (bottom - 3.6) * k:
+            return BOX_LINE
+        return BOX
+
+    poly(img, [(x0, mid), (x1, mid), (x1 - 0.3, bottom), (x0 + 0.3, bottom)], k, face)
+    sig_y = round((mid + 1.2) * k)
+    for x in range(round((x0 + w * 0.3) * k), round((x1 - w * 0.3) * k)):
+        if k == 1 or x % 3:
+            put(img, x, sig_y, (150, 146, 138))
+    rect(img, round(x0 * k), round((bottom - 0.6) * k), round(x1 * k), round(bottom * k), (150, 104, 48))
+    arches(img, (x0 + x1) / 2 * k, (bottom - 3.4) * k, (5, 3) if k == 1 else (10, 6), GOLD)
+
+
+def fries(img, x0, x1, y0, y1, k, lying=False):
+    """Golden fries: sticks of three shades, upright or lying."""
+    for x in range(round(x0 * k), round(x1 * k)):
+        for y in range(round(y0 * k), round(y1 * k)):
+            if lying:
+                tone = (y // max(1, k) * 3 + x // (4 * k)) % 4
+            else:
+                tone = (x // max(1, k) * 5 + y // (5 * k)) % 4
+            if (x * 3 + y * 7) % (13 if k == 1 else 9) == 0:
+                continue                             # gaps between the sticks
+            put(img, x, y, (FRY, FRY_LIGHT, FRY_DARK, FRY)[tone])
+
+
+def band(img, x0, x1, y0, y1, k, color):
+    """A horizontal band in 32x units, at least one pixel tall."""
+    Y0 = math.floor(y0 * k + 0.5)
+    Y1 = max(Y0 + 1, math.floor(y1 * k + 0.5))
+    rect(img, math.floor(x0 * k + 0.5), Y0, math.floor(x1 * k + 0.5), Y1, color)
+
+
+def burger(img, x0, x1, top, k, chicken):
+    """A burger seen from the front, a little above. From the top: the domed
+    bun, white sauce, the patty (or a crispy fillet wider than the bun),
+    tomato, frilly lettuce wider than the bun, and the bottom bun."""
+    w = x1 - x0
+    bx0, bx1 = (x0 + w * 0.12, x1 - w * 0.14) if chicken else (x0 + w * 0.08, x1 - w * 0.06)
+    poly(img, [(bx0 + 0.3, top + 6.2), (bx1 - 0.3, top + 6.2), (bx1 - 0.8, top + 7.6), (bx0 + 0.8, top + 7.6)], k, BUN_DARK)
+    for x in range(round(x0 * k), round(x1 * k)):
+        h = 1.3 + 0.5 * math.sin(x / k * 2.1) + 0.4 * math.sin(x / k * 5.3)
+        for y in range(math.floor((top + 5.2) * k + 0.5), math.floor((top + 5.2 + h) * k + 0.5) + 1):
+            put(img, x, y, LETTUCE if (x + 2 * y) % 4 else LETTUCE_DARK)
+    band(img, bx0 + 0.6, bx1 - 0.6, top + 4.9, top + 5.3, k, TOMATO)
+    if chicken:
+        poly(img, [(x0 + 0.4, top + 3.2), (x1 - 0.6, top + 3.3), (x1, top + 5), (x0, top + 4.9)], k,
+             lambda x, y: CRUST_LIGHT if (x * 5 + y * 3) % 4 == 0 else CRUST)
+    else:
+        band(img, bx0, bx1 + 0.4, top + 3.6, top + 4.9, k, PATTY)
+    band(img, bx0 + 0.8, bx1 - 0.8, top + 3.0, top + 3.6, k, SAUCE)
+    oval(img, bx0, top, bx1, top + 5.4, k,
+         lambda x, y: None if y >= (top + 2.7) * k else
+         (BUN_LIGHT if (x - bx0 * k) < (bx1 - bx0) * k * 0.45 and y < (top + 1.3) * k else BUN))
+    if k > 1:                                        # the cross cut on the bun
+        cx = round((bx0 + bx1) / 2 * k)
+        for i in range(-4, 5):
+            put(img, cx + i, round((top + 1.4) * k) + abs(i) // 4, BUN_DARK)
+
+
+def mcdonalds(k=1):
+    img = canvas(2, 1, WALL_LOW, k)
+    W, H = img.size
+    for y in range(round(HORIZON * k)):              # the wall, lighter at the top middle
+        for x in range(W):
+            t = y / (HORIZON * k)
+            c = tuple(round(a + (b - a) * t) for a, b in zip(WALL_TOP, WALL_LOW))
+            dx = abs(x - W / 2) / (W / 2)
+            put(img, x, y, tuple(max(0, round(v - 14 * dx)) for v in c))
+    rect(img, 0, round(HORIZON * k), W, H, TABLE)
+
+    back = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    cup(back, 7.4, 14.9, 6.6, 18.5, k, (10.7, 14))
+    burger_box(back, 14.6, 27.8, 9.6, 18.2, k)
+    burger_box(back, 28.4, 41, 10, 18.4, k)
+    cup(back, 48.8, 57.2, 6.2, 19.6, k, (52.2, 11.5))
+    fries(back, 40.6, 49.8, 10.4, 13.6, k)
+    poly(back, [(40.2, 12.8), (50.2, 12.6), (49.6, 20.8), (40.8, 21)], k,
+         lambda x, y: MC_RED_DARK if x > 48.6 * k else MC_RED)
+    arches(back, 45.2 * k, 15 * k, (7, 5) if k == 1 else (14, 10), GOLD)
+
+    front = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    # the carton lying on its side, opening to the right, fries spilling out
+    poly(front, [(4.4, 16.6), (11.2, 14.4), (12.4, 20.6), (5.2, 21.6)], k, MC_RED)
+    poly(front, [(4.4, 16.6), (5.2, 21.6), (5.9, 21.5), (5.1, 16.4)], k, MC_RED_DARK)
+    fries(front, 10.4, 16.4, 15, 20.4, k, lying=True)
+    side = [row[::-1] for row in zip(*ARCHES[(5, 3) if k == 1 else (10, 6)])]   # the M, turned on its side
+    sprite(front, round(7.2 * k), round(16.8 * k), ["".join(r) for r in side], GOLD)
+    # the slate
+    poly(front, [(6.6, 25.4), (39.8, 27.2), (39.8, 27.9), (6.6, 26.1)], k, SLATE_DARK)
+    poly(front, [(12.2, 22.6), (45.4, 22), (39.8, 27.2), (6.6, 25.4)], k,
+         lambda x, y: SLATE_LIGHT if (x * 3 + y * 7) % 11 == 0 else (SLATE_DARK if (x + y * 5) % 13 == 0 else SLATE))
+    burger(front, 12, 25.4, 17.8, k, chicken=False)
+    burger(front, 24.6, 41.6, 17.2, k, chicken=True)
+
+    # reflections on the glossy table
+    def reflect(layer, base):
+        flipped = layer.transpose(Image.FLIP_TOP_BOTTOM)
+        shift = round(2 * base * k) - img.height
+        out = Image.new("RGBA", img.size, (0, 0, 0, 0))
+        out.paste(flipped, (0, shift))
+        px = out.load()
+        for y in range(img.height):
+            for x in range(img.width):
+                r, g, b, a = px[x, y]
+                if a and y >= base * k:
+                    f = 0.5 - 0.25 * (y - base * k) / (img.height - base * k + 1)
+                    px[x, y] = (round(r * f + TABLE[0] * (1 - f)), round(g * f + TABLE[1] * (1 - f)),
+                                round(b * f + TABLE[2] * (1 - f)), 255)
+                else:
+                    px[x, y] = (0, 0, 0, 0)
+        return out
+
+    img.alpha_composite(reflect(back, 21))
+    img.alpha_composite(back)
+    img.alpha_composite(reflect(front, 28))
+    img.alpha_composite(front)
+    return finish(img, k)
+
+
+ADS = {"A1": mcdonalds, "A3": din_tai_fung}
+TITLES = {"A1": "麥當勞（照作者給的照片）", "A3": "鼎泰豐（照作者給的橫幅）"}
