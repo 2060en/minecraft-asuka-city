@@ -23,5 +23,6 @@
 
 ## 其他資料夾
 
+- `addon/pack/`：自製附加內容 Asuka tech 的資源包與行為包原始檔，`build.py` 組成可以安裝的 `.mcaddon`；`addon/mapping.json` 是原味版的對照表
 - `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
 - `tools/preview/`：把基岩版模型算成預覽圖的工具

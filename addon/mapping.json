@@ -1,0 +1,36 @@
+{
+  "_說明": "對照表：每一種自製方塊在原味版換成哪一個原版方塊、狀態怎麼對應。轉換程式、文件都以這張表為準；沒有登記的自製方塊不能放進世界。見 docs/addon.md 的「對照表」",
+  "asukatech:door_light_gray": {
+    "vanilla": "minecraft:spruce_door",
+    "states": {
+      "minecraft:cardinal_direction": "minecraft:cardinal_direction",
+      "asukatech:upper": "upper_block_bit",
+      "asukatech:open": "open_bit",
+      "asukatech:hinge_right": "door_hinge_bit"
+    },
+    "_待實測": "door_hinge_bit 的 true 是不是門軸在右邊；原版門與自製門的朝向是不是同一邊"
+  },
+  "asukatech:door_white": {
+    "same_as": "asukatech:door_light_gray"
+  },
+  "asukatech:trapdoor_light_gray": {
+    "vanilla": "minecraft:spruce_trapdoor",
+    "states": {
+      "minecraft:cardinal_direction": {"to": "direction", "values": {"east": 0, "west": 1, "south": 2, "north": 3}},
+      "minecraft:vertical_half": {"to": "upside_down_bit", "values": {"bottom": false, "top": true}},
+      "asukatech:open": "open_bit"
+    },
+    "_待實測": "原版地板門 direction 0～3 對應哪個方向"
+  },
+  "asukatech:trapdoor_white": {
+    "same_as": "asukatech:trapdoor_light_gray"
+  },
+  "asukatech:conveyor": {
+    "vanilla": "minecraft:coal_block",
+    "states": {}
+  },
+  "asukatech:coffee_cup": {
+    "vanilla": "minecraft:air",
+    "states": {}
+  }
+}

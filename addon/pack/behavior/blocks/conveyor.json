@@ -1,0 +1,690 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:block": {
+    "description": {
+      "identifier": "asukatech:conveyor",
+      "menu_category": {
+        "category": "construction"
+      },
+      "states": {
+        "asukatech:shape": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "asukatech:turn": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "asukatech:cap_s": [
+          false,
+          true
+        ],
+        "asukatech:cap_n": [
+          false,
+          true
+        ],
+        "asukatech:cap_e": [
+          false,
+          true
+        ]
+      }
+    },
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.asukatech.conveyor",
+        "bone_visibility": {
+          "body": true,
+          "belt_straight": false,
+          "belt_curve": false,
+          "belt_slope": false,
+          "cap_s": false,
+          "cap_n": false,
+          "cap_e": false
+        }
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "asukatech_conveyor",
+          "render_method": "alpha_test"
+        }
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 5
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 6
+      },
+      "minecraft:map_color": "#6e7378",
+      "minecraft:collision_box": {
+        "origin": [
+          -8,
+          0,
+          -8
+        ],
+        "size": [
+          16,
+          16,
+          16
+        ]
+      },
+      "minecraft:selection_box": {
+        "origin": [
+          -8,
+          0,
+          -8
+        ],
+        "size": [
+          16,
+          16,
+          16
+        ]
+      },
+      "minecraft:tick": {
+        "interval_range": [
+          10,
+          10
+        ],
+        "looping": true
+      },
+      "asukatech:conveyor": {}
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('asukatech:turn') == 0",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:turn') == 1",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              90,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:turn') == 2",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              180,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:turn') == 3",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              270,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 0 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 1 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": true,
+              "belt_curve": false,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 2 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": true,
+              "belt_slope": false,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": false,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == false && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": false,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == false && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": true,
+              "cap_n": false,
+              "cap_e": true
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == false",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:shape') == 3 && q.block_state('asukatech:cap_s') == true && q.block_state('asukatech:cap_n') == true && q.block_state('asukatech:cap_e') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.conveyor",
+            "bone_visibility": {
+              "body": true,
+              "belt_straight": false,
+              "belt_curve": false,
+              "belt_slope": true,
+              "cap_s": true,
+              "cap_n": true,
+              "cap_e": true
+            }
+          }
+        }
+      }
+    ]
+  }
+}

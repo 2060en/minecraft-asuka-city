@@ -1,0 +1,20 @@
+{
+  "resource_pack_name": "asukatech",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "asukatech_door_light_gray": {
+      "textures": "textures/blocks/asukatech/door_light_gray"
+    },
+    "asukatech_door_white": {
+      "textures": "textures/blocks/asukatech/door_white"
+    },
+    "asukatech_conveyor": {
+      "textures": "textures/blocks/asukatech/conveyor"
+    },
+    "asukatech_coffee_cup": {
+      "textures": "textures/blocks/asukatech/coffee_cup"
+    }
+  }
+}
