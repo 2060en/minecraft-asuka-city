@@ -4888,14 +4888,14 @@
    ]
   },
   {
-   "label": "鼻子：原版 NPC 的鼻子保留（左）或拿掉（右）",
+   "label": "臉部特寫：鼻子拿掉（已定）",
    "camera": {
     "azimuth": 20,
-    "elevation": 6,
-    "size": 44,
+    "elevation": 8,
+    "size": 48,
     "target": [
      0,
-     20,
+     19,
      0
     ]
    },
@@ -4905,7 +4905,7 @@
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
      "texture": "/addon/drafts/npc/skins/station_staff.png",
      "position": [
-      -14,
+      -27,
       0,
       0
      ],
@@ -4914,9 +4914,31 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/addon/drafts/npc/compare_no_nose.png",
+     "texture": "/addon/drafts/npc/skins/pilot.png",
      "position": [
-      14,
+      -9,
+      0,
+      0
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/flight_attendant.png",
+     "position": [
+      9,
+      0,
+      0
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/addon/drafts/npc/skins/tourist.png",
+     "position": [
+      27,
       0,
       0
      ],

@@ -24,8 +24,8 @@ drawn (hat) or hidden by the render controller (pants), so they stay empty.
 
 Skins are drawn in code from the pieces below and written to skins/<id>.png;
 which vanilla slot each one replaces is recorded in docs/npc.md. Colours get
-a faint per-pixel grain, like the other drafts. compare_no_nose.png is the
-station staff with the nose left transparent, only for the comparison panel.
+a faint per-pixel grain, like the other drafts. The nose is always left
+transparent, so it does not show (the author's decision, 2026-11-02).
 
 npc_preview.geo.json rebuilds geometry.npc for the preview tool only: the
 inflation and the folded-arm pose are baked in, rotations use the preview
@@ -141,8 +141,9 @@ def side_hair(s, hair, top_rows, back_rows, ear=True, skin=SKIN):
             s.paint("head", f, ex + (1 if f == "right" else 0), top_rows + 1, shade(skin, -4), 1, 1)
 
 
-def head(s, skin=SKIN, hair=HAIR_BLACK, style="short", eyes=EYE, nose=True, brows=True):
-    """Face rows: 0-2 hair, 3 brows, 4 eyes, 7-9 behind the nose, 9 chin."""
+def head(s, skin=SKIN, hair=HAIR_BLACK, style="short", eyes=EYE, brows=True):
+    """Face rows: 0-2 hair, 3 brows, 4 eyes, 8 mouth, 9 chin. The nose box stays
+    transparent, so the villager nose of the NPC model does not show."""
     s.fill("head", skin, grain=1)
     hs = shade(hair, -1)
     s.paint("head", "top", 0, 0, hair, 8, 8, grain=4)
@@ -184,16 +185,12 @@ def head(s, skin=SKIN, hair=HAIR_BLACK, style="short", eyes=EYE, nose=True, brow
         s.both("head", 1, 3, hs, 2, 1)
     s.both("head", 1, 4, EYE_WHITE)
     s.both("head", 2, 4, eyes)
-    s.paint("head", "front", 3, 8, shade(skin, -4), 2, 1)   # mouth, mostly behind the nose
+    s.paint("head", "front", 3, 8, shade(skin, -4), 2, 1)   # mouth
     s.paint("head", "bottom", 0, 0, shade(skin, -2), 8, 8, grain=1)
-    if nose:
-        s.fill("nose", shade(skin, -1), grain=1)
-        s.paint("nose", "top", 0, 0, skin, 2, 2)
-        s.paint("nose", "bottom", 0, 0, shade(skin, -3), 2, 2)
 
 
 def face_skin(s):
-    """The skin colour of an already painted face (below the eyes, beside the nose)."""
+    """The skin colour of an already painted face (below the eyes, beside the mouth)."""
     x, y, _, _ = face_rect("head", "front")
     return s.img.getpixel((x + 3, y + 6))[:3]
 
@@ -347,7 +344,7 @@ def cleanroom():
     """晶圓廠 (無塵室): white coverall with hood and mask, goggles, blue gloves."""
     s = Skin(4)
     suit, crease = (238, 240, 244), (214, 218, 226)
-    head(s, nose=False, brows=False)
+    head(s, brows=False)
     s.fill("head", suit, grain=2)
     s.ring("head", 3, (70, 80, 96), 3, grain=1)        # goggle band
     s.paint("head", "front", 1, 3, (150, 170, 190), 6, 3, grain=1)
@@ -568,30 +565,23 @@ def fab_scene():
             "camera": {"azimuth": 18, "elevation": 16, "size": 92, "target": [8, 22, -16]}, "objects": objs}
 
 
-def nose_scene():
-    no_nose = dict(npc("station_staff", 14, 0, 0), texture=f"{REL}/compare_no_nose.png")
-    objs = [npc("station_staff", -14, 0, 0), no_nose]
-    return {"label": "鼻子：原版 NPC 的鼻子保留（左）或拿掉（右）",
-            "camera": {"azimuth": 20, "elevation": 6, "size": 44, "target": [0, 20, 0]}, "objects": objs}
+def face_scene():
+    names = ("station_staff", "pilot", "flight_attendant", "tourist")
+    objs = [npc(n, -27 + 18 * i, 0, 0) for i, n in enumerate(names)]
+    return {"label": "臉部特寫：鼻子拿掉（已定）",
+            "camera": {"azimuth": 20, "elevation": 8, "size": 48, "target": [0, 19, 0]}, "objects": objs}
 
 
 def scenes():
     return {"title": "NPC 皮膚草稿：放進情境", "columns": 2, "panelWidth": 620, "panelHeight": 400,
             "background": "#e8edf1",
-            "panels": [station_scene(), airport_scene(), fab_scene(), nose_scene()]}
+            "panels": [station_scene(), airport_scene(), fab_scene(), face_scene()]}
 
 
 if __name__ == "__main__":
     for name, (_, make) in CHARACTERS.items():
         make().save(name)
-    # the nose comparison: the station staff without the nose
-    s = station_staff()
-    s.paint("nose", "top", 0, 0, None, 2, 2)
-    s.paint("nose", "bottom", 0, 0, None, 2, 2)
-    for f in SIDES:
-        s.paint("nose", f, 0, 0, None, 2, 4)
-    s.img.save(HERE / "compare_no_nose.png")
     (HERE / "npc_preview.geo.json").write_text(json.dumps(PREVIEW_GEO, indent=1) + "\n", encoding="utf-8")
     (HERE / "preview.json").write_text(json.dumps(lineup(), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     (HERE / "scene.json").write_text(json.dumps(scenes(), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"wrote {len(CHARACTERS)} skins, compare_no_nose.png, npc_preview.geo.json, preview.json, scene.json")
+    print(f"wrote {len(CHARACTERS)} skins, npc_preview.geo.json, preview.json, scene.json")
