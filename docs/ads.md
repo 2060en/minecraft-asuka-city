@@ -16,6 +16,7 @@
 - **主題（已定，2026-11-02）**：作者整理過的各尺寸主題。「萬用」是不指定品牌的廣告；「以○○為模板」是畫面風格參考那個品牌，品牌名一樣模糊帶過；備註寫「待決定」的是作者還在猶豫的
 - **萬用廣告**（已定，2026-11-01）：品牌模糊帶過，只寫品類（例如「医療保険」「頭痛薬」），配一個看不出字的抽象標誌。衣服廣告也維持萬用，不換成真實的品牌
 - **沒有填的編號**：維持原版的畫，放畫時可能會挑到原版的圖
+- **進度**（2026-11-02）：36 幅換上作者的圖（64x）；D8 地鐵路線圖、E3 Asuka Inc. 的地產開發等作者準備圖片，先維持原版
 - **圖片由作者準備**（2026-11-02）：Claude 畫的品質不夠，作者決定自己準備每一幅的圖片，Claude 只負責換上去。Claude 畫過的 A1、A3、A4 草稿不用，畫圖的程式從 repo 移除（留在 git 紀錄裡）
 
 ---
@@ -53,8 +54,8 @@
 
 ## 材質
 
-- **解析度由作者決定**（已定，2026-11-02）：作者打算用 128x 或 256x（每格 128 或 256 像素），比較中。原本定的 32x（2026-11-01，比較圖在 commit 275fd20 的 `addon/drafts/ads/preview.png`）改成只當參考。`kz.png` 在 128x 是 2048 × 2048，256x 是 4096 × 4096，遊戲能不能載入這麼大的材質，待實測
-- **`kz.png` 的大小跟著解析度變**：16 × 16 格，例如每格 32 像素就是 512 × 512。筆電的螢幕與上蓋一起放大，看起來不變。`kz.png` 裡的廣告最好用同一種解析度，或彼此是整數倍（例如 16、32、64），放大後的像素才會平均
+- **解析度 64x**（已定，2026-11-02）：每格 64 像素，用 `pixelate.py --res 64` 產生。作者比較過 64x 與 128x 後選 64x。`kz.png` 是 1024 × 1024，36 幅的材質合計約 1.8 MB。原本定的 32x（2026-11-01）不用了
+- **`kz.png` 的大小跟著解析度變**：16 × 16 格，每格 64 像素就是 1024 × 1024。筆電的螢幕與上蓋一起放大，看起來不變。`kz.png` 裡的廣告最好用同一種解析度，或彼此是整數倍（例如 16、32、64），放大後的像素才會平均
 - **合併方式**：廣告與筆電做成疊加圖 `addon/drafts/ads/kz_overlay.png`；完整的 `kz.png` 由 `build.py --vanilla` 把原版放大再疊上去，輸出到不進 repo 的 `addon/build/`，所以 repo 裡沒有原版的圖
 - **Asuka Air 的廣告**：照 Asuka Air 的[品牌設計](world/flight-schedule.md#品牌設計)，黑白兩色，標誌是黒潮的三條流線加一個點（作者 2026-11-01 確認；品牌設計目前在分支 `claude/awesome-gauss-z398qi`，還沒合併）
 - 遊戲能不能正確顯示比 16x 細的畫，待實測
@@ -68,7 +69,7 @@
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
 | A1 | Pool | `kz.png` (0, 32) | 麥當勞 | |
-| A2 | Courbet | `kz.png` (32, 32) | 電信：本國的電信公司，仿 Spark 的風格 | 公司名稱待取，先模糊帶過 |
+| A2 | Courbet | `kz.png` (32, 32) | 電信：Spoton（本國的電信公司，仿 Spark 的風格） | |
 | A3 | Sea | `kz.png` (64, 32) | 鼎泰豐 | 像新加坡一樣，到處都有鼎泰豐 |
 | A4 | Sunset | `kz.png` (96, 32) | 咖啡（萬用） | |
 | A5 | Creebet | `kz.png` (128, 32) | 補習班（萬用） | |
@@ -94,7 +95,7 @@
 | C3 | Stage | `kz.png` (64, 128) | 藥品（萬用） | |
 | C4 | Void | `kz.png` (96, 128) | iPhone | |
 | C5 | SkullAndRoses | `kz.png` (128, 128) | Taco eats（外送平台） | 取自 VTuber Ina 的迷因 |
-| C6 | Wither | `kz.png` (160, 128) | 銀行（萬用） | |
+| C6 | Wither | `kz.png` (160, 128) | 銀行（萬用） | 圖上有 Olive 的品牌，作者刻意的 |
 | C7 | baroque | `baroque.png` | Sony 耳機，milet 代言 | |
 | C8 | humble | `humble.png` | 信用卡（萬用） | |
 
@@ -104,14 +105,14 @@
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| D1 | bouquet | `bouquet.png` | 汽車（萬用，日本車廠的車） | |
+| D1 | bouquet | `bouquet.png` | 汽車（萬用，日本車廠的車） | 圖上有 TOYOTA 的品牌，作者刻意的 |
 | D2 | cavebird | `cavebird.png` | Google Cloud × Gemini | |
 | D3 | cotan | `cotan.png` | Mastercard × McLaren | 主題是 McLaren 的 F1 賽車，Mastercard 只是冠名 |
 | D4 | endboss | `endboss.png` | YOASOBI 演唱會 | 會場是作者的體育場之一（名稱待取） |
 | D5 | fern | `fern.png` | 南方的渡假飯店（馬爾地夫那種，或星野リゾート那種） | |
 | D6 | owlemons | `owlemons.png` | 眼鏡，齋藤飛鳥代言 | |
 | D7 | sunflowers | `sunflowers.png` | MUJI（家用小物） | |
-| D8 | tides | `tides.png` | 地鐵路線圖 | 不是廣告，是車站的資訊。作者畫好路線圖再給 Claude |
+| D8 | tides | `tides.png` | 地鐵路線圖 | 作者還沒準備圖片，先維持原版 |
 
 ## 4 × 2（3 × 1.5 公尺）
 
@@ -119,9 +120,9 @@
 
 | 編號 | 原版的畫 | 檔案 | 廣告內容 | 備註 |
 | --- | --- | --- | --- | --- |
-| E1 | Fighters | `kz.png` (0, 96) | 國家觀光 × 黒潮特快（特急） | |
+| E1 | Fighters | `kz.png` (0, 96) | 國家觀光 × 太平洋特急くろしお号 | |
 | E2 | changing | `changing.png` | Minecraft Studio（主題樂園） | 見[地理](world/geography.md#minecraft-studio) |
-| E3 | finding | `finding.png` | Asuka Inc. 的地產開發 | 作者自己設計後再給 Claude |
+| E3 | finding | `finding.png` | Asuka Inc. 的地產開發 | 作者還沒準備圖片，先維持原版 |
 | E4 | lowmist | `lowmist.png` | Asuka Air 飛 AKL | 照 Asuka Air 的品牌設計 |
 | E5 | passage | `passage.png` | 化妝品，金采源代言 | |
 
@@ -152,7 +153,7 @@
 | H1 | Pointer | `kz.png` (0, 192) | 球鞋，Stephen Curry 代言 | |
 | H2 | Pigscene | `kz.png` (64, 192) | 衣服（萬用，時尚，以 UNIQLO 為模板） | |
 | H3 | BurningSkull | `kz.png` (128, 192) | 衣服（萬用，戶外，以 mont-bell 為模板） | |
-| H4 | orb | `orb.png` | 精品包（萬用），名井南代言 | 模板待決定 |
+| H4 | orb | `orb.png` | 精品包（萬用），名井南代言 | |
 | H5 | unpacked | `unpacked.png` | Tesla：Model Y、Model 3、新一代 Roadster | |
 
 ## 2 × 2，只能靠改存檔放
@@ -185,14 +186,6 @@
 
 ## 待決定事項
 
-### Claude 對主題的建議（2026-11-02）
-
-1. **精品包（H4）的模板**：候選有 Hermès 風格（橘色底、棕色細字，在低解析度也一眼認得）、Louis Vuitton 風格（咖啡色的花紋帆布）、Celine 或 Saint Laurent 風格（黑白照片加細的字標）
-
-### 其他
-
-- **D6 用哪一張**：原圖有「齋藤飛鳥xOwndays」與「齋藤飛鳥xOwndays2」兩張，`originals.json` 先用第一張
-- **A2 的電信公司名稱**：原圖的檔名是「Spoton電信」，Spoton 是不是本國電信公司的名字，待作者確認
-- **解析度**：128x 或 256x
 - **地、風、火、水（X1～X4）**：要不要用改存檔的方式放
-- **實測**：遊戲能不能正確顯示比 256 × 256 大的 `kz.png` 與比 16x 細的單幅畫（見[材質](#材質)）
+- **D8、E3 的圖片**：作者準備好後放進 `originals/`，加進 `originals.json`
+- **實測**：遊戲能不能正確顯示 1024 × 1024 的 `kz.png` 與 64x 的單幅畫（見[材質](#材質)）
