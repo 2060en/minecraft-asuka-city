@@ -12,6 +12,15 @@ pack/pack_icon.png. Everything here is drawn by this script, so the whole
 pack is committed; addon/build/Rail to Belt.mcpack is the installable file.
 Add-on names and descriptions are in English (author's rule, 2026-11-03).
 
+Version numbers (2026-11-03), as in addon/pack/build.py: the game only
+replaces an imported pack when its version is higher, so building the
+.mcpack hashes the pack (everything but the manifest; images by their
+pixels) and compares with release.json. If the content changed, the patch
+number goes up by one in pack/manifest.json and release.json; commit them
+with the change. If nothing changed, the version stays. For a bigger step,
+write the new version into pack/manifest.json by hand: the build then uses
+it as it is instead of adding one.
+
 The look comes from the conveyor draft the author approved
 (addon/drafts/conveyor/, 2026-11-01): a black rubber belt with ribs across
 it and steel side rails. Seen from above, as a rail is, the side rails are
@@ -25,6 +34,7 @@ curved rail joins the bottom and right edges, its outer rail toward the top
 left.
 """
 import argparse
+import hashlib
 import json
 import math
 import shutil
@@ -115,18 +125,62 @@ def textures():
     return out
 
 
-MANIFEST = {
-    "format_version": 2,
-    "header": {
-        "name": "Rail to Belt",
-        "description": "Turns every rail into a conveyor belt. Textures only.",
-        "uuid": "6f1d4a3e-2b7c-4e8a-9c51-3d2f8b7a6e10",
-        "version": [1, 0, 1],
-        "min_engine_version": [1, 21, 0],
-    },
-    "modules": [{"type": "resources", "uuid": "b2e8c7d4-5a91-4f36-8e0b-7c4d1a9f2e35", "version": [1, 0, 1]}],
-    "metadata": {"authors": ["asuka tech"]},
-}
+RELEASE = HERE / "release.json"
+
+
+def manifest(version):
+    return {
+        "format_version": 2,
+        "header": {
+            "name": "Rail to Belt",
+            "description": "Turns every rail into a conveyor belt. Textures only.",
+            "uuid": "6f1d4a3e-2b7c-4e8a-9c51-3d2f8b7a6e10",
+            "version": version,
+            "min_engine_version": [1, 21, 0],
+        },
+        "modules": [{"type": "resources", "uuid": "b2e8c7d4-5a91-4f36-8e0b-7c4d1a9f2e35", "version": version}],
+        "metadata": {"authors": ["asuka tech"]},
+    }
+
+
+def write_manifest(version):
+    (PACK / "manifest.json").write_text(json.dumps(manifest(version), ensure_ascii=False, indent=2) + "\n",
+                                        encoding="utf-8")
+
+
+def current_version():
+    path = PACK / "manifest.json"
+    return json.loads(path.read_text(encoding="utf-8"))["header"]["version"] if path.exists() else [1, 0, 0]
+
+
+def content_hash():
+    h = hashlib.sha256()
+    for f in sorted(PACK.rglob("*")):
+        if not f.is_file() or f.name == "manifest.json":
+            continue
+        h.update(f"{f.relative_to(PACK).as_posix()}\n".encode())
+        if f.suffix == ".png":
+            with Image.open(f) as img:
+                h.update(f"{img.mode} {img.size}\n".encode())
+                h.update(img.tobytes())
+        else:
+            h.update(f.read_bytes())
+    return h.hexdigest()
+
+
+def update_version():
+    """Bump the patch number when the pack's content changed."""
+    digest = content_hash()
+    release = json.loads(RELEASE.read_text(encoding="utf-8"))
+    version = current_version()
+    if digest != release["content_hash"]:
+        if version == release["version"]:
+            version = version[:2] + [version[2] + 1]
+        RELEASE.write_text(json.dumps({"version": version, "content_hash": digest}, indent=2) + "\n", encoding="utf-8")
+        print(f"content changed: version {'.'.join(map(str, version))} (commit pack/manifest.json and release.json)")
+    else:
+        print(f"content unchanged: version stays {'.'.join(map(str, version))}")
+    write_manifest(version)
 
 
 def write_pack():
@@ -135,7 +189,7 @@ def write_pack():
     tex = textures()
     for name, img in tex.items():
         img.save(tex_dir / f"{name}.png")
-    (PACK / "manifest.json").write_text(json.dumps(MANIFEST, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_manifest(current_version())
     return tex
 
 
@@ -187,6 +241,7 @@ def make_icon():
 
 
 def mcpack():
+    update_version()
     out = ROOT / "addon" / "build" / "Rail to Belt.mcpack"
     out.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:

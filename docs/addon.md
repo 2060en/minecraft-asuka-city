@@ -265,6 +265,7 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 - **封面**：用這個材質包的材質拼一段直線接彎道的履帶，算成立體圖（作者要求放履帶的圖）
 - **檔案**：`addon/rail_to_belt/build.py` 畫材質、產生封面；`addon/rail_to_belt/pack/` 是材質包本身（全部是自己畫的，可以進 repo）；安裝檔 `addon/build/Rail to Belt.mcpack`
 - **測試**：作者在遊戲裡測過，沒問題（2026-11-03）
+- **版本號自動加**（已定，2026-11-03）：和 Asuka tech 一樣，`build.py` 打包 `.mcpack` 時比較 `addon/rail_to_belt/release.json` 記的內容雜湊，內容有變就把最後一位加一；手動改 `pack/manifest.json` 的版本號可以跳大版本
 - **名稱與介紹**：名稱「Rail to Belt」，介紹「Turns every rail into a conveyor belt. Textures only.」（作者 2026-11-03：改成大寫的名字、介紹用英文）
 
 ## 6. 研究：盾牌與旗幟的自訂圖案
