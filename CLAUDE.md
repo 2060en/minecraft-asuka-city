@@ -1,12 +1,14 @@
 # CLAUDE.md
 
-這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 裡沒有程式碼，主要是設定文件。
+這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容 Asuka tech（`addon/pack/` 是資源包與行為包，`addon/drafts/` 是外觀草稿）與材質包 Rail to Belt（`addon/rail_to_belt/`）。附加內容的作者一律寫「asuka tech」，介紹（description）一律用英文，`tools/preview/` 是外觀預覽工具。
 
 ## 文件地圖
 
 | 文件 | 內容 |
 | --- | --- |
 | `docs/technical.md` | 遊戲版本、工具、結構方塊、存檔備份、建造技術歷史、技術面的待辦 |
+| `docs/addon.md` | 自製附加內容（資源包＋行為包）：雙版本與轉換程式、對照表、基岩版的技術限制、構想清單 |
+| `docs/ads.md` | 廣告清單：可以換成廣告的畫，一幅一列的填空表 |
 | `docs/scale.md` | 遊戲尺寸與設定尺寸的換算、人口與量體基準 |
 | `docs/world/overview.md` | 設計原則、國家定位、氣候、歷史人文、法律、國防、人物與組織、待決定事項 |
 | `docs/world/geography.md` | 各地區的設施與參考地 |
@@ -37,6 +39,20 @@
 - 提出任何名字前，先查 `docs/world/naming.md` 的黑名單，名單上的詞絕對不能用
 - 名字的漢字一律用日文漢字（例如寿豊、与那国）；作者的輸入法打出來是繁體，記錄時要轉換。文件的敘述仍用繁體中文
 
+## 外觀設計
+
+自製附加內容的外觀在對話中討論，流程見 `docs/addon.md` 的「外觀設計流程」。草稿放在 `addon/drafts/<名稱>/`，預覽圖這樣產生：
+
+```bash
+cd tools/preview && npm install && cd ../..
+python3 addon/drafts/<名稱>/build.py
+node tools/preview/render.mjs addon/drafts/<名稱>/preview.json addon/drafts/<名稱>/preview.png
+```
+
+算出來的預覽圖先自己看過，再傳給作者。
+
 ## 建造原則
 
 盡量原汁原味：不使用會影響世界內容的模組或行為包，外加內容必須「拔掉之後不影響體驗」。遊戲內建的指令、作弊模式、結構方塊都可以使用。詳見 `docs/technical.md`。
+
+例外是作者自製的附加內容，採用雙版本：主世界可以使用自製方塊，但隨時都要能用轉換程式轉出原味版。每一個自製的東西都要有好的原版替代，想不到就先不做。提案新的自製內容時，一併提出原版替代。詳見 `docs/addon.md`。

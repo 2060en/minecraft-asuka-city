@@ -1,0 +1,284 @@
+{
+ "format_version": "1.12.0",
+ "minecraft:geometry": [
+  {
+   "description": {
+    "identifier": "geometry.laptop_0",
+    "texture_width": 48,
+    "texture_height": 16
+   },
+   "bones": [
+    {
+     "name": "painting",
+     "pivot": [
+      0,
+      0,
+      0
+     ],
+     "cubes": [
+      {
+       "origin": [
+        -8,
+        0,
+        -8
+       ],
+       "size": [
+        16,
+        16,
+        1
+       ],
+       "uv": {
+        "south": {
+         "uv": [
+          0,
+          0
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "north": {
+         "uv": [
+          32,
+          0
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "east": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "west": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "up": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "down": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "description": {
+    "identifier": "geometry.laptop_1",
+    "texture_width": 48,
+    "texture_height": 16
+   },
+   "bones": [
+    {
+     "name": "painting",
+     "pivot": [
+      0,
+      0,
+      0
+     ],
+     "cubes": [
+      {
+       "origin": [
+        -8,
+        0,
+        -8
+       ],
+       "size": [
+        16,
+        16,
+        1
+       ],
+       "uv": {
+        "south": {
+         "uv": [
+          16,
+          0
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "north": {
+         "uv": [
+          32,
+          0
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "east": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "west": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "up": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "down": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "description": {
+    "identifier": "geometry.deck",
+    "texture_width": 48,
+    "texture_height": 16
+   },
+   "bones": [
+    {
+     "name": "deck",
+     "pivot": [
+      0,
+      0,
+      0
+     ],
+     "cubes": [
+      {
+       "origin": [
+        -8,
+        0,
+        -7
+       ],
+       "size": [
+        16,
+        1,
+        15
+       ],
+       "uv": {
+        "north": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "south": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "east": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "west": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "up": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        },
+        "down": {
+         "uv": [
+          33,
+          1
+         ],
+         "uv_size": [
+          1,
+          1
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

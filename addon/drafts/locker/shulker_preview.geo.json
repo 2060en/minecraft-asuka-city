@@ -1,0 +1,182 @@
+{
+ "format_version": "1.12.0",
+ "minecraft:geometry": [
+  {
+   "description": {
+    "identifier": "geometry.shulker_box_preview",
+    "texture_width": 64,
+    "texture_height": 64
+   },
+   "bones": [
+    {
+     "name": "base",
+     "pivot": [
+      0,
+      0,
+      0
+     ],
+     "cubes": [
+      {
+       "origin": [
+        -8,
+        0,
+        -8
+       ],
+       "size": [
+        16,
+        8,
+        16
+       ],
+       "uv": {
+        "up": {
+         "uv": [
+          16,
+          28
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "down": {
+         "uv": [
+          32,
+          28
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "east": {
+         "uv": [
+          0,
+          44
+         ],
+         "uv_size": [
+          16,
+          8
+         ]
+        },
+        "north": {
+         "uv": [
+          16,
+          44
+         ],
+         "uv_size": [
+          16,
+          8
+         ]
+        },
+        "west": {
+         "uv": [
+          32,
+          44
+         ],
+         "uv_size": [
+          16,
+          8
+         ]
+        },
+        "south": {
+         "uv": [
+          48,
+          44
+         ],
+         "uv_size": [
+          16,
+          8
+         ]
+        }
+       }
+      }
+     ]
+    },
+    {
+     "name": "lid",
+     "pivot": [
+      0,
+      0,
+      0
+     ],
+     "cubes": [
+      {
+       "origin": [
+        -8,
+        4,
+        -8
+       ],
+       "size": [
+        16,
+        12,
+        16
+       ],
+       "uv": {
+        "up": {
+         "uv": [
+          16,
+          0
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "down": {
+         "uv": [
+          32,
+          0
+         ],
+         "uv_size": [
+          16,
+          16
+         ]
+        },
+        "east": {
+         "uv": [
+          0,
+          16
+         ],
+         "uv_size": [
+          16,
+          12
+         ]
+        },
+        "north": {
+         "uv": [
+          16,
+          16
+         ],
+         "uv_size": [
+          16,
+          12
+         ]
+        },
+        "west": {
+         "uv": [
+          32,
+          16
+         ],
+         "uv_size": [
+          16,
+          12
+         ]
+        },
+        "south": {
+         "uv": [
+          48,
+          16
+         ],
+         "uv_size": [
+          16,
+          12
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

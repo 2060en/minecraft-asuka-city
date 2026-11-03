@@ -1,0 +1,18 @@
+{
+  "format_version": "1.21.40",
+  "asukatech:door_light_gray": {
+    "sound": "wood"
+  },
+  "asukatech:door_white": {
+    "sound": "wood"
+  },
+  "asukatech:trapdoor_light_gray": {
+    "sound": "wood"
+  },
+  "asukatech:trapdoor_white": {
+    "sound": "wood"
+  },
+  "asukatech:coffee_cup": {
+    "sound": "wood"
+  }
+}

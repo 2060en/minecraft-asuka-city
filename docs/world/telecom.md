@@ -136,6 +136,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 - [ ] **字標的細節**，Claude 注意到的地方：
   - 「on」的 o 頂端有一個缺口和一小段直線，看起來像電源符號 ⏻（on＝開機），和名字很搭。如果是刻意的就保留；如果是生成時的瑕疵，描成向量時要決定留不留
   - 顏色在「Spo｜ton」之間切開，但名字的由來是「spot｜on」。想強調 on（開、訊號開著）的話，改成「Spot」白、「on」薄荷色比較合理
+- [ ] **A2 廣告的底色**：[廣告清單](../ads.md)的 A2（`addon/drafts/ads/originals/Spoton電信.jpg`）用的是原本深紫底的 logo，要不要換成紫色混凝土色的版本
 - [ ] **向量化**：原圖是點陣圖，正式使用前描成 SVG（星形、訊號弧線、字標分開，像 Asuka Air 一樣）
 - [ ] **Homie 的片假名**，Claude 的提案：ホーミー
 - [ ] **冠名的場館**，Claude 的提案：北流（台北流行音樂中心類型的展演場館），叫 Spoton Arena
