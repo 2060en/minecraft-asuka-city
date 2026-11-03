@@ -204,76 +204,103 @@ function railDirection(block) {
   return state(block, "rail_direction");
 }
 
+// The look a rail should have, from the block under it (a conveyor body or
+// a coal block): shape, turn, and the caps. A slope rising into this rail
+// from a side gets its top drawn here; that slope's rail is level with the
+// block under this rail, one block over, and climbs toward this column.
+function beltFor(base) {
+  const dir = railDirection(base.above());
+  const [shape, quarters] = dir === undefined ? [0, undefined] : RAIL_SHAPE[dir] ?? [0, 0];
+  const q = quarters ?? state(base, S("turn")) ?? 0;
+  const caps = { cap_s: false, cap_n: false, cap_e: false };
+  for (const v of Object.values(VEC)) {
+    const d = railDirection(base.offset({ x: v.x, y: 0, z: v.z }));
+    const up = ASCENDING[d];
+    if (!up || up.x !== -v.x || up.z !== -v.z) continue;
+    const local = rotate(v, -q);
+    if (local.z === 1) caps.cap_s = true;
+    else if (local.z === -1) caps.cap_n = true;
+    else if (local.x === 1) caps.cap_e = true;
+  }
+  return { [S("shape")]: shape, [S("turn")]: q, [S("cap_s")]: caps.cap_s,
+           [S("cap_n")]: caps.cap_n, [S("cap_e")]: caps.cap_e };
+}
+
 const CONVEYOR = {
   onTick(e) {
-    const b = e.block;
-    const dir = railDirection(b.above());
-    const [shape, quarters] = dir === undefined ? [0, state(b, S("turn")) ?? 0] : RAIL_SHAPE[dir] ?? [0, 0];
-    // A slope rising into this block's rail from a side: this body draws the
-    // top of that slope. The slope's rail is level with this body, one block
-    // over, and climbs toward this column.
-    const caps = { cap_s: false, cap_n: false, cap_e: false };
-    for (const v of Object.values(VEC)) {
-      const d = railDirection(b.offset({ x: v.x, y: 0, z: v.z }));
-      const up = ASCENDING[d];
-      if (!up || up.x !== -v.x || up.z !== -v.z) continue;
-      const local = rotate(v, -quarters);
-      if (local.z === 1) caps.cap_s = true;
-      else if (local.z === -1) caps.cap_n = true;
-      else if (local.x === 1) caps.cap_e = true;
-    }
-    const want = { [S("shape")]: shape, [S("turn")]: quarters, [S("cap_s")]: caps.cap_s,
-                   [S("cap_n")]: caps.cap_n, [S("cap_e")]: caps.cap_e };
-    if (Object.entries(want).some(([k, v]) => state(b, k) !== v)) setStates(b, want);
+    const want = beltFor(e.block);
+    if (Object.entries(want).some(([k, v]) => state(e.block, k) !== v)) setStates(e.block, want);
   },
 };
 
-// ---------- rails on coal blocks become conveyors ----------
-// The conveyor body's vanilla stand-in is the coal block, so a rail laid on
-// a coal block is turned into a conveyor: the coal block becomes a conveyor
-// body (author's request, 2026-11-03). The vanilla export turns it back.
+// ---------- rails on coal blocks look like conveyors ----------
+// The conveyor's vanilla stand-in is a coal block under a vanilla rail. A
+// rail on a coal block keeps both as they are (author's request,
+// 2026-11-03): an entity that only draws the belt sits on the rail. It has
+// no collision and takes no damage; the script adds and removes it. Without
+// the add-on the entity is dropped and coal plus rail is the vanilla look.
 const COAL = "minecraft:coal_block";
-
-function coalUnder(rail) {
-  if (!rail || !RAILS.has(rail.typeId)) return;
-  const below = rail.below();
-  if (below?.typeId === COAL) below.setType(S("conveyor"));
-}
-
-world.afterEvents.playerPlaceBlock.subscribe((e) => {
-  try {
-    coalUnder(e.block); // a rail laid on coal
-    if (e.block.typeId === COAL) coalUnder(e.block.above()); // coal slid under a rail
-  } catch {
-    // the block may already be gone
-  }
-});
-
-// Rails already lying on coal, or placed by commands and structures: look
-// around each player every 2 seconds. Dimension.getBlocks finds the rails
-// natively; without it (older API) only placing by hand works.
+const BELT = S("belt");
 const SCAN_RADIUS = 24;
 const SCAN_HEIGHT = 8;
-system.runInterval(() => {
+const key = (l) => `${l.x},${l.y},${l.z}`;
+
+function syncBelts(player) {
   const BlockVolume = server.BlockVolume;
-  for (const player of world.getAllPlayers()) {
-    try {
-      const dim = player.dimension;
-      if (!BlockVolume || typeof dim.getBlocks !== "function") return;
-      const { min, max } = dim.heightRange;
-      const p = player.location;
-      const x = Math.floor(p.x), y = Math.floor(p.y), z = Math.floor(p.z);
-      const from = { x: x - SCAN_RADIUS, y: Math.max(min + 1, y - SCAN_HEIGHT), z: z - SCAN_RADIUS };
-      const to = { x: x + SCAN_RADIUS, y: Math.min(max - 1, y + SCAN_HEIGHT), z: z + SCAN_RADIUS };
-      const rails = dim.getBlocks(new BlockVolume(from, to), { includeTypes: [...RAILS] }, false);
-      for (const loc of rails.getBlockLocationIterator()) {
-        const below = dim.getBlock({ x: loc.x, y: loc.y - 1, z: loc.z });
-        if (below?.typeId === COAL) below.setType(S("conveyor"));
-      }
-    } catch {
-      // part of the area is not loaded
+  const dim = player.dimension;
+  if (!BlockVolume || typeof dim.getBlocks !== "function") return;
+  const { min, max } = dim.heightRange;
+  const p = player.location;
+  const x = Math.floor(p.x), y = Math.floor(p.y), z = Math.floor(p.z);
+  const from = { x: x - SCAN_RADIUS, y: Math.max(min + 1, y - SCAN_HEIGHT), z: z - SCAN_RADIUS };
+  const to = { x: x + SCAN_RADIUS, y: Math.min(max - 1, y + SCAN_HEIGHT), z: z + SCAN_RADIUS };
+  const inside = (l) => l.x >= from.x && l.x <= to.x && l.y >= from.y && l.y <= to.y && l.z >= from.z && l.z <= to.z;
+
+  const want = new Map();
+  const rails = dim.getBlocks(new BlockVolume(from, to), { includeTypes: [...RAILS] }, false);
+  for (const loc of rails.getBlockLocationIterator()) {
+    const below = dim.getBlock({ x: loc.x, y: loc.y - 1, z: loc.z });
+    if (below?.typeId === COAL) want.set(key(loc), { loc, look: beltFor(below) });
+  }
+  const have = new Map();
+  const reach = Math.hypot(SCAN_RADIUS, SCAN_RADIUS, SCAN_HEIGHT) + 2;
+  for (const ent of dim.getEntities({ type: BELT, location: p, maxDistance: reach })) {
+    const l = ent.location;
+    const at = { x: Math.floor(l.x), y: Math.floor(l.y + 0.01), z: Math.floor(l.z) };
+    if (!inside(at)) continue;
+    const k = key(at);
+    if (have.has(k) || !want.has(k)) {
+      ent.remove(); // a duplicate, or the rail or coal is gone
+      continue;
+    }
+    have.set(k, ent);
+  }
+  for (const [k, { loc, look }] of want) {
+    let ent = have.get(k);
+    if (!ent) {
+      ent = dim.spawnEntity(BELT, { x: loc.x + 0.5, y: loc.y, z: loc.z + 0.5 });
+      ent.setRotation({ x: 0, y: 0 });
+    }
+    for (const [name, v] of Object.entries(look)) {
+      if (ent.getProperty(name) !== v) ent.setProperty(name, v);
     }
   }
+}
+
+function syncSafely(player) {
+  try {
+    syncBelts(player);
+  } catch {
+    // part of the area is not loaded
+  }
+}
+
+// Right away when a player places or breaks something, and every 2 seconds
+// for everything else (rails placed by commands or structures, old rails).
+world.afterEvents.playerPlaceBlock.subscribe((e) => syncSafely(e.player));
+world.afterEvents.playerBreakBlock.subscribe((e) => syncSafely(e.player));
+system.runInterval(() => {
+  for (const player of world.getAllPlayers()) syncSafely(player);
 }, 40);
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {

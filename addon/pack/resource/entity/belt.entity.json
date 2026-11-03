@@ -1,0 +1,28 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:belt",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/blocks/asukatech/conveyor"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.belt"
+      },
+      "render_controllers": [
+        "controller.render.asukatech.belt"
+      ],
+      "animations": {
+        "turn": "animation.asukatech.belt.turn"
+      },
+      "scripts": {
+        "animate": [
+          "turn"
+        ]
+      }
+    }
+  }
+}
