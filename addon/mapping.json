@@ -8,7 +8,7 @@
       "asukatech:open": "open_bit",
       "asukatech:hinge_right": "door_hinge_bit"
     },
-    "_待實測": "door_hinge_bit 的 true 是不是門軸在右邊；原版門與自製門的朝向是不是同一邊"
+    "_實測": "door_hinge_bit 與朝向的對應，作者實測正確（2026-11-03）"
   },
   "asukatech:door_white": {
     "same_as": "asukatech:door_light_gray"
@@ -34,7 +34,7 @@
       },
       "asukatech:open": "open_bit"
     },
-    "_待實測": "原版地板門 direction 0～3 對應哪個方向"
+    "_實測": "原版地板門 direction 0～3 的對應，作者實測正確（2026-11-03）"
   },
   "asukatech:trapdoor_white": {
     "same_as": "asukatech:trapdoor_light_gray"
