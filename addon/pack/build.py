@@ -23,8 +23,19 @@ Identifier prefix: asukatech (the add-on is called Asuka tech, 2026-11-02).
 Rotations: minecraft:transformation turns a block about Y; the Bedrock wiki
 uses +90 to turn a north-facing model to face west. All the turns below
 follow that; if the game turns them the other way, flip TURN_SIGN.
+
+Geometry: the drafts and tools/preview/ work in what Blockbench shows on
+screen. A Bedrock geometry file stores it differently, and Blockbench
+converts on import and export (js/formats/bedrock/bedrock.js): x is
+mirrored, cube and bone rotations about x and y change sign, and the up and
+down faces are turned half way round. The first version copied the drafts
+unconverted, so in the game the conveyor's curve bent the wrong way and its
+slope tilted the wrong way (author's test, 2026-11-03). to_bedrock() now
+applies Blockbench's export rules. Collision boxes are taken from the
+drafts before converting, since they are in world coordinates.
 """
 import argparse
+import copy
 import json
 import shutil
 import urllib.request
@@ -65,6 +76,31 @@ TEXTURES = {   # terrain texture name: draft file
 }
 SOUNDS = {"door_light_gray": "wood", "door_white": "wood", "trapdoor_light_gray": "wood",
           "trapdoor_white": "wood", "conveyor": "metal", "coffee_cup": "wood"}
+
+
+def to_bedrock(geo):
+    """Blockbench's export rules (compileCube, compileGroup): what Blockbench
+    shows, as a Bedrock geometry file stores it."""
+    g = copy.deepcopy(geo)
+    for bone in g["bones"]:
+        if "pivot" in bone:
+            bone["pivot"][0] = -bone["pivot"][0]
+        if "rotation" in bone:
+            bone["rotation"][0], bone["rotation"][1] = -bone["rotation"][0], -bone["rotation"][1]
+        for c in bone.get("cubes", []):
+            c["origin"][0] = -(c["origin"][0] + c["size"][0])
+            if "pivot" in c:
+                c["pivot"][0] = -c["pivot"][0]
+            if "rotation" in c:
+                c["rotation"][0], c["rotation"][1] = -c["rotation"][0], -c["rotation"][1]
+            uv = c.get("uv")
+            if isinstance(uv, dict):
+                for face in ("up", "down"):
+                    f = uv.get(face)
+                    if f and "uv_size" in f:
+                        f["uv"] = [f["uv"][0] + f["uv_size"][0], f["uv"][1] + f["uv_size"][1]]
+                        f["uv_size"] = [-f["uv_size"][0], -f["uv_size"][1]]
+    return g
 
 
 def load_geo(key):
@@ -319,7 +355,7 @@ def assemble(vanilla_folder):
     for key, (path, ident, new) in GEOS.items():
         data = json.loads((DRAFTS / path).read_text(encoding="utf-8"))
         geo = next(g for g in data["minecraft:geometry"] if g["description"]["identifier"] == ident)
-        geo = json.loads(json.dumps(geo))
+        geo = to_bedrock(geo)
         geo["description"]["identifier"] = new
         write_json(rp_out / "models" / "blocks" / f"{NS}_{key}.geo.json",
                    {"format_version": data["format_version"], "minecraft:geometry": [geo]})
@@ -327,6 +363,8 @@ def assemble(vanilla_folder):
         dest = rp_out / "textures" / "blocks" / NS / f"{Path(path).stem}.png"
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(DRAFTS / path, dest)
+    for out in (rp_out, bp_out):
+        shutil.copy(HERE / "pack_icon.png", out / "pack_icon.png")
     for src, dest in RETEXTURES.items():
         (rp_out / dest).parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(DRAFTS / src, rp_out / dest)
