@@ -1,0 +1,1765 @@
+{
+ "title": "單色門與單色地板門（草稿）",
+ "columns": 4,
+ "panelWidth": 330,
+ "panelHeight": 300,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "淺灰門",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 18,
+    "size": 64,
+    "target": [
+     0,
+     22,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "rotationY": 0,
+     "bones": [
+      "lower_closed_l"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "rotationY": 0,
+     "bones": [
+      "upper_closed_l"
+     ],
+     "position": [
+      0,
+      16,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "白色門",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 18,
+    "size": 64,
+    "target": [
+     0,
+     22,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "rotationY": 0,
+     "bones": [
+      "lower_closed_l"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "rotationY": 0,
+     "bones": [
+      "upper_closed_l"
+     ],
+     "position": [
+      0,
+      16,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "淺灰門打開",
+   "camera": {
+    "azimuth": 215,
+    "elevation": 22,
+    "size": 64,
+    "target": [
+     0,
+     20,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "rotationY": 0,
+     "bones": [
+      "lower_open_l"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "rotationY": 0,
+     "bones": [
+      "upper_open_l"
+     ],
+     "position": [
+      0,
+      16,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "白色雙開門",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 18,
+    "size": 80,
+    "target": [
+     0,
+     22,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -32,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      0,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      16,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "rotationY": 0,
+     "bones": [
+      "lower_closed_l"
+     ],
+     "position": [
+      -8,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "rotationY": 0,
+     "bones": [
+      "upper_closed_l"
+     ],
+     "position": [
+      -8,
+      16,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "rotationY": 0,
+     "bones": [
+      "lower_closed_r"
+     ],
+     "position": [
+      8,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "rotationY": 0,
+     "bones": [
+      "upper_closed_r"
+     ],
+     "position": [
+      8,
+      16,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "淺灰地板門：關（下半）、打開",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 30,
+    "size": 52,
+    "target": [
+     4,
+     2,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -20,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -4,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      12,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_trapdoor",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "bones": [
+      "bottom"
+     ],
+     "position": [
+      -12,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_trapdoor",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "bones": [
+      "open"
+     ],
+     "position": [
+      20,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "白色地板門：關（下半）、打開",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 30,
+    "size": 52,
+    "target": [
+     4,
+     2,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -20,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -4,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      12,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_trapdoor",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "bones": [
+      "bottom"
+     ],
+     "position": [
+      -12,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_trapdoor",
+     "texture": "/addon/drafts/doors/door_white.png",
+     "bones": [
+      "open"
+     ],
+     "position": [
+      20,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "淺灰地板門嵌在地板上（上半）",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 60,
+    "target": [
+     0,
+     -4,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -24,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -24,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      8,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      8,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_trapdoor",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "bones": [
+      "top"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "淺灰門從房間內側看",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 14,
+    "size": 40,
+    "target": [
+     0,
+     16,
+     -4
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -24,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      8,
+      32,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "rotationY": 0,
+     "bones": [
+      "lower_closed_l"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/doors/doors.geo.json",
+     "identifier": "geometry.solid_door",
+     "texture": "/addon/drafts/doors/door_light_gray.png",
+     "rotationY": 0,
+     "bones": [
+      "upper_closed_l"
+     ],
+     "position": [
+      0,
+      16,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

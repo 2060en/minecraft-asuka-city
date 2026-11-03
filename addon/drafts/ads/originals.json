@@ -1,0 +1,111 @@
+{
+ "_說明": "編號對應 originals/ 裡的原圖檔名（照作者雲端硬碟「廣告畫/原圖」的檔名）。focus 可選：裁切的中心，[寬的比例, 高的比例]，0～1",
+ "A1": {
+  "file": "MacDonald.jpg"
+ },
+ "A2": {
+  "file": "Spoton電信.jpg"
+ },
+ "A3": {
+  "file": "DingTaiFung.jpg"
+ },
+ "A4": {
+  "file": "Cafe.jpg"
+ },
+ "A5": {
+  "file": "補習班.jpg"
+ },
+ "B1": {
+  "file": "飲料廣告.jpg"
+ },
+ "B2": {
+  "file": "Aesop.jpg"
+ },
+ "B3": {
+  "file": "寶特瓶飲料-午後の奶茶.jpg"
+ },
+ "C1": {
+  "file": "伊藤園-大谷翔平.jpg"
+ },
+ "C2": {
+  "file": "保險廣告.jpg"
+ },
+ "C3": {
+  "file": "藥品廣告.jpg"
+ },
+ "C4": {
+  "file": "iphone-18-pro.jpg"
+ },
+ "C5": {
+  "file": "Taco eats.jpg"
+ },
+ "C6": {
+  "file": "萬用銀行廣告.jpg"
+ },
+ "C7": {
+  "file": "milet-SONY.jpg"
+ },
+ "C8": {
+  "file": "信用卡廣告.jpg"
+ },
+ "D1": {
+  "file": "汽車廣告.jpg"
+ },
+ "D2": {
+  "file": "Google  Cloud x Gemini.jpg"
+ },
+ "D3": {
+  "file": "Mastercard x McLaren.jpg"
+ },
+ "D4": {
+  "file": "YOASOBI.jpg"
+ },
+ "D5": {
+  "file": "南方度假酒店廣告.jpg"
+ },
+ "D6": {
+  "file": "齋藤飛鳥xOwndays.jpg"
+ },
+ "D7": {
+  "file": "MUJI.jpg"
+ },
+ "E1": {
+  "file": "太平洋黑潮特急.jpg"
+ },
+ "E2": {
+  "file": "Minecraft Studio.jpg"
+ },
+ "E4": {
+  "file": "Asuka Air 飛 AKL.jpg"
+ },
+ "E5": {
+  "file": "金采源代言化妝品.jpg"
+ },
+ "F1": {
+  "file": "安俞真代言三星手機.jpg"
+ },
+ "F2": {
+  "file": "奧本海默海報.jpg"
+ },
+ "G1": {
+  "file": "Kazuha_Starlux.jpg"
+ },
+ "G2": {
+  "file": "F1 飛鳥大獎賽.jpg"
+ },
+ "H1": {
+  "file": "Curry-Shoes.jpg"
+ },
+ "H2": {
+  "file": "衣服萬用廣告 時尚版.jpg"
+ },
+ "H3": {
+  "file": "衣服萬用廣告 戶外版.jpg"
+ },
+ "H4": {
+  "file": "名井南代言精品包.jpg"
+ },
+ "H5": {
+  "file": "TESLA.jpg"
+ }
+}

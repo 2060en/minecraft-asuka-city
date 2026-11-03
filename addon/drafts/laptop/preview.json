@@ -1,0 +1,753 @@
+{
+ "title": "筆電：桌面與寫程式兩種畫面，背面灰色加小蘋果標誌（草稿）",
+ "columns": 2,
+ "panelWidth": 560,
+ "panelHeight": 300,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "兩種畫面：桌面、寫程式",
+   "camera": {
+    "azimuth": 0,
+    "elevation": 0,
+    "size": 26,
+    "target": [
+     0,
+     8,
+     8
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -32,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_0",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -8,
+      0,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_1",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      8,
+      0,
+      16
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "桌上的筆電（前面）",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 22,
+    "size": 44,
+    "target": [
+     0,
+     6,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_0",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_1",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "從背面看：灰色上蓋加小蘋果標誌",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 15,
+    "size": 30,
+    "target": [
+     -16,
+     8,
+     -6
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_0",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_1",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "辦公桌：面對面的兩排",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 35,
+    "size": 80,
+    "target": [
+     0,
+     2,
+     8
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -40,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -40,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -24,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      -8,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      8,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e3d6c2",
+      "south": "#cbbda8",
+      "north": "#cbbda8",
+      "east": "#b9ab96",
+      "west": "#b9ab96",
+      "down": "#a59782"
+     },
+     "origin": [
+      24,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_0",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -32,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -32,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_1",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_0",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      32,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      32,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_1",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -32,
+      0,
+      16
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      -32,
+      0,
+      16
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_0",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      0,
+      0,
+      16
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      0,
+      0,
+      16
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.laptop_1",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      32,
+      0,
+      16
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/laptop/preview.geo.json",
+     "identifier": "geometry.deck",
+     "texture": "/addon/drafts/laptop/preview_atlas.png",
+     "position": [
+      32,
+      0,
+      16
+     ],
+     "rotationY": 180
+    }
+   ]
+  }
+ ]
+}
