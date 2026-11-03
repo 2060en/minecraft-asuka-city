@@ -14,7 +14,7 @@ repository. addon/pack/build.py runs make_all() the same way.
 
     cushion            the button in the middle of the top and bottom goes,
                        all 16 colours (entity/cushion/<colour>_cushion.png)
-    flower pot         white ceramic, block and item
+    flower pot         dark grey ceramic, block and item (first draft white)
     decorated pot      white steel, like a metal can, with a dark grey cap for
                        the neck (author, 2026-11-03); sherd sides untouched
     wither skull       the face becomes the same as the other three sides
@@ -195,9 +195,9 @@ def make_all(out=OUT):
 
     for c in COLOURS:
         save(cushion(c), f"textures/entity/cushion/{c}_cushion.png")
-    white = ((196, 198, 200), (246, 247, 248))
-    save(recolour(vanilla("textures/blocks/flower_pot.png"), *white, 1), "textures/blocks/flower_pot.png")
-    save(recolour(vanilla("textures/items/flower_pot.png"), (120, 122, 126), (248, 248, 248), 2),
+    dark = ((48, 50, 54), (98, 102, 108))     # dark grey (author, 2026-11-03; first draft white)
+    save(recolour(vanilla("textures/blocks/flower_pot.png"), *dark, 1), "textures/blocks/flower_pot.png")
+    save(recolour(vanilla("textures/items/flower_pot.png"), (30, 31, 34), (110, 114, 120), 2),
          "textures/items/flower_pot.png")
     steel = ((176, 182, 188), (236, 238, 240))
     save(recolour(vanilla("textures/blocks/decorated_pot_side.png"), *steel, 3, streaks=1),
@@ -215,7 +215,7 @@ def preview(made):
     font = ImageFont.truetype("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc", 18)
     rows = [("坐墊（紅）：中間的點拿掉", "textures/entity/cushion/red_cushion.png", (16, 0, 48, 16)),
             ("坐墊（白）", "textures/entity/cushion/white_cushion.png", (16, 0, 48, 16)),
-            ("花盆（方塊）", "textures/blocks/flower_pot.png", (4, 4, 12, 16)),
+            ("花盆（方塊）：深灰", "textures/blocks/flower_pot.png", (4, 4, 12, 16)),
             ("花盆（物品）", "textures/items/flower_pot.png", None),
             ("陶罐：側面", "textures/blocks/decorated_pot_side.png", None),
             ("陶罐：上下與瓶口", "textures/blocks/decorated_pot_base.png", None),

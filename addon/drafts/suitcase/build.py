@@ -42,7 +42,10 @@ LOCK_HI = (110, 114, 120)
 HANDLE = (70, 74, 80)
 HANDLE_HI = (104, 108, 114)
 WHEEL = (40, 41, 44)
-INSIDE = (60, 62, 66)
+LINING = (44, 52, 74)            # navy fabric lining, seen when the case opens
+LINING_LO = (36, 42, 62)
+STRAP = (150, 154, 160)
+BUCKLE = (200, 204, 208)
 
 
 def noise(c, rng):
@@ -110,6 +113,33 @@ def top(w, d, rng):
     return f
 
 
+def inside(w, d, rng, lid):
+    """The inside, seen when the chest opens: the base's top or the lid's
+    underside. The zip runs round the rim (the opening); inside is a navy
+    lining, with two straps and buckles in the base and a zipped pocket in
+    the lid (author, 2026-11-03: it was plain grey)."""
+    f = [[(LINING if (x + y) % 3 else LINING_LO) for x in range(w)] for y in range(d)]
+    f = [[noise(c, rng) for c in row] for row in f]
+    for x in range(w):
+        f[0][x] = f[d - 1][x] = ZIP_TEETH if x % 2 else ZIP
+    for y in range(d):
+        f[y][0] = f[y][w - 1] = ZIP_TEETH if y % 2 else ZIP
+    halves = [(1, w - 1)] if w < 20 else [(1, w // 2 - 1), (w // 2 + 1, w - 1)]
+    if w >= 20:
+        for y in range(d):
+            f[y][w // 2 - 1] = f[y][w // 2] = FRAME
+    for a, b in halves:
+        if lid:                              # a zipped pocket across the lid
+            for x in range(a + 1, b - 1):
+                f[d // 2][x] = ZIP_TEETH if x % 2 else ZIP
+        else:                                # two straps with buckles
+            for x in (a + (b - a) // 3, a + 2 * (b - a) // 3):
+                for y in range(1, d - 1):
+                    f[y][x] = STRAP
+                f[d // 2][x] = BUCKLE
+    return f
+
+
 def paint(px, x0, y0, f):
     for y, row in enumerate(f):
         for x, c in enumerate(row):
@@ -130,12 +160,12 @@ def texture(w):
     rng = random.Random(w)
     # lid: box UV at (0, 0), height 5
     paint(px, d, 0, top(w, d, rng))
-    fill(px, d + w, 0, w, d, INSIDE)
+    paint(px, d + w, 0, inside(w, d, rng, True))    # lid underside
     for i, (x0, ww) in enumerate(((0, d), (d, w), (d + w, d), (2 * d + w, w))):
         f = side(d, 5, rng, True) if i % 2 == 0 else front(w, 5, rng, True)
         paint(px, x0, d, f)
     # base: box UV at (0, 19), height 10
-    fill(px, d, 19, w, d, INSIDE)
+    paint(px, d, 19, inside(w, d, rng, False))      # base top
     fill(px, d + w, 19, w, d, FRAME)
     for i, (x0, ww) in enumerate(((0, d), (d, w), (d + w, d), (2 * d + w, w))):
         f = side(d, 10, rng, False) if i % 2 == 0 else front(w, 10, rng, False)
@@ -166,8 +196,11 @@ def geo(ident, w, tw):
 
 texture(14).save(HERE / "chest.png")
 texture(30).save(HERE / "chest_double.png")
+opened = geo("geometry.chest_open_preview", 14, 64)
+for c in opened["bones"][0]["cubes"][1:]:      # the lid and the latch swing open at the back edge
+    c["pivot"], c["rotation"] = [0, 10, -7], [-100, 0, 0]
 (HERE / "chest_preview.geo.json").write_text(json.dumps({"format_version": "1.12.0", "minecraft:geometry": [
-    geo("geometry.chest_preview", 14, 64), geo("geometry.chest_double_preview", 30, 128)]}, indent=1) + "\n",
+    geo("geometry.chest_preview", 14, 64), geo("geometry.chest_double_preview", 30, 128), opened]}, indent=1) + "\n",
     encoding="utf-8")
 
 # ---------- preview sheet ----------
@@ -187,12 +220,14 @@ def chest(x, z, double=False, rot=0):
 
 sheet = {
     "title": "鋁製行李箱：儲物箱換材質（第二版草稿）",
-    "columns": 3, "panelWidth": 380, "panelHeight": 320, "background": "#e8edf1",
+    "columns": 2, "panelWidth": 480, "panelHeight": 320, "background": "#e8edf1",
     "panels": [
         {"label": "正面（橫條紋、深灰色的鎖）", "camera": {"azimuth": 30, "elevation": 22, "size": 30, "target": [0, 7, 0]},
          "objects": floor([0], [0]) + [chest(0, 0)]},
         {"label": "拉鍊在箱子的開口一圈、上面提把", "camera": {"azimuth": 120, "elevation": 40, "size": 30, "target": [0, 7, 0]},
          "objects": floor([0], [0]) + [chest(0, 0)]},
+        {"label": "打開：拉鍊一圈、深藍色內襯、綁帶與夾層", "camera": {"azimuth": 20, "elevation": 50, "size": 34, "target": [0, 9, 0]},
+         "objects": floor([0], [0]) + [{**chest(0, 0), "identifier": "geometry.chest_open_preview"}]},
         {"label": "大箱子：兩個並排", "camera": {"azimuth": 25, "elevation": 22, "size": 46, "target": [8, 7, 0]},
          "objects": floor([0, 16], [0]) + [{**chest(8, 0, True)}]},
     ],

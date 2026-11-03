@@ -5,7 +5,7 @@ Run from the repository root:
 
 Resource pack only: sea_pickle.png replaces textures/blocks/sea_pickle.png and
 cup_item.png replaces textures/items/sea_pickle.png, so a sea pickle is a
-white cup with water in it, 1 to 4 to a block like the vanilla pickles. The
+light steel-grey cup with water in it, 1 to 4 to a block like the vanilla pickles. The
 glow under water stays (the author does not mind, 2026-11-03). The vanilla
 export is simply the sea pickle. The planned glass cup (a custom block)
 turns into a sea pickle in the vanilla version.
@@ -30,12 +30,13 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 REL = "/addon/drafts/cup"
 
-WHITE = (240, 241, 242)
-WHITE_LO = (226, 228, 230)
-RIM = (250, 250, 250)
+# light steel grey, the colour of the steel shelf (author, 2026-11-03: not all white)
+WHITE = (198, 202, 207)
+WHITE_LO = (180, 184, 190)
+RIM = (220, 223, 227)
 WATER = (120, 176, 222)
 WATER_HI = (168, 206, 236)
-BOTTOM = (212, 214, 216)
+BOTTOM = (170, 174, 180)
 OUT = (120, 124, 130)
 
 
@@ -108,7 +109,7 @@ for i, n in enumerate(COLUMNS):
     objs.append({"type": "block", "color": TABLE, "origin": [x - 8, -16, -8], "size": [16, 16, 16]})
     objs.append({"type": "geo", "geo": f"{REL}/cup_preview.geo.json", "identifier": f"geometry.cups_{n}",
                  "texture": f"{REL}/sea_pickle.png", "position": [x, 0, 0]})
-sheet = {"title": "白色杯子：海鞘換材質（草稿，1～4 個，高度照 Java 版推測）",
+sheet = {"title": "淺灰色鐵杯：海鞘換材質（草稿，1～4 個，高度照 Java 版推測）",
          "columns": 2, "panelWidth": 560, "panelHeight": 300, "background": "#e8edf1",
          "panels": [
              {"label": "斜看", "camera": {"azimuth": 30, "elevation": 30, "size": 40, "target": [0, 2, 0]}, "objects": objs},
