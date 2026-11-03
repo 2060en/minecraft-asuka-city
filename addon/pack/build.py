@@ -18,6 +18,17 @@ Two jobs:
    https://github.com/Mojang/bedrock-samples into addon/build/vanilla/.
    addon/build/ is not committed: no vanilla image in the repository.
 
+Version numbers (2026-11-03): the game only replaces an imported pack when
+its version is higher, so the build bumps the version itself. It hashes what
+it assembled (everything but the manifests; images by their pixels, so a
+different Pillow does not count as a change) and compares the hash with
+addon/pack/release.json. If the content changed, the patch number goes up by
+one in both manifests and in release.json; commit them with the change. If
+nothing changed, the version stays, so building the same commit again (on
+the author's computer too) gives the same version. For a bigger step, write
+the new version (e.g. 0.5.0) into resource/manifest.json by hand: the build
+then uses it as it is instead of adding one.
+
 Identifier prefix: asukatech (the add-on is called Asuka tech, 2026-11-02).
 
 Rotations: minecraft:transformation turns a block about Y; the Bedrock wiki
@@ -36,6 +47,7 @@ drafts before converting, since they are in world coordinates.
 """
 import argparse
 import copy
+import hashlib
 import json
 import shutil
 import urllib.request
@@ -288,6 +300,58 @@ def generate():
     print(f"generated {len(blocks)} blocks")
 
 
+# ---------- version ----------
+RELEASE = HERE / "release.json"
+MANIFESTS = (HERE / "resource" / "manifest.json", HERE / "behavior" / "manifest.json")
+
+
+def content_hash(folders):
+    h = hashlib.sha256()
+    for folder in folders:
+        for f in sorted(folder.rglob("*")):
+            if not f.is_file() or f.name == "manifest.json":
+                continue
+            h.update(f"{folder.name}/{f.relative_to(folder).as_posix()}\n".encode())
+            if f.suffix == ".png":
+                with Image.open(f) as img:
+                    h.update(f"{img.mode} {img.size}\n".encode())
+                    h.update(img.tobytes())
+            else:
+                h.update(f.read_bytes())
+    return h.hexdigest()
+
+
+def set_version(manifest, version, rp_uuid):
+    data = json.loads(manifest.read_text(encoding="utf-8"))
+    data["header"]["version"] = version
+    for module in data["modules"]:
+        module["version"] = version
+    for dep in data.get("dependencies", []):
+        if dep.get("uuid") == rp_uuid:
+            dep["version"] = version
+    write_json(manifest, data)
+
+
+def update_version(folders):
+    """Bump the patch number when the assembled content changed; returns the version."""
+    digest = content_hash(folders)
+    release = json.loads(RELEASE.read_text(encoding="utf-8"))
+    rp = json.loads(MANIFESTS[0].read_text(encoding="utf-8"))["header"]
+    version = rp["version"]
+    if digest != release["content_hash"]:
+        if version == release["version"]:
+            version = version[:2] + [version[2] + 1]
+        for manifest in MANIFESTS:
+            set_version(manifest, version, rp["uuid"])
+        write_json(RELEASE, {"version": version, "content_hash": digest})
+        print(f"content changed: version {'.'.join(map(str, version))} (commit the manifests and release.json)")
+    else:
+        print(f"content unchanged: version stays {'.'.join(map(str, version))}")
+    for manifest, folder in zip(MANIFESTS, folders):
+        shutil.copy(manifest, folder / "manifest.json")
+    return version
+
+
 # ---------- assemble the packs ----------
 ADS = DRAFTS / "ads"
 RETEXTURES = {   # draft file: path in the resource pack
@@ -345,6 +409,7 @@ def assemble(vanilla_folder):
     for f in (ADS / "painting").glob("*.png"):
         shutil.copy(f, rp_out / "textures" / "painting" / f.name)
 
+    update_version((rp_out, bp_out))
     mcaddon = BUILD / "Asuka tech.mcaddon"
     with zipfile.ZipFile(mcaddon, "w", zipfile.ZIP_DEFLATED) as z:
         for folder in (rp_out, bp_out):
