@@ -1,4 +1,4 @@
-"""Build "rail to belt": a resource pack that makes every rail look like a
+"""Build "Rail to Belt": a resource pack that makes every rail look like a
 conveyor belt. Textures only, no behaviour pack. Author: asuka tech.
 
 Run from the repository root:
@@ -9,7 +9,8 @@ Run from the repository root:
 The first run draws the rail textures into pack/textures/blocks/ and writes
 the icon scene; the render draws a short piece of belt; --icon crops it into
 pack/pack_icon.png. Everything here is drawn by this script, so the whole
-pack is committed; addon/build/rail to belt.mcpack is the installable file.
+pack is committed; addon/build/Rail to Belt.mcpack is the installable file.
+Add-on names and descriptions are in English (author's rule, 2026-11-03).
 
 The look comes from the conveyor draft the author approved
 (addon/drafts/conveyor/, 2026-11-01): a black rubber belt with ribs across
@@ -117,13 +118,13 @@ def textures():
 MANIFEST = {
     "format_version": 2,
     "header": {
-        "name": "rail to belt",
-        "description": "把鐵軌換成履帶的樣子（只換材質）",
+        "name": "Rail to Belt",
+        "description": "Turns every rail into a conveyor belt. Textures only.",
         "uuid": "6f1d4a3e-2b7c-4e8a-9c51-3d2f8b7a6e10",
-        "version": [1, 0, 0],
+        "version": [1, 0, 1],
         "min_engine_version": [1, 21, 0],
     },
-    "modules": [{"type": "resources", "uuid": "b2e8c7d4-5a91-4f36-8e0b-7c4d1a9f2e35", "version": [1, 0, 0]}],
+    "modules": [{"type": "resources", "uuid": "b2e8c7d4-5a91-4f36-8e0b-7c4d1a9f2e35", "version": [1, 0, 1]}],
     "metadata": {"authors": ["asuka tech"]},
 }
 
@@ -186,12 +187,12 @@ def make_icon():
 
 
 def mcpack():
-    out = ROOT / "addon" / "build" / "rail to belt.mcpack"
+    out = ROOT / "addon" / "build" / "Rail to Belt.mcpack"
     out.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for f in sorted(PACK.rglob("*")):
             if f.is_file():
-                z.write(f, Path("rail to belt") / f.relative_to(PACK))
+                z.write(f, Path("Rail to Belt") / f.relative_to(PACK))
     print(f"wrote {out.relative_to(ROOT)}")
 
 

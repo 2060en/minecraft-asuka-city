@@ -1,13 +1,13 @@
 {
   "format_version": 2,
   "header": {
-    "name": "rail to belt",
-    "description": "把鐵軌換成履帶的樣子（只換材質）",
+    "name": "Rail to Belt",
+    "description": "Turns every rail into a conveyor belt. Textures only.",
     "uuid": "6f1d4a3e-2b7c-4e8a-9c51-3d2f8b7a6e10",
     "version": [
       1,
       0,
-      0
+      1
     ],
     "min_engine_version": [
       1,
@@ -22,7 +22,7 @@
       "version": [
         1,
         0,
-        0
+        1
       ]
     }
   ],
