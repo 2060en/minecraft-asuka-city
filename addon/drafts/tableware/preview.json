@@ -1,0 +1,378 @@
+{
+ "title": "餐具（自製實體，草稿）：白盤子、白碗、白杯子、刀叉、湯匙、筷子",
+ "columns": 2,
+ "panelWidth": 560,
+ "panelHeight": 340,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "一套擺在桌上",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 40,
+    "size": 34,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.plate",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      -8,
+      16,
+      1
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.fork",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      -15,
+      16,
+      1
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.knife",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      -1.5,
+      16,
+      1
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.spoon",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0.5,
+      16,
+      1
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.bowl",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      8,
+      16,
+      2
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.chopsticks",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      14.5,
+      16,
+      2
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.cup",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      6,
+      16,
+      -5
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "放在不同高度上：全方塊、半磚、地板門、三層雪、頭顱",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 30,
+    "size": 62,
+    "target": [
+     8,
+     6,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -35.0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.plate",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      -27.0,
+      16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.cup",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      -24.0,
+      16.5,
+      2
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -17.0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      8,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.plate",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      -9.0,
+      8,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.cup",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      -6.0,
+      8.5,
+      2
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      1.0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      3,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.plate",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      9.0,
+      3,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.cup",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      12.0,
+      3.5,
+      2
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#f6f8fa",
+      "south": "#e4e8ec",
+      "north": "#e4e8ec",
+      "east": "#d6dbe0",
+      "west": "#d6dbe0",
+      "down": "#c8cdd2"
+     },
+     "origin": [
+      19.0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      6,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.plate",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      27.0,
+      6,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.cup",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      30.0,
+      6.5,
+      2
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#3a3b3e",
+      "south": "#303134",
+      "north": "#303134",
+      "east": "#2a2b2e",
+      "west": "#2a2b2e",
+      "down": "#222326"
+     },
+     "origin": [
+      41,
+      0,
+      -4
+     ],
+     "size": [
+      8,
+      8,
+      8
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.cup",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      45,
+      8,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  }
+ ]
+}

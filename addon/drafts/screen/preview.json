@@ -1,5 +1,5 @@
 {
- "title": "萬用小螢幕：邊框改成和樺木木框同色（第二版）",
+ "title": "萬用小螢幕：黑色邊框加待機畫面",
  "columns": 3,
  "panelWidth": 380,
  "panelHeight": 300,
@@ -84,23 +84,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       0,
       0,
@@ -188,23 +172,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       0,
       0,
@@ -292,23 +260,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       0,
       0,
@@ -417,23 +369,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      0,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       0,
       16,
@@ -527,23 +463,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      16,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       16,
       16,
@@ -796,23 +716,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      -8,
-      16,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       -8,
       16,
@@ -1236,23 +1140,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      -16,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       -16,
       0,
@@ -1367,23 +1255,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      0,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       0,
       0,
@@ -1498,23 +1370,7 @@
     {
      "type": "geo",
      "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/drafts/screen/glow_item_frame_v2.png",
-     "bones": [
-      "screen"
-     ],
-     "position": [
-      16,
-      0,
-      16
-     ]
-    },
-    {
-     "type": "geo",
-     "geo": "/addon/drafts/screen/frame_preview.geo.json",
-     "texture": "/addon/build/vanilla/textures/blocks/planks_birch.png",
-     "bones": [
-      "border"
-     ],
+     "texture": "/addon/drafts/screen/glow_item_frame.png",
      "position": [
       16,
       0,

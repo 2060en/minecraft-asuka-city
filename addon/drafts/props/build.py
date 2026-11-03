@@ -15,9 +15,12 @@ repository. addon/pack/build.py runs make_all() the same way.
     cushion            the button in the middle of the top and bottom goes,
                        all 16 colours (entity/cushion/<colour>_cushion.png)
     flower pot         white ceramic, block and item
-    decorated pot      white steel, like a metal can; sherd sides untouched
+    decorated pot      white steel, like a metal can, with a dark grey cap for
+                       the neck (author, 2026-11-03); sherd sides untouched
     wither skull       the face becomes the same as the other three sides
-    pale oak shelf     steel shelf
+    pale oak shelf     a plain steel shelf, drawn here: the three slot frames
+                       become three hooks, everything else a very faint grain
+                       (author, 2026-11-03: not the vanilla planks pattern)
     milk bucket        the item icon becomes a milk carton (drawn here)
 """
 import json
@@ -127,6 +130,54 @@ def milk_carton():
     return img
 
 
+def pot_base():
+    """decorated_pot_base.png (32 x 32): rows 0-11 are the neck (its top and
+    bottom at (8, 0) and (16, 0), the sides below), rows 13-26 the pot's top
+    and bottom. The neck becomes a dark grey cap, the rest white steel."""
+    img = recolour(vanilla("textures/blocks/decorated_pot_base.png"), (176, 182, 188), (236, 238, 240), 4, streaks=1)
+    px = img.load()
+    rng = random.Random(14)
+    for y in range(12):
+        for x in range(32):
+            if px[x, y][3]:
+                c = (70, 74, 80) if y < 8 else (58, 62, 68)
+                d = rng.randint(-2, 2)
+                px[x, y] = tuple(v + d for v in c) + (255,)
+    for x in range(8, 24):                  # a lighter ring round the cap's top
+        for y in (0, 7):
+            if px[x, y][3]:
+                px[x, y] = (92, 96, 102, 255)
+    return img
+
+
+def steel_shelf():
+    """pale_oak_shelf.png (32 x 32), drawn from scratch. Read from the vanilla
+    texture: the front with the three slots is at (0, 0)-(16, 16), the slots
+    themselves at x 1-5, 6-10 and 11-15, rows 4-10. Each face gets a
+    faint edge."""
+    img = Image.new("RGBA", (32, 32))
+    px = img.load()
+    rng = random.Random(15)
+    base, edge = (196, 200, 205), (176, 181, 187)
+    for y in range(32):
+        for x in range(32):
+            px[x, y] = tuple(v + rng.randint(-2, 2) for v in base) + (255,)
+    for x0, y0, x1, y1 in ((0, 0, 15, 15), (16, 0, 31, 15), (0, 16, 31, 23), (0, 24, 15, 31), (16, 24, 31, 31)):
+        for x in range(x0, x1 + 1):           # a faint edge round each face
+            px[x, y0] = px[x, y1] = edge + (255,)
+        for y in range(y0, y1 + 1):
+            px[x0, y] = px[x1, y] = edge + (255,)
+    hook, hook_hi = (92, 97, 104), (140, 145, 151)
+    for x0 in (1, 6, 11):                   # a J-shaped hook in each slot
+        cx = x0 + 2
+        px[cx, 4] = hook_hi + (255,)
+        for y in range(5, 9):
+            px[cx, y] = hook + (255,)
+        px[cx + 1, 9] = hook + (255,)
+        px[cx + 2, 8] = hook + (255,)
+    return img
+
+
 def make_all(out=OUT):
     out.mkdir(parents=True, exist_ok=True)
     made = {}
@@ -146,11 +197,9 @@ def make_all(out=OUT):
     steel = ((176, 182, 188), (236, 238, 240))
     save(recolour(vanilla("textures/blocks/decorated_pot_side.png"), *steel, 3, streaks=1),
          "textures/blocks/decorated_pot_side.png")
-    save(recolour(vanilla("textures/blocks/decorated_pot_base.png"), *steel, 4, streaks=1),
-         "textures/blocks/decorated_pot_base.png")
+    save(pot_base(), "textures/blocks/decorated_pot_base.png")
     save(wither_skull(), "textures/entity/skulls/wither_skeleton.png")
-    save(recolour(vanilla("textures/blocks/pale_oak_shelf.png"), (98, 104, 112), (206, 211, 216), 5, streaks=1),
-         "textures/blocks/pale_oak_shelf.png")
+    save(steel_shelf(), "textures/blocks/pale_oak_shelf.png")
     save(milk_carton(), "textures/items/bucket_milk.png")
     return made
 
