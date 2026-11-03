@@ -1,0 +1,1353 @@
+{
+ "title": "漏斗：灰白色（草稿）",
+ "columns": 3,
+ "panelWidth": 380,
+ "panelHeight": 300,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "平常放在地上",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 30,
+    "size": 30,
+    "target": [
+     0,
+     6,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_down"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "接在牆上當小便斗",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 20,
+    "size": 40,
+    "target": [
+     0,
+     6,
+     -2
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_north"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "往下看進去",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 65,
+    "size": 26,
+    "target": [
+     0,
+     8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_north"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "廁所：三個小便斗並排",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 18,
+    "size": 90,
+    "target": [
+     0,
+     10,
+     -4
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -40,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -40,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -40,
+      32,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -40,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -40,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      32,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -24,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      32,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -8,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      32,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      8,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      24,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      24,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      24,
+      32,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      24,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_north"
+     ],
+     "position": [
+      -16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_north"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_north"
+     ],
+     "position": [
+      16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "側面",
+   "camera": {
+    "azimuth": 90,
+    "elevation": 10,
+    "size": 40,
+    "target": [
+     0,
+     6,
+     -2
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_north"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "正面",
+   "camera": {
+    "azimuth": 0,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     6,
+     -2
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -24,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      -8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfdbe3",
+      "south": "#bccbd5",
+      "north": "#bccbd5",
+      "east": "#aebdc7",
+      "west": "#aebdc7",
+      "down": "#9fb0bb"
+     },
+     "origin": [
+      8,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#9ea4a9",
+      "south": "#858b90",
+      "north": "#858b90",
+      "east": "#767c81",
+      "west": "#767c81",
+      "down": "#666c71"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/hopper/hopper_preview.geo.json",
+     "texture": "/addon/drafts/hopper/preview_atlas.png",
+     "bones": [
+      "bowl",
+      "spout_north"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  }
+ ]
+}

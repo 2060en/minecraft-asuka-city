@@ -1,0 +1,9 @@
+{
+  "name": "asuka-preview",
+  "private": true,
+  "description": "Render preview images of Bedrock block models for design discussions",
+  "type": "module",
+  "dependencies": {
+    "three": "^0.187.0"
+  }
+}
