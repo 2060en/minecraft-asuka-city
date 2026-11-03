@@ -1,0 +1,59 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "pack.name",
+    "description": "pack.description",
+    "uuid": "9fdd13d9-6941-4872-b4cb-17979c89061e",
+    "version": [
+      0,
+      4,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      90
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "15f0e010-809c-4102-988b-21888bd5ee91",
+      "version": [
+        0,
+        4,
+        1
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "79f7d64e-1faa-40a1-9b6f-79f56456a121",
+      "version": [
+        0,
+        4,
+        1
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.0.0"
+    },
+    {
+      "uuid": "ee5f13e9-a1c4-4415-aa5d-b10c59297c3d",
+      "version": [
+        0,
+        4,
+        1
+      ]
+    }
+  ],
+  "metadata": {
+    "authors": [
+      "asuka tech"
+    ]
+  }
+}

@@ -1,0 +1,649 @@
+{
+ "title": "傳送履帶：鐵軌留著，下面墊機身（草稿）",
+ "columns": 4,
+ "panelWidth": 340,
+ "panelHeight": 300,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "直線 3 格",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 30,
+    "size": 72,
+    "target": [
+     0,
+     -8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "直線、轉彎、直線",
+   "camera": {
+    "azimuth": 45,
+    "elevation": 40,
+    "size": 80,
+    "target": [
+     12,
+     -10,
+     12
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      32
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_curve"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      16,
+      -16,
+      0
+     ],
+     "rotationY": 90
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      32,
+      -16,
+      0
+     ],
+     "rotationY": 90
+    }
+   ]
+  },
+  {
+   "label": "沒有鐵軌時，只有機身",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 30,
+    "size": 34,
+    "target": [
+     0,
+     -8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "動力版　左：沒通電　右：通電",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 32,
+    "size": 84,
+    "target": [
+     8,
+     -8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      -8,
+      -16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      -8,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      -8,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered_on.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      24,
+      -16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered_on.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      24,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor_powered_on.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      24,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "斜坡：平、上坡、高一層的平",
+   "camera": {
+    "azimuth": 50,
+    "elevation": 28,
+    "size": 72,
+    "target": [
+     0,
+     0,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#d4d8db",
+      "south": "#b9bec2",
+      "north": "#b9bec2",
+      "east": "#a3a8ad",
+      "west": "#a3a8ad",
+      "down": "#8d9296"
+     },
+     "position": [
+      0,
+      0,
+      -16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "斜坡側面",
+   "camera": {
+    "azimuth": 90,
+    "elevation": 0,
+    "size": 64,
+    "target": [
+     0,
+     2,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#d4d8db",
+      "south": "#b9bec2",
+      "north": "#b9bec2",
+      "east": "#a3a8ad",
+      "west": "#a3a8ad",
+      "down": "#8d9296"
+     },
+     "position": [
+      0,
+      0,
+      -16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "連續爬兩層",
+   "camera": {
+    "azimuth": 55,
+    "elevation": 25,
+    "size": 100,
+    "target": [
+     0,
+     8,
+     8
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      32
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      16,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#d4d8db",
+      "south": "#b9bec2",
+      "north": "#b9bec2",
+      "east": "#a3a8ad",
+      "west": "#a3a8ad",
+      "down": "#8d9296"
+     },
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#d4d8db",
+      "south": "#b9bec2",
+      "north": "#b9bec2",
+      "east": "#a3a8ad",
+      "west": "#a3a8ad",
+      "down": "#8d9296"
+     },
+     "position": [
+      0,
+      16,
+      -16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#d4d8db",
+      "south": "#b9bec2",
+      "north": "#b9bec2",
+      "east": "#a3a8ad",
+      "west": "#a3a8ad",
+      "down": "#8d9296"
+     },
+     "position": [
+      0,
+      0,
+      -16
+     ]
+    }
+   ]
+  },
+  {
+   "label": "斜坡上半段的接縫",
+   "camera": {
+    "azimuth": 60,
+    "elevation": 25,
+    "size": 20,
+    "target": [
+     0,
+     14,
+     -4
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight"
+     ],
+     "position": [
+      0,
+      -16,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_slope"
+     ],
+     "position": [
+      0,
+      -16,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/conveyor/conveyor_body.geo.json",
+     "texture": "/addon/drafts/conveyor/conveyor.png",
+     "bones": [
+      "body",
+      "belt_straight",
+      "cap_s"
+     ],
+     "position": [
+      0,
+      0,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#d4d8db",
+      "south": "#b9bec2",
+      "north": "#b9bec2",
+      "east": "#a3a8ad",
+      "west": "#a3a8ad",
+      "down": "#8d9296"
+     },
+     "position": [
+      0,
+      0,
+      -16
+     ]
+    }
+   ]
+  }
+ ]
+}

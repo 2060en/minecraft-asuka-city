@@ -11,11 +11,21 @@
 ## 文件
 
 - [技術文檔](docs/technical.md)：遊戲版本、工具、附加內容、世界設定、結構方塊與存檔備份
+- [附加內容開發](docs/addon.md)：專為這個世界製作的資源包與行為包，雙版本與轉換程式的做法、構想清單
+- [廣告清單](docs/ads.md)：把原版的畫換成廣告的填空表，每一個可替換的畫一列
 - [比例尺與尺寸規範](docs/scale.md)：遊戲尺寸與設定尺寸的換算原則
 - [世界觀總覽](docs/world/overview.md)：設計原則、國家定位、氣候、歷史人文、法律與人物
 - [地理與主要設施](docs/world/geography.md)：列島概要、各地區設施與參考地
 - [交通](docs/world/transport.md)：鐵路、地鐵、公路、海運與航空
 - [AKQ 航班表](docs/world/flight-schedule.md)：Asuka City 機場的一週航班與 Asuka Air 機隊
 - [Asuka Air 標誌](docs/world/asuka-air-logo.md)：符號、字體、使用規則與檔案（`assets/asuka-air/`）
+- [電信](docs/world/telecom.md)：第一大電信公司 Spoton（以 Spark 為藍本）的 logo、沿革、業務與色彩（logo 原圖在 `assets/spoton/`）
 - [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
 - [建造清單](docs/build-checklist.md)：Keep 筆記中的設施清單、城市細節、參考建築與品牌
+
+## 其他資料夾
+
+- `addon/pack/`：自製附加內容 Asuka tech 的資源包與行為包原始檔，`build.py` 組成可以安裝的 `.mcaddon`；`addon/mapping.json` 是原味版的對照表
+- `addon/rail_to_belt/`：只換材質的材質包「Rail to Belt」，把鐵軌換成履帶的樣子
+- `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
+- `tools/preview/`：把基岩版模型算成預覽圖的工具
