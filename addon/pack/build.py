@@ -29,8 +29,8 @@ screen. A Bedrock geometry file stores it differently, and Blockbench
 converts on import and export (js/formats/bedrock/bedrock.js): x is
 mirrored, cube and bone rotations about x and y change sign, and the up and
 down faces are turned half way round. The first version copied the drafts
-unconverted, so in the game the conveyor's curve bent the wrong way and its
-slope tilted the wrong way (author's test, 2026-11-03). to_bedrock() now
+unconverted, so in the game a conveyor curve, since removed, bent the wrong
+way and its slope tilted the wrong way (author's test, 2026-11-03). to_bedrock() now
 applies Blockbench's export rules. Collision boxes are taken from the
 drafts before converting, since they are in world coordinates.
 """
@@ -51,12 +51,6 @@ BUILD = ROOT / "addon" / "build"
 NS = "asukatech"
 TURN_SIGN = 1                 # flip to -1 if every rotated block turns the wrong way
 BLOCK_FORMAT = "1.21.90"      # custom components v2 need 1.21.90 or later
-# The belt entity that sits on a rail laid on a coal block. In the game an
-# entity at yaw 0 shows its model turned half way round, and Blockbench
-# inverts y rotations in animation files, so a model turn of k quarters
-# (north to west) is a root rotation of ENTITY_BASE + ENTITY_STEP * k.
-ENTITY_BASE = 180
-ENTITY_STEP = -90
 
 # ---------- the custom blocks ----------
 # name: (zh_TW, en_US)
@@ -65,23 +59,20 @@ NAMES = {
     "door_white": ("白色門", "White Door"),
     "trapdoor_light_gray": ("淺灰色地板門", "Light Gray Trapdoor"),
     "trapdoor_white": ("白色地板門", "White Trapdoor"),
-    "conveyor": ("傳送履帶機身", "Conveyor Body"),
     "coffee_cup": ("外帶咖啡杯", "Takeaway Coffee Cup"),
 }
 GEOS = {   # draft geometry file, identifier in the draft, identifier in the pack
     "door": ("doors/doors.geo.json", "geometry.solid_door", f"geometry.{NS}.door"),
     "trapdoor": ("doors/doors.geo.json", "geometry.solid_trapdoor", f"geometry.{NS}.trapdoor"),
-    "conveyor": ("conveyor/conveyor_body.geo.json", "geometry.conveyor_body", f"geometry.{NS}.conveyor"),
     "coffee_cup": ("coffee_cup/coffee_cup.geo.json", "geometry.coffee_cup", f"geometry.{NS}.coffee_cup"),
 }
 TEXTURES = {   # terrain texture name: draft file
     f"{NS}_door_light_gray": "doors/door_light_gray.png",
     f"{NS}_door_white": "doors/door_white.png",
-    f"{NS}_conveyor": "conveyor/conveyor.png",
     f"{NS}_coffee_cup": "coffee_cup/coffee_cup.png",
 }
 SOUNDS = {"door_light_gray": "wood", "door_white": "wood", "trapdoor_light_gray": "wood",
-          "trapdoor_white": "wood", "conveyor": "metal", "coffee_cup": "wood"}
+          "trapdoor_white": "wood", "coffee_cup": "wood"}
 
 
 def to_bedrock(geo):
@@ -235,36 +226,6 @@ def trapdoor(color):
     return block(f"trapdoor_{color}", states, traits, comps, perms)
 
 
-def conveyor():
-    """The conveyor body. A vanilla rail sits on top; the script copies the
-    rail's shape into shape (0 no rail, 1 straight, 2 curve, 3 slope) and turn
-    (quarter turns), and sets cap_s/cap_n/cap_e when a slope rises into this
-    block's rail from that side (in the model's own frame), so this body
-    draws the top of that slope. Powered and plain rails look the same
-    (decided 2026-11-02)."""
-    shapes = {0: set(), 1: {"belt_straight"}, 2: {"belt_curve"}, 3: {"belt_slope"}}
-    perms = [{"condition": cond(turn=k), "components": turn(90 * k)} for k in range(4)]
-    for shape, bones in shapes.items():
-        for s in (False, True):
-            for n in (False, True):
-                for e in (False, True):
-                    visible = {"body"} | bones | {b for b, on in (("cap_s", s), ("cap_n", n), ("cap_e", e)) if on}
-                    perms.append({"condition": cond(shape=shape, cap_s=s, cap_n=n, cap_e=e),
-                                  "components": {"minecraft:geometry": geometry("conveyor", visible)}})
-    full = {"origin": [-8, 0, -8], "size": [16, 16, 16]}
-    comps = {
-        "minecraft:geometry": geometry("conveyor", {"body"}),
-        **common(f"{NS}_conveyor", 5, 6, "#6e7378"),
-        "minecraft:collision_box": full,
-        "minecraft:selection_box": full,
-        "minecraft:tick": {"interval_range": [10, 10], "looping": True},
-        f"{NS}:conveyor": {},
-    }
-    states = {f"{NS}:shape": [0, 1, 2, 3], f"{NS}:turn": [0, 1, 2, 3],
-              f"{NS}:cap_s": [False, True], f"{NS}:cap_n": [False, True], f"{NS}:cap_e": [False, True]}
-    return block("conveyor", states, None, comps, perms)
-
-
 def coffee_cup():
     geo = load_geo("coffee_cup")
     perms = [{"condition": cond(cardinal=d), "components": turn(a)} for d, a in CUP_TURN.items()]
@@ -295,73 +256,6 @@ def cup_loot(n):
                                                  "functions": [{"function": "set_count", "count": n}]}]}]}
 
 
-BELT_BONES = ("belt_straight", "belt_curve", "belt_slope", "cap_s", "cap_n", "cap_e")
-
-
-def belt_geometry():
-    """The conveyor's belt bones on their own, one block lower (the entity
-    stands in the rail's block, the conveyor body one block below), under a
-    root bone that the animation turns."""
-    src = load_geo("conveyor")
-    bones = [{"name": "root", "pivot": [0, 0, 0]}]
-    for b in src["bones"]:
-        if b["name"] not in BELT_BONES:
-            continue
-        b = copy.deepcopy(b)
-        b["parent"] = "root"
-        for c in b.get("cubes", []):
-            c["origin"][1] -= 16
-            if "pivot" in c:
-                c["pivot"][1] -= 16
-        bones.append(b)
-    desc = dict(src["description"], identifier=f"geometry.{NS}.belt",
-                visible_bounds_width=3, visible_bounds_height=2, visible_bounds_offset=[0, 0.5, 0])
-    return to_bedrock({"description": desc, "bones": bones})
-
-
-def belt_entity_files():
-    """Behaviour and client definitions of the belt entity."""
-    props = {f"{NS}:shape": {"type": "int", "range": [0, 3], "default": 1, "client_sync": True},
-             f"{NS}:turn": {"type": "int", "range": [0, 3], "default": 0, "client_sync": True}}
-    for cap in ("cap_s", "cap_n", "cap_e"):
-        props[f"{NS}:{cap}"] = {"type": "bool", "default": False, "client_sync": True}
-    behaviour = {"format_version": BLOCK_FORMAT, "minecraft:entity": {
-        "description": {"identifier": f"{NS}:belt", "is_spawnable": False, "is_summonable": True,
-                        "properties": props},
-        "components": {
-            "minecraft:collision_box": {"width": 0, "height": 0},
-            "minecraft:physics": {"has_gravity": False, "has_collision": False},
-            "minecraft:pushable": {"is_pushable": False, "is_pushable_by_piston": False},
-            "minecraft:damage_sensor": {"triggers": [{"cause": "all", "deals_damage": "no"}]},
-            "minecraft:health": {"value": 1, "max": 1},
-            "minecraft:knockback_resistance": {"value": 1},
-            "minecraft:fire_immune": True,
-            "minecraft:persistent": {},
-            "minecraft:type_family": {"family": ["inanimate", f"{NS}_belt"]},
-        }}}
-    client = {"format_version": "1.10.0", "minecraft:client_entity": {"description": {
-        "identifier": f"{NS}:belt",
-        "materials": {"default": "entity_alphatest"},
-        "textures": {"default": f"textures/blocks/{NS}/conveyor"},
-        "geometry": {"default": f"geometry.{NS}.belt"},
-        "render_controllers": [f"controller.render.{NS}.belt"],
-        "animations": {"turn": f"animation.{NS}.belt.turn"},
-        "scripts": {"animate": ["turn"]},
-    }}}
-    shape = f"q.property('{NS}:shape')"
-    render = {"format_version": "1.10.0", "render_controllers": {f"controller.render.{NS}.belt": {
-        "geometry": "Geometry.default", "materials": [{"*": "Material.default"}], "textures": ["Texture.default"],
-        "part_visibility": [{"*": False}, {"root": True},
-                            {"belt_straight": f"{shape} == 1"}, {"belt_curve": f"{shape} == 2"},
-                            {"belt_slope": f"{shape} == 3"}]
-                           + [{cap: f"q.property('{NS}:{cap}')"} for cap in ("cap_s", "cap_n", "cap_e")],
-    }}}
-    turn = f"{ENTITY_BASE} + {ENTITY_STEP} * q.property('{NS}:turn')"
-    animation = {"format_version": "1.8.0", "animations": {f"animation.{NS}.belt.turn": {
-        "loop": True, "bones": {"root": {"rotation": [0, turn, 0]}}}}}
-    return behaviour, client, render, animation
-
-
 def write_json(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -372,7 +266,7 @@ def generate():
     blocks = {
         "door_light_gray": door("light_gray"), "door_white": door("white"),
         "trapdoor_light_gray": trapdoor("light_gray"), "trapdoor_white": trapdoor("white"),
-        "conveyor": conveyor(), "coffee_cup": coffee_cup(),
+        "coffee_cup": coffee_cup(),
     }
     for old in (bp / "blocks").glob("*.json"):
         old.unlink()
@@ -380,11 +274,6 @@ def generate():
         write_json(bp / "blocks" / f"{name}.json", data)
     for n in range(2, 5):
         write_json(bp / "loot_tables" / NS / f"coffee_cup_{n}.json", cup_loot(n))
-    behaviour, client, render, animation = belt_entity_files()
-    write_json(bp / "entities" / "belt.json", behaviour)
-    write_json(rp / "entity" / "belt.entity.json", client)
-    write_json(rp / "render_controllers" / f"{NS}_belt.render_controllers.json", render)
-    write_json(rp / "animations" / f"{NS}_belt.animation.json", animation)
     write_json(rp / "textures" / "terrain_texture.json", {
         "resource_pack_name": NS, "texture_name": "atlas.terrain", "padding": 8, "num_mip_levels": 4,
         "texture_data": {k: {"textures": f"textures/blocks/{NS}/{Path(v).stem}"} for k, v in TEXTURES.items()},
@@ -395,7 +284,6 @@ def generate():
         path = rp / "texts" / f"{lang}.lang"
         head = [l for l in path.read_text(encoding="utf-8").splitlines() if l.startswith("pack.")]
         names = [f"tile.{NS}:{n}.name={v[i]}" for n, v in NAMES.items()]
-        names.append(f"entity.{NS}:belt.name={('履帶外觀', 'Conveyor Belt Look')[i]}")
         path.write_text("\n".join(head + names) + "\n", encoding="utf-8")
     print(f"generated {len(blocks)} blocks")
 
@@ -438,8 +326,6 @@ def assemble(vanilla_folder):
         geo["description"]["identifier"] = new
         write_json(rp_out / "models" / "blocks" / f"{NS}_{key}.geo.json",
                    {"format_version": data["format_version"], "minecraft:geometry": [geo]})
-    write_json(rp_out / "models" / "entity" / f"{NS}_belt.geo.json",
-               {"format_version": "1.12.0", "minecraft:geometry": [belt_geometry()]})
     for name, path in TEXTURES.items():
         dest = rp_out / "textures" / "blocks" / NS / f"{Path(path).stem}.png"
         dest.parent.mkdir(parents=True, exist_ok=True)

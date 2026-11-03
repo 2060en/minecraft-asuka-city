@@ -16,18 +16,28 @@
   "asukatech:trapdoor_light_gray": {
     "vanilla": "minecraft:spruce_trapdoor",
     "states": {
-      "minecraft:cardinal_direction": {"to": "direction", "values": {"east": 0, "west": 1, "south": 2, "north": 3}},
-      "minecraft:vertical_half": {"to": "upside_down_bit", "values": {"bottom": false, "top": true}},
+      "minecraft:cardinal_direction": {
+        "to": "direction",
+        "values": {
+          "east": 0,
+          "west": 1,
+          "south": 2,
+          "north": 3
+        }
+      },
+      "minecraft:vertical_half": {
+        "to": "upside_down_bit",
+        "values": {
+          "bottom": false,
+          "top": true
+        }
+      },
       "asukatech:open": "open_bit"
     },
     "_待實測": "原版地板門 direction 0～3 對應哪個方向"
   },
   "asukatech:trapdoor_white": {
     "same_as": "asukatech:trapdoor_light_gray"
-  },
-  "asukatech:conveyor": {
-    "vanilla": "minecraft:coal_block",
-    "states": {}
   },
   "asukatech:coffee_cup": {
     "vanilla": "minecraft:air",

@@ -10,9 +10,6 @@
     "asukatech_door_white": {
       "textures": "textures/blocks/asukatech/door_white"
     },
-    "asukatech_conveyor": {
-      "textures": "textures/blocks/asukatech/conveyor"
-    },
     "asukatech_coffee_cup": {
       "textures": "textures/blocks/asukatech/coffee_cup"
     }
