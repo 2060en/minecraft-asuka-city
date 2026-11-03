@@ -1,0 +1,27 @@
+{
+  "resource_pack_name": "asukatech",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "asukatech_plate": {
+      "textures": "textures/items/asukatech/plate"
+    },
+    "asukatech_bowl": {
+      "textures": "textures/items/asukatech/bowl"
+    },
+    "asukatech_cup": {
+      "textures": "textures/items/asukatech/cup"
+    },
+    "asukatech_knife": {
+      "textures": "textures/items/asukatech/knife"
+    },
+    "asukatech_fork": {
+      "textures": "textures/items/asukatech/fork"
+    },
+    "asukatech_spoon": {
+      "textures": "textures/items/asukatech/spoon"
+    },
+    "asukatech_chopsticks": {
+      "textures": "textures/items/asukatech/chopsticks"
+    }
+  }
+}

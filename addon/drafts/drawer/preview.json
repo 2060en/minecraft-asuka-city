@@ -1,0 +1,576 @@
+{
+ "title": "辦公室抽屜櫃：淺灰色界伏蚌盒換材質（草稿）",
+ "columns": 3,
+ "panelWidth": 380,
+ "panelHeight": 320,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "單一個（正面朝向放置的人）",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 25,
+    "size": 30,
+    "target": [
+     0,
+     7,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
+     "texture": "/addon/drafts/drawer/shulker_silver.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "正面",
+   "camera": {
+    "azimuth": 0,
+    "elevation": 0,
+    "size": 20,
+    "target": [
+     0,
+     8,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
+     "texture": "/addon/drafts/drawer/shulker_silver.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "辦公桌下",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 15,
+    "size": 80,
+    "target": [
+     0,
+     10,
+     -4
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -32,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -32,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -32,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -32,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      -16,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -16,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      -16,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      0,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      0,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      0,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      16,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#a7acb0",
+      "south": "#8d9296",
+      "north": "#8d9296",
+      "east": "#7d8286",
+      "west": "#7d8286",
+      "down": "#6d7276"
+     },
+     "origin": [
+      16,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      16,
+      0,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e6dfd2",
+      "south": "#d8d0c2",
+      "north": "#d8d0c2",
+      "east": "#c8bfb0",
+      "west": "#c8bfb0",
+      "down": "#b8af9f"
+     },
+     "origin": [
+      16,
+      16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      -32,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      2,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      -16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      2,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      0,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      2,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      16,
+      16,
+      -8
+     ],
+     "size": [
+      16,
+      2,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
+     "texture": "/addon/drafts/drawer/shulker_silver.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
+     "position": [
+      -24,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/locker/shulker_preview.geo.json",
+     "texture": "/addon/drafts/drawer/shulker_silver.png",
+     "rotation": [
+      90,
+      0,
+      0
+     ],
+     "position": [
+      24,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

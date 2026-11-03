@@ -48,6 +48,7 @@ drafts before converting, since they are in world coordinates.
 import argparse
 import copy
 import hashlib
+import importlib.util
 import json
 import shutil
 import urllib.request
@@ -72,19 +73,22 @@ NAMES = {
     "trapdoor_light_gray": ("淺灰色地板門", "Light Gray Trapdoor"),
     "trapdoor_white": ("白色地板門", "White Trapdoor"),
     "coffee_cup": ("外帶咖啡杯", "Takeaway Coffee Cup"),
+    "screen": ("小螢幕", "Screen"),
 }
 GEOS = {   # draft geometry file, identifier in the draft, identifier in the pack
     "door": ("doors/doors.geo.json", "geometry.solid_door", f"geometry.{NS}.door"),
     "trapdoor": ("doors/doors.geo.json", "geometry.solid_trapdoor", f"geometry.{NS}.trapdoor"),
     "coffee_cup": ("coffee_cup/coffee_cup.geo.json", "geometry.coffee_cup", f"geometry.{NS}.coffee_cup"),
+    "screen": ("screen_block/screen.geo.json", f"geometry.{NS}.screen", f"geometry.{NS}.screen"),
 }
 TEXTURES = {   # terrain texture name: draft file
     f"{NS}_door_light_gray": "doors/door_light_gray.png",
     f"{NS}_door_white": "doors/door_white.png",
     f"{NS}_coffee_cup": "coffee_cup/coffee_cup.png",
+    f"{NS}_screen": "screen/glow_item_frame.png",      # the first screen picture, black edge
 }
 SOUNDS = {"door_light_gray": "wood", "door_white": "wood", "trapdoor_light_gray": "wood",
-          "trapdoor_white": "wood", "coffee_cup": "wood"}
+          "trapdoor_white": "wood", "coffee_cup": "wood", "screen": "metal"}
 
 
 def to_bedrock(geo):
@@ -263,6 +267,97 @@ def coffee_cup():
     return block("coffee_cup", states, traits, comps, perms, category="items")
 
 
+# Screen (2026-11-03): a thin panel against the face of the block it was
+# placed on, like an item frame; its model faces south. The minecraft:block_face
+# state is the face that was clicked, so the panel faces that way. Lying on a
+# floor or hanging under a ceiling tilts it about x; if those two come out
+# the wrong way round in the game, flip SCREEN_TILT.
+SCREEN_TILT = 90
+SCREEN_TURN = {"south": [0, 0, 0], "east": [0, 90, 0], "north": [0, 180, 0], "west": [0, 270, 0],
+               "up": [-SCREEN_TILT, 0, 0], "down": [SCREEN_TILT, 0, 0]}
+
+
+def screen():
+    perms = [{"condition": cond(**{"minecraft:block_face": f}),
+              "components": {"minecraft:transformation": {"rotation": [r[0], TURN_SIGN * r[1], r[2]]}}}
+             for f, r in SCREEN_TURN.items()]
+    panel = {"origin": [-7, 1, -8], "size": [14, 14, 1]}
+    comps = {
+        "minecraft:geometry": {"identifier": GEOS["screen"][2]},
+        "minecraft:material_instances": {"*": {"texture": f"{NS}_screen", "render_method": "opaque",
+                                               "face_dimming": False}},
+        "minecraft:destructible_by_mining": {"seconds_to_destroy": 0.5},
+        "minecraft:destructible_by_explosion": {"explosion_resistance": 1},
+        "minecraft:map_color": "#2f6fb3",
+        "minecraft:collision_box": False,
+        "minecraft:selection_box": panel,
+        "minecraft:light_emission": SCREEN_LIGHT,
+        "minecraft:light_dampening": 0,
+    }
+    traits = {"minecraft:placement_position": {"enabled_states": ["minecraft:block_face"]}}
+    return block("screen", {}, traits, comps, perms, category="items")
+
+
+SCREEN_LIGHT = 6     # how strongly the screen lights itself (and its surroundings); needs a test
+
+# ---------- tableware: custom entities (2026-11-03) ----------
+# Like the vanilla cushion: no gravity, no AI, no physics; a small box to hit.
+# An item places it (script: addon/pack/behavior/scripts/main.js); hitting it
+# picks it up. Removing the add-on removes them (accepted by the author).
+TABLEWARE = {   # name: (zh_TW, en_US, hit box width, height)
+    "plate": ("白盤子", "White Plate", 0.6, 0.1),
+    "bowl": ("白碗", "White Bowl", 0.45, 0.2),
+    "cup": ("白杯子", "White Cup", 0.3, 0.3),
+    "knife": ("餐刀", "Knife", 0.3, 0.1),
+    "fork": ("叉子", "Fork", 0.3, 0.1),
+    "spoon": ("湯匙", "Spoon", 0.3, 0.1),
+    "chopsticks": ("筷子", "Chopsticks", 0.35, 0.1),
+}
+
+
+def tableware_entity(name):
+    _, _, w, h = TABLEWARE[name]
+    return {"format_version": "1.21.90", "minecraft:entity": {
+        "description": {"identifier": f"{NS}:{name}", "is_spawnable": False, "is_summonable": True},
+        "components": {
+            "minecraft:type_family": {"family": [f"{NS}_tableware", "inanimate"]},
+            "minecraft:collision_box": {"width": w, "height": h},
+            "minecraft:damage_sensor": {"triggers": [{"cause": "all", "deals_damage": "no"}]},
+            "minecraft:pushable": {"is_pushable": False, "is_pushable_by_piston": False},
+            "minecraft:nameable": {"allow_name_tag_renaming": False},
+            "minecraft:conditional_bandwidth_optimization": {},
+        }}}
+
+
+def tableware_client(name):
+    return {"format_version": "1.10.0", "minecraft:client_entity": {"description": {
+        "identifier": f"{NS}:{name}",
+        "materials": {"default": "entity_alphatest"},
+        "textures": {"default": f"textures/entity/{NS}/tableware"},
+        "geometry": {"default": f"geometry.{NS}.{name}"},
+        "render_controllers": ["controller.render.default"],
+    }}}
+
+
+def tableware_item(name):
+    return {"format_version": "1.21.90", "minecraft:item": {
+        "description": {"identifier": f"{NS}:{name}", "menu_category": {"category": "items"}},
+        "components": {
+            "minecraft:icon": f"{NS}_{name}",
+            "minecraft:display_name": {"value": f"item.{NS}.{name}.name"},
+            "minecraft:max_stack_size": 64,
+            f"{NS}:tableware": {},
+        }}}
+
+
+def load_draft(path):
+    """Import a draft's build.py whose work sits behind `if __name__ == "__main__"`."""
+    spec = importlib.util.spec_from_file_location(f"draft_{Path(path).parent.name}", DRAFTS / path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def cup_loot(n):
     return {"pools": [{"rolls": 1, "entries": [{"type": "item", "name": f"{NS}:coffee_cup",
                                                  "functions": [{"function": "set_count", "count": n}]}]}]}
@@ -279,6 +374,7 @@ def generate():
         "door_light_gray": door("light_gray"), "door_white": door("white"),
         "trapdoor_light_gray": trapdoor("light_gray"), "trapdoor_white": trapdoor("white"),
         "coffee_cup": coffee_cup(),
+        "screen": screen(),
     }
     for old in (bp / "blocks").glob("*.json"):
         old.unlink()
@@ -286,6 +382,17 @@ def generate():
         write_json(bp / "blocks" / f"{name}.json", data)
     for n in range(2, 5):
         write_json(bp / "loot_tables" / NS / f"coffee_cup_{n}.json", cup_loot(n))
+    for folder in (bp / "entities", bp / "items", rp / "entity"):
+        for old in folder.glob("*.json"):
+            old.unlink()
+    for name in TABLEWARE:
+        write_json(bp / "entities" / f"{name}.json", tableware_entity(name))
+        write_json(bp / "items" / f"{name}.json", tableware_item(name))
+        write_json(rp / "entity" / f"{name}.entity.json", tableware_client(name))
+    write_json(rp / "textures" / "item_texture.json", {
+        "resource_pack_name": NS, "texture_name": "atlas.items",
+        "texture_data": {f"{NS}_{n}": {"textures": f"textures/items/{NS}/{n}"} for n in TABLEWARE},
+    })
     write_json(rp / "textures" / "terrain_texture.json", {
         "resource_pack_name": NS, "texture_name": "atlas.terrain", "padding": 8, "num_mip_levels": 4,
         "texture_data": {k: {"textures": f"textures/blocks/{NS}/{Path(v).stem}"} for k, v in TEXTURES.items()},
@@ -296,6 +403,9 @@ def generate():
         path = rp / "texts" / f"{lang}.lang"
         head = [l for l in path.read_text(encoding="utf-8").splitlines() if l.startswith("pack.")]
         names = [f"tile.{NS}:{n}.name={v[i]}" for n, v in NAMES.items()]
+        names += [f"item.{NS}.{n}.name={v[i]}" for n, v in TABLEWARE.items()]
+        names += [f"entity.{NS}:{n}.name={v[i]}" for n, v in TABLEWARE.items()]
+        names += load_draft("drinks/build.py").lang_lines(lang)      # potions become drinks
         path.write_text("\n".join(head + names) + "\n", encoding="utf-8")
     print(f"generated {len(blocks)} blocks")
 
@@ -362,6 +472,15 @@ RETEXTURES = {   # draft file: path in the resource pack
     "hopper/hopper_inside.png": "textures/blocks/hopper_inside.png",
     "hopper/hopper_outside.png": "textures/blocks/hopper_outside.png",
     "hopper/hopper_top.png": "textures/blocks/hopper_top.png",
+    # second batch (2026-11-03)
+    "suitcase/chest.png": "textures/entity/chest/normal.png",
+    "suitcase/chest_double.png": "textures/entity/chest/double_normal.png",
+    "drawer/shulker_silver.png": "textures/entity/shulker/shulker_silver.png",
+    "drawer/shulker_top_silver.png": "textures/blocks/shulker_top_silver.png",
+    "cup/sea_pickle.png": "textures/blocks/sea_pickle.png",
+    "cup/cup_item.png": "textures/items/sea_pickle.png",
+    "tableware/tableware.png": f"textures/entity/{NS}/tableware.png",
+    **{f"tableware/icons/{n}.png": f"textures/items/{NS}/{n}.png" for n in TABLEWARE},
 }
 VANILLA_KZ = "https://raw.githubusercontent.com/Mojang/bedrock-samples/main/resource_pack/textures/painting/kz.png"
 
@@ -408,6 +527,18 @@ def assemble(vanilla_folder):
     kz.save(rp_out / "textures" / "painting" / "kz.png")
     for f in (ADS / "painting").glob("*.png"):
         shutil.copy(f, rp_out / "textures" / "painting" / f.name)
+
+    # drinks: the potion icons
+    for f in (DRAFTS / "drinks" / "icons").glob("*.png"):
+        shutil.copy(f, rp_out / "textures" / "items" / f.name)
+    # retextures made from the vanilla files (cushion, flower pot, decorated pot,
+    # wither skull, pale oak shelf, milk carton): drawn at build time
+    load_draft("props/build.py").make_all(rp_out)
+    # tableware models
+    data = json.loads((DRAFTS / "tableware" / "tableware.geo.json").read_text(encoding="utf-8"))
+    write_json(rp_out / "models" / "entity" / f"{NS}_tableware.geo.json",
+               {"format_version": data["format_version"],
+                "minecraft:geometry": [to_bedrock(g) for g in data["minecraft:geometry"]]})
 
     update_version((rp_out, bp_out))
     mcaddon = BUILD / "Asuka tech.mcaddon"

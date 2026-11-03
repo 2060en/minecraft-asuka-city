@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:item": {
+    "description": {
+      "identifier": "asukatech:bowl",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": "asukatech_bowl",
+      "minecraft:display_name": {
+        "value": "item.asukatech.bowl.name"
+      },
+      "minecraft:max_stack_size": 64,
+      "asukatech:tableware": {}
+    }
+  }
+}

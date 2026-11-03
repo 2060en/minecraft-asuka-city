@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:plate",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/tableware"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.plate"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

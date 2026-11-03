@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:bowl",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/tableware"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.bowl"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

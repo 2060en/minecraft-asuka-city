@@ -1,0 +1,222 @@
+{
+ "title": "鋁製行李箱：儲物箱換材質（第二版草稿）",
+ "columns": 2,
+ "panelWidth": 480,
+ "panelHeight": 320,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "正面（橫條紋、深灰色的鎖）",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 22,
+    "size": 30,
+    "target": [
+     0,
+     7,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcase/chest_preview.geo.json",
+     "identifier": "geometry.chest_preview",
+     "texture": "/addon/drafts/suitcase/chest.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "拉鍊在箱子的開口一圈、上面提把",
+   "camera": {
+    "azimuth": 120,
+    "elevation": 40,
+    "size": 30,
+    "target": [
+     0,
+     7,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcase/chest_preview.geo.json",
+     "identifier": "geometry.chest_preview",
+     "texture": "/addon/drafts/suitcase/chest.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "打開：拉鍊一圈、深藍色內襯、綁帶與夾層",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 50,
+    "size": 34,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcase/chest_preview.geo.json",
+     "identifier": "geometry.chest_open_preview",
+     "texture": "/addon/drafts/suitcase/chest.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "大箱子：兩個並排",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 22,
+    "size": 46,
+    "target": [
+     8,
+     7,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcase/chest_preview.geo.json",
+     "identifier": "geometry.chest_double_preview",
+     "texture": "/addon/drafts/suitcase/chest_double.png",
+     "position": [
+      8,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  }
+ ]
+}

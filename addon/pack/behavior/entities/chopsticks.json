@@ -1,0 +1,38 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "asukatech:chopsticks",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "asukatech_tableware",
+          "inanimate"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.35,
+        "height": 0.1
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:nameable": {
+        "allow_name_tag_renaming": false
+      },
+      "minecraft:conditional_bandwidth_optimization": {}
+    }
+  }
+}
