@@ -1,0 +1,211 @@
+{
+ "title": "咖啡機：釀造台換材質，形狀固定，所以做成手沖咖啡架（草稿，形狀照 Java 版推測）",
+ "columns": 2,
+ "panelWidth": 520,
+ "panelHeight": 340,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "斜看：黑色支架、白色濾杯，放了「瓶子」的那一邊有咖啡壺",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 22,
+    "size": 26,
+    "target": [
+     0,
+     7,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.base_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand_base.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.stand_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "吧台上一排",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 20,
+    "size": 60,
+    "target": [
+     0,
+     6,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      -26,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.base_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand_base.png",
+     "position": [
+      -18,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.stand_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand.png",
+     "position": [
+      -18,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.base_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand_base.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.stand_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      10,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.base_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand_base.png",
+     "position": [
+      18,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/coffee_machine/stand_preview.geo.json",
+     "identifier": "geometry.stand_preview",
+     "texture": "/addon/drafts/coffee_machine/brewing_stand.png",
+     "position": [
+      18,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,563 @@
+{
+ "title": "5 種行李箱（自製實體，草稿）：深藍登機箱、紅色大行李箱、鋁製、黑色布面、粉色",
+ "columns": 1,
+ "panelWidth": 1000,
+ "panelHeight": 300,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "直立（擺飾）：正面",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 15,
+    "size": 46,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -40,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_cabin_navy",
+     "texture": "/addon/drafts/suitcases/cabin_navy.png",
+     "position": [
+      -32,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_large_red",
+     "texture": "/addon/drafts/suitcases/large_red.png",
+     "position": [
+      -16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_aluminium",
+     "texture": "/addon/drafts/suitcases/aluminium.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_soft_black",
+     "texture": "/addon/drafts/suitcases/soft_black.png",
+     "position": [
+      16,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_pink",
+     "texture": "/addon/drafts/suitcases/pink.png",
+     "position": [
+      32,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "直立：背面與側面",
+   "camera": {
+    "azimuth": 200,
+    "elevation": 15,
+    "size": 46,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -40,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#cfc8bb",
+      "south": "#bdb6a9",
+      "north": "#bdb6a9",
+      "east": "#aba497",
+      "west": "#aba497",
+      "down": "#99928a"
+     },
+     "origin": [
+      24,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_cabin_navy",
+     "texture": "/addon/drafts/suitcases/cabin_navy.png",
+     "position": [
+      -32,
+      0,
+      0
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_large_red",
+     "texture": "/addon/drafts/suitcases/large_red.png",
+     "position": [
+      -16,
+      0,
+      0
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_aluminium",
+     "texture": "/addon/drafts/suitcases/aluminium.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_soft_black",
+     "texture": "/addon/drafts/suitcases/soft_black.png",
+     "position": [
+      16,
+      0,
+      0
+     ],
+     "rotationY": 180
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_pink",
+     "texture": "/addon/drafts/suitcases/pink.png",
+     "position": [
+      32,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "躺著的行李礦車（在鐵軌上）",
+   "camera": {
+    "azimuth": 70,
+    "elevation": 30,
+    "size": 56,
+    "target": [
+     0,
+     3,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "south": "#7a7f86",
+      "north": "#7a7f86",
+      "east": "#6a6f76",
+      "west": "#6a6f76",
+      "down": "#5a5f66"
+     },
+     "origin": [
+      -8,
+      -16,
+      -40
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "south": "#7a7f86",
+      "north": "#7a7f86",
+      "east": "#6a6f76",
+      "west": "#6a6f76",
+      "down": "#5a5f66"
+     },
+     "origin": [
+      -8,
+      -16,
+      -24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "south": "#7a7f86",
+      "north": "#7a7f86",
+      "east": "#6a6f76",
+      "west": "#6a6f76",
+      "down": "#5a5f66"
+     },
+     "origin": [
+      -8,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "south": "#7a7f86",
+      "north": "#7a7f86",
+      "east": "#6a6f76",
+      "west": "#6a6f76",
+      "down": "#5a5f66"
+     },
+     "origin": [
+      -8,
+      -16,
+      8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#8a8f96",
+      "south": "#7a7f86",
+      "north": "#7a7f86",
+      "east": "#6a6f76",
+      "west": "#6a6f76",
+      "down": "#5a5f66"
+     },
+     "origin": [
+      -8,
+      -16,
+      24
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": "#3a3b3e",
+     "origin": [
+      -6,
+      0,
+      -40
+     ],
+     "size": [
+      12,
+      0.4,
+      80
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.luggage_cart_cabin_navy",
+     "texture": "/addon/drafts/suitcases/cabin_navy.png",
+     "position": [
+      0,
+      0,
+      -32
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.luggage_cart_large_red",
+     "texture": "/addon/drafts/suitcases/large_red.png",
+     "position": [
+      0,
+      0,
+      -16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.luggage_cart_aluminium",
+     "texture": "/addon/drafts/suitcases/aluminium.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.luggage_cart_soft_black",
+     "texture": "/addon/drafts/suitcases/soft_black.png",
+     "position": [
+      0,
+      0,
+      16
+     ],
+     "rotationY": 0
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.luggage_cart_pink",
+     "texture": "/addon/drafts/suitcases/pink.png",
+     "position": [
+      0,
+      0,
+      32
+     ],
+     "rotationY": 0
+    }
+   ]
+  }
+ ]
+}
