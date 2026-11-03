@@ -1,0 +1,7 @@
+pack.name=Asuka tech (resources)
+pack.description=Textures and models for the Asuka City world.
+tile.asukatech:door_light_gray.name=Light Gray Door
+tile.asukatech:door_white.name=White Door
+tile.asukatech:trapdoor_light_gray.name=Light Gray Trapdoor
+tile.asukatech:trapdoor_white.name=White Trapdoor
+tile.asukatech:coffee_cup.name=Takeaway Coffee Cup
