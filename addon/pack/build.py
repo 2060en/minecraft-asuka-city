@@ -350,6 +350,73 @@ def tableware_item(name):
         }}}
 
 
+# ---------- suitcases: custom entities (2026-11-03, v0.6.0) ----------
+# Five cases (addon/drafts/suitcases/), each twice: standing (asukatech:
+# suitcase_<name>, a decoration placed like the tableware) and lying on rails
+# (asukatech:luggage_cart_<name>, which rides the rails like a minecart). One
+# item per case: used on a rail it puts down the cart, on top of anything
+# else the standing case. Hitting either picks it up.
+SUITCASES = {   # name: (zh_TW, en_US, standing hit box width, height)
+    "cabin_navy": ("深藍色登機箱", "Navy Cabin Case", 0.45, 0.85),
+    "large_red": ("紅色大行李箱", "Red Large Case", 0.65, 1.1),
+    "aluminium": ("鋁製行李箱", "Aluminium Case", 0.6, 1.0),
+    "soft_black": ("黑色布面行李箱", "Black Soft Case", 0.6, 1.0),
+    "pink": ("粉色行李箱", "Pink Case", 0.6, 1.0),
+}
+
+
+def suitcase_entity(name):
+    _, _, w, h = SUITCASES[name]
+    return {"format_version": "1.21.90", "minecraft:entity": {
+        "description": {"identifier": f"{NS}:suitcase_{name}", "is_spawnable": False, "is_summonable": True},
+        "components": {
+            "minecraft:type_family": {"family": [f"{NS}_suitcase", "inanimate"]},
+            "minecraft:collision_box": {"width": w, "height": h},
+            "minecraft:damage_sensor": {"triggers": [{"cause": "all", "deals_damage": "no"}]},
+            "minecraft:pushable": {"is_pushable": False, "is_pushable_by_piston": False},
+            "minecraft:nameable": {"allow_name_tag_renaming": False},
+            "minecraft:conditional_bandwidth_optimization": {},
+        }}}
+
+
+def luggage_cart_entity(name):
+    """The vanilla minecart's movement (bedrock-samples, minecart.json), no seat."""
+    return {"format_version": "1.21.90", "minecraft:entity": {
+        "description": {"identifier": f"{NS}:luggage_cart_{name}", "is_spawnable": False, "is_summonable": True},
+        "components": {
+            "minecraft:type_family": {"family": [f"{NS}_luggage_cart", "minecart", "inanimate"]},
+            "minecraft:collision_box": {"width": 0.7, "height": 0.45},
+            "minecraft:physics": {},
+            "minecraft:rail_movement": {},
+            "minecraft:is_stackable": {},
+            "minecraft:pushable": {"is_pushable": True, "is_pushable_by_piston": True},
+            "minecraft:damage_sensor": {"triggers": [{"cause": "all", "deals_damage": "no"}]},
+            "minecraft:nameable": {"allow_name_tag_renaming": False},
+            "minecraft:conditional_bandwidth_optimization": {},
+        }}}
+
+
+def suitcase_client(ident, geometry, name):
+    return {"format_version": "1.10.0", "minecraft:client_entity": {"description": {
+        "identifier": f"{NS}:{ident}",
+        "materials": {"default": "entity_alphatest"},
+        "textures": {"default": f"textures/entity/{NS}/suitcase_{name}"},
+        "geometry": {"default": f"geometry.{NS}.{geometry}"},
+        "render_controllers": ["controller.render.default"],
+    }}}
+
+
+def suitcase_item(name):
+    return {"format_version": "1.21.90", "minecraft:item": {
+        "description": {"identifier": f"{NS}:suitcase_{name}", "menu_category": {"category": "items"}},
+        "components": {
+            "minecraft:icon": f"{NS}_suitcase_{name}",
+            "minecraft:display_name": {"value": f"item.{NS}.suitcase_{name}.name"},
+            "minecraft:max_stack_size": 64,
+            f"{NS}:suitcase": {},
+        }}}
+
+
 def load_draft(path):
     """Import a draft's build.py whose work sits behind `if __name__ == "__main__"`."""
     spec = importlib.util.spec_from_file_location(f"draft_{Path(path).parent.name}", DRAFTS / path)
@@ -389,9 +456,19 @@ def generate():
         write_json(bp / "entities" / f"{name}.json", tableware_entity(name))
         write_json(bp / "items" / f"{name}.json", tableware_item(name))
         write_json(rp / "entity" / f"{name}.entity.json", tableware_client(name))
+    for name in SUITCASES:
+        write_json(bp / "entities" / f"suitcase_{name}.json", suitcase_entity(name))
+        write_json(bp / "entities" / f"luggage_cart_{name}.json", luggage_cart_entity(name))
+        write_json(bp / "items" / f"suitcase_{name}.json", suitcase_item(name))
+        write_json(rp / "entity" / f"suitcase_{name}.entity.json",
+                   suitcase_client(f"suitcase_{name}", f"suitcase_{name}", name))
+        write_json(rp / "entity" / f"luggage_cart_{name}.entity.json",
+                   suitcase_client(f"luggage_cart_{name}", f"luggage_cart_{name}", name))
+    icons = {f"{NS}_{n}": f"textures/items/{NS}/{n}" for n in TABLEWARE}
+    icons.update({f"{NS}_suitcase_{n}": f"textures/items/{NS}/suitcase_{n}" for n in SUITCASES})
     write_json(rp / "textures" / "item_texture.json", {
         "resource_pack_name": NS, "texture_name": "atlas.items",
-        "texture_data": {f"{NS}_{n}": {"textures": f"textures/items/{NS}/{n}"} for n in TABLEWARE},
+        "texture_data": {k: {"textures": v} for k, v in icons.items()},
     })
     write_json(rp / "textures" / "terrain_texture.json", {
         "resource_pack_name": NS, "texture_name": "atlas.terrain", "padding": 8, "num_mip_levels": 4,
@@ -405,6 +482,9 @@ def generate():
         names = [f"tile.{NS}:{n}.name={v[i]}" for n, v in NAMES.items()]
         names += [f"item.{NS}.{n}.name={v[i]}" for n, v in TABLEWARE.items()]
         names += [f"entity.{NS}:{n}.name={v[i]}" for n, v in TABLEWARE.items()]
+        names += [f"item.{NS}.suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
+        names += [f"entity.{NS}:suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
+        names += [f"entity.{NS}:luggage_cart_{n}.name={v[i]}" for n, v in SUITCASES.items()]
         names += load_draft("drinks/build.py").lang_lines(lang)      # potions become drinks
         path.write_text("\n".join(head + names) + "\n", encoding="utf-8")
     print(f"generated {len(blocks)} blocks")
@@ -481,6 +561,12 @@ RETEXTURES = {   # draft file: path in the resource pack
     "cup/cup_item.png": "textures/items/sea_pickle.png",
     "tableware/tableware.png": f"textures/entity/{NS}/tableware.png",
     **{f"tableware/icons/{n}.png": f"textures/items/{NS}/{n}.png" for n in TABLEWARE},
+    # v0.6.0: the coffee stand and the suitcases
+    "coffee_machine/brewing_stand.png": "textures/blocks/brewing_stand.png",
+    "coffee_machine/brewing_stand_base.png": "textures/blocks/brewing_stand_base.png",
+    "coffee_machine/brewing_stand_item.png": "textures/items/brewing_stand.png",
+    **{f"suitcases/{n}.png": f"textures/entity/{NS}/suitcase_{n}.png" for n in SUITCASES},
+    **{f"suitcases/icons/{n}.png": f"textures/items/{NS}/suitcase_{n}.png" for n in SUITCASES},
 }
 VANILLA_KZ = "https://raw.githubusercontent.com/Mojang/bedrock-samples/main/resource_pack/textures/painting/kz.png"
 
@@ -534,11 +620,15 @@ def assemble(vanilla_folder):
     # retextures made from the vanilla files (cushion, flower pot, decorated pot,
     # wither skull, pale oak shelf, milk carton): drawn at build time
     load_draft("props/build.py").make_all(rp_out)
-    # tableware models
-    data = json.loads((DRAFTS / "tableware" / "tableware.geo.json").read_text(encoding="utf-8"))
-    write_json(rp_out / "models" / "entity" / f"{NS}_tableware.geo.json",
-               {"format_version": data["format_version"],
-                "minecraft:geometry": [to_bedrock(g) for g in data["minecraft:geometry"]]})
+    # entity models: tableware and suitcases
+    for draft, out in (("tableware/tableware.geo.json", "tableware"), ("suitcases/suitcases.geo.json", "suitcases")):
+        data = json.loads((DRAFTS / draft).read_text(encoding="utf-8"))
+        for g in data["minecraft:geometry"]:     # so a tall case is not culled at the screen edge
+            g["description"].update({"visible_bounds_width": 2, "visible_bounds_height": 2,
+                                     "visible_bounds_offset": [0, 0.75, 0]})
+        write_json(rp_out / "models" / "entity" / f"{NS}_{out}.geo.json",
+                   {"format_version": data["format_version"],
+                    "minecraft:geometry": [to_bedrock(g) for g in data["minecraft:geometry"]]})
 
     update_version((rp_out, bp_out))
     mcaddon = BUILD / "Asuka tech.mcaddon"

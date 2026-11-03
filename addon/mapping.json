@@ -70,7 +70,17 @@
       "asukatech:knife",
       "asukatech:fork",
       "asukatech:spoon",
-      "asukatech:chopsticks"
+      "asukatech:chopsticks",
+      "asukatech:suitcase_cabin_navy",
+      "asukatech:luggage_cart_cabin_navy",
+      "asukatech:suitcase_large_red",
+      "asukatech:luggage_cart_large_red",
+      "asukatech:suitcase_aluminium",
+      "asukatech:luggage_cart_aluminium",
+      "asukatech:suitcase_soft_black",
+      "asukatech:luggage_cart_soft_black",
+      "asukatech:suitcase_pink",
+      "asukatech:luggage_cart_pink"
     ]
   }
 }

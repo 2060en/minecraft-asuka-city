@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:luggage_cart_cabin_navy",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/suitcase_cabin_navy"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.luggage_cart_cabin_navy"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

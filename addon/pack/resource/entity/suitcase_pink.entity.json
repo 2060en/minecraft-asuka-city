@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:suitcase_pink",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/suitcase_pink"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.suitcase_pink"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}
