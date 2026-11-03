@@ -158,23 +158,28 @@ def steel_shelf():
     img = Image.new("RGBA", (32, 32))
     px = img.load()
     rng = random.Random(15)
-    base, edge = (196, 200, 205), (176, 181, 187)
+    base, edge = (196, 200, 205), (174, 179, 185)
+    streaks = {}                            # a little brushed grain (author: a bit more, 2026-11-03)
+    for _ in range(40):
+        y, x0 = rng.randrange(32), rng.randrange(28)
+        shade = rng.choice((-6, -5, 5, 6))
+        for x in range(x0, min(32, x0 + rng.randint(3, 7))):
+            streaks[(x, y)] = shade
     for y in range(32):
         for x in range(32):
-            px[x, y] = tuple(v + rng.randint(-2, 2) for v in base) + (255,)
+            d = rng.randint(-3, 3) + streaks.get((x, y), 0)
+            px[x, y] = tuple(v + d for v in base) + (255,)
     for x0, y0, x1, y1 in ((0, 0, 15, 15), (16, 0, 31, 15), (0, 16, 31, 23), (0, 24, 15, 31), (16, 24, 31, 31)):
         for x in range(x0, x1 + 1):           # a faint edge round each face
             px[x, y0] = px[x, y1] = edge + (255,)
         for y in range(y0, y1 + 1):
             px[x0, y] = px[x1, y] = edge + (255,)
-    hook, hook_hi = (92, 97, 104), (140, 145, 151)
-    for x0 in (1, 6, 11):                   # a J-shaped hook in each slot
+    hook, hook_hi = (104, 109, 116), (150, 155, 161)
+    for x0 in (1, 6, 11):                   # a small hook in each slot (smaller, author 2026-11-03)
         cx = x0 + 2
-        px[cx, 4] = hook_hi + (255,)
-        for y in range(5, 9):
-            px[cx, y] = hook + (255,)
-        px[cx + 1, 9] = hook + (255,)
-        px[cx + 2, 8] = hook + (255,)
+        px[cx, 5] = hook_hi + (255,)
+        px[cx, 6] = hook + (255,)
+        px[cx + 1, 7] = hook + (255,)
     return img
 
 

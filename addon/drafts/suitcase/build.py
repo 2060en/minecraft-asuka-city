@@ -5,17 +5,19 @@ Run from the repository root:
 
 Resource pack only: chest.png replaces textures/entity/chest/normal.png and
 chest_double.png replaces double_normal.png, so every chest (the author has
-few that matter, 2026-11-03) looks like a black hard-shell suitcase standing
-upright, and a double chest like two of them side by side. The trapped chest
+few that matter, 2026-11-03) looks like an aluminium suitcase standing
+upright, and a double chest like two of them side by side. (The first
+draft was a black hard-shell case; the author asked for aluminium.) The
+shape cannot change: a chest stays 14 x 15 x 14. The trapped chest
 and the ender chest keep their own textures. The vanilla export is simply
 the chest.
 
 The vanilla chest model is a 14 x 10 x 14 base under a 14 x 5 x 14 lid,
 plus a 2 x 4 x 1 latch on the front, all on box UVs: lid at (0, 0), base at
 (0, 19), latch at (0, 0) (bedrock-samples, 2026-11). The double chest is the
-same with a width of 30. The front and back become the ribbed shell, the
-two narrow sides the zip running round the middle, the latch a small lock
-badge; the lid top carries the handle.
+same with a width of 30. All four sides get the light horizontal ribs and
+grey frame corners, the zip runs round the opening between lid and base, the
+latch is the lock, and the lid top carries the handle.
 """
 import json
 import random
@@ -26,18 +28,21 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 REL = "/addon/drafts/suitcase"
 
-SHELL = (36, 37, 40)
-SHELL_HI = (54, 56, 60)          # the raised ribs
-SHELL_LO = (26, 27, 29)          # the grooves beside them
-EDGE = (22, 22, 24)
-ZIP = (78, 80, 84)
-ZIP_TAPE = (30, 31, 33)
-WHEEL = (18, 18, 19)
-HUB = (96, 98, 102)
-HANDLE = (88, 90, 94)
-HANDLE_DARK = (58, 60, 64)
-BADGE = (150, 154, 158)
-INSIDE = (30, 30, 32)
+# Second version (author, 2026-11-03): an aluminium case. Grey frame edges,
+# light horizontal ribs, the zip round the opening (the seam between lid and
+# base, where the chest opens), a darker grey lock.
+BODY = (192, 196, 201)
+RIB_HI = (222, 225, 229)         # the raised horizontal ribs
+RIB_LO = (168, 172, 178)         # the shadow under each rib
+FRAME = (132, 137, 143)
+ZIP = (84, 88, 94)
+ZIP_TEETH = (150, 154, 160)
+LOCK = (74, 78, 84)
+LOCK_HI = (110, 114, 120)
+HANDLE = (70, 74, 80)
+HANDLE_HI = (104, 108, 114)
+WHEEL = (40, 41, 44)
+INSIDE = (60, 62, 66)
 
 
 def noise(c, rng):
@@ -45,68 +50,56 @@ def noise(c, rng):
     return tuple(max(0, min(255, v + d)) for v in c)
 
 
-def front(w, h, rng, lid):
-    """The ribbed shell of the front or back, row 0 at the top. `lid` is the
-    top 5 rows of the 15, the rest the base; ribs run the whole height."""
-    f = [[noise(SHELL, rng) for _ in range(w)] for _ in range(h)]
-    panels = [(0, w)] if w < 20 else [(0, w // 2 - 1), (w // 2 + 1, w)]
-    for a, b in panels:
-        for x in range(a, b):
-            for y in range(h):
-                if x in (a, b - 1):
-                    f[y][x] = EDGE
-                elif (x - a) % 4 == 2:
-                    f[y][x] = noise(SHELL_HI, rng)
-                elif (x - a) % 4 == 3:
-                    f[y][x] = noise(SHELL_LO, rng)
-        if not lid:                          # wheels at the two bottom corners
-            for x in (a + 1, b - 2):
-                f[h - 1][x] = WHEEL
-                f[h - 2][x] = WHEEL
-                f[h - 1][x + (1 if x == a + 1 else -1)] = HUB
-    if w >= 20:                              # the gap between the two cases
-        for x in (w // 2 - 1, w // 2):
-            for y in range(h):
-                f[y][x] = EDGE
+def wall(w, h, rng, lid, panels=1):
+    """A side of the case, row 0 at the top. The lid is the top 5 rows of
+    the 15 and the base the other 10; the zip runs along the lid's bottom
+    row, which is the opening."""
+    f = [[noise(BODY, rng) for _ in range(w)] for _ in range(h)]
+    ribs = (2,) if lid else (2, 5)           # light ribs with a shadow line under them
+    for y in ribs:
+        for x in range(w):
+            f[y][x] = noise(RIB_HI, rng)
+            f[y + 1][x] = noise(RIB_LO, rng)
+    cuts = [0, w - 1] + ([w // 2 - 1, w // 2] if panels == 2 else [])
+    for y in range(h):                       # grey frame up the corners
+        for x in cuts:
+            f[y][x] = FRAME
     if lid:
         for x in range(w):
-            f[0][x] = EDGE
+            f[0][x] = FRAME                  # top edge
+            f[h - 1][x] = ZIP_TEETH if x % 2 else ZIP   # the zip at the opening
+    else:
+        for x in range(w):
+            f[0][x] = ZIP                    # the other half of the zip
+            f[h - 1][x] = FRAME              # bottom edge
+        for x in cuts[:2]:                   # small wheels in the bottom corners
+            f[h - 1][x] = WHEEL
     return f
+
+
+def front(w, h, rng, lid):
+    return wall(w, h, rng, lid, panels=2 if w >= 20 else 1)
 
 
 def side(d, h, rng, lid):
-    """A narrow side: the zip runs up the middle (it goes round the case)."""
-    f = [[noise(SHELL, rng) for _ in range(d)] for _ in range(h)]
-    m = d // 2
-    for y in range(h):
-        f[y][0] = f[y][d - 1] = EDGE
-        f[y][m - 1] = ZIP_TAPE
-        f[y][m] = ZIP if y % 2 == 0 else ZIP_TAPE
-    if lid:
-        for x in range(d):
-            f[0][x] = EDGE
-    else:
-        f[h - 1][1] = f[h - 1][d - 2] = WHEEL
-    return f
+    return wall(d, h, rng, lid)
 
 
 def top(w, d, rng):
-    """The lid's top: the end of the case, with the carry handle."""
-    f = [[noise(SHELL, rng) for _ in range(w)] for _ in range(d)]
+    """The lid's top: frame round the edge, a plain panel, the carry handle."""
+    f = [[noise(BODY, rng) for _ in range(w)] for _ in range(d)]
     for x in range(w):
-        f[0][x] = f[d - 1][x] = EDGE
+        f[0][x] = f[d - 1][x] = FRAME
     for y in range(d):
-        f[y][0] = f[y][w - 1] = EDGE
+        f[y][0] = f[y][w - 1] = FRAME
     centres = [w // 2] if w < 20 else [w // 4, 3 * w // 4]
     for c in centres:
         for x in range(c - 3, c + 3):         # carry handle across the middle
-            f[d // 2][x] = HANDLE
-            f[d // 2 + 1][x] = HANDLE_DARK
-        for y in (2, 3):                       # telescopic handle tubes at the back
-            f[y][c - 3] = f[y][c + 2] = HANDLE_DARK
-        if w >= 20:
-            for y in range(d):
-                f[y][w // 2 - 1] = f[y][w // 2] = EDGE
+            f[d // 2][x] = HANDLE_HI
+            f[d // 2 + 1][x] = HANDLE
+    if w >= 20:
+        for y in range(d):
+            f[y][w // 2 - 1] = f[y][w // 2] = FRAME
     return f
 
 
@@ -136,14 +129,13 @@ def texture(w):
         paint(px, x0, d, f)
     # base: box UV at (0, 19), height 10
     fill(px, d, 19, w, d, INSIDE)
-    fill(px, d + w, 19, w, d, EDGE)
+    fill(px, d + w, 19, w, d, FRAME)
     for i, (x0, ww) in enumerate(((0, d), (d, w), (d + w, d), (2 * d + w, w))):
         f = side(d, 10, rng, False) if i % 2 == 0 else front(w, 10, rng, False)
         paint(px, x0, 19 + d, f)
-    # latch: box UV at (0, 0), 2 x 4 x 1 -> a small lock badge
-    fill(px, 0, 0, 6, 5, BADGE)
-    for y in range(1, 5):
-        px[0, y] = px[5, y] = (110, 114, 118, 255)
+    # latch: box UV at (0, 0), 2 x 4 x 1 -> the dark grey lock
+    fill(px, 0, 0, 6, 5, LOCK)
+    px[1, 2] = px[2, 2] = LOCK_HI + (255,)
     return img
 
 
@@ -187,12 +179,12 @@ def chest(x, z, double=False, rot=0):
 
 
 sheet = {
-    "title": "黑色行李箱：儲物箱換材質（草稿）",
+    "title": "鋁製行李箱：儲物箱換材質（第二版草稿）",
     "columns": 3, "panelWidth": 380, "panelHeight": 320, "background": "#e8edf1",
     "panels": [
-        {"label": "正面（硬殼的直條紋）", "camera": {"azimuth": 30, "elevation": 22, "size": 30, "target": [0, 7, 0]},
+        {"label": "正面（橫條紋、深灰色的鎖）", "camera": {"azimuth": 30, "elevation": 22, "size": 30, "target": [0, 7, 0]},
          "objects": floor([0], [0]) + [chest(0, 0)]},
-        {"label": "側面（中間一圈拉鍊）、上面（提把）", "camera": {"azimuth": 120, "elevation": 40, "size": 30, "target": [0, 7, 0]},
+        {"label": "拉鍊在箱子的開口一圈、上面提把", "camera": {"azimuth": 120, "elevation": 40, "size": 30, "target": [0, 7, 0]},
          "objects": floor([0], [0]) + [chest(0, 0)]},
         {"label": "大箱子：兩個並排", "camera": {"azimuth": 25, "elevation": 22, "size": 46, "target": [8, 7, 0]},
          "objects": floor([0, 16], [0]) + [{**chest(8, 0, True)}]},
