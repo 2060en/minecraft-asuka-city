@@ -62,7 +62,7 @@
 | 紐西蘭、毛利語 | 國名津蘭賀千良、茉波一系列的地名、紐西蘭地名轉換的候補 |
 | 大島璃音（Weathernews 主播） | 大島、瑠璃（保留，用在哪裡待決定） |
 | 作者的姓氏「壽」（日文漢字寫作「寿」） | 寿豊（靠海的小鎮）。國名不用 |
-| Keep 筆記的英文候補 | 沒有特別的人物，作者單純喜歡這些名字 |
+| Keep 筆記的英文候補 | 沒有特別的人物，作者單純喜歡這些名字。Spoton、Homie 用於電信公司 |
 | 作者英文名字的縮寫「IS」 | Asuka Air 的代碼。國名不從作者的英文名字取 |
 
 作者不喜歡的風格：台味太重的名字（例如宝島）。
@@ -247,7 +247,7 @@
 
 ### 英文地名
 
-Gobning、Spoton、Niqbury、Myna、Homie、Clayst、Clayville、Nite、Nitesign、Vastwood、Waterfront、North 1st.、Yunn、Yieldstone、Hina、Larna
+Gobning、Spoton（已用於電信公司）、Niqbury、Myna、Homie（已用於電信公司的子品牌）、Clayst、Clayville、Nite、Nitesign、Vastwood、Waterfront、North 1st.、Yunn、Yieldstone、Hina、Larna
 
 ---
 
@@ -310,7 +310,7 @@ Gobning、Spoton、Niqbury、Myna、Homie、Clayst、Clayville、Nite、Nitesign
 - [x] 寿豊：靠海的小鎮，不用在山間盆地；位置暫定在主島東南岸、第二大都市南邊
 - [x] 黒潮特快是作者的通稱，列車等級是特急
 - [x] 黒潮特快的正式名稱：太平洋特急くろしお号（2026-11-02）。加上「太平洋」，和 JR 西日本的「特急くろしお」區分
-- [x] 本國的電信公司：Spoton（2026-11-02）
+- [x] 本國的電信公司：Spoton（2026-11-02），平價子品牌 Homie，見[電信](telecom.md)
 - [x] 首都地鐵：作者規劃的「青線」實際是綠線，各線另外取名
 - [x] 國名的方向：取自中部島民語言（類似毛利語）的詞
 - [x] 國名：正式國名津蘭賀千良（ツランガチラ），英文 Tu Rangatira，常用簡稱津蘭（ツラン），一個字的簡稱津，更常用的別稱茉波
