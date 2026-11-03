@@ -94,9 +94,16 @@ def top(w, d, rng):
         f[y][0] = f[y][w - 1] = FRAME
     centres = [w // 2] if w < 20 else [w // 4, 3 * w // 4]
     for c in centres:
-        for x in range(c - 3, c + 3):         # carry handle across the middle
-            f[d // 2][x] = HANDLE_HI
-            f[d // 2 + 1][x] = HANDLE
+        # carry handle, a "ㄇ" seen from above (author, 2026-11-03: the first
+        # one, a plain bar, looked like a coin slot): the grip across the
+        # middle, the two feet turned down at its ends, a shadow under the grip.
+        y = d // 2 - 1
+        for x in range(c - 3, c + 3):
+            f[y][x] = HANDLE_HI
+            f[y + 1][x] = noise(RIB_LO, rng)
+        for x in (c - 3, c + 2):
+            f[y + 1][x] = HANDLE
+            f[y + 2][x] = HANDLE
     if w >= 20:
         for y in range(d):
             f[y][w // 2 - 1] = f[y][w // 2] = FRAME

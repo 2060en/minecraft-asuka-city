@@ -14,5 +14,8 @@
   },
   "asukatech:coffee_cup": {
     "sound": "wood"
+  },
+  "asukatech:screen": {
+    "sound": "metal"
   }
 }

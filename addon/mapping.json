@@ -42,5 +42,35 @@
   "asukatech:coffee_cup": {
     "vanilla": "minecraft:air",
     "states": {}
+  },
+  "asukatech:screen": {
+    "vanilla": "minecraft:glow_frame",
+    "states": {
+      "minecraft:block_face": {
+        "to": "facing_direction",
+        "values": {
+          "down": 0,
+          "up": 1,
+          "north": 2,
+          "south": 3,
+          "west": 4,
+          "east": 5
+        }
+      }
+    },
+    "block_entity": "空的發光物品框架（GlowItemFrame）",
+    "_待實測": "facing_direction 0～5 的對應、方塊實體要怎麼補"
+  },
+  "_實體": {
+    "_說明": "自製實體在原味版裡直接刪掉（作者接受，2026-11-03）",
+    "delete": [
+      "asukatech:plate",
+      "asukatech:bowl",
+      "asukatech:cup",
+      "asukatech:knife",
+      "asukatech:fork",
+      "asukatech:spoon",
+      "asukatech:chopsticks"
+    ]
   }
 }

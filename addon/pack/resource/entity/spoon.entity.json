@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:spoon",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/tableware"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.spoon"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

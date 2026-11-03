@@ -12,6 +12,9 @@
     },
     "asukatech_coffee_cup": {
       "textures": "textures/blocks/asukatech/coffee_cup"
+    },
+    "asukatech_screen": {
+      "textures": "textures/blocks/asukatech/glow_item_frame"
     }
   }
 }
