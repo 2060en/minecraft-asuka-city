@@ -1,0 +1,46 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Asuka 工具包",
+    "description": "Stick menu for building: quick build, common items, item favorites, time and weather. Vanilla blocks and items only; removing it leaves the world unchanged.",
+    "uuid": "257e1696-a5ae-4568-a53a-1acebef22fce",
+    "version": [
+      2,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      100
+    ]
+  },
+  "modules": [
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "27e9b1e4-466f-436d-ba3c-678f5d6d0969",
+      "entry": "scripts/main.js",
+      "version": [
+        2,
+        0,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.1.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.1.0"
+    }
+  ],
+  "metadata": {
+    "authors": [
+      "asuka tech"
+    ]
+  }
+}

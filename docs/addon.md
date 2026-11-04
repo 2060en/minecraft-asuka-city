@@ -574,6 +574,14 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 - **版本號自動加**（已定，2026-11-03）：和 Asuka tech 一樣，`build.py` 打包 `.mcpack` 時比較 `addon/rail_to_belt/release.json` 記的內容雜湊，內容有變就把最後一位加一；手動改 `pack/manifest.json` 的版本號可以跳大版本
 - **名稱與介紹**：名稱「Rail to Belt」，介紹「Turns every rail into a conveyor belt. Textures only.」（作者 2026-11-03：改成大寫的名字、介紹用英文）
 
+## 5.3 Asuka 工具包
+
+建造用的工具，拿木棍右鍵開選單：快速建造、常用物品、物品收藏、時間與天氣。做法與待驗證項目在 [`tools/asuka-toolkit/README.md`](../tools/asuka-toolkit/README.md)。還沒在遊戲裡實測。
+
+- **永遠是獨立的包，不併進 Asuka tech**（作者決定，2026-11-04，除非作者之後改主意）。Claude 比較過：併在一起只少管一個包；分開的話，工具包出錯不會連累主世界依賴的自製方塊，更新工具包不用動 Asuka tech 的版本，也可以單獨用在其他世界或單獨關掉
+- **快速建造認得 Asuka tech 的門**（2026-11-04）：原版的門靠 `upper_block_bit` 分上下半，Asuka tech 的門用 `asukatech:upper`，兩種都要處理（待實測）
+- **待決定**：物品收藏（存成結構）或常用物品的自訂清單裡放了 Asuka tech 的自製物品時，這些資料會提到自製識別碼，`convert.py` 碰到不知道怎麼處理的地方就會停下來。Claude 的提案是真的碰到再定規則（例如把這些收藏從原味版刪掉）
+
 ## 6. 研究：盾牌與旗幟的自訂圖案
 
 作者問：有沒有像 Image map 一樣的外部工具，可以設定盾牌的圖案？了解以下方法後，作者決定**先不做**（2026-10-31）。
