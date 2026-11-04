@@ -17,5 +17,8 @@
   },
   "asukatech:screen": {
     "sound": "metal"
+  },
+  "asukatech:glass_cup": {
+    "sound": "glass"
   }
 }

@@ -23,6 +23,9 @@
     "asukatech_chopsticks": {
       "textures": "textures/items/asukatech/chopsticks"
     },
+    "asukatech_ipad": {
+      "textures": "textures/items/asukatech/ipad"
+    },
     "asukatech_suitcase_cabin_navy": {
       "textures": "textures/items/asukatech/suitcase_cabin_navy"
     },

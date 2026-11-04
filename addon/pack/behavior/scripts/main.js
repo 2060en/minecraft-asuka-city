@@ -160,8 +160,10 @@ const TRAPDOOR = {
   },
 };
 
-// ---------- takeaway coffee cup ----------
-// Like sea pickles: use a cup on a cup block to add one, up to four.
+// ---------- takeaway coffee cup, glass of water ----------
+// Like sea pickles: use a cup on a cup block to add one, up to four. Both
+// cup blocks use this component: it adds a cup when the item in hand is the
+// block's own item.
 const COFFEE_CUP = {
   onPlayerInteract(e) {
     const player = e.player;
@@ -190,7 +192,7 @@ const COFFEE_CUP = {
 // slab, a head or snow at the right height; the spot is rounded to whole
 // pixels (1/16 of a block) and the turn to steps of 45 degrees, so a table
 // setting lines up. Several can share one block. Hitting one picks it up.
-const TABLEWARE = ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks"].map(S);
+const TABLEWARE = ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks", "ipad"].map(S); // and the iPad (v0.7.0)
 const PIXEL = 1 / 16;
 const snap = (v, step) => Math.round(v / step) * step;
 const isCreative = (player) => String(player.getGameMode()).toLowerCase() === "creative";
