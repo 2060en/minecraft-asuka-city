@@ -2,6 +2,7 @@
 
 Run from the repository root:
     python3 addon/pack/build.py [--vanilla DIR]
+    python3 addon/pack/build.py --dev [--mojang DIR]    (the development copy, see below)
 
 Two jobs:
 
@@ -34,6 +35,14 @@ the author's computer too) gives the same version. For a bigger step, write
 the new version (e.g. 0.5.0) into resource/manifest.json by hand: the build
 then uses it as it is instead of adding one.
 
+The development copy (2026-11-04): --dev builds the same content as a separate
+pack, "Asuka tech DEV", straight into the game's development folders, to try
+things on a copy of the world. It has its own UUIDs, so the main world, which
+uses the imported pack, does not change. Its version never changes, and it
+leaves the real pack's version and release.json alone: those move only when
+the real pack is built. The block identifiers are the same as the real pack's,
+so one world must not use both.
+
 Identifier prefix: asukatech (the add-on is called Asuka tech, 2026-11-02).
 
 Rotations: minecraft:transformation turns a block about Y; the Bedrock wiki
@@ -57,6 +66,7 @@ import hashlib
 import importlib.util
 import json
 import math
+import os
 import shutil
 import urllib.request
 import zipfile
@@ -744,8 +754,7 @@ def vanilla_kz(folder):
     return Image.open(cache)
 
 
-def assemble(vanilla_folder):
-    rp_out, bp_out = BUILD / "Asuka tech RP", BUILD / "Asuka tech BP"
+def assemble(vanilla_folder, rp_out, bp_out):
     for out in (rp_out, bp_out):
         shutil.rmtree(out, ignore_errors=True)
     shutil.copytree(HERE / "resource", rp_out)
@@ -799,6 +808,8 @@ def assemble(vanilla_folder):
                    {"format_version": data["format_version"],
                     "minecraft:geometry": [to_bedrock(g) for g in data["minecraft:geometry"]]})
 
+
+def package(rp_out, bp_out):
     version = ".".join(map(str, update_version((rp_out, bp_out))))
     for old in BUILD.glob("Asuka tech*.mcaddon"):   # only the current one stays, so the right one gets sent
         old.unlink()
@@ -812,9 +823,75 @@ def assemble(vanilla_folder):
           f"({mcaddon.stat().st_size / 1e6:.1f} MB)")
 
 
+# ---------- the development copy ----------
+DEV_NAME = "Asuka tech DEV"
+DEV_VERSION = [0, 0, 1]
+DEV_UUIDS = {   # the real pack's UUID: the development copy's
+    "ee5f13e9-a1c4-4415-aa5d-b10c59297c3d": "07218a23-0351-4019-904c-118d5dd6a1cc",   # resource pack
+    "40629f7a-3800-423b-9099-175ba5a371a3": "1c393807-c46d-451f-bccf-9ba8494dae2d",   # its module
+    "9fdd13d9-6941-4872-b4cb-17979c89061e": "c62a4bed-bf02-4fb3-a578-b110bff64e09",   # behaviour pack
+    "15f0e010-809c-4102-988b-21888bd5ee91": "7db9c101-d8df-4df3-a135-c0ec991b684b",   # its data module
+    "79f7d64e-1faa-40a1-9b6f-79f56456a121": "1fecfae3-eae4-4a40-b5a8-8a9842e8c518",   # its script module
+}
+# Where the GDK version keeps imported packs (seen on the author's computer,
+# 2026-11-04). Each user's folder has development folders too; which ones the
+# game reads needs a test, and --mojang picks the other.
+GAME_FOLDER = Path(os.environ.get("APPDATA", "")) / "Minecraft Bedrock" / "Users" / "Shared" / "games" / "com.mojang"
+DEV_FOLDERS = ("development_resource_packs", "development_behavior_packs")
+
+
+def game_folder(given):
+    """The com.mojang folder to install into; stop before building if it looks wrong."""
+    folder = Path(given) if given else GAME_FOLDER
+    if not all((folder / sub).is_dir() for sub in DEV_FOLDERS):
+        raise SystemExit(f"no {' or '.join(DEV_FOLDERS)} in {folder}; say where with --mojang DIR")
+    return folder
+
+
+def make_dev(rp_out, bp_out):
+    """Turn the assembled packs into the development copy: new UUIDs, the
+    version that never changes, the name in every language."""
+    for folder in (rp_out, bp_out):
+        data = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+        data["header"].update(uuid=DEV_UUIDS[data["header"]["uuid"]], version=DEV_VERSION)
+        for module in data["modules"]:
+            module.update(uuid=DEV_UUIDS[module["uuid"]], version=DEV_VERSION)
+        for dep in data.get("dependencies", []):
+            if "uuid" in dep:
+                dep.update(uuid=DEV_UUIDS[dep["uuid"]], version=DEV_VERSION)
+        write_json(folder / "manifest.json", data)
+        for lang in (folder / "texts").glob("*.lang"):
+            lines = [l.replace("Asuka tech", DEV_NAME, 1) if l.startswith("pack.name=") else l
+                     for l in lang.read_text(encoding="utf-8").splitlines()]
+            lang.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def install_dev(rp_out, bp_out, folder):
+    """Copy, not a link: the game never reads a half-assembled pack. Only these
+    two folders are replaced; nothing else in the game's folders is touched."""
+    for out, sub in zip((rp_out, bp_out), DEV_FOLDERS):
+        dest = folder / sub / out.name
+        if dest.exists():
+            shutil.rmtree(dest)
+        shutil.copytree(out, dest)
+        print(f"wrote {dest}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--vanilla", help="folder with the vanilla textures/painting files")
+    parser.add_argument("--dev", action="store_true", help="build the development copy into the game's development folders")
+    parser.add_argument("--mojang", help="with --dev: the game's com.mojang folder, if not the usual one")
     args = parser.parse_args()
-    generate()
-    assemble(args.vanilla)
+    if args.dev:
+        folder = game_folder(args.mojang)
+        generate()
+        rp_out, bp_out = BUILD / "dev" / f"{DEV_NAME} RP", BUILD / "dev" / f"{DEV_NAME} BP"
+        assemble(args.vanilla, rp_out, bp_out)
+        make_dev(rp_out, bp_out)
+        install_dev(rp_out, bp_out, folder)
+    else:
+        generate()
+        rp_out, bp_out = BUILD / "Asuka tech RP", BUILD / "Asuka tech BP"
+        assemble(args.vanilla, rp_out, bp_out)
+        package(rp_out, bp_out)
