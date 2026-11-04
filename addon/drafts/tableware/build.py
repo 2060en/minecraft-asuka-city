@@ -15,9 +15,11 @@ player's facing in steps of 45 degrees. Hitting one picks it up.
 
 This draft is the look only: one 16 x 16 texture of colour swatches, one
 geometry per piece (in pixels, the origin on the surface it stands on), the
-item icons, and a preview.
+and a preview. The item icons are rendered in 3D from these models by
+addon/drafts/icons/build.py (v0.7.1; the first ones were drawn flat).
 """
 import json
+import math
 from pathlib import Path
 
 from PIL import Image, ImageDraw
@@ -62,11 +64,38 @@ def disc(x, y, z, w, h, top="white", side="white_side"):
     return [box(x, y, z, w, h, w - 2, top, side), box(x, y, z, w - 2, h, w, top, side)]
 
 
+def octagon(x, y, z, r, h, top="white", side="white_side", lift=0.0):
+    """A solid octagonal prism r across the flats from the centre: four bars
+    turned 0, 45, 90, 135 degrees fill an octagon exactly."""
+    s = 2 * r * math.tan(math.radians(22.5))
+    out = []
+    for i in range(4):
+        c = box(x, y, z, 2 * r, h + i * lift, s, top, side)
+        c["pivot"], c["rotation"] = [x, y, z], [0, i * 45, 0]
+        out.append(c)
+    return out
+
+
+def ring(x, y, z, r, h, t, top="white", side="white_side"):
+    """Eight thin walls round an octagon, t thick: the side of a bowl or a cup."""
+    s = 2 * r * math.tan(math.radians(22.5))
+    out = []
+    for k in range(8):
+        c = box(x, y, z + r - t / 2, s + 0.05, h, t, top, side)
+        c["pivot"], c["rotation"] = [x, y, z], [0, k * 45, 0]
+        out.append(c)
+    return out
+
+
+# Second version (author, 2026-11-04): the plate, bowl and cup looked raised in
+# the middle, as a disc lay on top of them. Now each is hollow: a raised rim
+# round a lower middle.
 PIECES = {
-    "plate": disc(0, 0, 0, 10, 0.5) + disc(0, 0.5, 0, 6, 0.05, "inner", "inner"),
-    "bowl": disc(0, 0, 0, 4, 0.5) + disc(0, 0.5, 0, 7, 2.5) + disc(0, 3, 0, 5, 0.05, "shadow", "shadow"),
-    "cup": [box(0, 0, 0, 4, 4.5, 4), box(0, 4.5, 0, 3, 0.05, 3, "shadow", "shadow"),
-            box(2.4, 1, 0, 0.8, 0.6, 0.8), box(2.4, 3, 0, 0.8, 0.6, 0.8), box(2.9, 1, 0, 0.6, 2.6, 0.8)],
+    "plate": octagon(0, 0, 0, 5, 0.35, "inner", "white_side") + ring(0, 0, 0, 5, 0.7, 1.4),
+    "bowl": octagon(0, 0, 0, 2, 0.5) + octagon(0, 0.5, 0, 2.6, 0.5, "shadow", "white_side")
+            + ring(0, 0.5, 0, 3.4, 2.5, 0.6),
+    "cup": octagon(0, 0, 0, 2, 0.8, "shadow", "white_side") + ring(0, 0, 0, 2, 4.5, 0.5)
+           + [box(2.6, 1, 0, 1.2, 0.6, 0.8), box(2.6, 3.2, 0, 1.2, 0.6, 0.8), box(3.0, 1, 0, 0.6, 2.8, 0.8)],
     "knife": [box(0, 0, 2, 0.8, 0.5, 3.5, "silver", "silver_side"),
               box(0, 0, -2, 1.1, 0.25, 4.5, "silver", "silver_side")],
     "fork": [box(0, 0, 2, 0.6, 0.3, 4, "silver", "silver_side"), box(0, 0, -0.5, 1.6, 0.3, 1, "silver", "silver_side")]
@@ -80,47 +109,7 @@ NAMES = {"plate": ("白盤子", "White Plate"), "bowl": ("白碗", "White Bowl")
          "chopsticks": ("筷子", "Chopsticks")}
 
 
-def icon(name):
-    """16 x 16 item icons."""
-    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    W, S, O, I = (246, 246, 246, 255), (200, 202, 206, 255), (110, 114, 120, 255), (214, 216, 218, 255)
-    M, MS, WD = (214, 218, 222, 255), (150, 155, 160, 255), (150, 98, 60, 255)
-    if name == "plate":
-        d.ellipse((1, 4, 14, 12), fill=W, outline=O)
-        d.ellipse((4, 6, 11, 10), fill=I)
-    elif name == "bowl":
-        d.ellipse((2, 4, 13, 8), fill=S, outline=O)
-        d.chord((2, 1, 13, 13), 0, 180, fill=W, outline=O)
-        d.ellipse((3, 5, 12, 7), fill=I)
-        d.rectangle((6, 13, 9, 13), fill=O)
-    elif name == "cup":
-        d.rectangle((3, 4, 10, 13), fill=W, outline=O)
-        d.rectangle((4, 4, 9, 4), fill=I)
-        d.rectangle((11, 6, 13, 10), outline=O)
-        d.rectangle((12, 7, 12, 9), fill=W)
-    elif name == "knife":
-        d.line((3, 12, 7, 8), fill=MS, width=2)
-        d.polygon([(7, 8), (13, 2), (13, 4), (9, 9)], fill=M, outline=MS)
-    elif name == "fork":
-        d.line((3, 13, 9, 7), fill=MS, width=2)
-        for t in ((9, 7, 12, 2), (9, 7, 13, 3), (9, 7, 14, 4)):
-            d.line(t, fill=M)
-        d.line((8, 6, 11, 3), fill=M)
-    elif name == "spoon":
-        d.line((3, 13, 8, 8), fill=MS, width=2)
-        d.ellipse((8, 2, 13, 8), fill=M, outline=MS)
-    elif name == "chopsticks":
-        d.line((2, 14, 12, 1), fill=WD, width=1)
-        d.line((4, 14, 14, 2), fill=WD, width=1)
-    return img
-
-
 texture().save(HERE / "tableware.png")
-icons = HERE / "icons"
-icons.mkdir(exist_ok=True)
-for name in PIECES:
-    icon(name).save(icons / f"{name}.png")
 geos = [{"description": {"identifier": f"geometry.asukatech.{name}", "texture_width": 16, "texture_height": 16},
          "bones": [{"name": name, "pivot": [0, 0, 0], "cubes": cubes}]} for name, cubes in PIECES.items()]
 (HERE / "tableware.geo.json").write_text(json.dumps({"format_version": "1.12.0", "minecraft:geometry": geos},
@@ -166,9 +155,4 @@ sheet = {
 }
 (HERE / "preview.json").write_text(json.dumps(sheet, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
-# the icons, flat
-sheet_img = Image.new("RGBA", (7 * 140, 150), (232, 237, 241, 255))
-for i, name in enumerate(PIECES):
-    sheet_img.alpha_composite(Image.open(icons / f"{name}.png").resize((128, 128), Image.NEAREST), (i * 140 + 6, 10))
-sheet_img.save(HERE / "icons_preview.png")
-print("wrote tableware.png, tableware.geo.json, icons/, preview.json, icons_preview.png")
+print("wrote tableware.png, tableware.geo.json, preview.json")

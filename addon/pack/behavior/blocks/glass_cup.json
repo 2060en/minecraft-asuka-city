@@ -48,26 +48,26 @@
       "minecraft:map_color": "#b8d8ec",
       "minecraft:collision_box": {
         "origin": [
-          -1.5,
+          -2,
           0,
-          -1.5
+          -2.0
         ],
         "size": [
-          3.0,
-          4.0,
-          3.0
+          4,
+          6.0,
+          4.0
         ]
       },
       "minecraft:selection_box": {
         "origin": [
-          -1.5,
+          -2,
           0,
-          -1.5
+          -2.0
         ],
         "size": [
-          3.0,
-          4.0,
-          3.0
+          4,
+          6.0,
+          4.0
         ]
       },
       "minecraft:light_dampening": 0,
@@ -145,26 +145,26 @@
           },
           "minecraft:collision_box": {
             "origin": [
-              -1.5,
+              -2,
               0,
-              -1.5
+              -2.0
             ],
             "size": [
-              3.0,
-              4.0,
-              3.0
+              4,
+              6.0,
+              4.0
             ]
           },
           "minecraft:selection_box": {
             "origin": [
-              -1.5,
+              -2,
               0,
-              -1.5
+              -2.0
             ],
             "size": [
-              3.0,
-              4.0,
-              3.0
+              4,
+              6.0,
+              4.0
             ]
           }
         }
@@ -183,26 +183,26 @@
           },
           "minecraft:collision_box": {
             "origin": [
-              -4.5,
+              -5,
               0,
-              -2.5
+              -3.0
             ],
             "size": [
-              9.0,
-              4.0,
-              5.0
+              10,
+              6.0,
+              6.0
             ]
           },
           "minecraft:selection_box": {
             "origin": [
-              -4.5,
+              -5,
               0,
-              -2.5
+              -3.0
             ],
             "size": [
-              9.0,
-              4.0,
-              5.0
+              10,
+              6.0,
+              6.0
             ]
           },
           "minecraft:loot": "loot_tables/asukatech/glass_cup_2.json"
@@ -222,26 +222,26 @@
           },
           "minecraft:collision_box": {
             "origin": [
-              -4.5,
+              -5,
               0,
-              -3.5
+              -4.0
             ],
             "size": [
-              9.0,
-              4.0,
-              8.0
+              10,
+              6.0,
+              9.0
             ]
           },
           "minecraft:selection_box": {
             "origin": [
-              -4.5,
+              -5,
               0,
-              -3.5
+              -4.0
             ],
             "size": [
-              9.0,
-              4.0,
-              8.0
+              10,
+              6.0,
+              9.0
             ]
           },
           "minecraft:loot": "loot_tables/asukatech/glass_cup_3.json"
@@ -261,26 +261,26 @@
           },
           "minecraft:collision_box": {
             "origin": [
-              -4.5,
+              -5,
               0,
-              -4.5
+              -5.0
             ],
             "size": [
-              9.0,
-              4.0,
-              9.0
+              10,
+              6.0,
+              10.0
             ]
           },
           "minecraft:selection_box": {
             "origin": [
-              -4.5,
+              -5,
               0,
-              -4.5
+              -5.0
             ],
             "size": [
-              9.0,
-              4.0,
-              9.0
+              10,
+              6.0,
+              10.0
             ]
           },
           "minecraft:loot": "loot_tables/asukatech/glass_cup_4.json"

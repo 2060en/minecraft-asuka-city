@@ -1,5 +1,5 @@
 {
- "title": "iPad（自製實體，草稿）：平放在桌上，約實物的兩倍大",
+ "title": "iPad（自製實體，第二版）：平放在桌上，放大到約實物的三倍",
  "columns": 2,
  "panelWidth": 520,
  "panelHeight": 320,
@@ -10,7 +10,7 @@
    "camera": {
     "azimuth": 15,
     "elevation": 55,
-    "size": 22,
+    "size": 26,
     "target": [
      -8,
      16,
@@ -78,7 +78,7 @@
    "camera": {
     "azimuth": 15,
     "elevation": 55,
-    "size": 22,
+    "size": 26,
     "target": [
      8,
      16,

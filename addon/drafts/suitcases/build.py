@@ -157,30 +157,10 @@ for name in CASES:
               "pivot": [0, p, 0], "rotation": [90, 0, 0]} for c in cubes(name)]
     geos.append({"description": {"identifier": f"geometry.asukatech.luggage_cart_{name}", "texture_width": 64, "texture_height": 32},
                  "bones": [{"name": "case", "pivot": [0, 0, 0], "cubes": lying}]})
-def icon(name):
-    """16 x 16 item icon: the front of the case, its handle and two wheels."""
-    _, _, (h, w, d), _, _ = CASES[name]
-    tex = texture(name)
-    front = tex.crop((d, d, d + w, d + h))
-    scale = 13 / h
-    fw, fh = max(1, round(w * scale)), 13
-    front = front.resize((fw, fh), Image.NEAREST)
-    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
-    x0 = (16 - fw) // 2
-    img.alpha_composite(front, (x0, 1))
-    px = img.load()
-    for x in range(x0 + fw // 2 - 2, x0 + fw // 2 + 2):     # the handle
-        px[x, 0] = HANDLE_HI + (255,)
-    for x in (x0 + 1, x0 + fw - 2):                          # wheels
-        px[x, 14] = WHEEL + (255,)
-    return img
-
-
-icons = HERE / "icons"
-icons.mkdir(exist_ok=True)
+# The item icons are rendered in 3D from these models by
+# addon/drafts/icons/build.py (v0.7.1, author: draw them in 3D).
 for name in CASES:
     texture(name).save(HERE / f"{name}.png")
-    icon(name).save(icons / f"{name}.png")
 (HERE / "suitcases.geo.json").write_text(json.dumps({"format_version": "1.12.0", "minecraft:geometry": geos},
                                                     indent=1) + "\n", encoding="utf-8")
 

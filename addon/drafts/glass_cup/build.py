@@ -11,8 +11,8 @@ glass is see-through, with water inside (the block's render method is
 count, which the resource pack shows as a steel cup (addon/drafts/cup/);
 decided by the author 2026-11-03.
 
-Each glass is 3 x 4 x 3 pixels (about 14 x 19 cm; the world's small props
-are drawn about twice real size, like the coffee cup), an octagonal prism
+Each glass is 4 across and 6 high, the size of the takeaway coffee cup
+(author, 2026-11-04; the first was 3 x 4 and too small), an octagonal prism
 (author, 2026-11-04): a base, eight thin walls, open at the top, with water
 inside to just over half.
 """
@@ -53,7 +53,7 @@ def sw(name, w=4, h=4):
     return {"uv": [u, v], "uv_size": [w, h]}
 
 
-R = 1.5                                       # half the width across the flats
+R = 2                                         # half the width across the flats (4 across, the coffee cup's width)
 SIDE = 2 * R * math.tan(math.radians(22.5))   # one side of the octagon
 
 
@@ -74,12 +74,12 @@ def glass(cx, cz):
     T = 0.35                                   # wall thickness
     wall_faces = {f: sw("glass") for f in ("north", "south", "east", "west")}
     wall_faces["up"] = sw("edge")              # the rim
-    walls = [{"origin": [cx - SIDE / 2, 0.5, cz + R - T], "size": [SIDE, 3.5, T], "uv": wall_faces,
+    walls = [{"origin": [cx - SIDE / 2, 0.5, cz + R - T], "size": [SIDE, 5.5, T], "uv": wall_faces,
               "pivot": [cx, 0, cz], "rotation": [0, k * 45, 0]} for k in range(8)]
     water = {f: sw("water") for f in ("north", "south", "east", "west", "down")}
     water["up"] = sw("water_top")
     base = {f: sw("base") for f in ("north", "south", "east", "west", "up", "down")}
-    return octagon(cx, cz, 0, 0.5, R, base) + walls + octagon(cx, cz, 0.5, 2.2, R - T, water, lift=0.01)
+    return octagon(cx, cz, 0, 0.5, R, base) + walls + octagon(cx, cz, 0.5, 3.4, R - T, water, lift=0.01)
 
 
 # the same spots as the coffee cups (addon/drafts/coffee_cup/coffee_cup.geo.json)

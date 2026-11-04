@@ -348,7 +348,7 @@ TABLEWARE = {   # name: (zh_TW, en_US, hit box width, height)
     "fork": ("叉子", "Fork", 0.3, 0.1),
     "spoon": ("湯匙", "Spoon", 0.3, 0.1),
     "chopsticks": ("筷子", "Chopsticks", 0.35, 0.1),
-    "ipad": ("iPad", "iPad", 0.45, 0.1),          # v0.7.0, placed the same way
+    "ipad": ("iPad", "iPad", 0.65, 0.1),          # v0.7.0, placed the same way
 }
 TABLEWARE_TEXTURE = {"ipad": "ipad"}              # the others share the tableware texture
 
@@ -486,6 +486,40 @@ def suitcase_item(name):
         }}}
 
 
+# ---------- creative inventory (v0.7.1) ----------
+# Groups in the "items" tab (author, 2026-11-04): the tableware, the
+# suitcases, and the two cups together. Written as the behaviour pack's
+# item_catalog/crafting_item_catalog.json (Mojang's crafting catalog,
+# format 1.21.60); whether the game takes it needs a test.
+GROUPS = [   # (name key, zh_TW, en_US, icon, items)
+    ("tableware", "餐具", "Tableware", "plate", ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks"]),
+    ("suitcases", "行李箱", "Suitcases", "suitcase_aluminium", ["suitcase_cabin_navy", "suitcase_large_red",
+                                                              "suitcase_aluminium", "suitcase_soft_black", "suitcase_pink"]),
+    ("cups", "杯子", "Cups", "coffee_cup", ["coffee_cup", "glass_cup"]),
+]
+
+
+def catalog():
+    return {"format_version": "1.21.60", "minecraft:crafting_items_catalog": {"categories": [{
+        "category_name": "items",
+        "groups": [{"group_identifier": {"icon": f"{NS}:{icon}", "name": f"{NS}:itemGroup.name.{key}"},
+                    "items": [f"{NS}:{i}" for i in items]} for key, _, _, icon, items in GROUPS],
+    }]}}
+
+
+# The screen's own item (v0.7.1): a block's item shows the block model, and
+# the screen's model showed its black back. This item places the block and
+# takes the place of the block's item, with the screen picture as its icon.
+def screen_item():
+    return {"format_version": "1.21.90", "minecraft:item": {
+        "description": {"identifier": f"{NS}:screen", "menu_category": {"category": "items"}},
+        "components": {
+            "minecraft:icon": f"{NS}_screen_item",
+            "minecraft:display_name": {"value": f"tile.{NS}:screen.name"},
+            "minecraft:block_placer": {"block": f"{NS}:screen", "replace_block_item": True},
+        }}}
+
+
 def load_draft(path):
     """Import a draft's build.py whose work sits behind `if __name__ == "__main__"`."""
     spec = importlib.util.spec_from_file_location(f"draft_{Path(path).parent.name}", DRAFTS / path)
@@ -536,7 +570,10 @@ def generate():
         write_json(rp / "entity" / f"luggage_cart_{name}.entity.json",
                    suitcase_client(f"luggage_cart_{name}", f"luggage_cart_{name}", name, cart=True))
     write_json(rp / "animations" / "luggage_cart.animation.json", CART_ANIMATION)
+    write_json(bp / "items" / "screen.json", screen_item())
+    write_json(bp / "item_catalog" / "crafting_item_catalog.json", catalog())
     icons = {f"{NS}_{n}": f"textures/items/{NS}/{n}" for n in TABLEWARE}
+    icons[f"{NS}_screen_item"] = f"textures/items/{NS}/screen"
     icons.update({f"{NS}_suitcase_{n}": f"textures/items/{NS}/suitcase_{n}" for n in SUITCASES})
     write_json(rp / "textures" / "item_texture.json", {
         "resource_pack_name": NS, "texture_name": "atlas.items",
@@ -557,6 +594,7 @@ def generate():
         names += [f"item.{NS}.suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
         names += [f"entity.{NS}:suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
         names += [f"entity.{NS}:luggage_cart_{n}.name={v[i]}" for n, v in SUITCASES.items()]
+        names += [f"{NS}:itemGroup.name.{g[0]}={g[1 + i]}" for g in GROUPS]
         names += load_draft("drinks/build.py").lang_lines(lang)      # potions become drinks
         path.write_text("\n".join(head + names) + "\n", encoding="utf-8")
     print(f"generated {len(blocks)} blocks")
@@ -634,6 +672,11 @@ RETEXTURES = {   # draft file: path in the resource pack
     "tableware/tableware.png": f"textures/entity/{NS}/tableware.png",
     **{f"tableware/icons/{n}.png": f"textures/items/{NS}/{n}.png" for n in TABLEWARE if n != "ipad"},
     "ipad/ipad.png": f"textures/entity/{NS}/ipad.png",
+    "screen/glow_item_frame.png": f"textures/items/{NS}/screen.png",
+    # the chest's inventory icon is drawn from three block textures
+    "suitcase/chest_inventory_front.png": "textures/blocks/chest_front.png",
+    "suitcase/chest_inventory_side.png": "textures/blocks/chest_side.png",
+    "suitcase/chest_inventory_top.png": "textures/blocks/chest_top.png",
     "ipad/ipad_item.png": f"textures/items/{NS}/ipad.png",
     # v0.6.0: the coffee stand and the suitcases
     "coffee_machine/brewing_stand.png": "textures/blocks/brewing_stand.png",

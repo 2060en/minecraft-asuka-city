@@ -213,8 +213,8 @@ function useUp(player) {
 // Put an entity where the player clicked on the top of a block (shared by
 // the tableware and the standing suitcases).
 //
-// faceLocation is the clicked point measured from the block's bottom
-// north-west corner, but only its fraction is kept: the top of a slab comes
+// faceLocation gives the clicked point within the block, but only its
+// fraction is kept: the top of a slab comes
 // back as 0.5, the top of a full block as 0 instead of 1, so on full blocks
 // the entities sank into the block (author's tests, v0.6.0 and v0.6.1,
 // 2026-11-04). On a top face 0 can only mean the full height.
@@ -229,6 +229,11 @@ function placeOnTop(e, id) {
     z -= b.z;
   }
   if (y < 0.001) y = 1;
+  // and across the top it runs the other way on both axes: clicking the
+  // block's bottom-left corner put the case at the top-right (author's test,
+  // v0.7.0, 2026-11-04)
+  x = 1 - x;
+  z = 1 - z;
   const at = { x: b.x + snap(x, PIXEL), y: b.y + y, z: b.z + snap(z, PIXEL) };
   const yaw = snap(player.getRotation().y, 45);
   system.run(() => {

@@ -8,8 +8,9 @@ Removing the add-on removes it (accepted by the author, 2026-11-03). It is
 placed with an item at the clicked point on top of a block, like the
 tableware (addon/pack/behavior/scripts/main.js), and a hit picks it up.
 
-Size: 10 x 7 pixels and 0.4 thick, about twice the real iPad (25 x 18 cm),
-like the other small props, so the screen can be seen. The entity texture is
+Size: 14 x 10 pixels and 0.5 thick, nearly three times the real iPad
+(25 x 18 cm), so the screen can be seen (author, 2026-11-04: the first,
+10 x 7, was too small). The entity texture is
 64 x 64, so the small faces still carry detail: the screen (a home screen
 with app icons and a dock) on the top, the aluminium back with the same
 small apple logo as the laptop paintings on the bottom.
@@ -104,7 +105,7 @@ def texture():
 
 
 edge = {"uv": [60, 60], "uv_size": [4, 4]}
-cube = {"origin": [-5, 0, -3.5], "size": [10, 0.4, 7],
+cube = {"origin": [-7, 0, -5], "size": [14, 0.5, 10],
         "uv": {"up": {"uv": [0, 0], "uv_size": [W, H]}, "down": {"uv": [0, 32], "uv_size": [W, H]},
                "north": edge, "south": edge, "east": edge, "west": edge}}
 geo = {"format_version": "1.12.0", "minecraft:geometry": [{
@@ -132,12 +133,12 @@ def ipad(x, z, rot=0, flip=False):
 
 
 table = [{"type": "block", "color": TABLE, "origin": [x - 8, 0, -8], "size": [16, 16, 16]} for x in (-8, 8)]
-sheet = {"title": "iPad（自製實體，草稿）：平放在桌上，約實物的兩倍大",
+sheet = {"title": "iPad（自製實體，第二版）：平放在桌上，放大到約實物的三倍",
          "columns": 2, "panelWidth": 520, "panelHeight": 320, "background": "#e8edf1",
          "panels": [
-             {"label": "螢幕朝上", "camera": {"azimuth": 15, "elevation": 55, "size": 22, "target": [-8, 16, 0]},
+             {"label": "螢幕朝上", "camera": {"azimuth": 15, "elevation": 55, "size": 26, "target": [-8, 16, 0]},
               "objects": table + [ipad(-8, 0)]},
-             {"label": "背面（翻過來看）", "camera": {"azimuth": 15, "elevation": 55, "size": 22, "target": [8, 16, 0]},
+             {"label": "背面（翻過來看）", "camera": {"azimuth": 15, "elevation": 55, "size": 26, "target": [8, 16, 0]},
               "objects": table + [ipad(8, 0, flip=True)]},
          ]}
 (HERE / "preview.json").write_text(json.dumps(sheet, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
