@@ -103,33 +103,37 @@ def base():
 
 
 def icon():
+    """The item icon: the stand itself, laid out like the vanilla icon (pole,
+    a crossbar, a dripper hanging at each end, the tray under it). The first
+    icon was the glass server; the author wanted the stand (2026-11-04)."""
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
     px = img.load()
-    for x in range(4, 12):                       # dripper on top
-        put(px, x, 2, DRIPPER)
-    for x in range(5, 11):
-        put(px, x, 3, DRIPPER)
-    for x in range(6, 10):
-        put(px, x, 4, DRIPPER_LO)
-    for x in range(6, 10):
-        put(px, x, 2, FILTER)
-    for y in range(5, 14):                       # the glass server
-        for x in range(4, 12):
-            put(px, x, y, GLASS)
-    for x in range(4, 12):
-        put(px, x, 8, COLLAR)
-        put(px, x, 9, COLLAR)
-    for y in range(10, 14):
-        for x in range(4, 12):
-            put(px, x, y, COFFEE)
-    put(px, 5, 10, COFFEE_HI)
-    put(px, 5, 6, GLASS_HI)
     for x in range(3, 13):                       # the tray
+        put(px, x, 13, TRAY_RING)
         put(px, x, 14, TRAY)
-    for y in range(1, 15):                       # outline
-        for x in range(2, 14):
+    for y in range(3, 13):                       # the pole
+        put(px, 7, y, STEEL_HI)
+        put(px, 8, y, STEEL)
+    put(px, 7, 2, STEEL_HI)
+    put(px, 8, 2, STEEL_HI)
+    for x in range(1, 15):                       # the crossbar
+        put(px, x, 4, STEEL_HI)
+        put(px, x, 5, STEEL)
+    for x0 in (1, 10):                           # a white cone dripper under each end
+        for x in range(x0, x0 + 5):
+            put(px, x, 6, DRIPPER)
+        for x in range(x0 + 1, x0 + 4):
+            put(px, x, 6, FILTER)                # the paper filter inside
+        for x in range(x0, x0 + 5):
+            put(px, x, 7, DRIPPER if x < x0 + 4 else DRIPPER_LO)
+        for x in range(x0 + 1, x0 + 4):
+            put(px, x, 8, DRIPPER if x < x0 + 3 else DRIPPER_LO)
+        put(px, x0 + 2, 9, DRIPPER_LO)
+    for y in range(1, 16):                       # outline
+        for x in range(0, 16):
             if px[x, y][3] == 0 and any(px[x + dx, y + dy][3] and px[x + dx, y + dy][:3] != (90, 92, 96)
-                                        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                                        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))
+                                        if 0 <= x + dx < 16 and 0 <= y + dy < 16):
                 put(px, x, y, (90, 92, 96))
     return img
 

@@ -99,34 +99,36 @@ def wither_skull():
 
 # ---------- milk carton (drawn from scratch) ----------
 def milk_carton():
-    W, B, BL, R, G = (244, 245, 246), (196, 200, 206), (58, 110, 186), (118, 168, 222), (70, 74, 82)
+    """The milk bucket's icon: a bottle of milk with a light grey cap (second
+    version, author 2026-11-04; the first was a gable-top carton)."""
+    W, S, BL, BL2, CAP, CAP2, G = ((246, 246, 244), (214, 216, 218), (58, 110, 186), (44, 88, 156),
+                                   (200, 204, 210), (166, 170, 176), (70, 74, 82))
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
     px = img.load()
 
     def put(x, y, c):
         px[x, y] = c + (255,)
-    # gable top: the fin and the two roof slopes
-    for x in range(6, 10):
-        put(x, 1, B)
-    for y, (a, b) in enumerate(((5, 10), (4, 11), (4, 11)), start=2):
-        for x in range(a, b + 1):
-            put(x, y, W if x < 8 else B)
-    # body: front (white) and side (shaded), outline
-    for y in range(5, 15):
+    for x in range(6, 10):                  # the light grey cap
+        put(x, 1, CAP)
+        put(x, 2, CAP2 if x == 9 else CAP)
+    for x in range(6, 10):                  # neck
+        put(x, 3, W if x < 9 else S)
+    for x in range(5, 11):                  # shoulder
+        put(x, 4, W if x < 9 else S)
+    for y in range(5, 15):                  # body: lit front, shaded side
         for x in range(4, 12):
-            put(x, y, W if x < 9 else B)
-    for y in range(8, 12):                  # the blue band with a light stripe
+            put(x, y, W if x < 10 else S)
+    for y in range(8, 12):                  # blue label with a light stripe
         for x in range(4, 12):
-            put(x, y, BL if x < 9 else (44, 88, 156))
-    for x in range(5, 9):
-        put(x, 9, R)
-    for y in range(1, 15):                  # outline
-        for x in range(3, 13):
-            if px[x, y][3] == 0 and any(0 <= x + dx < 16 and px[x + dx, y + dy][3] and px[x + dx, y + dy][:3] != G
+            put(x, y, BL if x < 10 else BL2)
+    for x in range(5, 10):
+        put(x, 9, (150, 190, 232))
+    put(5, 6, (255, 255, 255))              # a highlight
+    for y in range(0, 16):                  # outline
+        for x in range(2, 14):
+            if px[x, y][3] == 0 and any(0 <= y + dy < 16 and px[x + dx, y + dy][3] and px[x + dx, y + dy][:3] != G
                                         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
                 put(x, y, G)
-    for x in range(4, 12):
-        put(x, 15, G)
     return img
 
 

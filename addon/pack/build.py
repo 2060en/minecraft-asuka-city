@@ -674,10 +674,8 @@ RETEXTURES = {   # draft file: path in the resource pack
     **{f"tableware/icons/{n}.png": f"textures/items/{NS}/{n}.png" for n in TABLEWARE if n != "ipad"},
     "ipad/ipad.png": f"textures/entity/{NS}/ipad.png",
     "screen/glow_item_frame.png": f"textures/items/{NS}/screen.png",
-    # the chest's inventory icon is drawn from three block textures
-    "suitcase/chest_inventory_front.png": "textures/blocks/chest_front.png",
-    "suitcase/chest_inventory_side.png": "textures/blocks/chest_side.png",
-    "suitcase/chest_inventory_top.png": "textures/blocks/chest_top.png",
+    # (v0.7.1 also replaced the chest's inventory faces, chest_front/side/top;
+    # the trapped chest shares the side and top, so v0.7.2 leaves them vanilla)
     "ipad/ipad_item.png": f"textures/items/{NS}/ipad.png",
     # v0.6.0: the coffee stand and the suitcases
     "coffee_machine/brewing_stand.png": "textures/blocks/brewing_stand.png",

@@ -194,29 +194,11 @@ def geo(ident, w, tw):
             ]}]}
 
 
-def inventory_faces(tex):
-    """The chest's icon in the inventory is drawn from three 16 x 16 block
-    textures (textures/blocks/chest_front, chest_side, chest_top), not from the
-    chest model, so it stayed vanilla in v0.7.0 (author's test, 2026-11-04).
-    Each is cut from the model texture: the lid's 5 rows over the base's 10,
-    14 wide, set in the middle of 16 with the frame colour round it."""
-    def stack(lid_box, base_box):
-        img = Image.new("RGBA", (16, 16), FRAME + (255,))
-        img.paste(tex.crop(lid_box), (1, 0))
-        img.paste(tex.crop(base_box), (1, 5))
-        return img
-    front = stack((14, 14, 28, 19), (14, 33, 28, 43))
-    lock = tex.crop((1, 1, 3, 5)).resize((2, 4), Image.NEAREST)   # the lock on the front, as on the model
-    front.paste(lock, (7, 3))
-    side = stack((0, 14, 14, 19), (0, 33, 14, 43))
-    top = Image.new("RGBA", (16, 16), FRAME + (255,))
-    top.paste(tex.crop((14, 0, 28, 14)), (1, 1))
-    return front, side, top
-
-
 texture(14).save(HERE / "chest.png")
-for name, img in zip(("front", "side", "top"), inventory_faces(texture(14))):
-    img.save(HERE / f"chest_inventory_{name}.png")
+# The chest's icon in the inventory is drawn from three block textures
+# (chest_front, chest_side, chest_top), not from this model. v0.7.1 replaced
+# them too, but the trapped chest shares the side and top, so it changed with
+# them; the author chose to keep the vanilla chest icon (2026-11-04).
 texture(30).save(HERE / "chest_double.png")
 opened = geo("geometry.chest_open_preview", 14, 64)
 for c in opened["bones"][0]["cubes"][1:]:      # the lid and the latch swing open at the back edge
