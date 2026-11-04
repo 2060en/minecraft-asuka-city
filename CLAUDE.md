@@ -1,12 +1,13 @@
 # CLAUDE.md
 
-這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容 Asuka tech（`addon/pack/` 是資源包與行為包，`addon/drafts/` 是外觀草稿）與材質包 Rail to Belt（`addon/rail_to_belt/`）。附加內容的作者一律寫「asuka tech」，介紹（description）一律用英文，`tools/preview/` 是外觀預覽工具，`tools/converter/` 是轉換程式（只讀的掃描 `scan.py`、轉出原味版的 `convert.py`），`tools/asuka-toolkit/` 是 Asuka 工具包（獨立的行為包，不併進 Asuka tech）。
+這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容 Asuka tech（`addon/pack/` 是資源包與行為包，`addon/drafts/` 是外觀草稿）與材質包 Rail to Belt（`addon/rail_to_belt/`）。附加內容的作者一律寫「asuka tech」，介紹（description）一律用英文，`tools/preview/` 是外觀預覽工具，`tools/converter/` 是轉換程式（只讀的掃描 `scan.py`、轉出原味版的 `convert.py`），`tools/asuka-toolkit/` 是 Asuka 工具包（獨立的行為包，不併進 Asuka tech），`tools/world-backup/` 是世界備份工具（雙擊備份到 Google Drive 與還原，雲端地圖的程式也在這裡但還沒接；改程式後跑 `npm test`）。
 
 ## 文件地圖
 
 | 文件 | 內容 |
 | --- | --- |
 | `docs/technical.md` | 遊戲版本、工具、結構方塊、存檔備份、建造技術歷史、技術面的待辦 |
+| `docs/backup-log.md` | 備份紀錄：`tools/world-backup/backup.js` 每次備份自動加一行。作者雙擊後這個檔案會有未提交的修改，看到時順手一起提交 |
 | `docs/addon.md` | 自製附加內容（資源包＋行為包）：雙版本與轉換程式、對照表、基岩版的技術限制、構想清單 |
 | `docs/addon-contents.md` | 附加內容清單：Asuka tech 做了哪些東西（改材質、改圖示、新增方塊、新增實體），每加一樣東西都要更新 |
 | `docs/ads.md` | 廣告清單：可以換成廣告的畫，一幅一列的填空表 |

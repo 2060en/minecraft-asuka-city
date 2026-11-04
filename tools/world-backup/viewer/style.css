@@ -1,0 +1,120 @@
+:root {
+  color-scheme: dark;
+  --bar: #1b2430;
+  --text: #e8edf3;
+  --muted: #9aa7b6;
+  --accent: #5fb3ff;
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  color: var(--text);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  padding: 8px 12px;
+  padding-top: max(8px, env(safe-area-inset-top));
+  background: var(--bar);
+  border-bottom: 1px solid #2c3949;
+  z-index: 1000;
+}
+
+.bar h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.snapshot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.snapshot select {
+  flex: 1;
+  min-width: 0;
+  max-width: 420px;
+  font-size: 16px; /* 16px 以上，iPhone 點選時才不會自動放大 */
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #3a4a5e;
+  background: #111821;
+  color: var(--text);
+}
+
+.coords {
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+#map {
+  flex: 1;
+  min-height: 0;
+  background: #000;
+}
+
+.leaflet-container {
+  background: transparent;
+  font: inherit;
+}
+
+/* 地圖是像素畫，放大時保持方塊的邊緣清楚 */
+.leaflet-tile {
+  image-rendering: pixelated;
+}
+
+.crosshair {
+  position: fixed;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  pointer-events: none;
+  z-index: 900;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 2px #000;
+}
+
+.crosshair::before { left: 8px; top: 0; width: 2px; height: 18px; }
+.crosshair::after { top: 8px; left: 0; height: 2px; width: 18px; }
+
+.message {
+  position: fixed;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  max-width: min(90vw, 420px);
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: rgba(27, 36, 48, 0.95);
+  border: 1px solid #3a4a5e;
+  line-height: 1.6;
+  z-index: 2000;
+}

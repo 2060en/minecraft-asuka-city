@@ -11,6 +11,7 @@
 ## 文件
 
 - [技術文檔](docs/technical.md)：遊戲版本、工具、附加內容、世界設定、結構方塊與存檔備份
+- [備份紀錄](docs/backup-log.md)：每次備份加一行，由備份工具自動產生
 - [附加內容開發](docs/addon.md)：專為這個世界製作的資源包與行為包，雙版本與轉換程式的做法、構想清單
 - [附加內容清單](docs/addon-contents.md)：Asuka tech 目前做了哪些東西，分成改材質、改圖示、新增方塊、新增實體四類
 - [廣告清單](docs/ads.md)：把原版的畫換成廣告的填空表，每一個可替換的畫一列
@@ -34,3 +35,4 @@
 - `tools/preview/`：把基岩版模型算成預覽圖的工具
 - `tools/converter/`：轉換程式：只讀的掃描與轉出原味版
 - `tools/asuka-toolkit/`：Asuka 工具包：獨立的行為包，木棍快速建造與破壞、烈焰棒物品收藏、旋風棒拿特殊物品
+- [`tools/world-backup/`](tools/world-backup/README.md)：世界備份：雙擊 `backup.bat` 加密備份到 Google Drive，雙擊 `restore.bat` 還原到新資料夾；雲端地圖的程式也在這裡，還沒接

@@ -1,0 +1,10 @@
+{
+  "name": "asuka-world-backup",
+  "private": true,
+  "description": "備份 Minecraft 世界，並把 uNmINeD 的地圖上傳到 Cloudflare，讓手機和 AI（MCP）都能看",
+  "type": "module",
+  "scripts": {
+    "backup": "node backup.js",
+    "test": "node --test \"test/*.test.js\""
+  }
+}
