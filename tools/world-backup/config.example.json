@@ -13,11 +13,13 @@
   },
   "rclone": {
     "exe": "rclone",
-    "remote": "r2:asuka-map",
+    "remote": "r2:asuka-map-apac",
+    "r2Endpoint": "https://<帳號 ID>.r2.cloudflarestorage.com",
     "extraArgs": []
   },
   "map": {
     "enabled": false,
+    "url": "https://asuka-map.<子網域>.workers.dev",
     "renderDir": "%USERPROFILE%/AsukaMap/render",
     "stateDir": "%USERPROFILE%/AsukaMap/state"
   },

@@ -4,7 +4,7 @@
 // 目前的工具都是用渲染好的圖磚：列出備份、看某個座標周圍的俯視圖、找出兩次備份之間有變動的區域。
 // 「某個座標是什麼方塊」需要另外匯出方塊資料，見 tools/world-backup/README.md 的「第二階段」。
 
-import { blocksPerTile, tileBounds, tilesAround, zoomLevels, mapExtent, changedAreas } from './mapdata.js';
+import { blocksPerTile, tileBounds, tilesAround, zoomLevels, changedAreas } from './mapdata.js';
 
 /** @typedef {import('./mapdata.js').Manifest} Manifest */
 
@@ -30,7 +30,7 @@ const TOOLS = [
   },
   {
     name: 'get_map_info',
-    description: '取得一次備份的地圖資訊：世界名稱、涵蓋的座標範圍、可用的縮放等級、地圖中心。',
+    description: '取得一次備份的地圖資訊：世界名稱、世界主體的座標範圍、遠處的零星區域、可用的縮放等級。',
     inputSchema: {
       type: 'object',
       properties: { snapshot: { type: 'string', description: '備份編號；省略時用最新的備份' } },
@@ -138,13 +138,14 @@ async function callTool(store, name, args) {
   if (name === 'get_map_info') {
     const manifest = await loadManifest(store, args.snapshot);
     const levels = zoomLevels(manifest);
-    const extent = mapExtent(manifest);
     const p = manifest.properties;
+    const [main, ...others] = manifest.areas ?? [];
+    const range = (/** @type {{ minX: number, maxX: number, minZ: number, maxZ: number }} */ a) => `X ${a.minX}～${a.maxX}，Z ${a.minZ}～${a.maxZ}`;
     const text = [
       `備份：${manifest.id}（${localTime(manifest.createdAt)}，台灣時間）${manifest.note ? `，備註：${manifest.note}` : ''}`,
       `世界名稱：${p.worldName ?? '（未知）'}`,
-      extent ? `涵蓋範圍：X ${extent.minX}～${extent.maxX}，Z ${extent.minZ}～${extent.maxZ}` : '涵蓋範圍：（沒有圖磚）',
-      `地圖中心：X ${p.centerX ?? 0}，Z ${p.centerZ ?? 0}`,
+      main ? `世界主體的範圍：${range(main)}` : '世界主體的範圍：（沒有圖磚）',
+      ...(others.length > 0 ? [`另外有 ${others.length} 塊遠處的零星區域（飛過或傳送時留下的）：${others.map((a) => `${range(a)}（${a.tiles} 張圖磚）`).join('；')}`] : []),
       `可用的縮放等級：${levels.map((z) => `${z}（每張圖磚 ${blocksPerTile(z)} 格）`).join('、')}`,
       `圖磚格式：${manifest.ext}`,
     ].join('\n');

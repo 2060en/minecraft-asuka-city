@@ -16,6 +16,7 @@ const els = {
   coords: /** @type {HTMLOutputElement} */ (document.getElementById('coords')),
   message: /** @type {HTMLElement} */ (document.getElementById('message')),
   crosshair: /** @type {HTMLElement} */ (document.getElementById('crosshair')),
+  home: /** @type {HTMLButtonElement} */ (document.getElementById('home')),
   map: /** @type {HTMLElement} */ (document.getElementById('map')),
 };
 
@@ -65,29 +66,15 @@ function zoomLevels(manifest) {
     .sort((a, b) => a - b);
 }
 
-/** 地圖涵蓋的範圍（方塊座標），用最接近 zoom 0 的等級計算 */
-function mapExtent(manifest) {
-  const levels = zoomLevels(manifest);
-  const zoom = levels.reduce((best, z) => (Math.abs(z) < Math.abs(best) ? z : best), levels[0]);
-  const size = TILE_SIZE / 2 ** zoom;
-  let minX = Infinity;
-  let minZ = Infinity;
-  let maxX = -Infinity;
-  let maxZ = -Infinity;
-  for (const key of Object.keys(manifest.tiles[zoom])) {
-    const [x, y] = key.split(',').map(Number);
-    minX = Math.min(minX, x * size);
-    minZ = Math.min(minZ, y * size);
-    maxX = Math.max(maxX, (x + 1) * size);
-    maxZ = Math.max(maxZ, (y + 1) * size);
-  }
-  return { minX, minZ, maxX, maxZ };
-}
-
 /** @param {number} x @param {number} z */
 const toLatLng = (x, z) => L.latLng(-z, x);
 /** @param {L.LatLng} latlng */
 const toBlock = (latlng) => ({ x: Math.floor(latlng.lng), z: Math.floor(-latlng.lat) });
+/** 世界主體的範圍（清單裡的第一塊區域） @param {any} manifest */
+const mainBounds = (manifest) => {
+  const a = manifest.areas[0];
+  return L.latLngBounds(toLatLng(a.minX, a.maxZ), toLatLng(a.maxX, a.minZ));
+};
 
 async function main() {
   const index = await getJson('index.json', true);
@@ -116,17 +103,14 @@ async function main() {
 
   const minNative = levels[0];
   const maxNative = levels[levels.length - 1];
-  const extent = mapExtent(manifest);
-  const bounds = L.latLngBounds(toLatLng(extent.minX, extent.maxZ), toLatLng(extent.maxX, extent.minZ));
 
+  // 不限制拖曳範圍：世界裡有遠到座標 3000 萬的零星區域，迷路時按「全圖」回來
   const map = L.map(els.map, {
     crs: L.CRS.Simple,
     minZoom: minNative,
     maxZoom: maxNative + 3, // 超過原始解析度時直接放大像素
     zoomSnap: 1,
     attributionControl: false,
-    maxBounds: bounds.pad(0.5),
-    maxBoundsViscosity: 0.8,
   });
 
   const MapLayer = L.TileLayer.extend({
@@ -143,16 +127,20 @@ async function main() {
     minZoom: minNative,
     maxZoom: maxNative + 3,
     noWrap: true,
-    bounds,
     keepBuffer: 4,
     errorTileUrl: EMPTY_TILE,
   });
   layer.addTo(map);
 
-  const startZoom = Math.min(maxNative + 3, Math.max(minNative, initial.zoom ?? Number(props.defaultZoom ?? 0)));
-  const startX = initial.x ?? Number(props.centerX ?? (extent.minX + extent.maxX) / 2);
-  const startZ = initial.z ?? Number(props.centerZ ?? (extent.minZ + extent.maxZ) / 2);
-  map.setView(toLatLng(startX, startZ), startZoom);
+  // 第一次打開看全圖；分享連結或書籤帶著位置時，就到那個位置
+  const showAll = () => map.fitBounds(mainBounds(manifest));
+  if (initial.x !== undefined && initial.z !== undefined) {
+    const startZoom = Math.min(maxNative + 3, Math.max(minNative, initial.zoom ?? 0));
+    map.setView(toLatLng(initial.x, initial.z), startZoom);
+  } else {
+    showAll();
+  }
+  els.home.addEventListener('click', showAll);
 
   // 座標顯示：滑鼠在地圖上時顯示游標位置，否則（例如手機）顯示畫面中央十字的位置
   const showCoords = (/** @type {{ x: number, z: number }} */ p) => {

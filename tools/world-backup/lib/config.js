@@ -15,16 +15,43 @@ const configFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/world-backup.j
  */
 export const rcloneConfigFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/rclone.conf'));
 
+/** MCP 用的服務權杖（setup-mcp.bat 寫入） */
+export const mapTokenFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/map-token.json'));
+
 /**
  * @typedef {object} Config
  * @property {string} worldPath
  * @property {string[]} minecraftProcesses
  * @property {{ exe: string, repository: string, passwordFile: string, forget: string[] }} restic
  * @property {{ exe: string, extraArgs: string[] }} unmined
- * @property {{ exe: string, remote: string, extraArgs: string[] }} rclone
- * @property {{ enabled?: boolean, renderDir: string, stateDir: string }} map
+ * @property {{ exe: string, remote: string, r2Endpoint?: string, extraArgs: string[] }} rclone
+ * @property {{ enabled?: boolean, url?: string, renderDir: string, stateDir: string }} map
  * @property {string} reportFile
  */
+
+/**
+ * uNmINeD 渲染網頁地圖的參數。
+ * - 一律 --force：它判斷「有沒有變動」時看不到 LevelDB 的 .log，而基岩版關遊戲時最新的改動就只在 .log，
+ *   不強制的話地圖會停在舊的樣子（2026-11-05 實測）。內容相同的圖磚編碼結果也相同，所以不會多傳。
+ * - 預設的 JPEG 在 0.20.11-dev 一存檔就當掉（InvalidOperation_NoValue），所以沒指定格式時用 WebP（無損）。
+ * - 預設每張圖磚印一行，一次幾千行，所以只顯示警告以上。
+ * @param {Pick<Config, 'worldPath' | 'unmined' | 'map'>} config
+ */
+export function unminedRenderArgs(config) {
+  const { extraArgs } = config.unmined;
+  const unlessGiven = (/** @type {string} */ name, /** @type {string} */ value) => (extraArgs.some((a) => a.startsWith(`--${name}`)) ? [] : [`--${name}=${value}`]);
+  return ['web', 'render', `--world=${config.worldPath}`, `--output=${config.map.renderDir}`, '--force', ...unlessGiven('imageformat', 'webp'), ...unlessGiven('log-level', 'warning'), ...extraArgs];
+}
+
+/**
+ * 從 Cloudflare 顯示的 S3 API 網址取出 R2 端點。網址後面可能帶著 bucket 名稱，一律去掉。
+ * @param {string} text
+ * @returns {string | undefined}
+ */
+export function parseR2Endpoint(text) {
+  const m = /^https:\/\/([0-9a-f]{32})(\.[a-z]+)?\.r2\.cloudflarestorage\.com(\/.*)?$/i.exec(text.trim());
+  return m ? `https://${m[1]}${m[2] ?? ''}.r2.cloudflarestorage.com` : undefined;
+}
 
 /** @returns {Config} */
 export function loadConfig() {

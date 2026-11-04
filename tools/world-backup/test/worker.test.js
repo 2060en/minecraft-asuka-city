@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import worker from '../worker/src/index.js';
 import { verifyAccess, resetKeyCache } from '../worker/src/access.js';
 import { handleRpc } from '../worker/src/mcp.js';
-import { tilesAround, tileBounds, changedAreas, mapExtent } from '../worker/src/mapdata.js';
+import { tilesAround, tileBounds, changedAreas } from '../worker/src/mapdata.js';
 import { solidPng } from './helpers.js';
 
 const TEAM = 'asuka.cloudflareaccess.com';
@@ -101,7 +101,8 @@ const H_B = 'bb000000000000000000';
 
 const manifestOld = {
   version: 1, id: '2026-11-01-2100', createdAt: '2026-11-01T13:00:00.000Z', note: '第一次', restic: 'abc', ext: 'png',
-  properties: { worldName: 'Asuka', centerX: 100, centerZ: -50 },
+  properties: { worldName: 'Asuka' },
+  areas: [{ minX: -256, maxX: 1536, minZ: -256, maxZ: 1536, tiles: 5 }, { minX: -30000000, maxX: -29999744, minZ: 0, maxZ: 256, tiles: 1 }],
   tiles: { 0: { '0,0': H_A, '-1,0': H_A, '0,-1': H_A, '-1,-1': H_A, '5,5': H_A }, '-1': { '0,0': H_A, '-1,-1': H_A } },
 };
 const manifestNew = {
@@ -141,11 +142,10 @@ const store = {
   getBytes: async (/** @type {string} */ k) => (objects.has(k) ? new Uint8Array(/** @type {Buffer} */ (objects.get(k))) : undefined),
 };
 
-test('地圖計算：座標周圍的圖磚、範圍、變動區域', () => {
+test('地圖計算：座標周圍的圖磚、變動區域', () => {
   assert.deepEqual(tilesAround(10, 10, 0).map((t) => [t.x, t.y]), [[-1, -1], [0, -1], [-1, 0], [0, 0]]);
   assert.deepEqual(tilesAround(300, 100, 0).map((t) => [t.x, t.y]), [[0, -1], [1, -1], [0, 0], [1, 0]]);
   assert.deepEqual(tileBounds(-1, 1, 0), { minX: 512, maxX: 1024, minZ: 0, maxZ: 512 });
-  assert.deepEqual(mapExtent(manifestOld), { zoom: 0, minX: -256, minZ: -256, maxX: 1536, maxZ: 1536 });
   const areas = changedAreas(manifestOld, manifestNew, 0);
   assert.deepEqual(areas.map((a) => [a.minX, a.maxX, a.minZ, a.maxZ, a.tiles]), [[0, 512, 0, 256, 2], [5120, 5376, 5120, 5376, 1]]);
 });
@@ -195,7 +195,8 @@ test('MCP 工具：list_snapshots、get_map_info', async () => {
   assert.match(list.content[0].text, /共 2 次備份/);
   assert.match(list.content[0].text, /2026-11-02-0930（2026-11-02 09:30，台灣時間）：蓋了機場/);
   const info = await call('get_map_info', { snapshot: '2026-11-01-2100' });
-  assert.match(info.content[0].text, /涵蓋範圍：X -256～1536，Z -256～1536/);
+  assert.match(info.content[0].text, /世界主體的範圍：X -256～1536，Z -256～1536/);
+  assert.match(info.content[0].text, /另外有 1 塊遠處的零星區域.*X -30000000～-29999744/);
   assert.match(info.content[0].text, /0（每張圖磚 256 格）/);
   const missing = await call('get_map_info', { snapshot: 'nope' });
   assert.equal(missing.isError, true);
