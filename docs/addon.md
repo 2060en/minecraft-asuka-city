@@ -274,7 +274,7 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 | 自製方塊（行為包＋資源包） | `asukatech:door_light_gray`、`door_white`（門）；`trapdoor_light_gray`、`trapdoor_white`（地板門）；`coffee_cup`（外帶咖啡杯） |
 | 對照表 | `addon/mapping.json`：門 → 杉木門、地板門 → 杉木地板門、咖啡杯 → 空氣 |
 
-### v0.7.5（2026-11-04）
+### v0.7.5（2026-11-04，留到下次測試）
 
 兩種單色地板門也放進物品欄的分類（作者要求）：「建築」分頁裡新增一組「地板門」（白色、淺灰色）。
 
