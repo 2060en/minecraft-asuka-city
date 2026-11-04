@@ -164,6 +164,7 @@ Clear Craft 作者近期都沒有在用。它只是作者用來說明可拔除�
 | 項目 | 內容 |
 | --- | --- |
 | 存檔位置 | `%APPDATA%\Minecraft Bedrock\Users\<使用者編號>\games\com.mojang\minecraftWorlds\<世界資料夾>` |
+| 主世界 | `CX198`，資料夾 `PXjOwjIpBg0=`（作者確認，2026-11-04）。同一層還有 `CX198 (1)`，資料夾 `Wo+KcRbU1EQ=` |
 | 世界大小 | 接近 2 GB，原因待查（見第 8 節） |
 | 備份方式 | 目前為手動複製，沒有固定規律 |
 | 備份頻率 | 不固定 |
