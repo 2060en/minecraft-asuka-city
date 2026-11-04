@@ -12,8 +12,8 @@ count, which the resource pack shows as a steel cup (addon/drafts/cup/);
 decided by the author 2026-11-03.
 
 Each glass is 3 x 4 x 3 pixels (about 14 x 19 cm; the world's small props
-are drawn about twice real size, like the coffee cup), the water 2 x 3 x 2
-inside it.
+are drawn about twice real size, like the coffee cup): a base and four thin
+walls, open at the top, with water inside to just over half.
 """
 import json
 from pathlib import Path
@@ -52,15 +52,23 @@ def sw(name, w=4, h=4):
 
 
 def glass(cx, cz):
-    """One glass centred on (cx, cz): the glass walls, a rim, the water, a thick base."""
-    walls = {f: sw("glass") for f in ("north", "south", "east", "west")}
-    walls["down"] = sw("base")          # no top face: the glass is open, the water shows
+    """One glass centred on (cx, cz): four thin walls (so it is open at the
+    top, with a bright rim round the opening; one box with its top face left
+    out still looked sealed, author 2026-11-04), a thick base, the water
+    filling it to just over half."""
+    T = 0.4                                    # wall thickness
+    def wall(ox, oz, w, d):
+        faces = {f: sw("glass") for f in ("north", "south", "east", "west")}
+        faces["up"] = sw("edge")               # the rim
+        return {"origin": [cx + ox, 0.5, cz + oz], "size": [w, 3.5, d], "uv": faces}
     water = {f: sw("water") for f in ("north", "south", "east", "west", "down")}
     water["up"] = sw("water_top")
     return [
-        {"origin": [cx - 1.5, 0, cz - 1.5], "size": [3, 4, 3], "uv": walls},
-        {"origin": [cx - 1, 0.5, cz - 1], "size": [2, 2.8, 2], "uv": water},
-        {"origin": [cx - 1.5, 0, cz - 1.5], "size": [3, 0.5, 3], "uv": {f: sw("base") for f in walls}},
+        {"origin": [cx - 1.5, 0, cz - 1.5], "size": [3, 0.5, 3], "uv": {f: sw("base") for f in
+                                                                         ("north", "south", "east", "west", "up", "down")}},
+        wall(-1.5, -1.5, 3, T), wall(-1.5, 1.5 - T, 3, T),            # north and south walls
+        wall(-1.5, -1.5 + T, T, 3 - 2 * T), wall(1.5 - T, -1.5 + T, T, 3 - 2 * T),   # west and east
+        {"origin": [cx - 1.5 + T, 0.5, cz - 1.5 + T], "size": [3 - 2 * T, 2.2, 3 - 2 * T], "uv": water},
     ]
 
 
