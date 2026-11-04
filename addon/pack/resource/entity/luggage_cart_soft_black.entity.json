@@ -14,7 +14,15 @@
       },
       "render_controllers": [
         "controller.render.default"
-      ]
+      ],
+      "animations": {
+        "move": "animation.asukatech.luggage_cart.move"
+      },
+      "scripts": {
+        "animate": [
+          "move"
+        ]
+      }
     }
   }
 }

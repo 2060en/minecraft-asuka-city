@@ -1,0 +1,22 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.asukatech.luggage_cart.move": {
+      "loop": true,
+      "bones": {
+        "case": {
+          "position": [
+            "variable.rail_offset.x / query.model_scale",
+            "variable.rail_offset.y / query.model_scale",
+            "variable.rail_offset.z / query.model_scale"
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            "-variable.rail_rotation.z"
+          ]
+        }
+      }
+    }
+  }
+}

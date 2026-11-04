@@ -382,30 +382,57 @@ def suitcase_entity(name):
 
 
 def luggage_cart_entity(name):
-    """The vanilla minecart's movement (bedrock-samples, minecart.json), no seat."""
-    return {"format_version": "1.21.90", "minecraft:entity": {
+    """The vanilla minecart's components as they are (bedrock-samples,
+    behavior_pack/entities/minecart.json, format 1.26.30), without the seat.
+    v0.6.0 used a smaller box and the older pushable component, and the cart
+    kept bouncing on the rails (author's test, 2026-11-04)."""
+    return {"format_version": "1.26.30", "minecraft:entity": {
         "description": {"identifier": f"{NS}:luggage_cart_{name}", "is_spawnable": False, "is_summonable": True},
         "components": {
             "minecraft:type_family": {"family": [f"{NS}_luggage_cart", "minecart", "inanimate"]},
-            "minecraft:collision_box": {"width": 0.7, "height": 0.45},
-            "minecraft:physics": {},
-            "minecraft:rail_movement": {},
+            "minecraft:collision_box": {"width": 0.98, "height": 0.7},
+            "minecraft:conditional_bandwidth_optimization": {
+                "conditional_values": [{"conditional_values": [{"test": "is_moving", "subject": "self"}],
+                                        "max_dropped_ticks": 0, "max_optimized_distance": 0.0}],
+                "default_values": {"max_dropped_ticks": 20, "max_optimized_distance": 60.0,
+                                   "use_motion_prediction_hints": True}},
             "minecraft:is_stackable": {},
-            "minecraft:pushable": {"is_pushable": True, "is_pushable_by_piston": True},
+            "minecraft:physics": {},
+            "minecraft:pushable_by_entity": {"presets": [{"push_mode": "legacy_minecart", "strength_multiplier": 0.1,
+                                                          "min_distance": 0.01, "push_scale_self": 0.5,
+                                                          "push_scale_other": 0.25}]},
+            "minecraft:pushable_by_block": {},
+            "minecraft:rail_movement": {},
+            "minecraft:rail_sensor": {"eject_on_activate": False},
             "minecraft:damage_sensor": {"triggers": [{"cause": "all", "deals_damage": "no"}]},
             "minecraft:nameable": {"allow_name_tag_renaming": False},
-            "minecraft:conditional_bandwidth_optimization": {},
         }}}
 
 
-def suitcase_client(ident, geometry, name):
-    return {"format_version": "1.10.0", "minecraft:client_entity": {"description": {
+def suitcase_client(ident, geometry, name, cart=False):
+    desc = {
         "identifier": f"{NS}:{ident}",
         "materials": {"default": "entity_alphatest"},
         "textures": {"default": f"textures/entity/{NS}/suitcase_{name}"},
         "geometry": {"default": f"geometry.{NS}.{geometry}"},
         "render_controllers": ["controller.render.default"],
-    }}}
+    }
+    if cart:
+        # Like the vanilla minecart (minecart.animation.json): the game works out
+        # where the cart sits on the rail and its tilt on slopes, and the model
+        # follows. Without it a cart on rails jumps up and down.
+        desc["animations"] = {"move": f"animation.{NS}.luggage_cart.move"}
+        desc["scripts"] = {"animate": ["move"]}
+    return {"format_version": "1.10.0", "minecraft:client_entity": {"description": desc}}
+
+
+CART_ANIMATION = {"format_version": "1.8.0", "animations": {f"animation.{NS}.luggage_cart.move": {
+    "loop": True,
+    "bones": {"case": {
+        "position": ["variable.rail_offset.x / query.model_scale", "variable.rail_offset.y / query.model_scale",
+                     "variable.rail_offset.z / query.model_scale"],
+        "rotation": [0.0, 0.0, "-variable.rail_rotation.z"],
+    }}}}}
 
 
 def suitcase_item(name):
@@ -465,7 +492,8 @@ def generate():
         write_json(rp / "entity" / f"suitcase_{name}.entity.json",
                    suitcase_client(f"suitcase_{name}", f"suitcase_{name}", name))
         write_json(rp / "entity" / f"luggage_cart_{name}.entity.json",
-                   suitcase_client(f"luggage_cart_{name}", f"luggage_cart_{name}", name))
+                   suitcase_client(f"luggage_cart_{name}", f"luggage_cart_{name}", name, cart=True))
+    write_json(rp / "animations" / "luggage_cart.animation.json", CART_ANIMATION)
     icons = {f"{NS}_{n}": f"textures/items/{NS}/{n}" for n in TABLEWARE}
     icons.update({f"{NS}_suitcase_{n}": f"textures/items/{NS}/suitcase_{n}" for n in SUITCASES})
     write_json(rp / "textures" / "item_texture.json", {

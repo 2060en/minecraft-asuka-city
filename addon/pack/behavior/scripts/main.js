@@ -210,19 +210,37 @@ function useUp(player) {
 
 // Put an entity where the player clicked on the top of a block (shared by
 // the tableware and the standing suitcases).
+//
+// Which point faceLocation stands for is not certain: v0.6.0 read it as an
+// offset from the block's bottom north-west corner, and the entities came out
+// inside the block (author's test, 2026-11-04). So try the readings it could
+// be (from the corner, from the block's centre, a world position) and keep
+// the one that lies on the player's line of sight, which the clicked point
+// must.
+function hitPoint(player, block, f) {
+  const b = block.location;
+  const eye = player.getHeadLocation();
+  const dir = player.getViewDirection();
+  const candidates = [
+    { x: b.x + f.x, y: b.y + f.y, z: b.z + f.z },                   // from the bottom north-west corner
+    { x: b.x + 0.5 + f.x, y: b.y + 0.5 + f.y, z: b.z + 0.5 + f.z }, // from the centre
+    { x: f.x, y: f.y, z: f.z },                                     // a world position
+  ];
+  const offRay = (p) => {
+    const v = { x: p.x - eye.x, y: p.y - eye.y, z: p.z - eye.z };
+    const t = v.x * dir.x + v.y * dir.y + v.z * dir.z;
+    if (t < 0) return Infinity;
+    return Math.hypot(v.x - t * dir.x, v.y - t * dir.y, v.z - t * dir.z);
+  };
+  return candidates.reduce((best, p) => (offRay(p) < offRay(best) ? p : best));
+}
+
 function placeOnTop(e, id) {
   const player = e.source;
   if (!player || String(e.blockFace).toLowerCase() !== "up") return; // only on top of something
+  const p = hitPoint(player, e.block, e.faceLocation);
   const b = e.block.location;
-  // faceLocation is relative to the block in the stable API; accept a world
-  // position too, in case that changes.
-  let { x, y, z } = e.faceLocation;
-  if (Math.abs(x) > 2 || Math.abs(z) > 2) {
-    x -= b.x;
-    y -= b.y;
-    z -= b.z;
-  }
-  const at = { x: b.x + snap(x, PIXEL), y: b.y + y, z: b.z + snap(z, PIXEL) };
+  const at = { x: b.x + snap(p.x - b.x, PIXEL), y: p.y, z: b.z + snap(p.z - b.z, PIXEL) };
   const yaw = snap(player.getRotation().y, 45);
   system.run(() => {
     const entity = player.dimension.spawnEntity(id, at);
