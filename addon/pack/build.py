@@ -24,7 +24,9 @@ as new when its version is higher (it does not remove the old version:
 that is deleted by hand in the game's settings, author's test 2026-11-04),
 so the build bumps the version itself. It hashes what
 it assembled (everything but the manifests; images by their pixels, so a
-different Pillow does not count as a change) and compares the hash with
+different Pillow does not count as a change; text with its line ends evened
+out, because git and Python on Windows write CRLF, first local build,
+2026-11-04) and compares the hash with
 addon/pack/release.json. If the content changed, the patch number goes up by
 one in both manifests and in release.json; commit them with the change. If
 nothing changed, the version stays, so building the same commit again (on
@@ -663,7 +665,7 @@ def content_hash(folders):
                     h.update(f"{img.mode} {img.size}\n".encode())
                     h.update(img.tobytes())
             else:
-                h.update(f.read_bytes())
+                h.update(f.read_bytes().replace(b"\r\n", b"\n"))
     return h.hexdigest()
 
 
