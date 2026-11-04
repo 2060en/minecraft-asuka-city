@@ -115,7 +115,8 @@ def test_mapping():
     assert "asukatech:door_white" in blocks and "asukatech:glass_cup" in blocks
     assert not any(k.startswith("_") for k in blocks)
     assert "asukatech:ipad" in entities and "asukatech:luggage_cart_pink" in entities
-    assert len(blocks) == 7 and len(entities) == 18    # docs/addon-contents.md：7 種方塊、18 種實體
+    assert "asukatech:belt" in entities                # v0.4.0 移除的舊實體，主世界還留著紀錄
+    assert len(blocks) == 7 and len(entities) == 19    # docs/addon-contents.md 的 7 種方塊、18 種實體，加上 belt
 
 
 if __name__ == "__main__":

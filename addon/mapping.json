@@ -67,6 +67,7 @@
   },
   "_實體": {
     "_說明": "自製實體在原味版裡直接刪掉（作者接受，2026-11-03）",
+    "_舊資料": "asukatech:belt 是 v0.4.0 移除的履帶外觀實體，遊戲看不到也沒有自己清掉，主世界還留著 6 筆紀錄，交給轉換程式刪（作者決定，2026-11-04）",
     "delete": [
       "asukatech:plate",
       "asukatech:bowl",
@@ -85,7 +86,8 @@
       "asukatech:luggage_cart_soft_black",
       "asukatech:suitcase_pink",
       "asukatech:luggage_cart_pink",
-      "asukatech:ipad"
+      "asukatech:ipad",
+      "asukatech:belt"
     ]
   },
   "asukatech:glass_cup": {
