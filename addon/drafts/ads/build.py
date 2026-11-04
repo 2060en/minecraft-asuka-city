@@ -47,7 +47,7 @@ from PIL import Image, ImageDraw, ImageFont
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 IMAGES = HERE / "images"
-FONT = "/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc"
+FONT = next(f for f in ("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc", "C:/Windows/Fonts/msjh.ttc") if Path(f).exists())
 
 # ---------- painting slots (docs/ads.md) ----------
 # code: (w, h, file, (x, y) in the 16x kz.png or None for a file of its own)
