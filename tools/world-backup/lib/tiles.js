@@ -3,6 +3,7 @@
 // uNmINeD 輸出的圖磚路徑：tiles/zoom.{z}/{x/10 取整}/{y/10 取整}/tile.{x}.{y}.{副檔名}
 // 每張圖磚 256 × 256 像素；zoom 0 是 1 格 1 像素，zoom -1 是 2 格 1 像素，zoom 1 是 1 格 2 像素。
 // x 是東西方向（遊戲的 X 座標），y 是南北方向（遊戲的 Z 座標）。
+// tiles 底下還有 uNmINeD 自己用的 zoom.-1/metadata/k.*.csv，不是圖磚，不上傳。
 
 /**
  * @typedef {object} TileRef
@@ -59,8 +60,6 @@ const VIEWER_PROPERTIES = [
   'maxRegionZ',
   'worldName',
   'background',
-  'centerX',
-  'centerZ',
 ];
 
 /**
@@ -82,6 +81,75 @@ export function tileObjectKey(hash, ext) {
   return `tiles/${hash.slice(0, 2)}/${hash}.${ext}`;
 }
 
+/** 相距不到這麼多格的地方算同一塊區域 */
+const AREA_GRID = 4096;
+
+/**
+ * @typedef {object} MapArea
+ * @property {number} minX
+ * @property {number} maxX
+ * @property {number} minZ
+ * @property {number} maxZ
+ * @property {number} tiles 這塊區域的圖磚數
+ */
+
+/**
+ * 把地圖分成幾塊互相分開的區域，圖磚最多的排在最前面（世界的主體）。
+ * 飛到或傳送到遠處留下的零星區塊（作者的世界最遠到座標 3000 萬）會自成一塊，不會把主體的範圍撐大。
+ * 以最接近 zoom 0 的等級計算。
+ * @param {{ tile: TileRef }[]} tiles
+ * @returns {MapArea[]}
+ */
+export function mapAreas(tiles) {
+  if (tiles.length === 0) return [];
+  const zoom = tiles.reduce((best, { tile }) => (Math.abs(tile.zoom) < Math.abs(best) ? tile.zoom : best), tiles[0].tile.zoom);
+  const size = 256 / 2 ** zoom;
+  /** @type {Map<string, MapArea>} */
+  const cells = new Map();
+  for (const { tile } of tiles) {
+    if (tile.zoom !== zoom) continue;
+    const key = `${Math.floor((tile.x * size) / AREA_GRID)},${Math.floor((tile.y * size) / AREA_GRID)}`;
+    const cell = cells.get(key) ?? { minX: Infinity, maxX: -Infinity, minZ: Infinity, maxZ: -Infinity, tiles: 0 };
+    cell.minX = Math.min(cell.minX, tile.x * size);
+    cell.maxX = Math.max(cell.maxX, (tile.x + 1) * size);
+    cell.minZ = Math.min(cell.minZ, tile.y * size);
+    cell.maxZ = Math.max(cell.maxZ, (tile.y + 1) * size);
+    cell.tiles++;
+    cells.set(key, cell);
+  }
+  /** @type {Set<string>} */
+  const seen = new Set();
+  /** @type {MapArea[]} */
+  const areas = [];
+  for (const start of cells.keys()) {
+    if (seen.has(start)) continue;
+    seen.add(start);
+    const stack = [start];
+    const area = { minX: Infinity, maxX: -Infinity, minZ: Infinity, maxZ: -Infinity, tiles: 0 };
+    while (stack.length > 0) {
+      const key = /** @type {string} */ (stack.pop());
+      const cell = /** @type {MapArea} */ (cells.get(key));
+      area.minX = Math.min(area.minX, cell.minX);
+      area.maxX = Math.max(area.maxX, cell.maxX);
+      area.minZ = Math.min(area.minZ, cell.minZ);
+      area.maxZ = Math.max(area.maxZ, cell.maxZ);
+      area.tiles += cell.tiles;
+      const [cx, cz] = key.split(',').map(Number);
+      for (let dx = -1; dx <= 1; dx++) {
+        for (let dz = -1; dz <= 1; dz++) {
+          const next = `${cx + dx},${cz + dz}`;
+          if (cells.has(next) && !seen.has(next)) {
+            seen.add(next);
+            stack.push(next);
+          }
+        }
+      }
+    }
+    areas.push(area);
+  }
+  return areas.sort((a, b) => b.tiles - a.tiles);
+}
+
 /**
  * @typedef {object} Manifest
  * @property {number} version
@@ -91,6 +159,7 @@ export function tileObjectKey(hash, ext) {
  * @property {string} restic restic 快照編號（沒有就是空字串）
  * @property {string} ext 圖磚副檔名
  * @property {Record<string, string | number | boolean>} properties
+ * @property {MapArea[]} areas 地圖上互相分開的區域，第一塊是世界的主體
  * @property {Record<string, Record<string, string>>} tiles zoom → "x,y" → 雜湊值
  */
 
@@ -116,7 +185,7 @@ export function buildManifest({ id, createdAt, note, restic, properties, tiles }
   }
   if (exts.size > 1) throw new Error(`圖磚有好幾種格式：${[...exts].join('、')}，請清空渲染資料夾後重新渲染`);
   const ext = [...exts][0] ?? String(properties.imageFormat ?? 'png');
-  return { version: 1, id, createdAt, note, restic, ext, properties: pickViewerProperties(properties), tiles: byZoom };
+  return { version: 1, id, createdAt, note, restic, ext, properties: pickViewerProperties(properties), areas: mapAreas(tiles), tiles: byZoom };
 }
 
 /**

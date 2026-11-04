@@ -4,8 +4,9 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, readFileSync, readdirSync, existsSync, cpSync, writeFileSync, utimesSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
-import { parseTilePath, parseMapProperties, buildManifest, snapshotId, tileObjectKey } from '../lib/tiles.js';
+import { parseTilePath, parseMapProperties, buildManifest, mapAreas, snapshotId, tileObjectKey } from '../lib/tiles.js';
 import { publishMap } from '../lib/publish.js';
+import { parseR2Endpoint, unminedRenderArgs } from '../lib/config.js';
 import { reportRow, formatBytes } from '../lib/report.js';
 import { expandEnv, findExe } from '../lib/run.js';
 import { solidPng, writeTile, writeProperties } from './helpers.js';
@@ -46,6 +47,49 @@ test('組出地圖清單：依縮放等級分組，只保留檢視網頁用得�
     { tile: { zoom: 0, x: 0, y: 0, ext: 'png' }, hash: 'a' },
     { tile: { zoom: 0, x: 1, y: 0, ext: 'jpeg' }, hash: 'b' },
   ] }), /好幾種格式/);
+});
+
+test('uNmINeD 真實輸出的路徑：負座標的資料夾、自己的中繼資料不算圖磚', () => {
+  // 路徑取自 2026-11-05 實際渲染作者世界的結果
+  assert.deepEqual(parseTilePath('tiles/zoom.0/-1/-1/tile.-1.-10.png'), { zoom: 0, x: -1, y: -10, ext: 'png' });
+  assert.deepEqual(parseTilePath('tiles/zoom.0/-11719/11718/tile.-117187.117186.webp'), { zoom: 0, x: -117187, y: 117186, ext: 'webp' });
+  assert.equal(parseTilePath('tiles/zoom.-1/metadata/k.-1.-1.csv'), undefined);
+});
+
+test('地圖分區：遠處的零星區塊自成一塊，不會把主體的範圍撐大', () => {
+  /** @param {number} x @param {number} y @param {number} [zoom] */
+  const at = (x, y, zoom = 0) => ({ tile: { zoom, x, y, ext: 'webp' } });
+  const tiles = [
+    at(0, 0), at(1, 0), at(0, 1),
+    at(20, 0), // 相距約 5000 格，隔一格（4096 格）以內併在一起
+    at(-117187, 117186), at(-117186, 117186), // 世界邊界
+    at(-1, -1, -1), // zoom -1 不重複計算
+  ];
+  assert.deepEqual(mapAreas(tiles), [
+    { minX: 0, maxX: 5376, minZ: 0, maxZ: 512, tiles: 4 },
+    { minX: -29999872, maxX: -29999360, minZ: 29999616, maxZ: 29999872, tiles: 2 },
+  ]);
+  assert.deepEqual(mapAreas([]), []);
+  // 沒有 zoom 0 時用最接近的等級
+  assert.deepEqual(mapAreas([at(1, 1, -2)]), [{ minX: 1024, maxX: 2048, minZ: 1024, maxZ: 2048, tiles: 1 }]);
+});
+
+test('uNmINeD 的參數：一律全部重畫、預設用 WebP、不印每張圖磚，設定檔可以改', () => {
+  const base = { worldPath: 'C:/world/PXjOwjIpBg0=', map: { renderDir: 'C:/render', stateDir: 'C:/state' } };
+  assert.deepEqual(unminedRenderArgs({ ...base, unmined: { exe: 'u', extraArgs: [] } }), [
+    'web', 'render', '--world=C:/world/PXjOwjIpBg0=', '--output=C:/render', '--force', '--imageformat=webp', '--log-level=warning',
+  ]);
+  assert.deepEqual(unminedRenderArgs({ ...base, unmined: { exe: 'u', extraArgs: ['--imageformat=png', '--shadows=false'] } }).slice(5), [
+    '--log-level=warning', '--imageformat=png', '--shadows=false',
+  ]);
+});
+
+test('從 Cloudflare 顯示的網址取出 R2 端點', () => {
+  const id = 'b54f07a6c269ecca2fa60f1ae4920c99';
+  assert.equal(parseR2Endpoint(` https://${id}.r2.cloudflarestorage.com/asuka-map \n`), `https://${id}.r2.cloudflarestorage.com`);
+  assert.equal(parseR2Endpoint(`https://${id}.eu.r2.cloudflarestorage.com`), `https://${id}.eu.r2.cloudflarestorage.com`);
+  assert.equal(parseR2Endpoint('https://example.com'), undefined);
+  assert.equal(parseR2Endpoint(id), undefined);
 });
 
 test('備份編號依時間產生，重複時加上序號', () => {

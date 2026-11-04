@@ -69,6 +69,17 @@ body {
   white-space: nowrap;
 }
 
+.home {
+  font: inherit;
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #3a4a5e;
+  background: #111821;
+  color: var(--text);
+  cursor: pointer;
+}
+
 #map {
   flex: 1;
   min-height: 0;

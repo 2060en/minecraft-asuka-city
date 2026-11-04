@@ -9,6 +9,7 @@ export const TILE_SIZE = 256;
  * @property {string} note
  * @property {string} ext
  * @property {Record<string, string | number | boolean>} properties
+ * @property {{ minX: number, maxX: number, minZ: number, maxZ: number, tiles: number }[]} areas 互相分開的區域，第一塊是世界的主體
  * @property {Record<string, Record<string, string>>} tiles zoom → "x,y" → 雜湊值
  */
 
@@ -59,29 +60,6 @@ export function tilesAround(blockX, blockZ, zoom) {
     { x: x0, y: y0 + 1, position: '左下（西南）' },
     { x: x0 + 1, y: y0 + 1, position: '右下（東南）' },
   ];
-}
-
-/**
- * 地圖涵蓋的範圍（方塊座標）。以 zoom 0 有圖磚的範圍為準；沒有 zoom 0 時用最接近的等級。
- * @param {Manifest} manifest
- */
-export function mapExtent(manifest) {
-  const levels = zoomLevels(manifest);
-  if (levels.length === 0) return undefined;
-  const zoom = levels.reduce((best, z) => (Math.abs(z) < Math.abs(best) ? z : best), levels[0]);
-  let minX = Infinity;
-  let minZ = Infinity;
-  let maxX = -Infinity;
-  let maxZ = -Infinity;
-  for (const key of Object.keys(manifest.tiles[zoom])) {
-    const [x, y] = key.split(',').map(Number);
-    const b = tileBounds(zoom, x, y);
-    minX = Math.min(minX, b.minX);
-    minZ = Math.min(minZ, b.minZ);
-    maxX = Math.max(maxX, b.maxX);
-    maxZ = Math.max(maxZ, b.maxZ);
-  }
-  return { zoom, minX, minZ, maxX, maxZ };
 }
 
 /**

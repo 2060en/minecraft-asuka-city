@@ -3,7 +3,7 @@
 // 流程：
 //   1. 確認 Minecraft 已經關閉
 //   2. 用 restic 建立快照（備份到 Google Drive）
-//   3. 用 uNmINeD 渲染網頁地圖（只重畫有變動的區域）；設定檔的 map.enabled 不是 true 就跳過 3、4
+//   3. 用 uNmINeD 渲染整張網頁地圖；設定檔的 map.enabled 不是 true 就跳過 3、4
 //   4. 把有變動的圖磚上傳到 Cloudflare R2
 //   5. 在 docs/backup-log.md 加一行紀錄
 //
@@ -15,7 +15,7 @@
 
 import { existsSync, appendFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { loadConfig, rcloneConfigFile, resticEnv } from './lib/config.js';
+import { loadConfig, rcloneConfigFile, resticEnv, unminedRenderArgs } from './lib/config.js';
 import { ask, runVisible, runLines, isRunning } from './lib/run.js';
 import { publishMap } from './lib/publish.js';
 import { formatBytes, reportRow, REPORT_HEADER } from './lib/report.js';
@@ -86,7 +86,7 @@ async function uploadWithRclone(config, staging) {
   const { exe, remote, extraArgs } = config.rclone;
   const common = ['--config', rcloneConfigFile, '--transfers', '16', '--checkers', '16', '--s3-no-check-bucket', ...extraArgs];
   if (existsSync(join(staging, 'tiles'))) {
-    await runVisible(exe, ['copy', join(staging, 'tiles'), `${remote}/tiles`, '--ignore-existing', '--header-upload', 'Cache-Control: private, max-age=31536000, immutable', '--stats-one-line', '--stats', '10s', ...common]);
+    await runVisible(exe, ['copy', join(staging, 'tiles'), `${remote}/tiles`, '--ignore-existing', '--header-upload', 'Cache-Control: private, max-age=31536000, immutable', '--stats-one-line', '--stats', '10s', '--stats-log-level', 'NOTICE', ...common]);
   }
   await runVisible(exe, ['copy', join(staging, 'snapshots'), `${remote}/snapshots`, '--header-upload', 'Cache-Control: private, max-age=31536000, immutable', ...common]);
   await runVisible(exe, ['copyto', join(staging, 'index.json'), `${remote}/index.json`, '--header-upload', 'Cache-Control: no-cache', ...common]);
@@ -124,32 +124,48 @@ async function main() {
 
   /** @type {import('./lib/publish.js').SnapshotSummary | undefined} */
   let map;
+  /** @type {unknown} */
+  let mapError;
   if (!args.skipMap) {
-    if (!args.publishOnly) {
-      console.log('\n[2/3] uNmINeD 渲染地圖');
-      mkdirSync(config.map.renderDir, { recursive: true });
-      await runVisible(config.unmined.exe, ['web', 'render', `--world=${config.worldPath}`, `--output=${config.map.renderDir}`, ...config.unmined.extraArgs]);
+    try {
+      if (!args.publishOnly) {
+        console.log('\n[2/3] uNmINeD 渲染地圖（約 1～3 分鐘，這段不會顯示進度）');
+        mkdirSync(config.map.renderDir, { recursive: true });
+        await runVisible(config.unmined.exe, unminedRenderArgs(config));
+      }
+      console.log('\n[3/3] 上傳地圖（只傳有變動的圖磚）');
+      map = await publishMap({
+        renderDir: config.map.renderDir,
+        stateDir: config.map.stateDir,
+        note,
+        restic: backup.snapshot,
+        now: startedAt,
+        upload: async (staging, newTiles) => {
+          console.log(`  要上傳 ${newTiles} 張新圖磚`);
+          await uploadWithRclone(config, staging);
+        },
+      });
+      console.log(`  完成：地圖 ${map.id}，共 ${map.tiles} 張圖磚，新上傳 ${map.newTiles} 張`);
+      if (config.map.url) console.log(`  地圖網址：${config.map.url}`);
+    } catch (error) {
+      // restic 備份已經成功的話，地圖失敗不該讓這次備份看起來像沒做
+      mapError = error;
     }
-    console.log('\n[3/3] 上傳地圖');
-    map = await publishMap({
-      renderDir: config.map.renderDir,
-      stateDir: config.map.stateDir,
-      note,
-      restic: backup.snapshot,
-      now: startedAt,
-      upload: async (staging, newTiles) => {
-        console.log(`  要上傳 ${newTiles} 張新圖磚`);
-        await uploadWithRclone(config, staging);
-      },
-    });
-    console.log(`  完成：地圖 ${map.id}，共 ${map.tiles} 張圖磚，新上傳 ${map.newTiles} 張`);
   }
 
-  if (!existsSync(config.reportFile)) {
-    mkdirSync(dirname(config.reportFile), { recursive: true });
-    writeFileSync(config.reportFile, REPORT_HEADER);
+  if (!args.skipBackup || map) {
+    if (!existsSync(config.reportFile)) {
+      mkdirSync(dirname(config.reportFile), { recursive: true });
+      writeFileSync(config.reportFile, REPORT_HEADER);
+    }
+    appendFileSync(config.reportFile, reportRow({ date: startedAt, note, backup: args.skipBackup ? undefined : backup, map }));
   }
-  appendFileSync(config.reportFile, reportRow({ date: startedAt, note, backup: args.skipBackup ? undefined : backup, map }));
+  if (mapError) {
+    console.error(`\n地圖失敗：${mapError instanceof Error ? mapError.message : mapError}`);
+    if (!args.skipBackup) console.error(`世界已經備份好了（快照 ${backup.snapshot}），只有雲端地圖這次沒更新，下次備份會一起補上。`);
+    console.error('世界資料夾沒有被更動。把這個畫面截圖給 Claude 看就好。');
+    process.exit(1);
+  }
   console.log(`\n完成。紀錄寫在 ${config.reportFile}，下次請 Claude 一起提交。`);
 }
 
