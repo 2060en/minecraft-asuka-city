@@ -1,0 +1,21 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:item": {
+    "description": {
+      "identifier": "asukatech:door_light_gray",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:icon": "asukatech_door_light_gray_item",
+      "minecraft:display_name": {
+        "value": "tile.asukatech:door_light_gray.name"
+      },
+      "minecraft:block_placer": {
+        "block": "asukatech:door_light_gray",
+        "replace_block_item": true
+      }
+    }
+  }
+}

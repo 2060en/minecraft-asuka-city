@@ -23,6 +23,18 @@
     "asukatech_chopsticks": {
       "textures": "textures/items/asukatech/chopsticks"
     },
+    "asukatech_ipad": {
+      "textures": "textures/items/asukatech/ipad"
+    },
+    "asukatech_screen_item": {
+      "textures": "textures/items/asukatech/screen"
+    },
+    "asukatech_door_light_gray_item": {
+      "textures": "textures/items/asukatech/door_light_gray"
+    },
+    "asukatech_door_white_item": {
+      "textures": "textures/items/asukatech/door_white"
+    },
     "asukatech_suitcase_cabin_navy": {
       "textures": "textures/items/asukatech/suitcase_cabin_navy"
     },

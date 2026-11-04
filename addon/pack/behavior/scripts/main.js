@@ -160,8 +160,10 @@ const TRAPDOOR = {
   },
 };
 
-// ---------- takeaway coffee cup ----------
-// Like sea pickles: use a cup on a cup block to add one, up to four.
+// ---------- takeaway coffee cup, glass of water ----------
+// Like sea pickles: use a cup on a cup block to add one, up to four. Both
+// cup blocks use this component: it adds a cup when the item in hand is the
+// block's own item.
 const COFFEE_CUP = {
   onPlayerInteract(e) {
     const player = e.player;
@@ -190,7 +192,7 @@ const COFFEE_CUP = {
 // slab, a head or snow at the right height; the spot is rounded to whole
 // pixels (1/16 of a block) and the turn to steps of 45 degrees, so a table
 // setting lines up. Several can share one block. Hitting one picks it up.
-const TABLEWARE = ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks"].map(S);
+const TABLEWARE = ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks", "ipad"].map(S); // and the iPad (v0.7.0)
 const PIXEL = 1 / 16;
 const snap = (v, step) => Math.round(v / step) * step;
 const isCreative = (player) => String(player.getGameMode()).toLowerCase() === "creative";
@@ -211,8 +213,8 @@ function useUp(player) {
 // Put an entity where the player clicked on the top of a block (shared by
 // the tableware and the standing suitcases).
 //
-// faceLocation is the clicked point measured from the block's bottom
-// north-west corner, but only its fraction is kept: the top of a slab comes
+// faceLocation gives the clicked point within the block, but only its
+// fraction is kept: the top of a slab comes
 // back as 0.5, the top of a full block as 0 instead of 1, so on full blocks
 // the entities sank into the block (author's tests, v0.6.0 and v0.6.1,
 // 2026-11-04). On a top face 0 can only mean the full height.
@@ -227,6 +229,11 @@ function placeOnTop(e, id) {
     z -= b.z;
   }
   if (y < 0.001) y = 1;
+  // and across the top it runs the other way on both axes: clicking the
+  // block's bottom-left corner put the case at the top-right (author's test,
+  // v0.7.0, 2026-11-04)
+  x = 1 - x;
+  z = 1 - z;
   const at = { x: b.x + snap(x, PIXEL), y: b.y + y, z: b.z + snap(z, PIXEL) };
   const yaw = snap(player.getRotation().y, 45);
   system.run(() => {

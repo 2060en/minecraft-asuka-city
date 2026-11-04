@@ -1,0 +1,353 @@
+{
+ "columns": 13,
+ "panelWidth": 256,
+ "panelHeight": 256,
+ "background": "#808080",
+ "panels": [
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 25,
+    "size": 22,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_cabin_navy",
+     "texture": "/addon/drafts/suitcases/cabin_navy.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 25,
+    "size": 22,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_large_red",
+     "texture": "/addon/drafts/suitcases/large_red.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 25,
+    "size": 22,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_aluminium",
+     "texture": "/addon/drafts/suitcases/aluminium.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 25,
+    "size": 22,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_soft_black",
+     "texture": "/addon/drafts/suitcases/soft_black.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 35,
+    "elevation": 25,
+    "size": 22,
+    "target": [
+     0,
+     9,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/suitcases/suitcases.geo.json",
+     "identifier": "geometry.asukatech.suitcase_pink",
+     "texture": "/addon/drafts/suitcases/pink.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 30,
+    "size": 9,
+    "target": [
+     0,
+     3,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/cup/cup_preview.geo.json",
+     "identifier": "geometry.cups_1",
+     "texture": "/addon/drafts/cup/sea_pickle.png",
+     "position": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 13,
+    "target": [
+     0,
+     1.5,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.plate",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 10,
+    "target": [
+     0,
+     1.5,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.bowl",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 9,
+    "target": [
+     0,
+     1.5,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.cup",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 9,
+    "target": [
+     0,
+     1.5,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.knife",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 45
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 9,
+    "target": [
+     0,
+     1.5,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.fork",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 45
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 9,
+    "target": [
+     0,
+     1.5,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.spoon",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 45
+    }
+   ]
+  },
+  {
+   "label": "",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 40,
+    "size": 11,
+    "target": [
+     0,
+     1.5,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/tableware/tableware.geo.json",
+     "identifier": "geometry.asukatech.chopsticks",
+     "texture": "/addon/drafts/tableware/tableware.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 45
+    }
+   ]
+  }
+ ]
+}

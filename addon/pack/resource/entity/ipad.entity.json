@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:ipad",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/ipad"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.ipad"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

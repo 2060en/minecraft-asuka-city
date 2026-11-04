@@ -9,7 +9,8 @@ Run from the repository root:
 The first run draws the rail textures into pack/textures/blocks/ and writes
 the icon scene; the render draws a short piece of belt; --icon crops it into
 pack/pack_icon.png. Everything here is drawn by this script, so the whole
-pack is committed; addon/build/Rail to Belt.mcpack is the installable file.
+pack is committed; addon/build/Rail to Belt v<version>.mcpack is the installable
+file (the version in the file name, author 2026-11-04).
 Add-on names and descriptions are in English (author's rule, 2026-11-03).
 
 Version numbers (2026-11-03), as in addon/pack/build.py: the game only
@@ -243,7 +244,9 @@ def make_icon():
 
 def mcpack():
     update_version()
-    out = ROOT / "addon" / "build" / "Rail to Belt.mcpack"
+    for old in (ROOT / "addon" / "build").glob("Rail to Belt*.mcpack"):
+        old.unlink()
+    out = ROOT / "addon" / "build" / f"Rail to Belt v{'.'.join(map(str, current_version()))}.mcpack"
     out.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for f in sorted(PACK.rglob("*")):

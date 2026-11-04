@@ -1,0 +1,21 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:item": {
+    "description": {
+      "identifier": "asukatech:screen",
+      "menu_category": {
+        "category": "items"
+      }
+    },
+    "components": {
+      "minecraft:icon": "asukatech_screen_item",
+      "minecraft:display_name": {
+        "value": "tile.asukatech:screen.name"
+      },
+      "minecraft:block_placer": {
+        "block": "asukatech:screen",
+        "replace_block_item": true
+      }
+    }
+  }
+}

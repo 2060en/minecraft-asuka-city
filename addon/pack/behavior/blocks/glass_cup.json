@@ -1,0 +1,291 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:block": {
+    "description": {
+      "identifier": "asukatech:glass_cup",
+      "menu_category": {
+        "category": "items"
+      },
+      "states": {
+        "asukatech:count": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "traits": {
+        "minecraft:placement_direction": {
+          "enabled_states": [
+            "minecraft:cardinal_direction"
+          ],
+          "y_rotation_offset": 0
+        }
+      }
+    },
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.asukatech.glass_cup",
+        "bone_visibility": {
+          "count_1": true,
+          "count_2": false,
+          "count_3": false,
+          "count_4": false
+        }
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "asukatech_glass_cup",
+          "render_method": "blend"
+        }
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 0
+      },
+      "minecraft:map_color": "#b8d8ec",
+      "minecraft:collision_box": {
+        "origin": [
+          -2,
+          0,
+          -2.0
+        ],
+        "size": [
+          4,
+          6.0,
+          4.0
+        ]
+      },
+      "minecraft:selection_box": {
+        "origin": [
+          -2,
+          0,
+          -2.0
+        ],
+        "size": [
+          4,
+          6.0,
+          4.0
+        ]
+      },
+      "minecraft:light_dampening": 0,
+      "minecraft:placement_filter": {
+        "conditions": [
+          {
+            "allowed_faces": [
+              "up"
+            ]
+          }
+        ]
+      },
+      "asukatech:coffee_cup": {}
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              90,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              180,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [
+              0,
+              270,
+              0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:count') == 1",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.glass_cup",
+            "bone_visibility": {
+              "count_1": true,
+              "count_2": false,
+              "count_3": false,
+              "count_4": false
+            }
+          },
+          "minecraft:collision_box": {
+            "origin": [
+              -2,
+              0,
+              -2.0
+            ],
+            "size": [
+              4,
+              6.0,
+              4.0
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -2,
+              0,
+              -2.0
+            ],
+            "size": [
+              4,
+              6.0,
+              4.0
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:count') == 2",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.glass_cup",
+            "bone_visibility": {
+              "count_1": false,
+              "count_2": true,
+              "count_3": false,
+              "count_4": false
+            }
+          },
+          "minecraft:collision_box": {
+            "origin": [
+              -5,
+              0,
+              -3.0
+            ],
+            "size": [
+              10,
+              6.0,
+              6.0
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -5,
+              0,
+              -3.0
+            ],
+            "size": [
+              10,
+              6.0,
+              6.0
+            ]
+          },
+          "minecraft:loot": "loot_tables/asukatech/glass_cup_2.json"
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:count') == 3",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.glass_cup",
+            "bone_visibility": {
+              "count_1": false,
+              "count_2": false,
+              "count_3": true,
+              "count_4": false
+            }
+          },
+          "minecraft:collision_box": {
+            "origin": [
+              -5,
+              0,
+              -4.0
+            ],
+            "size": [
+              10,
+              6.0,
+              9.0
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -5,
+              0,
+              -4.0
+            ],
+            "size": [
+              10,
+              6.0,
+              9.0
+            ]
+          },
+          "minecraft:loot": "loot_tables/asukatech/glass_cup_3.json"
+        }
+      },
+      {
+        "condition": "q.block_state('asukatech:count') == 4",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.asukatech.glass_cup",
+            "bone_visibility": {
+              "count_1": false,
+              "count_2": false,
+              "count_3": false,
+              "count_4": true
+            }
+          },
+          "minecraft:collision_box": {
+            "origin": [
+              -5,
+              0,
+              -5.0
+            ],
+            "size": [
+              10,
+              6.0,
+              10.0
+            ]
+          },
+          "minecraft:selection_box": {
+            "origin": [
+              -5,
+              0,
+              -5.0
+            ],
+            "size": [
+              10,
+              6.0,
+              10.0
+            ]
+          },
+          "minecraft:loot": "loot_tables/asukatech/glass_cup_4.json"
+        }
+      }
+    ]
+  }
+}

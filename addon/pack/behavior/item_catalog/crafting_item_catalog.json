@@ -1,0 +1,65 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:crafting_items_catalog": {
+    "categories": [
+      {
+        "category_name": "items",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "asukatech:plate",
+              "name": "asukatech:itemGroup.name.tableware"
+            },
+            "items": [
+              "asukatech:plate",
+              "asukatech:bowl",
+              "asukatech:cup",
+              "asukatech:knife",
+              "asukatech:fork",
+              "asukatech:spoon",
+              "asukatech:chopsticks"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "asukatech:suitcase_aluminium",
+              "name": "asukatech:itemGroup.name.suitcases"
+            },
+            "items": [
+              "asukatech:suitcase_cabin_navy",
+              "asukatech:suitcase_large_red",
+              "asukatech:suitcase_aluminium",
+              "asukatech:suitcase_soft_black",
+              "asukatech:suitcase_pink"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "asukatech:coffee_cup",
+              "name": "asukatech:itemGroup.name.cups"
+            },
+            "items": [
+              "asukatech:coffee_cup",
+              "asukatech:glass_cup"
+            ]
+          }
+        ]
+      },
+      {
+        "category_name": "construction",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "asukatech:door_white",
+              "name": "asukatech:itemGroup.name.doors"
+            },
+            "items": [
+              "asukatech:door_white",
+              "asukatech:door_light_gray"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

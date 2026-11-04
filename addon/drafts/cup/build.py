@@ -77,7 +77,8 @@ def item_texture():
 
 
 block_texture().save(HERE / "sea_pickle.png")
-item_texture().save(HERE / "cup_item.png")
+# The item icon (cup_item.png) is rendered in 3D by addon/drafts/icons/build.py
+# (author, 2026-11-04); item_texture() was the flat first version.
 
 # Preview model: Java Edition's sea pickle columns (4 x h x 4), UVs as read above.
 COLUMNS = {   # count: [(x, z, height)], in 1/16 of a block
@@ -116,4 +117,4 @@ sheet = {"title": "淺灰色鐵杯：海鞘換材質（草稿，1～4 個，高�
              {"label": "正面", "camera": {"azimuth": 0, "elevation": 8, "size": 40, "target": [0, 2, 0]}, "objects": objs},
          ]}
 (HERE / "preview.json").write_text(json.dumps(sheet, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-print("wrote sea_pickle.png, cup_item.png, cup_preview.geo.json, preview.json")
+print("wrote sea_pickle.png, cup_preview.geo.json, preview.json")

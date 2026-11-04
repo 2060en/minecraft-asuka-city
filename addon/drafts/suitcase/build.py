@@ -195,6 +195,10 @@ def geo(ident, w, tw):
 
 
 texture(14).save(HERE / "chest.png")
+# The chest's icon in the inventory is drawn from three block textures
+# (chest_front, chest_side, chest_top), not from this model. v0.7.1 replaced
+# them too, but the trapped chest shares the side and top, so it changed with
+# them; the author chose to keep the vanilla chest icon (2026-11-04).
 texture(30).save(HERE / "chest_double.png")
 opened = geo("geometry.chest_open_preview", 14, 64)
 for c in opened["bones"][0]["cubes"][1:]:      # the lid and the latch swing open at the back edge

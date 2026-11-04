@@ -15,6 +15,9 @@
     },
     "asukatech_screen": {
       "textures": "textures/blocks/asukatech/glow_item_frame"
+    },
+    "asukatech_glass_cup": {
+      "textures": "textures/blocks/asukatech/glass_cup"
     }
   }
 }

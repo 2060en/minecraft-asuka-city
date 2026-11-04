@@ -12,7 +12,8 @@ Two jobs:
    wrong by hand. The generated files are committed, so they can be read.
 2. Assemble addon/build/Asuka tech RP/ and Asuka tech BP/ from addon/pack/,
    the finished drafts in addon/drafts/ and the advertisement textures, and
-   zip both into addon/build/Asuka tech.mcaddon. kz.png needs the vanilla
+   zip both into addon/build/Asuka tech v<version>.mcaddon (the version in the
+   file name, author 2026-11-04). kz.png needs the vanilla
    paintings that have no advertisement, so the vanilla kz.png is read from
    --vanilla DIR (a textures/painting folder) or downloaded from
    https://github.com/Mojang/bedrock-samples into addon/build/vanilla/.
@@ -44,14 +45,16 @@ mirrored, cube and bone rotations about x and y change sign, and the up and
 down faces are turned half way round. The first version copied the drafts
 unconverted, so in the game a conveyor curve, since removed, bent the wrong
 way and its slope tilted the wrong way (author's test, 2026-11-03). to_bedrock() now
-applies Blockbench's export rules. Collision boxes are taken from the
-drafts before converting, since they are in world coordinates.
+applies Blockbench's export rules. Collision and selection boxes are worked
+out from the drafts and mirrored in x the same way (bone_box); until v0.7.3
+they were not, and an open door's box was on the wrong side.
 """
 import argparse
 import copy
 import hashlib
 import importlib.util
 import json
+import math
 import shutil
 import urllib.request
 import zipfile
@@ -76,21 +79,24 @@ NAMES = {
     "trapdoor_white": ("白色地板門", "White Trapdoor"),
     "coffee_cup": ("外帶咖啡杯", "Takeaway Coffee Cup"),
     "screen": ("小螢幕", "Screen"),
+    "glass_cup": ("玻璃水杯", "Glass of Water"),
 }
 GEOS = {   # draft geometry file, identifier in the draft, identifier in the pack
     "door": ("doors/doors.geo.json", "geometry.solid_door", f"geometry.{NS}.door"),
     "trapdoor": ("doors/doors.geo.json", "geometry.solid_trapdoor", f"geometry.{NS}.trapdoor"),
     "coffee_cup": ("coffee_cup/coffee_cup.geo.json", "geometry.coffee_cup", f"geometry.{NS}.coffee_cup"),
     "screen": ("screen_block/screen.geo.json", f"geometry.{NS}.screen", f"geometry.{NS}.screen"),
+    "glass_cup": ("glass_cup/glass_cup.geo.json", "geometry.glass_cup", f"geometry.{NS}.glass_cup"),
 }
 TEXTURES = {   # terrain texture name: draft file
     f"{NS}_door_light_gray": "doors/door_light_gray.png",
     f"{NS}_door_white": "doors/door_white.png",
     f"{NS}_coffee_cup": "coffee_cup/coffee_cup.png",
     f"{NS}_screen": "screen/glow_item_frame.png",      # the first screen picture, black edge
+    f"{NS}_glass_cup": "glass_cup/glass_cup.png",
 }
 SOUNDS = {"door_light_gray": "wood", "door_white": "wood", "trapdoor_light_gray": "wood",
-          "trapdoor_white": "wood", "coffee_cup": "wood", "screen": "metal"}
+          "trapdoor_white": "wood", "coffee_cup": "wood", "screen": "metal", "glass_cup": "glass"}
 
 
 def to_bedrock(geo):
@@ -124,13 +130,38 @@ def load_geo(key):
     return next(g for g in data["minecraft:geometry"] if g["description"]["identifier"] == ident)
 
 
+def cube_corners(c):
+    """The 8 corners of a cube, turned by its rotation about y (the only turn
+    the drafts use on block models, e.g. the octagonal glass)."""
+    (x0, y0, z0), (w, h, d) = c["origin"], c["size"]
+    ry = math.radians((c.get("rotation") or [0, 0, 0])[1])
+    if not ry:                              # unturned: keep the numbers as they are
+        return [(x, y, z) for x in (x0, x0 + w) for y in (y0, y0 + h) for z in (z0, z0 + d)]
+    px, _, pz = c.get("pivot", [0, 0, 0])
+    out = []
+    for x in (x0, x0 + w):
+        for y in (y0, y0 + h):
+            for z in (z0, z0 + d):
+                dx, dz = x - px, z - pz
+                out.append((px + dx * math.cos(ry) + dz * math.sin(ry), y, pz - dx * math.sin(ry) + dz * math.cos(ry)))
+    return out
+
+
 def bone_box(geo, bone):
-    """Bounding box of a bone's cubes, clamped to the block, as a Bedrock box."""
+    """Bounding box of a bone's cubes, clamped to the block, as a Bedrock box.
+
+    The box is mirrored in x like the model (to_bedrock): boxes are in the
+    same frame as the model file, not the drafts' on-screen frame. Before
+    v0.7.3 they were not, and an open door's box sat on the other side from
+    the door (author's test, 2026-11-04); the other boxes are the same either
+    way, being symmetric in x."""
     cubes = next(b for b in geo["bones"] if b["name"] == bone)["cubes"]
-    lo = [min(c["origin"][i] for c in cubes) for i in range(3)]
-    hi = [max(c["origin"][i] + c["size"][i] for c in cubes) for i in range(3)]
+    corners = [p for c in cubes for p in cube_corners(c)]
+    lo = [min(p[i] for p in corners) for i in range(3)]
+    hi = [max(p[i] for p in corners) for i in range(3)]
     lo = [max(-8, lo[0]), max(0, lo[1]), max(-8, lo[2])]
     hi = [min(8, hi[0]), min(16, hi[1]), min(8, hi[2])]
+    lo[0], hi[0] = -hi[0], -lo[0]           # mirror in x, as the model is
     box = {"origin": [round(v, 3) for v in lo], "size": [round(h - l, 3) for h, l in zip(hi, lo)]}
     return box
 
@@ -244,20 +275,23 @@ def trapdoor(color):
     return block(f"trapdoor_{color}", states, traits, comps, perms)
 
 
-def coffee_cup():
-    geo = load_geo("coffee_cup")
+def cup_block(key, color, render="alpha_test"):
+    """A block of 1 to 4 cups (the takeaway coffee cup, the glass of water):
+    use one on the block to add one. The script component is the coffee cup's
+    (it adds a cup when the item matches the block)."""
+    geo = load_geo(key)
     perms = [{"condition": cond(cardinal=d), "components": turn(a)} for d, a in CUP_TURN.items()]
     for n in range(1, 5):
         box = bone_box(geo, f"count_{n}")
-        comps = {"minecraft:geometry": geometry("coffee_cup", {f"count_{n}"}),
+        comps = {"minecraft:geometry": geometry(key, {f"count_{n}"}),
                  "minecraft:collision_box": box, "minecraft:selection_box": box}
         if n > 1:
-            comps["minecraft:loot"] = f"loot_tables/{NS}/coffee_cup_{n}.json"
+            comps["minecraft:loot"] = f"loot_tables/{NS}/{key}_{n}.json"
         perms.append({"condition": cond(count=n), "components": comps})
     box = bone_box(geo, "count_1")
     comps = {
-        "minecraft:geometry": geometry("coffee_cup", {"count_1"}),
-        **common(f"{NS}_coffee_cup", 0, 0, "#f2efe8"),
+        "minecraft:geometry": geometry(key, {"count_1"}),
+        **common(f"{NS}_{key}", 0, 0, color, render),
         "minecraft:collision_box": box,
         "minecraft:selection_box": box,
         "minecraft:light_dampening": 0,
@@ -266,7 +300,16 @@ def coffee_cup():
     }
     states = {f"{NS}:count": [1, 2, 3, 4]}
     traits = {"minecraft:placement_direction": {"enabled_states": ["minecraft:cardinal_direction"], "y_rotation_offset": 0}}
-    return block("coffee_cup", states, traits, comps, perms, category="items")
+    return block(key, states, traits, comps, perms, category="items")
+
+
+def coffee_cup():
+    return cup_block("coffee_cup", "#f2efe8")
+
+
+def glass_cup():
+    """The glass of water (v0.7.0): see-through, so it is drawn with blending."""
+    return cup_block("glass_cup", "#b8d8ec", render="blend")
 
 
 # Screen (2026-11-03): a thin panel against the face of the block it was
@@ -314,7 +357,9 @@ TABLEWARE = {   # name: (zh_TW, en_US, hit box width, height)
     "fork": ("叉子", "Fork", 0.3, 0.1),
     "spoon": ("湯匙", "Spoon", 0.3, 0.1),
     "chopsticks": ("筷子", "Chopsticks", 0.35, 0.1),
+    "ipad": ("iPad", "iPad", 0.65, 0.1),          # v0.7.0, placed the same way
 }
+TABLEWARE_TEXTURE = {"ipad": "ipad"}              # the others share the tableware texture
 
 
 def tableware_entity(name):
@@ -335,7 +380,7 @@ def tableware_client(name):
     return {"format_version": "1.10.0", "minecraft:client_entity": {"description": {
         "identifier": f"{NS}:{name}",
         "materials": {"default": "entity_alphatest"},
-        "textures": {"default": f"textures/entity/{NS}/tableware"},
+        "textures": {"default": f"textures/entity/{NS}/{TABLEWARE_TEXTURE.get(name, 'tableware')}"},
         "geometry": {"default": f"geometry.{NS}.{name}"},
         "render_controllers": ["controller.render.default"],
     }}}
@@ -450,6 +495,72 @@ def suitcase_item(name):
         }}}
 
 
+# ---------- creative inventory (v0.7.1) ----------
+# Groups in the "items" tab (author, 2026-11-04): the tableware, the
+# suitcases, and the two cups together. Written as the behaviour pack's
+# item_catalog/crafting_item_catalog.json (Mojang's crafting catalog,
+# format 1.21.60); whether the game takes it needs a test.
+GROUPS = [   # (tab, name key, zh_TW, en_US, icon, items)
+    ("items", "tableware", "餐具", "Tableware", "plate", ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks"]),
+    ("items", "suitcases", "行李箱", "Suitcases", "suitcase_aluminium",
+     ["suitcase_cabin_navy", "suitcase_large_red", "suitcase_aluminium", "suitcase_soft_black", "suitcase_pink"]),
+    ("items", "cups", "杯子", "Cups", "coffee_cup", ["coffee_cup", "glass_cup"]),
+    # v0.7.4 (author, 2026-11-04): the two doors, in the construction tab where doors are
+    ("construction", "doors", "門", "Doors", "door_white", ["door_white", "door_light_gray"]),
+]
+
+
+def catalog():
+    tabs = list(dict.fromkeys(g[0] for g in GROUPS))
+    return {"format_version": "1.21.60", "minecraft:crafting_items_catalog": {"categories": [{
+        "category_name": tab,
+        "groups": [{"group_identifier": {"icon": f"{NS}:{icon}", "name": f"{NS}:itemGroup.name.{key}"},
+                    "items": [f"{NS}:{i}" for i in items]} for t, key, _, _, icon, items in GROUPS if t == tab],
+    } for tab in tabs]}}
+
+
+# The screen's own item (v0.7.1): a block's item shows the block model, and
+# the screen's model showed its black back. This item places the block and
+# takes the place of the block's item, with the screen picture as its icon.
+def screen_item():
+    return {"format_version": "1.21.90", "minecraft:item": {
+        "description": {"identifier": f"{NS}:screen", "menu_category": {"category": "items"}},
+        "components": {
+            "minecraft:icon": f"{NS}_screen_item",
+            "minecraft:display_name": {"value": f"tile.{NS}:screen.name"},
+            "minecraft:block_placer": {"block": f"{NS}:screen", "replace_block_item": True},
+        }}}
+
+
+# The doors' own items (v0.7.3): a door's block item showed one block, like a
+# trapdoor standing up (author, 2026-11-04). This item places the door block
+# and takes the place of its item, with a door-shaped icon drawn from the
+# door's texture (the front, 16 x 32, at (0, 0)).
+def door_item(color):
+    return {"format_version": "1.21.90", "minecraft:item": {
+        "description": {"identifier": f"{NS}:door_{color}", "menu_category": {"category": "construction"}},
+        "components": {
+            "minecraft:icon": f"{NS}_door_{color}_item",
+            "minecraft:display_name": {"value": f"tile.{NS}:door_{color}.name"},
+            "minecraft:block_placer": {"block": f"{NS}:door_{color}", "replace_block_item": True},
+        }}}
+
+
+def door_icon(color):
+    """16 x 16: the door 8 wide and 16 tall, its frame, face and lever handle."""
+    tex = Image.open(DRAFTS / "doors" / f"door_{color}.png").convert("RGBA")
+    edge, face = tex.getpixel((0, 0)), tex.getpixel((6, 6))
+    handle = min((tex.getpixel((x, y)) for y in range(32) for x in range(16)), key=lambda c: sum(c[:3]))
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    px = img.load()
+    for y in range(16):
+        for x in range(4, 12):
+            px[x, y] = edge if x in (4, 11) or y in (0, 15) else face
+    px[5, 7] = px[5, 8] = px[5, 9] = handle
+    px[6, 8] = handle
+    return img
+
+
 def load_draft(path):
     """Import a draft's build.py whose work sits behind `if __name__ == "__main__"`."""
     spec = importlib.util.spec_from_file_location(f"draft_{Path(path).parent.name}", DRAFTS / path)
@@ -458,8 +569,8 @@ def load_draft(path):
     return mod
 
 
-def cup_loot(n):
-    return {"pools": [{"rolls": 1, "entries": [{"type": "item", "name": f"{NS}:coffee_cup",
+def cup_loot(n, key="coffee_cup"):
+    return {"pools": [{"rolls": 1, "entries": [{"type": "item", "name": f"{NS}:{key}",
                                                  "functions": [{"function": "set_count", "count": n}]}]}]}
 
 
@@ -475,6 +586,7 @@ def generate():
         "trapdoor_light_gray": trapdoor("light_gray"), "trapdoor_white": trapdoor("white"),
         "coffee_cup": coffee_cup(),
         "screen": screen(),
+        "glass_cup": glass_cup(),
     }
     for old in (bp / "blocks").glob("*.json"):
         old.unlink()
@@ -482,6 +594,7 @@ def generate():
         write_json(bp / "blocks" / f"{name}.json", data)
     for n in range(2, 5):
         write_json(bp / "loot_tables" / NS / f"coffee_cup_{n}.json", cup_loot(n))
+        write_json(bp / "loot_tables" / NS / f"glass_cup_{n}.json", cup_loot(n, "glass_cup"))
     for folder in (bp / "entities", bp / "items", rp / "entity"):
         for old in folder.glob("*.json"):
             old.unlink()
@@ -498,7 +611,14 @@ def generate():
         write_json(rp / "entity" / f"luggage_cart_{name}.entity.json",
                    suitcase_client(f"luggage_cart_{name}", f"luggage_cart_{name}", name, cart=True))
     write_json(rp / "animations" / "luggage_cart.animation.json", CART_ANIMATION)
+    write_json(bp / "items" / "screen.json", screen_item())
+    for color in ("light_gray", "white"):
+        write_json(bp / "items" / f"door_{color}.json", door_item(color))
+    write_json(bp / "item_catalog" / "crafting_item_catalog.json", catalog())
     icons = {f"{NS}_{n}": f"textures/items/{NS}/{n}" for n in TABLEWARE}
+    icons[f"{NS}_screen_item"] = f"textures/items/{NS}/screen"
+    for color in ("light_gray", "white"):
+        icons[f"{NS}_door_{color}_item"] = f"textures/items/{NS}/door_{color}"
     icons.update({f"{NS}_suitcase_{n}": f"textures/items/{NS}/suitcase_{n}" for n in SUITCASES})
     write_json(rp / "textures" / "item_texture.json", {
         "resource_pack_name": NS, "texture_name": "atlas.items",
@@ -519,6 +639,7 @@ def generate():
         names += [f"item.{NS}.suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
         names += [f"entity.{NS}:suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
         names += [f"entity.{NS}:luggage_cart_{n}.name={v[i]}" for n, v in SUITCASES.items()]
+        names += [f"{NS}:itemGroup.name.{g[1]}={g[2 + i]}" for g in GROUPS]
         names += load_draft("drinks/build.py").lang_lines(lang)      # potions become drinks
         path.write_text("\n".join(head + names) + "\n", encoding="utf-8")
     print(f"generated {len(blocks)} blocks")
@@ -594,7 +715,12 @@ RETEXTURES = {   # draft file: path in the resource pack
     "cup/sea_pickle.png": "textures/blocks/sea_pickle.png",
     "cup/cup_item.png": "textures/items/sea_pickle.png",
     "tableware/tableware.png": f"textures/entity/{NS}/tableware.png",
-    **{f"tableware/icons/{n}.png": f"textures/items/{NS}/{n}.png" for n in TABLEWARE},
+    **{f"tableware/icons/{n}.png": f"textures/items/{NS}/{n}.png" for n in TABLEWARE if n != "ipad"},
+    "ipad/ipad.png": f"textures/entity/{NS}/ipad.png",
+    "screen/glow_item_frame.png": f"textures/items/{NS}/screen.png",
+    # (v0.7.1 also replaced the chest's inventory faces, chest_front/side/top;
+    # the trapped chest shares the side and top, so v0.7.2 leaves them vanilla)
+    "ipad/ipad_item.png": f"textures/items/{NS}/ipad.png",
     # v0.6.0: the coffee stand and the suitcases
     "coffee_machine/brewing_stand.png": "textures/blocks/brewing_stand.png",
     "coffee_machine/brewing_stand_base.png": "textures/blocks/brewing_stand_base.png",
@@ -648,6 +774,11 @@ def assemble(vanilla_folder):
     for f in (ADS / "painting").glob("*.png"):
         shutil.copy(f, rp_out / "textures" / "painting" / f.name)
 
+    for color in ("light_gray", "white"):      # the doors' item icons
+        dest = rp_out / "textures" / "items" / NS / f"door_{color}.png"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        door_icon(color).save(dest)
+
     # drinks: the potion icons
     for f in (DRAFTS / "drinks" / "icons").glob("*.png"):
         shutil.copy(f, rp_out / "textures" / "items" / f.name)
@@ -655,7 +786,8 @@ def assemble(vanilla_folder):
     # wither skull, pale oak shelf, milk carton): drawn at build time
     load_draft("props/build.py").make_all(rp_out)
     # entity models: tableware and suitcases
-    for draft, out in (("tableware/tableware.geo.json", "tableware"), ("suitcases/suitcases.geo.json", "suitcases")):
+    for draft, out in (("tableware/tableware.geo.json", "tableware"), ("suitcases/suitcases.geo.json", "suitcases"),
+                       ("ipad/ipad.geo.json", "ipad")):
         data = json.loads((DRAFTS / draft).read_text(encoding="utf-8"))
         for g in data["minecraft:geometry"]:     # so a tall case is not culled at the screen edge
             g["description"].update({"visible_bounds_width": 2, "visible_bounds_height": 2,
@@ -664,8 +796,10 @@ def assemble(vanilla_folder):
                    {"format_version": data["format_version"],
                     "minecraft:geometry": [to_bedrock(g) for g in data["minecraft:geometry"]]})
 
-    update_version((rp_out, bp_out))
-    mcaddon = BUILD / "Asuka tech.mcaddon"
+    version = ".".join(map(str, update_version((rp_out, bp_out))))
+    for old in BUILD.glob("Asuka tech*.mcaddon"):   # only the current one stays, so the right one gets sent
+        old.unlink()
+    mcaddon = BUILD / f"Asuka tech v{version}.mcaddon"
     with zipfile.ZipFile(mcaddon, "w", zipfile.ZIP_DEFLATED) as z:
         for folder in (rp_out, bp_out):
             for f in sorted(folder.rglob("*")):
