@@ -5,7 +5,8 @@
 //   node tools/preview/render.mjs <sheet.json> <out.png>
 //
 // Paths inside the sheet (geo, texture) are relative to the repository root.
-// Needs Playwright with Chromium; the cloud sessions have it preinstalled.
+// Uses Playwright's own Chromium if it is installed, otherwise the Chrome or
+// Edge already on the computer (the author's Windows, 2026-11-04).
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -59,7 +60,15 @@ const server = http.createServer((req, res) => {
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 const { port } = server.address();
 
-const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+async function launch() {
+  const args = ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'];
+  for (const channel of [undefined, 'chrome']) {
+    try { return await chromium.launch({ channel, args }); } catch { /* try the next browser */ }
+  }
+  return chromium.launch({ channel: 'msedge', args });
+}
+
+const browser = await launch();
 try {
   const tab = await browser.newPage();
   tab.on('pageerror', (e) => console.error('page error:', e.message));

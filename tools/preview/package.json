@@ -4,6 +4,7 @@
   "description": "Render preview images of Bedrock block models for design discussions",
   "type": "module",
   "dependencies": {
+    "playwright": "^1.64.1",
     "three": "^0.187.0"
   }
 }
