@@ -33,3 +33,4 @@
 - `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
 - `tools/preview/`：把基岩版模型算成預覽圖的工具
 - `tools/converter/`：轉換程式：只讀的掃描與轉出原味版
+- `tools/asuka-toolkit/`：Asuka 工具包：獨立的行為包，木棍快速建造與破壞、烈焰棒物品收藏、旋風棒拿特殊物品
