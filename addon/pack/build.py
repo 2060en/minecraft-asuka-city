@@ -500,20 +500,23 @@ def suitcase_item(name):
 # suitcases, and the two cups together. Written as the behaviour pack's
 # item_catalog/crafting_item_catalog.json (Mojang's crafting catalog,
 # format 1.21.60); whether the game takes it needs a test.
-GROUPS = [   # (name key, zh_TW, en_US, icon, items)
-    ("tableware", "餐具", "Tableware", "plate", ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks"]),
-    ("suitcases", "行李箱", "Suitcases", "suitcase_aluminium", ["suitcase_cabin_navy", "suitcase_large_red",
-                                                              "suitcase_aluminium", "suitcase_soft_black", "suitcase_pink"]),
-    ("cups", "杯子", "Cups", "coffee_cup", ["coffee_cup", "glass_cup"]),
+GROUPS = [   # (tab, name key, zh_TW, en_US, icon, items)
+    ("items", "tableware", "餐具", "Tableware", "plate", ["plate", "bowl", "cup", "knife", "fork", "spoon", "chopsticks"]),
+    ("items", "suitcases", "行李箱", "Suitcases", "suitcase_aluminium",
+     ["suitcase_cabin_navy", "suitcase_large_red", "suitcase_aluminium", "suitcase_soft_black", "suitcase_pink"]),
+    ("items", "cups", "杯子", "Cups", "coffee_cup", ["coffee_cup", "glass_cup"]),
+    # v0.7.4 (author, 2026-11-04): the two doors, in the construction tab where doors are
+    ("construction", "doors", "門", "Doors", "door_white", ["door_white", "door_light_gray"]),
 ]
 
 
 def catalog():
+    tabs = list(dict.fromkeys(g[0] for g in GROUPS))
     return {"format_version": "1.21.60", "minecraft:crafting_items_catalog": {"categories": [{
-        "category_name": "items",
+        "category_name": tab,
         "groups": [{"group_identifier": {"icon": f"{NS}:{icon}", "name": f"{NS}:itemGroup.name.{key}"},
-                    "items": [f"{NS}:{i}" for i in items]} for key, _, _, icon, items in GROUPS],
-    }]}}
+                    "items": [f"{NS}:{i}" for i in items]} for t, key, _, _, icon, items in GROUPS if t == tab],
+    } for tab in tabs]}}
 
 
 # The screen's own item (v0.7.1): a block's item shows the block model, and
@@ -636,7 +639,7 @@ def generate():
         names += [f"item.{NS}.suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
         names += [f"entity.{NS}:suitcase_{n}.name={v[i]}" for n, v in SUITCASES.items()]
         names += [f"entity.{NS}:luggage_cart_{n}.name={v[i]}" for n, v in SUITCASES.items()]
-        names += [f"{NS}:itemGroup.name.{g[0]}={g[1 + i]}" for g in GROUPS]
+        names += [f"{NS}:itemGroup.name.{g[1]}={g[2 + i]}" for g in GROUPS]
         names += load_draft("drinks/build.py").lang_lines(lang)      # potions become drinks
         path.write_text("\n".join(head + names) + "\n", encoding="utf-8")
     print(f"generated {len(blocks)} blocks")

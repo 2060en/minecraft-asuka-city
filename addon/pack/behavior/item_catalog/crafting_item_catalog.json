@@ -44,6 +44,21 @@
             ]
           }
         ]
+      },
+      {
+        "category_name": "construction",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "asukatech:door_white",
+              "name": "asukatech:itemGroup.name.doors"
+            },
+            "items": [
+              "asukatech:door_white",
+              "asukatech:door_light_gray"
+            ]
+          }
+        ]
       }
     ]
   }

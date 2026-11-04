@@ -41,6 +41,7 @@ entity.asukatech:luggage_cart_pink.name=粉色行李箱
 asukatech:itemGroup.name.tableware=餐具
 asukatech:itemGroup.name.suitcases=行李箱
 asukatech:itemGroup.name.cups=杯子
+asukatech:itemGroup.name.doors=門
 potion.emptyPotion.name=礦泉水
 potion.awkward.name=礦泉水
 potion.mundane.name=礦泉水

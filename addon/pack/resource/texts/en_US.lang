@@ -41,6 +41,7 @@ entity.asukatech:luggage_cart_pink.name=Pink Case
 asukatech:itemGroup.name.tableware=Tableware
 asukatech:itemGroup.name.suitcases=Suitcases
 asukatech:itemGroup.name.cups=Cups
+asukatech:itemGroup.name.doors=Doors
 potion.emptyPotion.name=Mineral Water
 potion.awkward.name=Mineral Water
 potion.mundane.name=Mineral Water
