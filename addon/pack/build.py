@@ -18,8 +18,10 @@ Two jobs:
    https://github.com/Mojang/bedrock-samples into addon/build/vanilla/.
    addon/build/ is not committed: no vanilla image in the repository.
 
-Version numbers (2026-11-03): the game only replaces an imported pack when
-its version is higher, so the build bumps the version itself. It hashes what
+Version numbers (2026-11-03): the game only takes an import of the same pack
+as new when its version is higher (it does not remove the old version:
+that is deleted by hand in the game's settings, author's test 2026-11-04),
+so the build bumps the version itself. It hashes what
 it assembled (everything but the manifests; images by their pixels, so a
 different Pillow does not count as a change) and compares the hash with
 addon/pack/release.json. If the content changed, the patch number goes up by
