@@ -48,6 +48,22 @@ def game_running():
     return b"minecraft" in subprocess.run(["tasklist"], capture_output=True).stdout.lower()
 
 
+def stop_if_game_uses(world):
+    """遊戲開著就不碰遊戲資料夾裡的世界，才不會複製到寫到一半的資料。"""
+    if "minecraftWorlds" in world.resolve().parts and game_running():
+        raise SystemExit("遊戲正在執行，請先關閉遊戲再執行，才不會複製到寫到一半的資料。")
+
+
+def new_report():
+    return {
+        "blocks": defaultdict(lambda: {"cells": 0, "by_dim": Counter(), "palette_subchunks": 0, "used_subchunks": 0, "positions": []}),
+        "entities": defaultdict(lambda: {"count": 0, "positions": []}),
+        "block_entity_items": [], "entity_items": [], "players": [],
+        "other": defaultdict(lambda: {"count": 0, "names": set()}),
+        "errors": [],
+    }
+
+
 def snapshot(db):
     """世界本體的檔案清單、大小與修改時間，用來確認掃描前後沒變。"""
     return {f.name: (f.stat().st_size, f.stat().st_mtime_ns) for f in db.iterdir()}
@@ -190,8 +206,7 @@ def main():
 
     world = find_world(args.world)
     source = world / "db"
-    if game_running():
-        raise SystemExit("遊戲正在執行，請先關閉遊戲再掃描，才不會複製到寫到一半的資料。")
+    stop_if_game_uses(world)
     print(f"世界：{(world / 'levelname.txt').read_text(encoding='utf-8', errors='replace').strip()}（{world}）")
 
     need = sum(f.stat().st_size for f in source.iterdir())
@@ -202,13 +217,7 @@ def main():
     import leveldb                              # 放在這裡：環境沒裝好時，前面的檢查還是能跑
 
     known_blocks, known_entities = load_mapping(REPO / "addon" / "mapping.json")
-    report = {
-        "blocks": defaultdict(lambda: {"cells": 0, "by_dim": Counter(), "palette_subchunks": 0, "used_subchunks": 0, "positions": []}),
-        "entities": defaultdict(lambda: {"count": 0, "positions": []}),
-        "block_entity_items": [], "entity_items": [], "players": [],
-        "other": defaultdict(lambda: {"count": 0, "names": set()}),
-        "errors": [],
-    }
+    report = new_report()
     before = snapshot(source)
     temp = Path(tempfile.mkdtemp(prefix="asuka_scan_"))
     try:

@@ -32,4 +32,4 @@
 - `addon/rail_to_belt/`：只換材質的材質包「Rail to Belt」，把鐵軌換成履帶的樣子
 - `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
 - `tools/preview/`：把基岩版模型算成預覽圖的工具
-- `tools/converter/`：轉換程式，目前有只讀的掃描，轉換還沒寫
+- `tools/converter/`：轉換程式：只讀的掃描與轉出原味版

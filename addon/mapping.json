@@ -58,8 +58,12 @@
         }
       }
     },
-    "block_entity": "空的發光物品框架（GlowItemFrame）",
-    "_待實測": "facing_direction 0～5 的對應、方塊實體要怎麼補"
+    "fixed_states": {
+      "item_frame_map_bit": false,
+      "item_frame_photo_bit": false
+    },
+    "block_entity": "GlowItemFrame",
+    "_待實測": "facing_direction 0～5 的對應；方塊實體照真實存檔裡空的發光物品框架補（BlockEntityVersion、id、x、y、z）"
   },
   "_實體": {
     "_說明": "自製實體在原味版裡直接刪掉（作者接受，2026-11-03）",
