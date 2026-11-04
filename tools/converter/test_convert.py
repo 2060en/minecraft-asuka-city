@@ -49,15 +49,36 @@ def test_entry_matches_the_game_exactly():
 def test_states_from_the_mapping():
     door = vanilla_state(block_rule(BLOCKS, "asukatech:door_white"), {"asukatech:upper": 1, "asukatech:open": 0, "asukatech:hinge_right": 1,
                                                                      "asukatech:powered": 1, "minecraft:cardinal_direction": "east"})
-    assert door == {"upper_block_bit": 1, "open_bit": 0, "door_hinge_bit": 1, "minecraft:cardinal_direction": "east"}
+    assert door == {"upper_block_bit": 1, "open_bit": 0, "door_hinge_bit": 0, "minecraft:cardinal_direction": "south"}
     trapdoor = vanilla_state(block_rule(BLOCKS, "asukatech:trapdoor_light_gray"), {"asukatech:open": 1, "asukatech:powered": 0,
                                                                                    "minecraft:cardinal_direction": "south",
                                                                                    "minecraft:vertical_half": "top"})
-    assert trapdoor == {"direction": 2, "upside_down_bit": True, "open_bit": 1}
+    assert trapdoor == {"direction": 3, "upside_down_bit": True, "open_bit": 1}
     cup = vanilla_state(block_rule(BLOCKS, "asukatech:glass_cup"), {"asukatech:count": 3, "minecraft:cardinal_direction": "west"})
     assert cup == {"cluster_count": 2, "dead_bit": True}
     frame = vanilla_state(block_rule(BLOCKS, "asukatech:screen"), {"minecraft:block_face": "east"})
     assert frame == {"facing_direction": 5, "item_frame_map_bit": False, "item_frame_photo_bit": False}
+
+
+def test_same_as_the_authors_side_by_side_test():
+    # 作者在遊戲裡並排放原版與自製的門、地板門對照（2026-11-04），這些數值都是從那次的存檔讀的。
+    # 玩家面向北：原版門存 east、白色門存 north；面向東：原版門存 south、白色門存 east。
+    # 白色門預設的門軸在玩家右手邊（hinge_right 0），也就是原版的 door_hinge_bit 1。
+    def door(direction, upper):
+        return vanilla_state(block_rule(BLOCKS, "asukatech:door_white"), {
+            "asukatech:upper": upper, "asukatech:open": 1, "asukatech:hinge_right": 0, "asukatech:powered": 0,
+            "minecraft:cardinal_direction": direction})
+    assert door("north", 0) == {"door_hinge_bit": 0, "minecraft:cardinal_direction": "east", "open_bit": 1, "upper_block_bit": 0}
+    assert door("north", 1) == {"door_hinge_bit": 1, "minecraft:cardinal_direction": "east", "open_bit": 0, "upper_block_bit": 1}
+    assert door("east", 0)["minecraft:cardinal_direction"] == "south"
+    assert door("south", 0)["minecraft:cardinal_direction"] == "west"
+    assert door("west", 0)["minecraft:cardinal_direction"] == "north"
+
+    def trapdoor(direction):
+        return vanilla_state(block_rule(BLOCKS, "asukatech:trapdoor_white"), {
+            "asukatech:open": 1, "asukatech:powered": 0, "minecraft:cardinal_direction": direction,
+            "minecraft:vertical_half": "bottom"})["direction"]
+    assert [trapdoor(d) for d in ("north", "east", "south", "west")] == [2, 1, 3, 0]
 
 
 def test_subchunk_door_and_cup():
@@ -79,7 +100,7 @@ def test_subchunk_door_and_cup():
     assert names(result) == ["minecraft:air", "minecraft:spruce_door", "minecraft:stone"]
     got = list(result.indices())
     assert got[1] == got[2] == 1 and got[3] == 0 and got[4] == 2 and got[0] == 0 and sum(got) == 1 + 1 + 2
-    assert result.palette[1]["states"] == {"door_hinge_bit": 0, "minecraft:cardinal_direction": "north", "open_bit": 1, "upper_block_bit": 0}
+    assert result.palette[1]["states"] == {"door_hinge_bit": 0, "minecraft:cardinal_direction": "east", "open_bit": 1, "upper_block_bit": 0}
     assert counts == {"asukatech:door_white": 2, "asukatech:coffee_cup": 1} and not frames and not cleared
 
 

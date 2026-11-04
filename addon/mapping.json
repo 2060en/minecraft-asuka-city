@@ -3,12 +3,27 @@
   "asukatech:door_light_gray": {
     "vanilla": "minecraft:spruce_door",
     "states": {
-      "minecraft:cardinal_direction": "minecraft:cardinal_direction",
+      "minecraft:cardinal_direction": {
+        "to": "minecraft:cardinal_direction",
+        "values": {
+          "north": "east",
+          "east": "south",
+          "south": "west",
+          "west": "north"
+        }
+      },
       "asukatech:upper": "upper_block_bit",
       "asukatech:open": "open_bit",
-      "asukatech:hinge_right": "door_hinge_bit"
+      "asukatech:hinge_right": {
+        "to": "door_hinge_bit",
+        "values": {
+          "0": 1,
+          "1": 0
+        }
+      }
     },
-    "_實測": "door_hinge_bit 與朝向的對應，作者實測正確（2026-11-03）"
+    "door_halves": true,
+    "_實測": "作者並排放原版門與白色門對照（2026-11-04）：面向北時原版存 east、白色門存 north，面向東時原版存 south、白色門存 east；白色門預設的門軸在玩家右手邊，原版的 door_hinge_bit 0 在左手邊。原版的門下半存開關、門軸固定 0，上半存門軸、開關固定 0"
   },
   "asukatech:door_white": {
     "same_as": "asukatech:door_light_gray"
@@ -19,10 +34,10 @@
       "minecraft:cardinal_direction": {
         "to": "direction",
         "values": {
-          "east": 0,
-          "west": 1,
-          "south": 2,
-          "north": 3
+          "north": 2,
+          "south": 3,
+          "east": 1,
+          "west": 0
         }
       },
       "minecraft:vertical_half": {
@@ -34,7 +49,7 @@
       },
       "asukatech:open": "open_bit"
     },
-    "_實測": "原版地板門 direction 0～3 的對應，作者實測正確（2026-11-03）"
+    "_實測": "作者並排放原版與白色地板門對照（2026-11-04）：面向北放時原版存 2，面向東放時存 1。主世界 2 萬多個原版地板門的統計：0 貼西、1 貼東、2 貼北、3 貼南"
   },
   "asukatech:trapdoor_white": {
     "same_as": "asukatech:trapdoor_light_gray"
@@ -63,7 +78,7 @@
       "item_frame_photo_bit": false
     },
     "block_entity": "GlowItemFrame",
-    "_待實測": "facing_direction 0～5 的對應；方塊實體照真實存檔裡空的發光物品框架補（BlockEntityVersion、id、x、y、z）"
+    "_實測": "作者在轉換後的世界確認朝向正確（2026-11-04）；方塊實體照真實存檔裡空的發光物品框架補"
   },
   "_實體": {
     "_說明": "自製實體在原味版裡直接刪掉（作者接受，2026-11-03）",

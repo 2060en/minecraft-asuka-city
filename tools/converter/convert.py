@@ -57,6 +57,11 @@ def vanilla_state(rule, states):
             if key not in target["values"]:
                 raise ConvertError(f"狀態 {name} 的值 {key} 對照表沒有")
             out[target["to"]] = target["values"][key]
+    if rule.get("door_halves"):                 # 原版的門：下半存開關、門軸固定 0；上半存門軸、開關固定 0
+        if out["upper_block_bit"]:
+            out["open_bit"] = 0
+        else:
+            out["door_hinge_bit"] = 0
     return out
 
 
