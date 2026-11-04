@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:suitcase_aluminium",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/suitcase_aluminium"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.suitcase_aluminium"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ]
+    }
+  }
+}

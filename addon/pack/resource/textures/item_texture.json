@@ -22,6 +22,21 @@
     },
     "asukatech_chopsticks": {
       "textures": "textures/items/asukatech/chopsticks"
+    },
+    "asukatech_suitcase_cabin_navy": {
+      "textures": "textures/items/asukatech/suitcase_cabin_navy"
+    },
+    "asukatech_suitcase_large_red": {
+      "textures": "textures/items/asukatech/suitcase_large_red"
+    },
+    "asukatech_suitcase_aluminium": {
+      "textures": "textures/items/asukatech/suitcase_aluminium"
+    },
+    "asukatech_suitcase_soft_black": {
+      "textures": "textures/items/asukatech/suitcase_soft_black"
+    },
+    "asukatech_suitcase_pink": {
+      "textures": "textures/items/asukatech/suitcase_pink"
     }
   }
 }

@@ -1,0 +1,28 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "asukatech:luggage_cart_soft_black",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/asukatech/suitcase_soft_black"
+      },
+      "geometry": {
+        "default": "geometry.asukatech.luggage_cart_soft_black"
+      },
+      "render_controllers": [
+        "controller.render.default"
+      ],
+      "animations": {
+        "move": "animation.asukatech.luggage_cart.move"
+      },
+      "scripts": {
+        "animate": [
+          "move"
+        ]
+      }
+    }
+  }
+}

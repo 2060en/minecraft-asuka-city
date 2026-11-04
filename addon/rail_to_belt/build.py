@@ -13,7 +13,8 @@ pack is committed; addon/build/Rail to Belt.mcpack is the installable file.
 Add-on names and descriptions are in English (author's rule, 2026-11-03).
 
 Version numbers (2026-11-03), as in addon/pack/build.py: the game only
-replaces an imported pack when its version is higher, so building the
+takes an import of the same pack as new when its version is higher (the
+old version stays and is deleted by hand), so building the
 .mcpack hashes the pack (everything but the manifest; images by their
 pixels) and compares with release.json. If the content changed, the patch
 number goes up by one in pack/manifest.json and release.json; commit them
