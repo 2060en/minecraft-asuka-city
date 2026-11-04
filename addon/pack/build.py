@@ -385,9 +385,13 @@ def luggage_cart_entity(name):
     """The vanilla minecart's components as they are (bedrock-samples,
     behavior_pack/entities/minecart.json, format 1.26.30), without the seat.
     v0.6.0 used a smaller box and the older pushable component, and the cart
-    kept bouncing on the rails (author's test, 2026-11-04)."""
+    kept bouncing on the rails; v0.6.1 copied the vanilla components and still
+    bounced (author's tests, 2026-11-04). The vanilla minecart also runs
+    built-in code that holds it on the rail, which the components alone do
+    not give, so v0.6.2 borrows it with runtime_identifier."""
     return {"format_version": "1.26.30", "minecraft:entity": {
-        "description": {"identifier": f"{NS}:luggage_cart_{name}", "is_spawnable": False, "is_summonable": True},
+        "description": {"identifier": f"{NS}:luggage_cart_{name}", "runtime_identifier": "minecraft:minecart",
+                        "is_spawnable": False, "is_summonable": True},
         "components": {
             "minecraft:type_family": {"family": [f"{NS}_luggage_cart", "minecart", "inanimate"]},
             "minecraft:collision_box": {"width": 0.98, "height": 0.7},

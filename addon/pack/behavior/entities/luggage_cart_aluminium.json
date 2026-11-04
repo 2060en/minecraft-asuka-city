@@ -3,6 +3,7 @@
   "minecraft:entity": {
     "description": {
       "identifier": "asukatech:luggage_cart_aluminium",
+      "runtime_identifier": "minecraft:minecart",
       "is_spawnable": false,
       "is_summonable": true
     },
