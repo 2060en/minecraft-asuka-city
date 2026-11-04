@@ -57,6 +57,16 @@
               "asukatech:door_white",
               "asukatech:door_light_gray"
             ]
+          },
+          {
+            "group_identifier": {
+              "icon": "asukatech:trapdoor_white",
+              "name": "asukatech:itemGroup.name.trapdoors"
+            },
+            "items": [
+              "asukatech:trapdoor_white",
+              "asukatech:trapdoor_light_gray"
+            ]
           }
         ]
       }
