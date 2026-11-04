@@ -104,8 +104,9 @@ def base():
 
 def icon():
     """The item icon: the stand itself, laid out like the vanilla icon (pole,
-    a crossbar, a dripper hanging at each end, the tray under it). The first
-    icon was the glass server; the author wanted the stand (2026-11-04)."""
+    a crossbar, a glass coffee pot hanging at each end, the tray under it).
+    The first icon was one glass server, the second had drippers at the ends;
+    the author wanted the stand with coffee pots hanging from it (2026-11-04)."""
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
     px = img.load()
     for x in range(3, 13):                       # the tray
@@ -119,16 +120,20 @@ def icon():
     for x in range(1, 15):                       # the crossbar
         put(px, x, 4, STEEL_HI)
         put(px, x, 5, STEEL)
-    for x0 in (1, 10):                           # a white cone dripper under each end
-        for x in range(x0, x0 + 5):
-            put(px, x, 6, DRIPPER)
+    for x0 in (1, 10):                           # a glass coffee pot hanging from each end
+        put(px, x0 + 2, 6, STEEL)                # the hook
         for x in range(x0 + 1, x0 + 4):
-            put(px, x, 6, FILTER)                # the paper filter inside
+            put(px, x, 7, GLASS)                 # neck
+        for y in range(8, 12):
+            for x in range(x0, x0 + 5):
+                put(px, x, y, GLASS)
         for x in range(x0, x0 + 5):
-            put(px, x, 7, DRIPPER if x < x0 + 4 else DRIPPER_LO)
-        for x in range(x0 + 1, x0 + 4):
-            put(px, x, 8, DRIPPER if x < x0 + 3 else DRIPPER_LO)
-        put(px, x0 + 2, 9, DRIPPER_LO)
+            put(px, x, 9, COLLAR)                # wooden collar
+        for y in (10, 11):
+            for x in range(x0, x0 + 5):
+                put(px, x, y, COFFEE)
+        put(px, x0 + 1, 10, COFFEE_HI)
+        put(px, x0, 8, GLASS_HI)
     for y in range(1, 16):                       # outline
         for x in range(0, 16):
             if px[x, y][3] == 0 and any(px[x + dx, y + dy][3] and px[x + dx, y + dy][:3] != (90, 92, 96)
