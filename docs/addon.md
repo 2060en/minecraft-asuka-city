@@ -238,6 +238,7 @@
 - **原始檔放在這個 repo**：資源包、行為包、對照表、轉換程式都放在 repo，每加一個東西就 commit，修改紀錄都留著
 - **安裝方式：雙擊 `.mcaddon` 匯入**（已定，2026-11-03）。不用開發用資料夾的目錄連結：附加內容已經套用到主世界，開發用資料夾裡的包和主世界是同一個包，改到一半的東西會直接影響主世界。主世界只在作者決定匯入新版時才會變
 - **版本號由 `build.py` 自動加**（已定，2026-11-03）：同一個包（同一個 UUID）要用新的版本號，遊戲才會把它當成新版匯入。**匯入新版不會蓋掉舊版**（作者實測，2026-11-04；Claude 原本說會蓋掉，是錯的）：新舊兩版會同時留在遊戲裡，舊版要自己到遊戲的設定裡刪掉，見下面的「更新的步驟」。`build.py` 把組好的內容（manifest 以外的檔案，圖片看像素）算成雜湊，和 `addon/pack/release.json` 記的比較；內容有變就把最後一位加一，寫回兩個 `manifest.json` 與 `release.json`，跟著改動一起 commit；沒變就維持原本的版本號，同一個 commit 在誰的電腦上組都一樣。要跳大一點的版本（例如 0.5.0），手動改 `resource/manifest.json` 的版本號，`build.py` 會照用、不再加一
+- **安裝檔的檔名加上版本號**（作者要求，2026-11-04），例如 `Asuka tech v0.7.1.mcaddon`，一看就知道是哪一版
 - **更新的步驟**（作者實測，2026-11-04）：雙擊新的 `.mcaddon` 匯入；到遊戲的設定裡把舊版的資源包與行為包刪掉；進世界前確認世界設定裡啟用的是新版
 - 之後如果要大量反覆微調外觀，可以另做一個不同 UUID 的開發版，只在世界副本上啟用，搭配開發用資料夾（目前不做）
 - **只掛在這個世界上**：不全域啟用，其他世界不受影響
@@ -390,7 +391,7 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 ### 檔案與做法
 
 - `addon/pack/resource/`、`addon/pack/behavior/`：兩個包的原始檔；`blocks/` 等方塊定義由 `addon/pack/build.py` 產生（門有 4 個方向 × 上下半 × 開關 × 門軸，用程式產生比較不會錯）
-- `python3 addon/pack/build.py`：產生定義，並把草稿的材質、模型與廣告組進 `addon/build/Asuka tech RP/`、`Asuka tech BP/`，再打包成 `addon/build/Asuka tech.mcaddon`。`kz.png` 需要原版的畫，程式會從 Mojang 的 bedrock-samples 下載；`addon/build/` 不進 repo
+- `python3 addon/pack/build.py`：產生定義，並把草稿的材質、模型與廣告組進 `addon/build/Asuka tech RP/`、`Asuka tech BP/`，再打包成 `addon/build/Asuka tech v<版本號>.mcaddon`（檔名加上版本號，作者要求，2026-11-04；舊的安裝檔會刪掉，只留最新的）。`kz.png` 需要原版的畫，程式會從 Mojang 的 bedrock-samples 下載；`addon/build/` 不進 repo
 - **安裝**：雙擊 `.mcaddon` 匯入遊戲，版本號由 `build.py` 自動加；舊版不會被蓋掉，要自己刪（見[第 5 節](#5-開發方式)的「更新的步驟」）。在世界的設定裡同時啟用兩個包，不需要開實驗性功能
 - 腳本只用穩定版的 Script API（`@minecraft/server` 2.0.0），方塊定義的格式是 1.21.90
 
@@ -418,7 +419,7 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 - **外觀**：照作者定稿的履帶草稿（`addon/drafts/conveyor/`）：黑色橡膠履帶加一條條肋紋，兩側是鋼色護欄。鐵軌是從上往下看的平面，所以護欄是兩側的細條；彎道照原版的方向，連接下緣與右緣，外側護欄在左上，內側是轉角的一小段
 - **不同鐵軌**：護欄內側一條顏色線（作者 2026-11-03：照之前討論的，側邊一條不同顏色）。普通鐵軌沒有線；動力鐵軌是之前定稿的黃線；偵測鐵軌紅色、觸發鐵軌藍色（Claude 選的，作者測試後確認，2026-11-03）。通電（動力、觸發）或有礦車經過（偵測）時，線變亮
 - **封面**：用這個材質包的材質拼一段直線接彎道的履帶，算成立體圖（作者要求放履帶的圖）
-- **檔案**：`addon/rail_to_belt/build.py` 畫材質、產生封面；`addon/rail_to_belt/pack/` 是材質包本身（全部是自己畫的，可以進 repo）；安裝檔 `addon/build/Rail to Belt.mcpack`
+- **檔案**：`addon/rail_to_belt/build.py` 畫材質、產生封面；`addon/rail_to_belt/pack/` 是材質包本身（全部是自己畫的，可以進 repo）；安裝檔 `addon/build/Rail to Belt v<版本號>.mcpack`（檔名加上版本號）
 - **測試**：作者在遊戲裡測過，沒問題（2026-11-03）
 - **版本號自動加**（已定，2026-11-03）：和 Asuka tech 一樣，`build.py` 打包 `.mcpack` 時比較 `addon/rail_to_belt/release.json` 記的內容雜湊，內容有變就把最後一位加一；手動改 `pack/manifest.json` 的版本號可以跳大版本
 - **名稱與介紹**：名稱「Rail to Belt」，介紹「Turns every rail into a conveyor belt. Textures only.」（作者 2026-11-03：改成大寫的名字、介紹用英文）

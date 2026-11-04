@@ -12,7 +12,8 @@ Two jobs:
    wrong by hand. The generated files are committed, so they can be read.
 2. Assemble addon/build/Asuka tech RP/ and Asuka tech BP/ from addon/pack/,
    the finished drafts in addon/drafts/ and the advertisement textures, and
-   zip both into addon/build/Asuka tech.mcaddon. kz.png needs the vanilla
+   zip both into addon/build/Asuka tech v<version>.mcaddon (the version in the
+   file name, author 2026-11-04). kz.png needs the vanilla
    paintings that have no advertisement, so the vanilla kz.png is read from
    --vanilla DIR (a textures/painting folder) or downloaded from
    https://github.com/Mojang/bedrock-samples into addon/build/vanilla/.
@@ -748,8 +749,10 @@ def assemble(vanilla_folder):
                    {"format_version": data["format_version"],
                     "minecraft:geometry": [to_bedrock(g) for g in data["minecraft:geometry"]]})
 
-    update_version((rp_out, bp_out))
-    mcaddon = BUILD / "Asuka tech.mcaddon"
+    version = ".".join(map(str, update_version((rp_out, bp_out))))
+    for old in BUILD.glob("Asuka tech*.mcaddon"):   # only the current one stays, so the right one gets sent
+        old.unlink()
+    mcaddon = BUILD / f"Asuka tech v{version}.mcaddon"
     with zipfile.ZipFile(mcaddon, "w", zipfile.ZIP_DEFLATED) as z:
         for folder in (rp_out, bp_out):
             for f in sorted(folder.rglob("*")):
