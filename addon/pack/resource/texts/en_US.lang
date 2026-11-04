@@ -42,6 +42,7 @@ asukatech:itemGroup.name.tableware=Tableware
 asukatech:itemGroup.name.suitcases=Suitcases
 asukatech:itemGroup.name.cups=Cups
 asukatech:itemGroup.name.doors=Doors
+asukatech:itemGroup.name.trapdoors=Trapdoors
 potion.emptyPotion.name=Mineral Water
 potion.awkward.name=Mineral Water
 potion.mundane.name=Mineral Water

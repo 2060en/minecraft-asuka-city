@@ -507,6 +507,7 @@ GROUPS = [   # (tab, name key, zh_TW, en_US, icon, items)
     ("items", "cups", "杯子", "Cups", "coffee_cup", ["coffee_cup", "glass_cup"]),
     # v0.7.4 (author, 2026-11-04): the two doors, in the construction tab where doors are
     ("construction", "doors", "門", "Doors", "door_white", ["door_white", "door_light_gray"]),
+    ("construction", "trapdoors", "地板門", "Trapdoors", "trapdoor_white", ["trapdoor_white", "trapdoor_light_gray"]),
 ]
 
 
