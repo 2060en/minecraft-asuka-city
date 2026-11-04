@@ -45,8 +45,9 @@ mirrored, cube and bone rotations about x and y change sign, and the up and
 down faces are turned half way round. The first version copied the drafts
 unconverted, so in the game a conveyor curve, since removed, bent the wrong
 way and its slope tilted the wrong way (author's test, 2026-11-03). to_bedrock() now
-applies Blockbench's export rules. Collision boxes are taken from the
-drafts before converting, since they are in world coordinates.
+applies Blockbench's export rules. Collision and selection boxes are worked
+out from the drafts and mirrored in x the same way (bone_box); until v0.7.3
+they were not, and an open door's box was on the wrong side.
 """
 import argparse
 import copy
@@ -147,13 +148,20 @@ def cube_corners(c):
 
 
 def bone_box(geo, bone):
-    """Bounding box of a bone's cubes, clamped to the block, as a Bedrock box."""
+    """Bounding box of a bone's cubes, clamped to the block, as a Bedrock box.
+
+    The box is mirrored in x like the model (to_bedrock): boxes are in the
+    same frame as the model file, not the drafts' on-screen frame. Before
+    v0.7.3 they were not, and an open door's box sat on the other side from
+    the door (author's test, 2026-11-04); the other boxes are the same either
+    way, being symmetric in x."""
     cubes = next(b for b in geo["bones"] if b["name"] == bone)["cubes"]
     corners = [p for c in cubes for p in cube_corners(c)]
     lo = [min(p[i] for p in corners) for i in range(3)]
     hi = [max(p[i] for p in corners) for i in range(3)]
     lo = [max(-8, lo[0]), max(0, lo[1]), max(-8, lo[2])]
     hi = [min(8, hi[0]), min(16, hi[1]), min(8, hi[2])]
+    lo[0], hi[0] = -hi[0], -lo[0]           # mirror in x, as the model is
     box = {"origin": [round(v, 3) for v in lo], "size": [round(h - l, 3) for h, l in zip(hi, lo)]}
     return box
 
@@ -521,6 +529,35 @@ def screen_item():
         }}}
 
 
+# The doors' own items (v0.7.3): a door's block item showed one block, like a
+# trapdoor standing up (author, 2026-11-04). This item places the door block
+# and takes the place of its item, with a door-shaped icon drawn from the
+# door's texture (the front, 16 x 32, at (0, 0)).
+def door_item(color):
+    return {"format_version": "1.21.90", "minecraft:item": {
+        "description": {"identifier": f"{NS}:door_{color}", "menu_category": {"category": "construction"}},
+        "components": {
+            "minecraft:icon": f"{NS}_door_{color}_item",
+            "minecraft:display_name": {"value": f"tile.{NS}:door_{color}.name"},
+            "minecraft:block_placer": {"block": f"{NS}:door_{color}", "replace_block_item": True},
+        }}}
+
+
+def door_icon(color):
+    """16 x 16: the door 8 wide and 16 tall, its frame, face and lever handle."""
+    tex = Image.open(DRAFTS / "doors" / f"door_{color}.png").convert("RGBA")
+    edge, face = tex.getpixel((0, 0)), tex.getpixel((6, 6))
+    handle = min((tex.getpixel((x, y)) for y in range(32) for x in range(16)), key=lambda c: sum(c[:3]))
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    px = img.load()
+    for y in range(16):
+        for x in range(4, 12):
+            px[x, y] = edge if x in (4, 11) or y in (0, 15) else face
+    px[5, 7] = px[5, 8] = px[5, 9] = handle
+    px[6, 8] = handle
+    return img
+
+
 def load_draft(path):
     """Import a draft's build.py whose work sits behind `if __name__ == "__main__"`."""
     spec = importlib.util.spec_from_file_location(f"draft_{Path(path).parent.name}", DRAFTS / path)
@@ -572,9 +609,13 @@ def generate():
                    suitcase_client(f"luggage_cart_{name}", f"luggage_cart_{name}", name, cart=True))
     write_json(rp / "animations" / "luggage_cart.animation.json", CART_ANIMATION)
     write_json(bp / "items" / "screen.json", screen_item())
+    for color in ("light_gray", "white"):
+        write_json(bp / "items" / f"door_{color}.json", door_item(color))
     write_json(bp / "item_catalog" / "crafting_item_catalog.json", catalog())
     icons = {f"{NS}_{n}": f"textures/items/{NS}/{n}" for n in TABLEWARE}
     icons[f"{NS}_screen_item"] = f"textures/items/{NS}/screen"
+    for color in ("light_gray", "white"):
+        icons[f"{NS}_door_{color}_item"] = f"textures/items/{NS}/door_{color}"
     icons.update({f"{NS}_suitcase_{n}": f"textures/items/{NS}/suitcase_{n}" for n in SUITCASES})
     write_json(rp / "textures" / "item_texture.json", {
         "resource_pack_name": NS, "texture_name": "atlas.items",
@@ -729,6 +770,11 @@ def assemble(vanilla_folder):
     kz.save(rp_out / "textures" / "painting" / "kz.png")
     for f in (ADS / "painting").glob("*.png"):
         shutil.copy(f, rp_out / "textures" / "painting" / f.name)
+
+    for color in ("light_gray", "white"):      # the doors' item icons
+        dest = rp_out / "textures" / "items" / NS / f"door_{color}.png"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        door_icon(color).save(dest)
 
     # drinks: the potion icons
     for f in (DRAFTS / "drinks" / "icons").glob("*.png"):
