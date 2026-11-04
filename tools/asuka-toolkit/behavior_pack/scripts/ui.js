@@ -1,7 +1,7 @@
 // 各功能共用的介面工具：提示訊息、顯示表單。
 
 import { system } from '@minecraft/server';
-import { ActionFormData, FormCancelationReason } from '@minecraft/server-ui';
+import { FormCancelationReason } from '@minecraft/server-ui';
 
 /** @typedef {import('@minecraft/server').Player} Player */
 
@@ -52,16 +52,6 @@ export async function showForm(player, form) {
   } finally {
     formOpen.delete(player.id);
   }
-}
-
-/**
- * 跳出警告，玩家按「知道了」或 X 才繼續。
- * @param {Player} player
- * @param {string} title
- * @param {string} body
- */
-export async function showWarning(player, title, body) {
-  await showForm(player, new ActionFormData().title(`§c${title}`).body(body).button('知道了'));
 }
 
 /**

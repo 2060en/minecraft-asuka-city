@@ -17,7 +17,7 @@
 
 import { world, StructureSaveMode } from '@minecraft/server';
 import { ActionFormData } from '@minecraft/server-ui';
-import { notify, showForm, showWarning, inventoryOf, waitTicks } from './ui.js';
+import { notify, showForm, inventoryOf, waitTicks } from './ui.js';
 
 /** @typedef {import('@minecraft/server').Player} Player */
 /** @typedef {import('@minecraft/server').Block} Block */
@@ -213,20 +213,29 @@ export async function saveFromBlock(player, block) {
   } finally {
     world.structureManager.delete(tempKey);
   }
-  dimension.runCommand(`setblock ${at.x} ${at.y} ${at.z} air destroy`);
-  await waitTicks(2);
-
-  const drops = dimension.getEntities({
-    type: 'minecraft:item',
-    location: { x: at.x + 0.5, y: at.y + 0.5, z: at.z + 0.5 },
-    maxDistance: 4,
-  });
+  // 世界可能關掉了掉落（作者的世界就是，2026-11-05）：只在這一小段時間打開，拿到掉落物就還原
+  const rules = world.gameRules;
+  const { doTileDrops, doEntityDrops } = rules;
+  rules.doTileDrops = true;
+  rules.doEntityDrops = true;
   /** @type {ItemStack[]} */
   const items = [];
-  for (const drop of drops) {
-    const item = drop.getComponent('minecraft:item')?.itemStack;
-    if (item && !(isFrame && FRAME_TYPES.has(item.typeId))) items.push(item);
-    drop.remove();
+  try {
+    dimension.runCommand(`setblock ${at.x} ${at.y} ${at.z} air destroy`);
+    await waitTicks(2);
+    const drops = dimension.getEntities({
+      type: 'minecraft:item',
+      location: { x: at.x + 0.5, y: at.y + 0.5, z: at.z + 0.5 },
+      maxDistance: 4,
+    });
+    for (const drop of drops) {
+      const item = drop.getComponent('minecraft:item')?.itemStack;
+      if (item && !(isFrame && FRAME_TYPES.has(item.typeId))) items.push(item);
+      drop.remove();
+    }
+  } finally {
+    rules.doTileDrops = doTileDrops;
+    rules.doEntityDrops = doEntityDrops;
   }
   if (items.length === 0) {
     notify(player, isFrame ? '§c這個框架裡沒有東西' : '§c這個方塊打掉不會掉東西，沒辦法收藏');
@@ -341,7 +350,9 @@ export async function openFavorites(player) {
     if (response.selection === list.length) {
       await openManage(player);
     } else if (!takeFavorite(player, list[response.selection])) {
-      await showWarning(player, '包包滿了', '放不下，先空出一格再拿。');
+      // 關掉清單，提示才看得到
+      notify(player, '§c包包滿了，先空出一格再拿');
+      return;
     }
   }
 }

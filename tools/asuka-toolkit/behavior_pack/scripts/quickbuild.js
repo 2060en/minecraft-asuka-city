@@ -482,31 +482,30 @@ function undoLast(player) {
 // ---------------------------------------------------------------------------
 
 /**
- * 木棍右鍵的頁面。按「復原」不關頁面，要復原好幾次不用一直開
- * （遊戲的表單按了就關，所以是馬上重開同一頁）。
+ * 復原頁面。按了不關頁面，要復原好幾次不用一直開
+ * （遊戲的表單按了就關，所以是馬上重開同一頁）。按 X 離開。
+ * @param {Player} player
+ */
+async function openUndoPage(player) {
+  for (;;) {
+    const undoCount = undoStacks.get(player.id)?.length ?? 0;
+    const form = new ActionFormData()
+      .title('復原')
+      .body(`復原最近的快速建造或快速破壞，最多保留 ${MAX_UNDO} 次。按 X 離開。`)
+      .button(undoCount > 0 ? `復原上一次（還有 ${undoCount} 次）` : '§8復原上一次（沒有紀錄）');
+    const response = await showForm(player, form);
+    if (!response || response.canceled) return;
+    undoLast(player);
+  }
+}
+
+/**
+ * 木棍右鍵：第一層直接是設定（作者定的，2026-11-05）。設定頁只能有一顆送出鈕，
+ * 所以復原放第二層，勾選「復原」再按套用才進去。
  * @param {Player} player
  */
 export async function openQuickBuildPanel(player) {
-  for (;;) {
-    const s = loadSettings(player);
-    const undoCount = undoStacks.get(player.id)?.length ?? 0;
-    const form = new ActionFormData()
-      .title('快速建造')
-      .body(
-        [
-          `狀態：${isEnabled(player) ? '§a開啟' : '§7關閉'}§r（蹲下＋木棍右鍵開關）`,
-          settingsSummary(s),
-          `可以蓋掉：${shortLabel(s.replace, REPLACE_OPTIONS)}；破壞時只打：${shortLabel(s.breakOnly, BREAK_OPTIONS)}`,
-        ].join('\n'),
-      )
-      .button(undoCount > 0 ? `復原上一次（還有 ${undoCount} 次）` : '§8復原上一次（沒有紀錄）')
-      .button('調整設定');
-
-    const response = await showForm(player, form);
-    if (!response || response.canceled) return;
-    if (response.selection === 0) undoLast(player);
-    else if (await openSettings(player)) return;
-  }
+  if (await openSettings(player)) await openUndoPage(player);
 }
 
 /**
@@ -519,7 +518,7 @@ function indexOfOption(options, id) {
 
 /**
  * @param {Player} player
- * @returns {Promise<boolean>} 按了「套用」就是 true；按 X 回上一頁就是 false
+ * @returns {Promise<boolean>} 有沒有勾選「復原」
  */
 async function openSettings(player) {
   const s = loadSettings(player);
@@ -547,11 +546,12 @@ async function openSettings(player) {
       BREAK_OPTIONS.map((o) => o.label),
       { defaultValueIndex: indexOfOption(BREAK_OPTIONS, s.breakOnly) },
     )
+    .toggle('復原（勾選後按套用，會打開復原頁面）', { defaultValue: false })
     .submitButton('套用');
 
   const response = await showForm(player, form);
   if (!response || response.canceled || !response.formValues) return false;
-  const [on, rangeText, gapText, modeIndex, replaceIndex, breakIndex] = response.formValues;
+  const [on, rangeText, gapText, modeIndex, replaceIndex, breakIndex, wantsUndo] = response.formValues;
 
   const range = parseIntInRange(rangeText, 1, MAX_RANGE);
   const gap = parseIntInRange(gapText, 0, MAX_GAP);
@@ -570,7 +570,7 @@ async function openSettings(player) {
   if (gap === undefined) warnings.push('間隔不是數字，沿用原本的設定');
   if (warnings.length > 0) player.sendMessage(`§e快速建造：${warnings.join('；')}`);
   notify(player, `${on ? '§a快速建造：開啟' : '§7快速建造：關閉'}§r（${settingsSummary(next)}）`);
-  return true;
+  return wantsUndo === true;
 }
 
 // ---------------------------------------------------------------------------
