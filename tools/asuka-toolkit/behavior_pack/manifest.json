@@ -2,17 +2,17 @@
   "format_version": 2,
   "header": {
     "name": "Asuka 工具包",
-    "description": "Stick menu for building: quick build, common items, item favorites, time and weather. Vanilla blocks and items only; removing it leaves the world unchanged.",
+    "description": "Building tools held in the hand. Stick: quick build and quick break. Blaze rod: item favorites. Breeze rod: command-only items. Vanilla blocks and items only; removing it leaves the world unchanged.",
     "uuid": "257e1696-a5ae-4568-a53a-1acebef22fce",
     "version": [
       2,
       0,
-      0
+      1
     ],
     "min_engine_version": [
       1,
-      21,
-      100
+      26,
+      0
     ]
   },
   "modules": [
@@ -24,14 +24,14 @@
       "version": [
         2,
         0,
-        0
+        1
       ]
     }
   ],
   "dependencies": [
     {
       "module_name": "@minecraft/server",
-      "version": "2.1.0"
+      "version": "2.6.0"
     },
     {
       "module_name": "@minecraft/server-ui",

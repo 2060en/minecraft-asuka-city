@@ -1,37 +1,32 @@
-// 測試常用物品清單與時間換算：npm test（在 tools/asuka-toolkit 底下執行）
+// 測試旋風棒的特殊物品清單與左鍵判斷：npm test（在 tools/asuka-toolkit 底下執行）
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { CATEGORIES, lightBlockId, normalizeItemId } from '../behavior_pack/scripts/catalog.js';
-import { clockText, isDaytime } from '../behavior_pack/scripts/clock.js';
+import { SPECIAL_ITEMS } from '../behavior_pack/scripts/catalog.js';
+import { isLeftClickSwing } from '../behavior_pack/scripts/input.js';
 
-test('清單裡的物品 ID 格式正確、沒有重複', () => {
-  const ids = CATEGORIES.flatMap((c) => c.items.map((i) => i.id));
-  assert.equal(new Set(ids).size, ids.length);
-  for (const id of ids) assert.match(id, /^minecraft:[a-z0-9_]+$/);
-  for (const c of CATEGORIES) for (const i of c.items) assert.ok(i.amount >= 1 && i.amount <= 64, i.id);
+test('特殊物品是作者選的 7 樣（2026-11-05）', () => {
+  assert.deepEqual(
+    SPECIAL_ITEMS.map((i) => i.id),
+    [
+      'minecraft:structure_block',
+      'minecraft:structure_void',
+      'minecraft:barrier',
+      'minecraft:light_block_15',
+      'minecraft:command_block',
+      'minecraft:repeating_command_block',
+      'minecraft:chain_command_block',
+    ],
+  );
+  for (const item of SPECIAL_ITEMS) {
+    assert.ok(item.label.length > 0);
+    assert.ok(item.amount >= 1 && item.amount <= 64);
+  }
 });
 
-test('光源方塊的 ID', () => {
-  assert.equal(lightBlockId(15), 'minecraft:light_block_15');
-  assert.equal(lightBlockId(0), 'minecraft:light_block_0');
-  assert.equal(lightBlockId(99), 'minecraft:light_block_15');
-});
-
-test('使用者輸入的物品 ID', () => {
-  assert.equal(normalizeItemId(' Barrier '), 'minecraft:barrier');
-  assert.equal(normalizeItemId('minecraft:light_block_7'), 'minecraft:light_block_7');
-  assert.equal(normalizeItemId('foo:bar'), 'foo:bar');
-  assert.equal(normalizeItemId('有空白 的'), undefined);
-  assert.equal(normalizeItemId(''), undefined);
-});
-
-test('遊戲時間換成時鐘時間', () => {
-  assert.equal(clockText(0), '06:00');
-  assert.equal(clockText(6000), '12:00');
-  assert.equal(clockText(13000), '19:00');
-  assert.equal(clockText(18000), '00:00');
-  assert.equal(clockText(23500), '05:30');
-  assert.equal(isDaytime(1000), true);
-  assert.equal(isDaytime(18000), false);
-  assert.equal(isDaytime(23800), true);
+test('只有左鍵才算揮一下', () => {
+  for (const source of ['Attack', 'Mine', 'None']) assert.equal(isLeftClickSwing(source), true, source);
+  // 放方塊、右鍵互動、丟東西也會揮手，但不能開介面
+  for (const source of ['Build', 'DropItem', 'Event', 'Interact', 'ThrowItem', 'UseItem']) {
+    assert.equal(isLeftClickSwing(source), false, source);
+  }
 });

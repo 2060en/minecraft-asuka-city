@@ -1,4 +1,5 @@
-// 快速建造：開啟後，玩家每放一顆方塊，就朝玩家面向的方向自動補上後面幾格，可以設定間隔。
+// 快速建造（木棍）：開啟後，玩家每放一顆方塊，就朝面向的方向自動補上後面幾格；
+// 每打掉一顆，就朝面向的方向打掉後面幾格。範圍含第一顆，間隔是中間空幾格。
 
 import { world, system } from '@minecraft/server';
 import { ActionFormData, ModalFormData } from '@minecraft/server-ui';
@@ -26,14 +27,14 @@ import { notify, showForm } from './ui.js';
 // 設定值
 // ---------------------------------------------------------------------------
 
-/** 一次最多補幾顆 */
-const MAX_COUNT = 1000;
+/** 範圍最多幾格 */
+const MAX_RANGE = 1000;
 /** 間隔最多幾格 */
 const MAX_GAP = 256;
 /** 每位玩家最多保留幾次復原紀錄（只存在記憶體，重新進入世界後會清空） */
 const MAX_UNDO = 20;
 /** 設定存在玩家身上的 dynamic property 名稱 */
-const SETTINGS_KEY = 'qb:settings';
+const SETTINGS_KEY = 'qb:settings2';
 
 const MODE_OPTIONS = [
   { id: DirectionMode.Horizontal, label: '水平八方位（看正上、正下時改成垂直）', short: '水平' },
@@ -43,29 +44,29 @@ const MODE_OPTIONS = [
 const REPLACE_OPTIONS = [
   { id: 'air', label: '只放在空氣', short: '只放空氣' },
   { id: 'airLiquid', label: '空氣和液體（水、岩漿）', short: '空氣和液體' },
-  { id: 'all', label: '全部覆蓋（箱子等容器除外）', short: '全部覆蓋' },
+  { id: 'all', label: '全部覆蓋（基岩、箱子等容器除外）', short: '全部覆蓋' },
 ];
-const OBSTACLE_OPTIONS = [
-  { id: 'stop', label: '停下來', short: '停下' },
-  { id: 'skip', label: '跳過，繼續往後放', short: '跳過' },
+const BREAK_OPTIONS = [
+  { id: 'all', label: '全部（基岩、箱子等容器除外）', short: '全部' },
+  { id: 'same', label: '和第一顆同一種的方塊', short: '同一種' },
 ];
 
 /**
  * @typedef {object} Settings
- * @property {number} count 自動補上幾顆（不含自己放的第一顆）
+ * @property {number} range 範圍：幾格內，含自己放或打的第一顆
  * @property {number} gap 每顆之間空幾格
  * @property {string} mode 方向模式
- * @property {string} replace 可以覆蓋哪些方塊
- * @property {string} obstacle 遇到放不下的位置時
+ * @property {string} replace 放置時可以蓋掉哪些方塊
+ * @property {string} breakOnly 破壞時只打哪些方塊
  */
 
 /** @type {Settings} */
 const DEFAULT_SETTINGS = {
-  count: 20,
+  range: 20,
   gap: 0,
   mode: DirectionMode.Horizontal,
-  replace: 'airLiquid',
-  obstacle: 'stop',
+  replace: 'all',
+  breakOnly: 'all',
 };
 
 // ---------------------------------------------------------------------------
@@ -102,11 +103,11 @@ function pickOption(id, options, fallback) {
  */
 function sanitizeSettings(raw) {
   return {
-    count: parseIntInRange(raw.count, 1, MAX_COUNT) ?? DEFAULT_SETTINGS.count,
+    range: parseIntInRange(raw.range, 1, MAX_RANGE) ?? DEFAULT_SETTINGS.range,
     gap: parseIntInRange(raw.gap, 0, MAX_GAP) ?? DEFAULT_SETTINGS.gap,
     mode: pickOption(String(raw.mode), MODE_OPTIONS, DEFAULT_SETTINGS.mode),
     replace: pickOption(String(raw.replace), REPLACE_OPTIONS, DEFAULT_SETTINGS.replace),
-    obstacle: pickOption(String(raw.obstacle), OBSTACLE_OPTIONS, DEFAULT_SETTINGS.obstacle),
+    breakOnly: pickOption(String(raw.breakOnly), BREAK_OPTIONS, DEFAULT_SETTINGS.breakOnly),
   };
 }
 
@@ -114,7 +115,7 @@ function sanitizeSettings(raw) {
  * @param {Player} player
  * @returns {Settings}
  */
-export function loadSettings(player) {
+function loadSettings(player) {
   let parsed = {};
   try {
     const raw = player.getDynamicProperty(SETTINGS_KEY);
@@ -142,24 +143,25 @@ function shortLabel(id, options) {
 }
 
 /** @param {Settings} s */
-export function settingsSummary(s) {
-  return `數量 ${s.count}、間隔 ${s.gap}、${shortLabel(s.mode, MODE_OPTIONS)}`;
+function settingsSummary(s) {
+  return `範圍 ${s.range}、間隔 ${s.gap}、${shortLabel(s.mode, MODE_OPTIONS)}`;
 }
 
 // ---------------------------------------------------------------------------
-// 開關與提示
+// 開關
 // ---------------------------------------------------------------------------
 
 /** @param {Player} player */
-export function isEnabled(player) {
+function isEnabled(player) {
   return enabledPlayers.get(player.id) === true;
 }
 
 /**
+ * 蹲下＋木棍右鍵：開關快速建造。
  * @param {Player} player
- * @param {boolean} on
  */
-export function setEnabled(player, on) {
+export function toggleQuickBuild(player) {
+  const on = !isEnabled(player);
   enabledPlayers.set(player.id, on);
   if (on) notify(player, `§a快速建造：開啟§r（${settingsSummary(loadSettings(player))}）`);
   else notify(player, '§7快速建造：關閉');
@@ -167,10 +169,26 @@ export function setEnabled(player, on) {
 }
 
 // ---------------------------------------------------------------------------
-// 放方塊
+// 放方塊與打方塊
 // ---------------------------------------------------------------------------
 
 const WATER_TYPES = new Set(['minecraft:water', 'minecraft:flowing_water']);
+/** 兩格高的方塊用哪個狀態分上下半：原版與 Asuka tech 的門 */
+const UPPER_STATES = ['upper_block_bit', 'asukatech:upper'];
+
+/**
+ * 基岩不能動；容器裡的東西沒辦法復原，所以也不動。
+ * @param {Block} block
+ */
+function isProtected(block) {
+  if (block.typeId === 'minecraft:bedrock') return true;
+  try {
+    if (block.getComponent('minecraft:inventory')) return true;
+  } catch {
+    // 讀不到元件時當作不是容器
+  }
+  return false;
+}
 
 /**
  * 這一格可不可以放。
@@ -180,17 +198,35 @@ const WATER_TYPES = new Set(['minecraft:water', 'minecraft:flowing_water']);
 function canReplace(block, replace) {
   if (block.isAir) return true;
   if (replace === 'airLiquid') return block.isLiquid;
-  if (replace === 'all') {
-    if (block.typeId === 'minecraft:bedrock') return false;
-    // 容器裡的東西沒辦法復原，所以永遠不覆蓋
-    try {
-      if (block.getComponent('minecraft:inventory')) return false;
-    } catch {
-      // 讀不到元件時當作不是容器
-    }
-    return true;
-  }
+  if (replace === 'all') return !isProtected(block);
   return false;
+}
+
+/**
+ * 這一格可不可以打。空氣和液體不算方塊，床是兩格而且顏色存在方塊實體裡，復原不回來。
+ * @param {Block} block
+ * @param {BlockPermutation} first 第一顆
+ * @param {string} breakOnly
+ */
+function canBreak(block, first, breakOnly) {
+  if (block.isAir || block.isLiquid || isProtected(block)) return false;
+  if (block.permutation.getState('head_piece_bit') !== undefined) return false;
+  return breakOnly !== 'same' || block.typeId === first.type.id;
+}
+
+/**
+ * 兩格高的方塊的另一半。
+ * @param {Block} block
+ * @returns {Block | undefined}
+ */
+function otherHalf(block) {
+  for (const state of UPPER_STATES) {
+    const upper = block.permutation.getState(state);
+    if (upper === undefined) continue;
+    const other = upper ? block.below() : block.above();
+    return other?.typeId === block.typeId ? other : undefined;
+  }
+  return undefined;
 }
 
 /**
@@ -257,12 +293,25 @@ function pushUndo(player, entry) {
 }
 
 /**
- * 主功能：從玩家剛放的方塊開始，往面向的方向補上方塊。
+ * @param {Dimension} dimension
+ * @param {Vec3} pos
+ * @returns {Block | undefined}
+ */
+function getBlockAt(dimension, pos) {
+  try {
+    return dimension.getBlock(pos);
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * 從玩家剛放的方塊開始，往面向的方向補上方塊。
  * @param {Player} player
  * @param {Block} block 玩家剛放的方塊
  * @param {Dimension} dimension
  */
-function quickBuild(player, block, dimension) {
+function quickPlace(player, block, dimension) {
   const settings = loadSettings(player);
   const origin = { x: block.x, y: block.y, z: block.z };
   const basePermutation = block.permutation;
@@ -289,8 +338,8 @@ function quickBuild(player, block, dimension) {
     if (first && !canReplace(first, settings.replace)) step = negate(step);
   }
 
-  const positions = linePositions(origin, step, settings.count, settings.gap);
-  const range = dimension.heightRange;
+  const positions = linePositions(origin, step, settings.range, settings.gap);
+  const heights = dimension.heightRange;
   /** @type {BlockRecord[]} */
   const records = [];
   let placed = 0;
@@ -299,37 +348,21 @@ function quickBuild(player, block, dimension) {
 
   for (const pos of positions) {
     const topY = topPermutation ? pos.y + 1 : pos.y;
-    if (pos.y < range.min || topY >= range.max) {
+    if (pos.y < heights.min || topY >= heights.max) {
       stopReason = '超出世界高度';
       break;
     }
-
-    /** @type {Block | undefined} */
-    let target;
-    try {
-      target = dimension.getBlock(pos);
-    } catch {
-      target = undefined;
-    }
-    if (!target) {
-      stopReason = '前方的區塊還沒載入';
-      break;
-    }
-    const top = topPermutation ? target.above() : undefined;
-    if (topPermutation && !top) {
+    const target = getBlockAt(dimension, pos);
+    const top = topPermutation ? target?.above() : undefined;
+    if (!target || (topPermutation && !top)) {
       stopReason = '前方的區塊還沒載入';
       break;
     }
 
-    // 已經是同一種方塊（例如和上一條線重疊）就直接跳過，不算擋住
+    // 已經是同一種方塊（例如和上一條線重疊）就直接跳過
     if (samePermutation(target.permutation, basePermutation)) continue;
 
-    const free = canReplace(target, settings.replace) && (!top || canReplace(top, settings.replace));
-    if (!free) {
-      if (settings.obstacle === 'stop') {
-        stopReason = '被方塊擋住';
-        break;
-      }
+    if (!canReplace(target, settings.replace) || (top && !canReplace(top, settings.replace))) {
       skipped++;
       continue;
     }
@@ -357,10 +390,63 @@ function quickBuild(player, block, dimension) {
 }
 
 /**
- * 復原最近一次快速建造（不包含玩家自己放的第一顆）。
+ * 從玩家剛打掉的方塊開始，往面向的方向打掉後面的方塊。不會掉物品（作者要求，2026-11-05）。
+ * @param {Player} player
+ * @param {Block} block 玩家剛打掉的那一格（現在已經空了）
+ * @param {BlockPermutation} broken 打掉之前的樣子
+ * @param {Dimension} dimension
+ */
+function quickBreak(player, block, broken, dimension) {
+  const settings = loadSettings(player);
+  const origin = { x: block.x, y: block.y, z: block.z };
+  const step = stepFromView(player.getViewDirection(), settings.mode);
+  const heights = dimension.heightRange;
+
+  /** @type {BlockRecord[]} */
+  const records = [];
+  // 第一顆也記下來，復原時才不會留一個洞；兩格高的方塊另一半已經不見了，復原不完整，所以不記
+  if (!UPPER_STATES.some((state) => broken.getState(state) !== undefined)) {
+    records.push({ ...origin, permutation: broken, waterlogged: false });
+  }
+
+  let cleared = 0;
+  let stopReason = '';
+  for (const pos of linePositions(origin, step, settings.range, settings.gap)) {
+    if (pos.y < heights.min || pos.y >= heights.max) {
+      stopReason = '超出世界高度';
+      break;
+    }
+    const target = getBlockAt(dimension, pos);
+    if (!target) {
+      stopReason = '前方的區塊還沒載入';
+      break;
+    }
+    if (!canBreak(target, broken, settings.breakOnly)) continue;
+
+    // 兩格高的方塊兩半一起拿掉，才不會掉落或留下半扇門
+    const other = otherHalf(target);
+    if (other) {
+      records.push(recordBlock(other));
+      other.setType('minecraft:air');
+    }
+    records.push(recordBlock(target));
+    target.setType('minecraft:air');
+    cleared++;
+  }
+
+  if (records.length > 0) pushUndo(player, { dimensionId: dimension.id, records });
+
+  const direction = describeDirection(step, settings.mode);
+  let message = `§a快速破壞§r：往${direction}打掉 ${cleared} 顆`;
+  if (stopReason) message += `§e（${stopReason}，提早停下）`;
+  notify(player, message);
+}
+
+/**
+ * 復原最近一次快速建造或快速破壞。
  * @param {Player} player
  */
-export function undoLast(player) {
+function undoLast(player) {
   const stack = undoStacks.get(player.id);
   const entry = stack?.pop();
   if (!entry) {
@@ -371,12 +457,7 @@ export function undoLast(player) {
   let restored = 0;
   let missing = 0;
   for (const rec of [...entry.records].reverse()) {
-    let block;
-    try {
-      block = dimension.getBlock(rec);
-    } catch {
-      block = undefined;
-    }
+    const block = getBlockAt(dimension, rec);
     if (!block) {
       missing++;
       continue;
@@ -393,61 +474,38 @@ export function undoLast(player) {
   }
   let message = `§a快速建造：已復原 ${restored} 格`;
   if (missing > 0) message += `§e（${missing} 格所在的區塊沒有載入，無法復原）`;
-  message += `§r，還可以復原 ${stack?.length ?? 0} 次`;
   notify(player, message);
 }
 
 // ---------------------------------------------------------------------------
-// 快速建造選單
+// 介面
 // ---------------------------------------------------------------------------
 
 /**
+ * 木棍右鍵的頁面。按「復原」不關頁面，要復原好幾次不用一直開
+ * （遊戲的表單按了就關，所以是馬上重開同一頁）。
  * @param {Player} player
- * @param {(player: Player) => Promise<void>} [onBack] 按「返回」時要回到的選單
  */
-export async function openQuickBuildMenu(player, onBack) {
-  const settings = loadSettings(player);
-  const on = isEnabled(player);
-  const undoCount = undoStacks.get(player.id)?.length ?? 0;
+export async function openQuickBuildPanel(player) {
+  for (;;) {
+    const s = loadSettings(player);
+    const undoCount = undoStacks.get(player.id)?.length ?? 0;
+    const form = new ActionFormData()
+      .title('快速建造')
+      .body(
+        [
+          `狀態：${isEnabled(player) ? '§a開啟' : '§7關閉'}§r（蹲下＋木棍右鍵開關）`,
+          settingsSummary(s),
+          `可以蓋掉：${shortLabel(s.replace, REPLACE_OPTIONS)}；破壞時只打：${shortLabel(s.breakOnly, BREAK_OPTIONS)}`,
+        ].join('\n'),
+      )
+      .button(undoCount > 0 ? `復原上一次（還有 ${undoCount} 次）` : '§8復原上一次（沒有紀錄）')
+      .button('調整設定');
 
-  const body = [
-    `狀態：${on ? '§a開啟' : '§7關閉'}§r`,
-    `數量：${settings.count} 顆`,
-    `間隔：${settings.gap === 0 ? '0（連續）' : `${settings.gap} 格`}`,
-    `方向：${shortLabel(settings.mode, MODE_OPTIONS)}`,
-    `覆蓋：${shortLabel(settings.replace, REPLACE_OPTIONS)}`,
-    `遇到擋住：${shortLabel(settings.obstacle, OBSTACLE_OPTIONS)}`,
-    '',
-    '§7小技巧：拿木棍蹲下右鍵可以直接開關。',
-  ].join('\n');
-
-  const form = new ActionFormData()
-    .title('快速建造')
-    .body(body)
-    .button(on ? '§c關閉快速建造' : '§2開啟快速建造')
-    .button('調整設定')
-    .button(undoCount > 0 ? `復原上一次（還有 ${undoCount} 次）` : '§8復原上一次（沒有紀錄）')
-    .button('使用說明')
-    .button('返回');
-
-  const response = await showForm(player, form);
-  if (!response || response.canceled) return;
-  switch (response.selection) {
-    case 0:
-      setEnabled(player, !on);
-      break;
-    case 1:
-      await openSettings(player);
-      break;
-    case 2:
-      undoLast(player);
-      break;
-    case 3:
-      await openHelp(player, onBack);
-      break;
-    case 4:
-      if (onBack) await onBack(player);
-      break;
+    const response = await showForm(player, form);
+    if (!response || response.canceled) return;
+    if (response.selection === 0) undoLast(player);
+    else if (await openSettings(player)) return;
   }
 }
 
@@ -459,16 +517,19 @@ function indexOfOption(options, id) {
   return Math.max(0, options.findIndex((o) => o.id === id));
 }
 
-/** @param {Player} player */
+/**
+ * @param {Player} player
+ * @returns {Promise<boolean>} 按了「套用」就是 true；按 X 回上一頁就是 false
+ */
 async function openSettings(player) {
   const s = loadSettings(player);
   const form = new ModalFormData()
     .title('快速建造設定')
     .toggle('開啟快速建造', { defaultValue: isEnabled(player) })
-    .textField(`數量：自動補上幾顆（1～${MAX_COUNT}，不含自己放的第一顆）`, '例如 100', {
-      defaultValue: String(s.count),
+    .textField(`範圍：幾格內，含親手放或打的第一顆（1～${MAX_RANGE}）`, '例如 20', {
+      defaultValue: String(s.range),
     })
-    .textField(`間隔：每顆之間空幾格（0～${MAX_GAP}，0 是連續）`, '例如 3', {
+    .textField(`間隔：中間空幾格（0～${MAX_GAP}，0 是連續）`, '例如 2', {
       defaultValue: String(s.gap),
     })
     .dropdown(
@@ -477,72 +538,39 @@ async function openSettings(player) {
       { defaultValueIndex: indexOfOption(MODE_OPTIONS, s.mode) },
     )
     .dropdown(
-      '可以覆蓋哪些方塊',
+      '可以蓋掉',
       REPLACE_OPTIONS.map((o) => o.label),
       { defaultValueIndex: indexOfOption(REPLACE_OPTIONS, s.replace) },
     )
     .dropdown(
-      '遇到放不下的位置',
-      OBSTACLE_OPTIONS.map((o) => o.label),
-      { defaultValueIndex: indexOfOption(OBSTACLE_OPTIONS, s.obstacle) },
+      '破壞時只打',
+      BREAK_OPTIONS.map((o) => o.label),
+      { defaultValueIndex: indexOfOption(BREAK_OPTIONS, s.breakOnly) },
     )
-    .submitButton('儲存');
+    .submitButton('套用');
 
   const response = await showForm(player, form);
-  if (!response || response.canceled || !response.formValues) return;
-  const [on, countText, gapText, modeIndex, replaceIndex, obstacleIndex] = response.formValues;
+  if (!response || response.canceled || !response.formValues) return false;
+  const [on, rangeText, gapText, modeIndex, replaceIndex, breakIndex] = response.formValues;
 
-  const count = parseIntInRange(countText, 1, MAX_COUNT);
+  const range = parseIntInRange(rangeText, 1, MAX_RANGE);
   const gap = parseIntInRange(gapText, 0, MAX_GAP);
   const next = sanitizeSettings({
-    count: count ?? s.count,
+    range: range ?? s.range,
     gap: gap ?? s.gap,
     mode: MODE_OPTIONS[Number(modeIndex)]?.id ?? s.mode,
     replace: REPLACE_OPTIONS[Number(replaceIndex)]?.id ?? s.replace,
-    obstacle: OBSTACLE_OPTIONS[Number(obstacleIndex)]?.id ?? s.obstacle,
+    breakOnly: BREAK_OPTIONS[Number(breakIndex)]?.id ?? s.breakOnly,
   });
   saveSettings(player, next);
   enabledPlayers.set(player.id, on === true);
 
   const warnings = [];
-  if (count === undefined) warnings.push('數量不是數字，沿用原本的設定');
+  if (range === undefined) warnings.push('範圍不是數字，沿用原本的設定');
   if (gap === undefined) warnings.push('間隔不是數字，沿用原本的設定');
   if (warnings.length > 0) player.sendMessage(`§e快速建造：${warnings.join('；')}`);
   notify(player, `${on ? '§a快速建造：開啟' : '§7快速建造：關閉'}§r（${settingsSummary(next)}）`);
-}
-
-/**
- * @param {Player} player
- * @param {(player: Player) => Promise<void>} [onBack]
- */
-async function openHelp(player, onBack) {
-  const body = [
-    '§l基本用法§r',
-    '1. 拿木棍右鍵開選單 → 快速建造 → 開啟。也可以拿木棍蹲下右鍵直接開關。',
-    '2. 拿方塊，面向想要延伸的方向，放下第一顆。',
-    '3. 後面的方塊會自動補上，方塊的朝向和第一顆一樣（樓梯、原木、半磚都適用）。',
-    '',
-    '§l間隔§r',
-    '間隔 0 是連續一整排；間隔 3 是「放一顆、空三格、再放一顆」，適合路燈、柱子、行道樹。',
-    '',
-    '§l方向§r',
-    '水平：八個方位（東西南北和四個斜角），抬頭或低頭超過 75° 時改成垂直。',
-    '立體：再加上 45° 往上或往下的斜線，可以蓋樓梯、斜坡。',
-    '自由：完全照視線方向，可以做出任意斜率，但比較難瞄準。',
-    '',
-    '§l往上長柱子§r',
-    '線如果一開始就要鑽進第一顆方塊貼著的那顆方塊，會自動反過來長：',
-    '看著正下方的地面放 → 往上長柱子；看著天花板放 → 往下垂；看著牆面放 → 從牆面往外長。',
-    '',
-    '§l復原§r',
-    `選單裡可以復原最近 ${MAX_UNDO} 次快速建造，只會收回自動補上的方塊，不包含自己放的第一顆。`,
-    '復原紀錄只存在記憶體，離開世界後就會清空。',
-    '',
-    '§l指令（備用）§r',
-    '/asuka:menu 開選單；/asuka:undo 復原上一次快速建造。',
-  ].join('\n');
-  const response = await showForm(player, new ActionFormData().title('快速建造說明').body(body).button('返回選單'));
-  if (response && !response.canceled) await openQuickBuildMenu(player, onBack);
+  return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -568,10 +596,27 @@ export function recordInteract(player, block, face) {
 export function onPlayerPlaceBlock(player, block, dimension) {
   if (!isEnabled(player)) return;
   try {
-    quickBuild(player, block, dimension);
+    quickPlace(player, block, dimension);
   } catch (error) {
     console.warn(`[快速建造] ${error}`);
     notify(player, `§c快速建造發生錯誤：${error}`);
+  }
+}
+
+/**
+ * 玩家打掉方塊之後呼叫。
+ * @param {Player} player
+ * @param {Block} block
+ * @param {BlockPermutation} broken
+ * @param {Dimension} dimension
+ */
+export function onPlayerBreakBlock(player, block, broken, dimension) {
+  if (!isEnabled(player)) return;
+  try {
+    quickBreak(player, block, broken, dimension);
+  } catch (error) {
+    console.warn(`[快速破壞] ${error}`);
+    notify(player, `§c快速破壞發生錯誤：${error}`);
   }
 }
 

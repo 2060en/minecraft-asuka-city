@@ -94,18 +94,19 @@ export function pointAt(origin, step, i) {
 }
 
 /**
- * 從第一顆方塊開始，算出要自動補上的座標。
- * 第一顆是第 0 步；間隔 gap 表示每顆之間空 gap 格，所以每 gap + 1 步放一顆。
+ * 從第一顆方塊開始，算出後面要處理的座標（作者定的算法，2026-11-05）。
+ * 第一顆是第 0 步，也算在範圍內；間隔 gap 表示中間空 gap 格，所以每 gap + 1 步一顆。
+ * 例如範圍 20、間隔 2：第 0、3、6…18 步，連第一顆共 7 顆。
  * @param {Vec3} origin 第一顆方塊的座標
  * @param {Vec3} step stepFromView 的結果
- * @param {number} count 要補上幾顆（不含第一顆）
- * @param {number} gap 每顆之間空幾格
+ * @param {number} range 範圍：幾格內，含第一顆
+ * @param {number} gap 中間空幾格
  * @returns {Vec3[]}
  */
-export function linePositions(origin, step, count, gap) {
+export function linePositions(origin, step, range, gap) {
   const stride = gap + 1;
   const out = [];
-  for (let k = 1; k <= count; k++) out.push(pointAt(origin, step, k * stride));
+  for (let k = stride; k < range; k += stride) out.push(pointAt(origin, step, k));
   return out;
 }
 

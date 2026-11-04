@@ -86,7 +86,7 @@ test('立體模式：45° 斜線與垂直', () => {
 test('自由模式：主軸每步 1 格，其他軸按比例', () => {
   const step = stepFromView({ x: 0.8, y: 0.4, z: 0 }, F);
   assert.deepEqual(step, { x: 1, y: 0.5, z: 0 });
-  assert.deepEqual(linePositions({ x: 0, y: 0, z: 0 }, step, 4, 0), [
+  assert.deepEqual(linePositions({ x: 0, y: 0, z: 0 }, step, 5, 0), [
     { x: 1, y: 1, z: 0 },
     { x: 2, y: 1, z: 0 },
     { x: 3, y: 2, z: 0 },
@@ -97,7 +97,7 @@ test('自由模式：主軸每步 1 格，其他軸按比例', () => {
 test('自由模式：線是連續的，相鄰兩格最多差 1 格', () => {
   for (const [yaw, pitch] of [[10, 5], [37, -20], [123, 33], [-160, -8], [70, 60]]) {
     const step = stepFromView(view(yaw, pitch), F);
-    const points = [{ x: 0, y: 0, z: 0 }, ...linePositions({ x: 0, y: 0, z: 0 }, step, 200, 0)];
+    const points = [{ x: 0, y: 0, z: 0 }, ...linePositions({ x: 0, y: 0, z: 0 }, step, 201, 0)];
     for (let i = 1; i < points.length; i++) {
       const a = points[i - 1];
       const b = points[i];
@@ -108,25 +108,25 @@ test('自由模式：線是連續的，相鄰兩格最多差 1 格', () => {
 });
 
 test('自由模式：左右對稱的方向長出對稱的線', () => {
-  const right = linePositions({ x: 0, y: 0, z: 0 }, stepFromView({ x: 0.9, y: 0, z: 0.3 }, F), 30, 0);
-  const left = linePositions({ x: 0, y: 0, z: 0 }, stepFromView({ x: -0.9, y: 0, z: 0.3 }, F), 30, 0);
+  const right = linePositions({ x: 0, y: 0, z: 0 }, stepFromView({ x: 0.9, y: 0, z: 0.3 }, F), 31, 0);
+  const left = linePositions({ x: 0, y: 0, z: 0 }, stepFromView({ x: -0.9, y: 0, z: 0.3 }, F), 31, 0);
   assert.deepEqual(left, right.map((p) => ({ x: -p.x || 0, y: p.y, z: p.z })));
 });
 
 test('間隔：每顆之間空 gap 格', () => {
   const origin = { x: 10, y: 64, z: -5 };
-  assert.deepEqual(linePositions(origin, { x: 1, y: 0, z: 0 }, 3, 0), [
+  assert.deepEqual(linePositions(origin, { x: 1, y: 0, z: 0 }, 4, 0), [
     { x: 11, y: 64, z: -5 },
     { x: 12, y: 64, z: -5 },
     { x: 13, y: 64, z: -5 },
   ]);
-  assert.deepEqual(linePositions(origin, { x: 1, y: 0, z: 0 }, 3, 2), [
+  assert.deepEqual(linePositions(origin, { x: 1, y: 0, z: 0 }, 10, 2), [
     { x: 13, y: 64, z: -5 },
     { x: 16, y: 64, z: -5 },
     { x: 19, y: 64, z: -5 },
   ]);
   // 斜線的間隔以「步」計算
-  assert.deepEqual(linePositions(origin, { x: 1, y: 0, z: -1 }, 2, 1), [
+  assert.deepEqual(linePositions(origin, { x: 1, y: 0, z: -1 }, 5, 1), [
     { x: 12, y: 64, z: -7 },
     { x: 14, y: 64, z: -7 - 2 },
   ]);
@@ -167,4 +167,17 @@ test('方向的中文說明', () => {
   assert.equal(describeDirection({ x: 0, y: 1, z: 0 }, H), '正上方');
   assert.equal(describeDirection({ x: -1, y: -1, z: 0 }, S), '西（往下斜）');
   assert.equal(describeDirection({ x: 1, y: 0.1, z: 0.2 }, F), '東，自由角度');
+});
+
+test('範圍含親手放的第一顆，間隔是中間空幾格（作者定的算法甲，2026-11-05）', () => {
+  const origin = { x: 0, y: 0, z: 0 };
+  const east = { x: 1, y: 0, z: 0 };
+  // 範圍 20、間隔 2：第 0、3、6…18 格，連第一顆共 7 顆
+  assert.deepEqual(linePositions(origin, east, 20, 2).map((p) => p.x), [3, 6, 9, 12, 15, 18]);
+  // 範圍 20、間隔 0：連續一整排，連第一顆共 20 格
+  assert.equal(linePositions(origin, east, 20, 0).length, 19);
+  // 範圍 1 就只有第一顆
+  assert.deepEqual(linePositions(origin, east, 1, 0), []);
+  // 間隔大到範圍內放不下第二顆
+  assert.deepEqual(linePositions(origin, east, 5, 9), []);
 });
