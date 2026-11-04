@@ -12,10 +12,12 @@ count, which the resource pack shows as a steel cup (addon/drafts/cup/);
 decided by the author 2026-11-03.
 
 Each glass is 3 x 4 x 3 pixels (about 14 x 19 cm; the world's small props
-are drawn about twice real size, like the coffee cup): a base and four thin
-walls, open at the top, with water inside to just over half.
+are drawn about twice real size, like the coffee cup), an octagonal prism
+(author, 2026-11-04): a base, eight thin walls, open at the top, with water
+inside to just over half.
 """
 import json
+import math
 from pathlib import Path
 
 from PIL import Image
@@ -25,7 +27,7 @@ REL = "/addon/drafts/glass_cup"
 
 GLASS = (214, 232, 242, 96)
 GLASS_EDGE = (236, 246, 252, 170)
-WATER = (104, 168, 220, 150)
+WATER = (104, 168, 220, 210)         # nearly opaque, so the overlapping bars inside do not show
 WATER_TOP = (150, 198, 236, 190)
 BASE = (220, 236, 246, 200)
 
@@ -51,25 +53,33 @@ def sw(name, w=4, h=4):
     return {"uv": [u, v], "uv_size": [w, h]}
 
 
+R = 1.5                                       # half the width across the flats
+SIDE = 2 * R * math.tan(math.radians(22.5))   # one side of the octagon
+
+
+def octagon(cx, cz, y, h, r, faces, lift=0.0):
+    """A solid octagonal prism: four bars, each 2r long and one side wide,
+    turned 0, 45, 90 and 135 degrees about the centre, fill an octagon
+    exactly. Each bar's top sits `lift` higher than the last so the
+    overlapping tops do not flicker."""
+    side = 2 * r * math.tan(math.radians(22.5))
+    return [{"origin": [cx - r, y, cz - side / 2], "size": [2 * r, h + i * lift, side], "uv": faces,
+             "pivot": [cx, y, cz], "rotation": [0, i * 45, 0]} for i in range(4)]
+
+
 def glass(cx, cz):
-    """One glass centred on (cx, cz): four thin walls (so it is open at the
-    top, with a bright rim round the opening; one box with its top face left
-    out still looked sealed, author 2026-11-04), a thick base, the water
-    filling it to just over half."""
-    T = 0.4                                    # wall thickness
-    def wall(ox, oz, w, d):
-        faces = {f: sw("glass") for f in ("north", "south", "east", "west")}
-        faces["up"] = sw("edge")               # the rim
-        return {"origin": [cx + ox, 0.5, cz + oz], "size": [w, 3.5, d], "uv": faces}
+    """One octagonal glass centred on (cx, cz) (author, 2026-11-04): a base,
+    eight thin walls, each one side of the octagon turned in 45-degree steps,
+    open at the top with a bright rim, and the water to just over half."""
+    T = 0.35                                   # wall thickness
+    wall_faces = {f: sw("glass") for f in ("north", "south", "east", "west")}
+    wall_faces["up"] = sw("edge")              # the rim
+    walls = [{"origin": [cx - SIDE / 2, 0.5, cz + R - T], "size": [SIDE, 3.5, T], "uv": wall_faces,
+              "pivot": [cx, 0, cz], "rotation": [0, k * 45, 0]} for k in range(8)]
     water = {f: sw("water") for f in ("north", "south", "east", "west", "down")}
     water["up"] = sw("water_top")
-    return [
-        {"origin": [cx - 1.5, 0, cz - 1.5], "size": [3, 0.5, 3], "uv": {f: sw("base") for f in
-                                                                         ("north", "south", "east", "west", "up", "down")}},
-        wall(-1.5, -1.5, 3, T), wall(-1.5, 1.5 - T, 3, T),            # north and south walls
-        wall(-1.5, -1.5 + T, T, 3 - 2 * T), wall(1.5 - T, -1.5 + T, T, 3 - 2 * T),   # west and east
-        {"origin": [cx - 1.5 + T, 0.5, cz - 1.5 + T], "size": [3 - 2 * T, 2.2, 3 - 2 * T], "uv": water},
-    ]
+    base = {f: sw("base") for f in ("north", "south", "east", "west", "up", "down")}
+    return octagon(cx, cz, 0, 0.5, R, base) + walls + octagon(cx, cz, 0.5, 2.2, R - T, water, lift=0.01)
 
 
 # the same spots as the coffee cups (addon/drafts/coffee_cup/coffee_cup.geo.json)
@@ -90,7 +100,7 @@ for i, n in enumerate(SPOTS):
     objs.append({"type": "block", "color": TABLE, "origin": [x - 8, -16, -8], "size": [16, 16, 16]})
     objs.append({"type": "geo", "geo": f"{REL}/glass_cup.geo.json", "bones": [f"count_{n}"],
                  "texture": f"{REL}/glass_cup.png", "position": [x, 0, 0]})
-sheet = {"title": "玻璃水杯（自製方塊，草稿）：1～4 杯，原味版是海鞘",
+sheet = {"title": "八角形玻璃水杯（自製方塊，草稿）：1～4 杯，原味版是海鞘",
          "columns": 2, "panelWidth": 560, "panelHeight": 300, "background": "#e8edf1",
          "panels": [
              {"label": "斜看", "camera": {"azimuth": 30, "elevation": 30, "size": 40, "target": [0, 2, 0]}, "objects": objs},
