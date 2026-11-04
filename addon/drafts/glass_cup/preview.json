@@ -1,0 +1,311 @@
+{
+ "title": "玻璃水杯（自製方塊，草稿）：1～4 杯，原味版是海鞘",
+ "columns": 2,
+ "panelWidth": 560,
+ "panelHeight": 300,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "斜看",
+   "camera": {
+    "azimuth": 30,
+    "elevation": 30,
+    "size": 40,
+    "target": [
+     0,
+     2,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      -32.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_1"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      -24.0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      -16.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_2"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      -8.0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      0.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_3"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      8.0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      16.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_4"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      24.0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "label": "近看",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 28,
+    "size": 18,
+    "target": [
+     24,
+     2,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      -32.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_1"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      -24.0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      -16.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_2"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      -8.0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      0.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_3"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      8.0,
+      0,
+      0
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#c9a27a",
+      "south": "#b38d66",
+      "north": "#b38d66",
+      "east": "#a17d58",
+      "west": "#a17d58",
+      "down": "#8e6c4a"
+     },
+     "origin": [
+      16.0,
+      -16,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/glass_cup/glass_cup.geo.json",
+     "bones": [
+      "count_4"
+     ],
+     "texture": "/addon/drafts/glass_cup/glass_cup.png",
+     "position": [
+      24.0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}

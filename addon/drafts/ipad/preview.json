@@ -1,0 +1,155 @@
+{
+ "title": "iPad（自製實體，草稿）：平放在桌上，約實物的兩倍大",
+ "columns": 2,
+ "panelWidth": 520,
+ "panelHeight": 320,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "螢幕朝上",
+   "camera": {
+    "azimuth": 15,
+    "elevation": 55,
+    "size": 22,
+    "target": [
+     -8,
+     16,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ipad/ipad.geo.json",
+     "texture": "/addon/drafts/ipad/ipad.png",
+     "position": [
+      -8,
+      16,
+      0
+     ],
+     "rotationY": 0
+    }
+   ]
+  },
+  {
+   "label": "背面（翻過來看）",
+   "camera": {
+    "azimuth": 15,
+    "elevation": 55,
+    "size": 22,
+    "target": [
+     8,
+     16,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      -16,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "block",
+     "color": {
+      "up": "#e9e4da",
+      "south": "#d6d0c4",
+      "north": "#d6d0c4",
+      "east": "#c4beb2",
+      "west": "#c4beb2",
+      "down": "#b0aa9e"
+     },
+     "origin": [
+      0,
+      0,
+      -8
+     ],
+     "size": [
+      16,
+      16,
+      16
+     ]
+    },
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/ipad/ipad.geo.json",
+     "texture": "/addon/drafts/ipad/ipad.png",
+     "position": [
+      8,
+      16,
+      0
+     ],
+     "rotationY": 0,
+     "rotation": [
+      180,
+      0,
+      0
+     ],
+     "pivot": [
+      0,
+      0.2,
+      0
+     ]
+    }
+   ]
+  }
+ ]
+}
