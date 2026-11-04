@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1b2430">
+  <title>津蘭賀千良 地圖</title>
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="bar">
+    <h1 id="title">津蘭賀千良 地圖</h1>
+    <label class="snapshot">
+      <span>備份</span>
+      <select id="snapshot" aria-label="選擇備份"></select>
+    </label>
+    <output id="coords" class="coords" aria-live="polite">X —　Z —</output>
+  </header>
+  <main id="map" aria-label="地圖"></main>
+  <div id="crosshair" class="crosshair" aria-hidden="true"></div>
+  <div id="message" class="message" hidden></div>
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

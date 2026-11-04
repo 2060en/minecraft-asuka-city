@@ -1,0 +1,18 @@
+// Cloudflare Worker 的設定。部署：npx wrangler deploy（在這個資料夾執行）
+{
+  "name": "asuka-map",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "../viewer",
+    "binding": "ASSETS",
+    // 每個請求都先經過 Worker 檢查登入，連檢視網頁本身也是
+    "run_worker_first": true
+  },
+  "r2_buckets": [{ "binding": "MAP", "bucket_name": "asuka-map" }],
+  "vars": {
+    // 設定 Cloudflare Access 之後填入，見 tools/world-backup/README.md
+    "ACCESS_TEAM_DOMAIN": "",
+    "ACCESS_AUD": ""
+  }
+}
