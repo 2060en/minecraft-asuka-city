@@ -104,9 +104,10 @@ def base():
 
 def icon():
     """The item icon: the stand itself, laid out like the vanilla icon (pole,
-    a crossbar, a glass coffee pot hanging at each end, the tray under it).
+    a crossbar, a glass coffee pot hanging from one end, the tray under it).
     The first icon was one glass server, the second had drippers at the ends;
-    the author wanted the stand with coffee pots hanging from it (2026-11-04)."""
+    the author wanted the stand with a coffee pot hanging on one side
+    (2026-11-04)."""
     img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
     px = img.load()
     for x in range(3, 13):                       # the tray
@@ -120,7 +121,7 @@ def icon():
     for x in range(1, 15):                       # the crossbar
         put(px, x, 4, STEEL_HI)
         put(px, x, 5, STEEL)
-    for x0 in (1, 10):                           # a glass coffee pot hanging from each end
+    for x0 in (1,):                              # a glass coffee pot hanging from one end (author: one side only)
         put(px, x0 + 2, 6, STEEL)                # the hook
         for x in range(x0 + 1, x0 + 4):
             put(px, x, 7, GLASS)                 # neck
