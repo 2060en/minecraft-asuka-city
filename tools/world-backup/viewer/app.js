@@ -17,6 +17,7 @@ const els = {
   message: /** @type {HTMLElement} */ (document.getElementById('message')),
   crosshair: /** @type {HTMLElement} */ (document.getElementById('crosshair')),
   home: /** @type {HTMLButtonElement} */ (document.getElementById('home')),
+  save: /** @type {HTMLButtonElement} */ (document.getElementById('save')),
   map: /** @type {HTMLElement} */ (document.getElementById('map')),
 };
 
@@ -141,6 +142,49 @@ async function main() {
     showAll();
   }
   els.home.addEventListener('click', showAll);
+
+  // 存成圖片：把畫面上的圖磚畫到同一張畫布。圖磚和網頁同一個網址，畫布才能輸出
+  const saveImage = async () => {
+    if (layer.isLoading()) await new Promise((resolve) => layer.once('load', resolve));
+    const box = els.map.getBoundingClientRect();
+    const scale = window.devicePixelRatio || 1;
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(box.width * scale);
+    canvas.height = Math.round(box.height * scale);
+    const ctx = /** @type {CanvasRenderingContext2D} */ (canvas.getContext('2d'));
+    ctx.imageSmoothingEnabled = false; // 和畫面一樣保持方塊的邊緣清楚
+    ctx.fillStyle = getComputedStyle(els.map).backgroundColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // 縮放中可能留著別的等級的圖磚墊在底下，照畫面的上下順序畫
+    const tileLevels = [...els.map.querySelectorAll('.leaflet-tile-container')].sort((a, b) => Number(getComputedStyle(a).zIndex) - Number(getComputedStyle(b).zIndex));
+    for (const level of tileLevels) {
+      for (const tile of level.querySelectorAll('img.leaflet-tile-loaded')) {
+        const r = tile.getBoundingClientRect();
+        // 四個邊各自取整數，相鄰的圖磚才不會有縫
+        const left = Math.round((r.left - box.left) * scale);
+        const top = Math.round((r.top - box.top) * scale);
+        ctx.drawImage(/** @type {HTMLImageElement} */ (tile), left, top, Math.round((r.right - box.left) * scale) - left, Math.round((r.bottom - box.top) * scale) - top);
+      }
+    }
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+    if (!blob) throw new Error('圖片太大，存不了。');
+    const center = toBlock(map.getCenter());
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `asuka-map-${current}-X${center.x}-Z${center.z}.png`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 60000);
+  };
+  els.save.addEventListener('click', async () => {
+    els.save.disabled = true;
+    try {
+      await saveImage();
+    } catch (error) {
+      showMessage(error instanceof Error ? error.message : String(error));
+    } finally {
+      els.save.disabled = false;
+    }
+  });
 
   // 座標顯示：滑鼠在地圖上時顯示游標位置，否則（例如手機）顯示畫面中央十字的位置
   const showCoords = (/** @type {{ x: number, z: number }} */ p) => {

@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
 import { parseTilePath, parseMapProperties, buildManifest, mapAreas, snapshotId, tileObjectKey } from '../lib/tiles.js';
 import { publishMap } from '../lib/publish.js';
-import { parseR2Endpoint, unminedRenderArgs } from '../lib/config.js';
+import { installBlockStyles, mapSettingsFile, parseR2Endpoint, unminedRenderArgs } from '../lib/config.js';
 import { reportRow, formatBytes } from '../lib/report.js';
 import { expandEnv, findExe } from '../lib/run.js';
 import { solidPng, writeTile, writeProperties } from './helpers.js';
@@ -74,14 +74,27 @@ test('地圖分區：遠處的零星區塊自成一塊，不會把主體的範�
   assert.deepEqual(mapAreas([at(1, 1, -2)]), [{ minX: 1024, maxX: 2048, minZ: 1024, maxZ: 2048, tiles: 1 }]);
 });
 
-test('uNmINeD 的參數：一律全部重畫、預設用 WebP、不印每張圖磚，設定檔可以改', () => {
+test('uNmINeD 的參數：一律全部重畫、預設用 WebP、套用固定的外觀、不印每張圖磚，設定檔可以改', () => {
   const base = { worldPath: 'C:/world/PXjOwjIpBg0=', map: { renderDir: 'C:/render', stateDir: 'C:/state' } };
   assert.deepEqual(unminedRenderArgs({ ...base, unmined: { exe: 'u', extraArgs: [] } }), [
-    'web', 'render', '--world=C:/world/PXjOwjIpBg0=', '--output=C:/render', '--force', '--imageformat=webp', '--log-level=warning',
+    'web', 'render', '--world=C:/world/PXjOwjIpBg0=', '--output=C:/render', '--force', '--imageformat=webp', `--mapsettings=${mapSettingsFile}`, '--shadows=3d', '--log-level=warning',
   ]);
-  assert.deepEqual(unminedRenderArgs({ ...base, unmined: { exe: 'u', extraArgs: ['--imageformat=png', '--shadows=false'] } }).slice(5), [
-    '--log-level=warning', '--imageformat=png', '--shadows=false',
+  assert.deepEqual(unminedRenderArgs({ ...base, unmined: { exe: 'u', extraArgs: ['--imageformat=png', '--shadows=2d'] } }).slice(5), [
+    `--mapsettings=${mapSettingsFile}`, '--log-level=warning', '--imageformat=png', '--shadows=2d',
   ]);
+});
+
+test('地圖外觀：水和草不隨生態域變色，草色複製到 uNmINeD 讀得到的地方', () => {
+  const { Settings } = JSON.parse(readFileSync(mapSettingsFile, 'utf8')).StylesheetSettings;
+  assert.equal(Settings.biomeTintsWater, 'False');
+  assert.equal(Settings.biomeTintsGrass, 'False');
+  assert.equal(Settings.biomeColoring, 'False');
+
+  const dir = mkdtempSync(join(tmpdir(), 'unmined-'));
+  mkdirSync(join(dir, 'config'));
+  writeFileSync(join(dir, 'config', 'custom.blockstyles.txt'), '舊內容');
+  installBlockStyles(join(dir, 'unmined-cli.exe'));
+  assert.match(readFileSync(join(dir, 'config', 'custom.blockstyles.txt'), 'utf8'), /^#grassblock, #grass = #[0-9a-f]{6}$/m);
 });
 
 test('從 Cloudflare 顯示的網址取出 R2 端點', () => {

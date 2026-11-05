@@ -69,7 +69,7 @@ body {
   white-space: nowrap;
 }
 
-.home {
+.action {
   font: inherit;
   font-size: 14px;
   padding: 4px 10px;
@@ -78,6 +78,11 @@ body {
   background: #111821;
   color: var(--text);
   cursor: pointer;
+}
+
+.action:disabled {
+  color: var(--muted);
+  cursor: wait;
 }
 
 #map {
