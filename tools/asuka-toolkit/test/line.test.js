@@ -5,11 +5,10 @@ import {
   DirectionMode,
   stepFromView,
   linePositions,
-  shouldFlip,
+  shouldReverse,
   negate,
   parseIntInRange,
   describeDirection,
-  faceNormal,
   topPermutationOf,
 } from '../behavior_pack/scripts/line.js';
 
@@ -132,24 +131,38 @@ test('間隔：每顆之間空 gap 格', () => {
   ]);
 });
 
-test('第一步鑽進貼著的方塊時要反過來', () => {
-  const origin = { x: 0, y: 65, z: 0 };
-  const ground = { x: 0, y: 64, z: 0 };
-  // 看正下方的地面放 → 往上長柱子
-  assert.equal(shouldFlip(origin, { x: 0, y: -1, z: 0 }, ground), true);
-  assert.deepEqual(negate({ x: 0, y: -1, z: 0 }), { x: 0, y: 1, z: 0 });
-  // 看著地面往前放 → 不反轉
-  assert.equal(shouldFlip(origin, { x: 1, y: 0, z: 0 }, ground), false);
-  // 看著牆面放（牆在東邊）→ 從牆面往外長
-  assert.equal(shouldFlip(origin, { x: 1, y: 0, z: 0 }, { x: 1, y: 65, z: 0 }), true);
-  // 不知道貼著哪顆時不反轉
-  assert.equal(shouldFlip(origin, { x: 0, y: -1, z: 0 }, undefined), false);
+test('對著前方的方塊放：一律往前長，蓋掉點到的那顆（作者回報的情況一，2026-11-06）', () => {
+  // 站在 z = 0 往南看，z = 2 有方塊；點它的正面，新方塊在 z = 1
+  const origin = { x: 0, y: 64, z: 1 };
+  const south = stepFromView(view(90, -10), H);
+  // 往前第一格就是點到的那顆（實心），也不能反過來
+  assert.equal(shouldReverse(origin, south, true), false);
+  // 範圍 20：z = 1（自己放的）到 z = 20，包括 z = 2
+  assert.deepEqual(linePositions(origin, south, 20, 0).map((p) => p.z), Array.from({ length: 19 }, (_, i) => i + 2));
+  // 斜線、立體、自由角度也一樣往前
+  assert.equal(shouldReverse(origin, { x: 1, y: 0, z: 1 }, true), false);
+  assert.equal(shouldReverse(origin, { x: 0, y: 1, z: 1 }, true), false);
+  assert.equal(shouldReverse(origin, stepFromView({ x: 0.3, y: -0.2, z: 1 }, F), true), false);
 });
 
-test('方塊面的法向量', () => {
-  assert.deepEqual(faceNormal('Up'), { x: 0, y: 1, z: 0 });
-  assert.deepEqual(faceNormal('North'), { x: 0, y: 0, z: -1 });
-  assert.equal(faceNormal('Nope'), undefined);
+test('前方已經有一排方塊：線的長度只看範圍，不會往後延（作者回報的情況二，2026-11-06）', () => {
+  // z = 2～10 已經有方塊，新方塊在 z = 1，範圍 20：最遠只到 z = 20
+  const line = linePositions({ x: 0, y: 64, z: 1 }, { x: 0, y: 0, z: 1 }, 20, 0);
+  assert.equal(line[0].z, 2);
+  assert.equal(line.at(-1).z, 20);
+});
+
+test('正上、正下：第一格是實心的方塊才反過來', () => {
+  const origin = { x: 0, y: 65, z: 0 };
+  // 看正下方的地面放 → 往上長柱子
+  assert.equal(shouldReverse(origin, { x: 0, y: -1, z: 0 }, true), true);
+  assert.deepEqual(negate({ x: 0, y: -1, z: 0 }), { x: 0, y: 1, z: 0 });
+  // 看正上方的天花板放 → 往下垂
+  assert.equal(shouldReverse(origin, { x: 0, y: 1, z: 0 }, true), true);
+  // 貼著洞壁往下放，下面是空的 → 照視線往下
+  assert.equal(shouldReverse(origin, { x: 0, y: -1, z: 0 }, false), false);
+  // 自由角度看得很陡，第一步是正下方 → 也算
+  assert.equal(shouldReverse(origin, stepFromView({ x: 0.2, y: -1, z: 0.1 }, F), true), true);
 });
 
 test('數字輸入', () => {

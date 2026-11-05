@@ -8,7 +8,7 @@
 //   旋風棒   揮一下或右鍵開特殊物品（special.js）
 
 import { world, system } from '@minecraft/server';
-import { toggleQuickBuild, openQuickBuildPanel, recordInteract, onPlayerPlaceBlock, onPlayerBreakBlock, forgetQuickBuildPlayer } from './quickbuild.js';
+import { toggleQuickBuild, openQuickBuildPanel, onPlayerPlaceBlock, onPlayerBreakBlock, forgetQuickBuildPlayer } from './quickbuild.js';
 import { openFavorites, saveFromBlock, saveRightSlot } from './favorites.js';
 import { openSpecialItems } from './special.js';
 import { isLeftClickSwing } from './input.js';
@@ -77,7 +77,6 @@ const RIGHT_CLICK_TOOLS = new Set([QUICK_BUILD_TOOL, FAVORITES_TOOL, SPECIAL_TOO
 
 world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
   const { player, block } = event;
-  recordInteract(player, block, event.blockFace);
   // 拿工具點方塊時不要觸發方塊本身的功能（例如開門、開箱子）
   const tool = event.itemStack?.typeId;
   if (tool && RIGHT_CLICK_TOOLS.has(tool)) {
