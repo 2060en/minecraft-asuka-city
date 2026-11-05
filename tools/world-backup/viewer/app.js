@@ -44,7 +44,6 @@ function showMessage(text) {
  */
 async function getJson(path, fresh = false) {
   const response = await fetch(DATA + path, fresh ? { cache: 'no-cache' } : {});
-  if (response.status === 403 || response.status === 503) throw new Error(await response.text());
   if (!response.ok) throw new Error(`讀取 ${path} 失敗（${response.status}）`);
   return response.json();
 }

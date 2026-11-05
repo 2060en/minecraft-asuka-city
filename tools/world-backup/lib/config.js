@@ -15,9 +15,6 @@ const configFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/world-backup.j
  */
 export const rcloneConfigFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/rclone.conf'));
 
-/** MCP 用的服務權杖（setup-mcp.bat 寫入） */
-export const mapTokenFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/map-token.json'));
-
 /** 地圖的外觀（uNmINeD 電腦版存出來的格式），見 README「地圖的外觀」 */
 export const mapSettingsFile = resolve(toolDir, 'unmined/map-settings.json');
 const blockStylesFile = resolve(toolDir, 'unmined/custom.blockstyles.txt');

@@ -280,8 +280,11 @@ export async function handleMcp(request, store) {
   } catch {
     return Response.json({ jsonrpc: '2.0', id: null, error: { code: -32700, message: 'Parse error' } }, { status: 400 });
   }
-  const messages = Array.isArray(body) ? body : [body];
-  const responses = (await Promise.all(messages.map((m) => handleRpc(m, store)))).filter((r) => r !== undefined);
-  if (responses.length === 0) return new Response(null, { status: 202 });
-  return Response.json(Array.isArray(body) ? responses : responses[0]);
+  // 不接受一次送多個呼叫：網站是公開的，R2 讀取超過免費額度會收費，一個請求最多只能讀幾個物件，費用才有上限
+  if (Array.isArray(body)) {
+    return Response.json({ jsonrpc: '2.0', id: null, error: { code: -32600, message: 'Batch requests are not supported' } }, { status: 400 });
+  }
+  const response = await handleRpc(body, store);
+  if (response === undefined) return new Response(null, { status: 202 });
+  return Response.json(response);
 }
