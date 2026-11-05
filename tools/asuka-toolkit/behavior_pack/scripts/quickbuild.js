@@ -1,14 +1,13 @@
 // 快速建造（木棍）：開啟後，玩家每放一顆方塊，就朝面向的方向自動補上後面幾格；
 // 每打掉一顆，就朝面向的方向打掉後面幾格。範圍含第一顆，間隔是中間空幾格。
 
-import { world, system } from '@minecraft/server';
+import { world } from '@minecraft/server';
 import { ActionFormData, ModalFormData } from '@minecraft/server-ui';
 import {
   DirectionMode,
   stepFromView,
   linePositions,
-  faceNormal,
-  shouldFlip,
+  shouldReverse,
   negate,
   pointAt,
   parseIntInRange,
@@ -81,8 +80,6 @@ const enabledPlayers = new Map();
  */
 /** @type {Map<string, UndoEntry[]>} */
 const undoStacks = new Map();
-/** 玩家最近一次右鍵點到的方塊與面，用來判斷第一顆方塊貼在哪 @type {Map<string, { x: number, y: number, z: number, face: string, tick: number }>} */
-const lastInteract = new Map();
 
 // ---------------------------------------------------------------------------
 // 設定的讀寫
@@ -264,24 +261,6 @@ function placeBlock(block, permutation, waterlogged) {
 }
 
 /**
- * 找出第一顆方塊貼著哪一顆方塊。
- * 放方塊時遊戲會先觸發「右鍵點方塊」事件，記下點到的方塊和面，
- * 點到的方塊加上面的方向等於新方塊的位置，就代表新方塊是貼著它放的。
- * @param {Player} player
- * @param {Vec3} origin
- * @returns {Vec3 | undefined}
- */
-function findSupport(player, origin) {
-  const hit = lastInteract.get(player.id);
-  if (!hit || system.currentTick - hit.tick > 2) return undefined;
-  const normal = faceNormal(hit.face);
-  if (!normal) return undefined;
-  const support = { x: hit.x, y: hit.y, z: hit.z };
-  const expected = { x: support.x + normal.x, y: support.y + normal.y, z: support.z + normal.z };
-  return expected.x === origin.x && expected.y === origin.y && expected.z === origin.z ? support : undefined;
-}
-
-/**
  * @param {Player} player
  * @param {UndoEntry} entry
  */
@@ -327,22 +306,18 @@ function quickPlace(player, block, dimension) {
   const topPermutation = topPermutationOf(basePermutation, above?.permutation);
   const topWaterlogged = Boolean(topPermutation && above?.isWaterlogged);
 
-  // 決定方向
+  // 決定方向：順著視線往前；只有正上、正下第一格是實心的方塊時反過來（見 line.js 的 shouldReverse）
   let step = stepFromView(player.getViewDirection(), settings.mode);
-  const support = findSupport(player, origin);
-  if (support) {
-    if (shouldFlip(origin, step, support)) step = negate(step);
-  } else if (step.x === 0 && step.z === 0) {
-    // 不知道貼著哪顆方塊時的備案：垂直方向第一格就放不下，就反過來
-    const first = dimension.getBlock(pointAt(origin, step, 1));
-    if (first && !canReplace(first, settings.replace)) step = negate(step);
-  }
+  const first = getBlockAt(dimension, pointAt(origin, step, 1));
+  const firstIsSolid = Boolean(first && !first.isAir && !first.isLiquid);
+  if (shouldReverse(origin, step, firstIsSolid)) step = negate(step);
 
   const positions = linePositions(origin, step, settings.range, settings.gap);
   const heights = dimension.heightRange;
   /** @type {BlockRecord[]} */
   const records = [];
   let placed = 0;
+  let same = 0;
   let skipped = 0;
   let stopReason = '';
 
@@ -359,8 +334,11 @@ function quickPlace(player, block, dimension) {
       break;
     }
 
-    // 已經是同一種方塊（例如和上一條線重疊）就直接跳過
-    if (samePermutation(target.permutation, basePermutation)) continue;
+    // 已經是同一種方塊（例如和上一條線重疊）就不用再放，但也算在線上
+    if (samePermutation(target.permutation, basePermutation)) {
+      same++;
+      continue;
+    }
 
     if (!canReplace(target, settings.replace) || (top && !canReplace(top, settings.replace))) {
       skipped++;
@@ -379,11 +357,12 @@ function quickPlace(player, block, dimension) {
   if (records.length > 0) pushUndo(player, { dimensionId: dimension.id, records });
 
   const direction = describeDirection(step, settings.mode);
+  const sameNote = same > 0 ? `，${same} 格本來就是同一種` : '';
   if (placed === 0) {
-    notify(player, `§e快速建造：往${direction}一顆都沒放${stopReason ? `（${stopReason}）` : ''}`);
+    notify(player, `§e快速建造：往${direction}一顆都沒放${sameNote}${stopReason ? `（${stopReason}）` : ''}`);
     return;
   }
-  let message = `§a快速建造§r：往${direction}放了 ${placed} 顆`;
+  let message = `§a快速建造§r：往${direction}放了 ${placed} 顆${sameNote}`;
   if (skipped > 0) message += `，跳過 ${skipped} 格`;
   if (stopReason) message += `§e（${stopReason}，提早停下）`;
   notify(player, message);
@@ -578,16 +557,6 @@ async function openSettings(player) {
 // ---------------------------------------------------------------------------
 
 /**
- * 玩家右鍵點到方塊時記下點到的方塊和面（放方塊前遊戲會先觸發這個事件）。
- * @param {Player} player
- * @param {Block} block
- * @param {string} face
- */
-export function recordInteract(player, block, face) {
-  lastInteract.set(player.id, { x: block.x, y: block.y, z: block.z, face, tick: system.currentTick });
-}
-
-/**
  * 玩家放下方塊之後呼叫。
  * @param {Player} player
  * @param {Block} block
@@ -624,5 +593,4 @@ export function onPlayerBreakBlock(player, block, broken, dimension) {
 export function forgetQuickBuildPlayer(playerId) {
   enabledPlayers.delete(playerId);
   undoStacks.delete(playerId);
-  lastInteract.delete(playerId);
 }

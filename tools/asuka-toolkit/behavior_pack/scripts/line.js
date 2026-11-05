@@ -111,40 +111,20 @@ export function linePositions(origin, step, range, gap) {
 }
 
 /**
- * 方塊貼在哪一面，那一面朝外的方向。
- * @param {string} face Direction 的值：Up、Down、North、South、East、West
- * @returns {Vec3 | undefined}
- */
-export function faceNormal(face) {
-  switch (face) {
-    case 'Up': return { x: 0, y: 1, z: 0 };
-    case 'Down': return { x: 0, y: -1, z: 0 };
-    case 'North': return { x: 0, y: 0, z: -1 };
-    case 'South': return { x: 0, y: 0, z: 1 };
-    case 'East': return { x: 1, y: 0, z: 0 };
-    case 'West': return { x: -1, y: 0, z: 0 };
-    default: return undefined;
-  }
-}
-
-/**
- * @param {Vec3} a
- * @param {Vec3} b
- */
-export function sameCell(a, b) {
-  return a.x === b.x && a.y === b.y && a.z === b.z;
-}
-
-/**
- * 線的第一步如果正好鑽進「第一顆方塊貼著的那顆方塊」（例如看著地面放、線卻往地底下長），
- * 就應該反過來長：看地面放 → 往上長柱子；看天花板放 → 往下垂；看牆面放 → 從牆面往外長。
+ * 放方塊時，線要不要反過來長（作者定的，2026-11-06）。
+ * 水平和斜線一律順著視線往前，路上的方塊（包括點到的那顆）照「可以蓋掉」的設定蓋掉。
+ * 只有線的第一步是正上、正下，而且那一格是實心的方塊時才反過來：
+ * 看著地面放 → 往上長柱子；看著天花板放 → 往下垂。貼著洞壁往下放、下面是空的，就照視線往下。
+ * 以前是靠「剛剛右鍵點到哪顆」判斷，水平時也會反過來，而且這筆紀錄偶爾對不上，
+ * 所以對著前方的方塊放時，有時往前、有時往背後長。
  * @param {Vec3} origin 第一顆方塊
  * @param {Vec3} step
- * @param {Vec3 | undefined} support 第一顆方塊貼著的方塊；不知道時傳 undefined
+ * @param {boolean} firstIsSolid 線的第一格是不是實心的方塊（不是空氣、也不是液體）
  */
-export function shouldFlip(origin, step, support) {
-  if (!support) return false;
-  return sameCell(pointAt(origin, step, 1), support);
+export function shouldReverse(origin, step, firstIsSolid) {
+  if (!firstIsSolid) return false;
+  const first = pointAt(origin, step, 1);
+  return first.x === origin.x && first.z === origin.z && first.y !== origin.y;
 }
 
 /**
