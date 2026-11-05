@@ -163,6 +163,7 @@ python tools/asuka-toolkit/build.py
 tools/asuka-toolkit/
 ├── behavior_pack/              行為包本體
 │   ├── manifest.json
+│   ├── pack_icon.png           封面：Asuka tech 封面的反白版本
 │   └── scripts/
 │       ├── main.js             入口：事件，判斷手上拿什麼
 │       ├── ui.js               共用：提示訊息、顯示表單

@@ -70,4 +70,4 @@
 | --- | --- | --- |
 | 物品欄分類 | 「物品」分頁：餐具、行李箱、杯子（咖啡紙杯、玻璃水杯）；「建築」分頁：門、地板門 | v0.7.1（門 v0.7.4、地板門 v0.7.5） |
 | Rail to Belt | 另一個獨立的材質包，把所有鐵軌換成履帶，不在 Asuka tech 裡（見 [addon.md](addon.md#52-rail-to-belt)） | v1.0.0 |
-| Asuka toolkit | 另一個獨立的行為包，只有腳本，不在 Asuka tech 裡，也不會併進來（見 [addon.md](addon.md#53-asuka-toolkit)） | v2.0.0（目前 v2.0.2） |
+| Asuka toolkit | 另一個獨立的行為包，只有腳本，不在 Asuka tech 裡，也不會併進來（見 [addon.md](addon.md#53-asuka-toolkit)） | v2.0.0（目前 v2.0.3，這版加上封面） |
