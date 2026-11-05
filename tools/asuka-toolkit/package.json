@@ -1,7 +1,7 @@
 {
   "name": "asuka-toolkit",
   "private": true,
-  "description": "Asuka 工具包：Minecraft 基岩版的行為包（只用穩定版 Script API）",
+  "description": "Asuka toolkit：Minecraft 基岩版的行為包（只用穩定版 Script API）",
   "type": "module",
   "scripts": {
     "test": "node --test \"test/*.test.js\""

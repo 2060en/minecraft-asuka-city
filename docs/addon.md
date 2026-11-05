@@ -362,7 +362,7 @@ python addon/pack/build.py --dev
 **待實測**（Claude 的推測，還沒在遊戲裡驗證）：
 
 1. 遊戲讀的是 `Shared` 底下的開發用資料夾：行為包的清單看得到 Asuka tech DEV（作者截圖，2026-11-04），資源包的清單待確認
-2. 重新進世界就生效；如果有快取，可能要重開遊戲（Asuka 工具包的開發版連改幾版，都是重新進世界就生效，作者實測，2026-11-05）
+2. 重新進世界就生效；如果有快取，可能要重開遊戲（Asuka toolkit的開發版連改幾版，都是重新進世界就生效，作者實測，2026-11-05）
 3. 版本號固定，世界副本就不用每次重新啟用
 4. 在 Windows 組的包，文字檔是 CRLF 換行。Mojang 原版的 `en_US.lang` 也是 CRLF，應該沒有影響；測 v0.7.5 時順便確認名稱與腳本正常
 
@@ -393,7 +393,7 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 | 自製方塊（行為包＋資源包） | `asukatech:door_light_gray`、`door_white`（門）；`trapdoor_light_gray`、`trapdoor_white`（地板門）；`coffee_cup`（外帶咖啡杯） |
 | 對照表 | `addon/mapping.json`：門 → 杉木門、地板門 → 杉木地板門、咖啡杯 → 空氣 |
 
-### v0.7.6（2026-11-05，留到下次測試）
+### v0.7.6（2026-11-05，已套用到主世界，還沒在遊戲裡確認）
 
 廣告 D8（原版的 `tides`）換成作者畫的地鐵路線圖，解析度和其他廣告一樣是 64x。3 × 3 的 8 幅現在全部是廣告。`addon/drafts/ads/build.py` 的預覽圖字型原本只有 Linux 的路徑，加上 Windows 的微軟正黑體；只影響 `preview.png`，不影響遊戲裡的材質。
 
@@ -578,10 +578,12 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 - **版本號自動加**（已定，2026-11-03）：和 Asuka tech 一樣，`build.py` 打包 `.mcpack` 時比較 `addon/rail_to_belt/release.json` 記的內容雜湊，內容有變就把最後一位加一；手動改 `pack/manifest.json` 的版本號可以跳大版本
 - **名稱與介紹**：名稱「Rail to Belt」，介紹「Turns every rail into a conveyor belt. Textures only.」（作者 2026-11-03：改成大寫的名字、介紹用英文）
 
-## 5.3 Asuka 工具包
+## 5.3 Asuka toolkit
 
-建造用的工具，每樣工具拿在手上操作，介面幾乎只有一層（作者定的，2026-11-05）：木棍是快速建造與快速破壞，烈焰棒是物品收藏，旋風棒是拿特殊物品。做法與待驗證項目在 [`tools/asuka-toolkit/README.md`](../tools/asuka-toolkit/README.md)。作者在 `CX198-test` 測過，都正常（2026-11-05），還沒用到主世界。
+建造用的工具，每樣工具拿在手上操作，介面幾乎只有一層（作者定的，2026-11-05）：木棍是快速建造與快速破壞，烈焰棒是物品收藏，旋風棒是拿特殊物品。做法與待驗證項目在 [`tools/asuka-toolkit/README.md`](../tools/asuka-toolkit/README.md)。作者在 `CX198-test` 測過，都正常；v2.0.3 已經套用到主世界（2026-11-05）。
 
+- **名稱**（作者決定，2026-11-05）：遊戲裡顯示「Asuka toolkit」，開發版「Asuka toolkit DEV」，不用中文
+- **封面**（作者決定，2026-11-05）：Asuka tech 封面（`addon/pack/pack_icon.png`）的反白版本，背景和線條的顏色對調，才不會和 Asuka tech 搞混；上面的字樣維持「Asuka tech」。檔案是 `tools/asuka-toolkit/behavior_pack/pack_icon.png`
 - **永遠是獨立的包，不併進 Asuka tech**（作者決定，2026-11-04，除非作者之後改主意）。Claude 比較過：併在一起只少管一個包；分開的話，工具包出錯不會連累主世界依賴的自製方塊，更新工具包不用動 Asuka tech 的版本，也可以單獨用在其他世界或單獨關掉
 - **作者不要的功能**（2026-11-05）：常用物品選單、時間與天氣（指令夠短）、收藏改名、返回鍵（幾乎沒有第二層了；遊戲內建的表單也放不到左上角）
 - **間隔的算法**（作者定的，2026-11-05）：範圍含親手放的第一顆，間隔是中間空幾格。範圍 20、間隔 2 共 7 顆

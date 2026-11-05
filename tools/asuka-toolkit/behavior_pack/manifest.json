@@ -1,13 +1,13 @@
 {
   "format_version": 2,
   "header": {
-    "name": "Asuka 工具包",
+    "name": "Asuka toolkit",
     "description": "Building tools held in the hand. Stick: quick build and quick break. Blaze rod: item favorites. Breeze rod: command-only items. Vanilla blocks and items only; removing it leaves the world unchanged.",
     "uuid": "257e1696-a5ae-4568-a53a-1acebef22fce",
     "version": [
       2,
       0,
-      2
+      3
     ],
     "min_engine_version": [
       1,
@@ -24,7 +24,7 @@
       "version": [
         2,
         0,
-        2
+        3
       ]
     }
   ],

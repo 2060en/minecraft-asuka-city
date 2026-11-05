@@ -1,4 +1,4 @@
-# Asuka 工具包
+# Asuka toolkit
 
 建造 Asuka City 用的工具：放進世界的行為包，每樣工具拿在手上操作，一樣東西只做一件事，介面幾乎只有一層（作者定的，2026-11-05）。
 
@@ -15,7 +15,7 @@
 
 **永遠是獨立的包，不併進 Asuka tech**（作者決定，2026-11-04，除非作者之後改主意）：工具包出錯時不會連累主世界依賴的自製方塊；更新工具包不用動 Asuka tech 的版本；也可以單獨用在其他世界，或單獨關掉。
 
-> **狀態：作者在 `CX198-test` 測過，都正常（2026-11-05）。** 還沒用到主世界。
+> **狀態：作者在 `CX198-test` 測過，都正常；v2.0.3 已經套用到主世界（2026-11-05）。**
 
 作者決定不要的功能：常用物品選單、時間與天氣（指令夠短，2026-11-05）；在遊戲聊天框和 Claude 對話的「AI 聊天」擱置（2026-11），程式碼留在分支 `ccr-b47c32a1-gp7z7e` 的 `tools/asuka-toolkit/ai-chat/`。
 
@@ -42,7 +42,7 @@
 python tools/asuka-toolkit/build.py --dev
 ```
 
-它會放進遊戲的開發用資料夾。到測試世界的世界設定 → 行為包，啟用「Asuka 工具包 DEV」。
+它會放進遊戲的開發用資料夾。到測試世界的世界設定 → 行為包，啟用「Asuka toolkit DEV」。
 
 **正式版**：
 
@@ -50,7 +50,7 @@ python tools/asuka-toolkit/build.py --dev
 python tools/asuka-toolkit/build.py
 ```
 
-組出 `addon/build/Asuka toolkit v<版本號>.mcpack`，雙擊匯入，到世界設定啟用「Asuka 工具包」。版本號自動加；匯入新版時舊版不會被蓋掉，要自己到遊戲的設定裡刪（Asuka tech 的實測，2026-11-04）。
+組出 `addon/build/Asuka toolkit v<版本號>.mcpack`，雙擊匯入，到世界設定啟用「Asuka toolkit」。版本號自動加；匯入新版時舊版不會被蓋掉，要自己到遊戲的設定裡刪（Asuka tech 的實測，2026-11-04）。
 
 - 同一個世界不要同時啟用開發版和正式版
 - 確認「實驗性功能」裡的選項全部保持關閉。如果遊戲要求開啟「Beta API」，代表版本對不上，**不要開**，先回報問題
@@ -128,7 +128,7 @@ python tools/asuka-toolkit/build.py
 - 火把、按鈕、鐵軌等需要依附的方塊，快速建造補上的可能是懸空的，遇到方塊更新時可能會掉落；快速破壞打掉支撐的方塊時，依附在上面的東西也可能掉物品
 - 返回鍵沒辦法放在左上角：遊戲內建的表單只能由上往下排按鈕，要改位置得用資源包改遊戲介面，工具包就不再是只有腳本。現在只有復原和刪除收藏有第二層：復原頁面按 X 離開，刪除收藏按 X 回收藏清單
 - 物品收藏需要頭頂上方有空位（通常是世界頂端的空氣），在很高的地方或蓋滿方塊的高空可能找不到空位
-- 物品收藏裡放了 Asuka tech 的自製物品時，轉換程式 `convert.py` 會因為不知道怎麼處理而停下來，規則待決定（見 [docs/addon.md](../../docs/addon.md#53-asuka-工具包)）
+- 物品收藏裡放了 Asuka tech 的自製物品時，轉換程式 `convert.py` 會因為不知道怎麼處理而停下來，規則待決定（見 [docs/addon.md](../../docs/addon.md#53-asuka-toolkit)）
 
 ---
 
@@ -163,6 +163,7 @@ python tools/asuka-toolkit/build.py
 tools/asuka-toolkit/
 ├── behavior_pack/              行為包本體
 │   ├── manifest.json
+│   ├── pack_icon.png           封面：Asuka tech 封面的反白版本
 │   └── scripts/
 │       ├── main.js             入口：事件，判斷手上拿什麼
 │       ├── ui.js               共用：提示訊息、顯示表單

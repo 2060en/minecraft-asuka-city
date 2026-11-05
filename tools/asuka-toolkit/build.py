@@ -1,4 +1,4 @@
-"""組 Asuka 工具包（只有腳本的行為包）。
+"""組 Asuka toolkit（只有腳本的行為包）。
 
 在 repo 根目錄執行：
     python tools/asuka-toolkit/build.py                          組出 addon/build/Asuka toolkit v<版本>.mcpack
@@ -27,7 +27,7 @@ RELEASE = HERE / "release.json"
 BUILD = ROOT / "addon" / "build"
 FILE_NAME = "Asuka toolkit"
 
-DEV_NAME = "Asuka 工具包 DEV"
+DEV_NAME = "Asuka toolkit DEV"
 DEV_FOLDER = "Asuka toolkit DEV"
 DEV_VERSION = [0, 0, 1]
 DEV_UUIDS = {   # 正式版的 UUID：開發版的
