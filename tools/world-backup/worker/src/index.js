@@ -1,12 +1,11 @@
 // 雲端地圖的 Cloudflare Worker。
 //
-//   /            檢視網頁（viewer 資料夾的靜態檔案）
+//   /            檢視網頁（viewer 資料夾的靜態檔案，Cloudflare 直接送出，不經過這裡）
 //   /data/...    地圖資料（R2）：index.json、snapshots/*.json、tiles/**
 //   /mcp         MCP 伺服器，讓 AI 查詢地圖
 //
-// 所有請求都要先通過 Cloudflare Access（見 access.js）。
+// 地圖是公開的（作者決定，2026-11-05），不用登入。這裡只提供讀取，沒有任何會改資料的功能。
 
-import { verifyAccess } from './access.js';
 import { handleMcp } from './mcp.js';
 
 /**
@@ -22,8 +21,6 @@ import { handleMcp } from './mcp.js';
  * @typedef {object} Env
  * @property {{ get: (key: string, options?: any) => Promise<R2ObjectBody | (Omit<R2ObjectBody, 'body'> & { body?: undefined }) | null> }} MAP
  * @property {{ fetch: (request: Request) => Promise<Response> }} ASSETS
- * @property {string} [ACCESS_TEAM_DOMAIN]
- * @property {string} [ACCESS_AUD]
  */
 
 /** 只允許這些字元，避免奇怪的路徑 */
@@ -78,9 +75,6 @@ export default {
    * @param {Env} env
    */
   async fetch(request, env) {
-    const auth = await verifyAccess(request, env);
-    if (!auth.ok) return new Response(auth.message, { status: auth.status, headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
-
     const url = new URL(request.url);
     if (url.pathname === '/mcp') return handleMcp(request, r2Store(env));
     if (url.pathname.startsWith('/data/')) {

@@ -1,94 +1,10 @@
-// 測試 Cloudflare Worker：登入驗證、地圖資料、MCP 工具。
-import { test, beforeEach } from 'node:test';
+// 測試 Cloudflare Worker：地圖資料、MCP 工具。
+import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import worker from '../worker/src/index.js';
-import { verifyAccess, resetKeyCache } from '../worker/src/access.js';
 import { handleRpc } from '../worker/src/mcp.js';
 import { tilesAround, tileBounds, changedAreas } from '../worker/src/mapdata.js';
 import { solidPng } from './helpers.js';
-
-const TEAM = 'asuka.cloudflareaccess.com';
-const AUD = 'aud-tag-123';
-
-const { publicKey, privateKey } = await crypto.subtle.generateKey(
-  { name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' },
-  true,
-  ['sign', 'verify'],
-);
-const jwk = { ...(await crypto.subtle.exportKey('jwk', publicKey)), kid: 'key-1' };
-
-/** @param {object} obj */
-const b64url = (obj) => Buffer.from(typeof obj === 'string' ? obj : JSON.stringify(obj)).toString('base64url');
-
-/** @param {Record<string, unknown>} [overrides] */
-async function makeToken(overrides = {}, kid = 'key-1', key = privateKey) {
-  const header = b64url({ alg: 'RS256', kid, typ: 'JWT' });
-  const now = Math.floor(Date.now() / 1000);
-  const payload = b64url({ aud: [AUD], iss: `https://${TEAM}`, exp: now + 3600, iat: now, email: 'ian@example.com', ...overrides });
-  const sig = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, new TextEncoder().encode(`${header}.${payload}`));
-  return `${header}.${payload}.${Buffer.from(sig).toString('base64url')}`;
-}
-
-let certFetches = 0;
-/** @type {typeof fetch} */
-const fakeFetch = async (url) => {
-  certFetches++;
-  assert.equal(String(url), `https://${TEAM}/cdn-cgi/access/certs`);
-  return Response.json({ keys: [jwk] });
-};
-
-const env = { ACCESS_TEAM_DOMAIN: TEAM, ACCESS_AUD: AUD };
-/** @param {string} [token] */
-const req = (token, path = '/', init = {}) =>
-  new Request(`https://asuka-map.example.workers.dev${path}`, { ...init, headers: { ...(token ? { 'Cf-Access-Jwt-Assertion': token } : {}), ...(init.headers ?? {}) } });
-
-beforeEach(() => {
-  resetKeyCache();
-  certFetches = 0;
-});
-
-test('登入驗證：正確的 JWT 通過，公鑰會快取', async () => {
-  const token = await makeToken();
-  assert.deepEqual(await verifyAccess(req(token), env, fakeFetch), { ok: true, identity: 'ian@example.com' });
-  assert.deepEqual(await verifyAccess(req(token), env, fakeFetch), { ok: true, identity: 'ian@example.com' });
-  assert.equal(certFetches, 1);
-  // 服務權杖（給 AI 工具用）沒有 email，用 common_name
-  const service = await makeToken({ email: undefined, common_name: 'client-id.access' });
-  assert.deepEqual(await verifyAccess(req(service), env, fakeFetch), { ok: true, identity: 'client-id.access' });
-  // 也接受 CF_Authorization cookie
-  const viaCookie = new Request('https://x.example/', { headers: { Cookie: `foo=1; CF_Authorization=${token}` } });
-  assert.equal((await verifyAccess(viaCookie, env, fakeFetch)).ok, true);
-});
-
-test('登入驗證：各種不合格的情況都擋下來', async () => {
-  const cases = [
-    [undefined, /需要先通過/],
-    ['abc', /格式不對/],
-    [await makeToken({ aud: ['other'] }), /不是給這個應用程式/],
-    [await makeToken({ iss: 'https://evil.cloudflareaccess.com' }), /簽發者不對/],
-    [await makeToken({ exp: Math.floor(Date.now() / 1000) - 10 }), /過期/],
-    [await makeToken({}, 'unknown-kid'), /找不到對應的公鑰/],
-  ];
-  for (const [token, pattern] of cases) {
-    const result = await verifyAccess(req(token), env, fakeFetch);
-    assert.equal(result.ok, false);
-    assert.match(/** @type {any} */ (result).message, pattern);
-  }
-  // 用別的私鑰簽的
-  const other = await crypto.subtle.generateKey({ name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign']);
-  const forged = await makeToken({}, 'key-1', other.privateKey);
-  assert.match(/** @type {any} */ (await verifyAccess(req(forged), env, fakeFetch)).message, /簽章不對/);
-  // 竄改內容
-  const [h, , s] = (await makeToken()).split('.');
-  const tampered = `${h}.${b64url({ aud: [AUD], iss: `https://${TEAM}`, exp: 9999999999, email: 'attacker@example.com' })}.${s}`;
-  assert.match(/** @type {any} */ (await verifyAccess(req(tampered), env, fakeFetch)).message, /簽章不對/);
-});
-
-test('還沒設定 Access 時不開放（不會變成公開的）', async () => {
-  const result = await verifyAccess(req(await makeToken()), {}, fakeFetch);
-  assert.equal(result.ok, false);
-  assert.equal(/** @type {any} */ (result).status, 503);
-});
 
 // ---------------------------------------------------------------------------
 // 假的 R2 與地圖資料
@@ -137,6 +53,9 @@ const MAP = {
   },
 };
 const ASSETS = { fetch: async (/** @type {Request} */ r) => new Response(`asset:${new URL(r.url).pathname}`) };
+const env = { MAP, ASSETS };
+/** @param {string} [path] @param {RequestInit} [init] */
+const req = (path = '/', init = {}) => new Request(`https://asuka-map.example.workers.dev${path}`, init);
 const store = {
   getJson: async (/** @type {string} */ k) => (objects.has(k) ? JSON.parse(String(objects.get(k))) : undefined),
   getBytes: async (/** @type {string} */ k) => (objects.has(k) ? new Uint8Array(/** @type {Buffer} */ (objects.get(k))) : undefined),
@@ -150,28 +69,23 @@ test('地圖計算：座標周圍的圖磚、變動區域', () => {
   assert.deepEqual(areas.map((a) => [a.minX, a.maxX, a.minZ, a.maxZ, a.tiles]), [[0, 512, 0, 256, 2], [5120, 5376, 5120, 5376, 1]]);
 });
 
-test('Worker：沒登入的請求全部擋下，包括檢視網頁本身', async () => {
-  const response = await worker.fetch(req(undefined, '/'), env);
-  assert.equal(response.status, 403);
-  const data = await worker.fetch(req(undefined, '/data/index.json'), env);
-  assert.equal(data.status, 403);
-});
-
-test('Worker：登入後可以讀網頁和地圖資料，奇怪的路徑一律 404', async (t) => {
-  const realFetch = globalThis.fetch;
-  globalThis.fetch = fakeFetch;
-  t.after(() => (globalThis.fetch = realFetch));
-  const token = await makeToken();
-  assert.equal(await (await worker.fetch(req(token, '/'), { ...env, MAP, ASSETS })).text(), 'asset:/');
-  const index = await worker.fetch(req(token, '/data/index.json'), { ...env, MAP, ASSETS });
+test('Worker：不用登入就能讀網頁和地圖資料，奇怪的路徑一律 404', async () => {
+  assert.equal(await (await worker.fetch(req('/'), env)).text(), 'asset:/');
+  const index = await worker.fetch(req('/data/index.json'), env);
   assert.equal(index.status, 200);
   assert.equal(index.headers.get('Cache-Control'), 'private, no-cache');
-  const tile = await worker.fetch(req(token, `/data/tiles/aa/${H_A}.png`), { ...env, MAP, ASSETS });
+  const tile = await worker.fetch(req(`/data/tiles/aa/${H_A}.png`), env);
   assert.equal(tile.headers.get('Cache-Control'), 'private, max-age=31536000, immutable');
   assert.deepEqual(new Uint8Array(await tile.arrayBuffer()), new Uint8Array(PNG_A));
   // ../ 會先被網址正規化掉；編碼過的 %2e%2e%2f 解碼後也不符合格式
-  for (const bad of ['/data/%2e%2e%2fsecret', '/data/tiles/aa%2f..%2f..%2findex.json', '/data/other.json', '/data/snapshots/x.y.json', '/data/tiles/aa/short.png']) {
-    assert.equal((await worker.fetch(req(token, bad), { ...env, MAP, ASSETS })).status, 404, bad);
+  for (const bad of ['/data/%2e%2e%2fsecret', '/data/tiles/aa%2f..%2f..%2findex.json', '/data/other.json', '/data/snapshots/x.y.json']) {
+    assert.equal((await worker.fetch(req(bad), env)).status, 404, bad);
+  }
+});
+
+test('Worker：網站只能讀，地圖資料不接受寫入', async () => {
+  for (const method of ['PUT', 'POST', 'DELETE']) {
+    assert.equal((await worker.fetch(req('/data/index.json', { method, body: method === 'DELETE' ? undefined : 'x' }), env)).status, 405, method);
   }
 });
 
@@ -228,21 +142,19 @@ test('MCP 工具：find_changes 找出蓋了哪裡', async () => {
   assert.match(first.content[0].text, /是第一次備份/);
 });
 
-test('MCP 端點：HTTP 層', async (t) => {
-  const realFetch = globalThis.fetch;
-  globalThis.fetch = fakeFetch;
-  t.after(() => (globalThis.fetch = realFetch));
-  const token = await makeToken();
-  const post = (/** @type {unknown} */ body) =>
-    worker.fetch(req(token, '/mcp', { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json', Accept: 'application/json, text/event-stream' } }), { ...env, MAP, ASSETS });
+test('MCP 端點：HTTP 層', async () => {
+  const post = (/** @type {unknown} */ body) => worker.fetch(req('/mcp', { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } }), env);
   const res = await post({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'list_snapshots', arguments: {} } });
   assert.equal(res.status, 200);
   assert.match((await res.json()).result.content[0].text, /共 2 次備份/);
   assert.equal((await post({ jsonrpc: '2.0', method: 'notifications/initialized' })).status, 202);
-  assert.equal((await worker.fetch(req(token, '/mcp'), { ...env, MAP, ASSETS })).status, 405);
-  const bad = await worker.fetch(req(token, '/mcp', { method: 'POST', body: '{' }), { ...env, MAP, ASSETS });
-  assert.equal(bad.status, 400);
-  // 沒登入的 MCP 請求也擋下
-  const anon = await worker.fetch(req(undefined, '/mcp', { method: 'POST', body: '{}' }), { ...env, MAP, ASSETS });
-  assert.equal(anon.status, 403);
+  assert.equal((await worker.fetch(req('/mcp'), env)).status, 405);
+  assert.equal((await worker.fetch(req('/mcp', { method: 'POST', body: '{' }), env)).status, 400);
+});
+
+test('MCP 端點：不接受一次送多個呼叫，一個請求讀的 R2 物件才有上限', async () => {
+  const call = { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'view_map', arguments: { x: 0, z: 0 } } };
+  const res = await worker.fetch(req('/mcp', { method: 'POST', body: JSON.stringify([call, call]) }), env);
+  assert.equal(res.status, 400);
+  assert.equal((await res.json()).error.code, -32600);
 });

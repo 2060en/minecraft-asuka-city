@@ -5,13 +5,10 @@
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "../viewer",
-    "binding": "ASSETS",
-    // 每個請求都先經過 Worker 檢查登入，連檢視網頁本身也是
-    "run_worker_first": true
+    // 靜態檔案由 Cloudflare 直接送出，不佔 Worker 每天的請求額度；其他路徑（/data、/mcp）才交給 Worker
+    "binding": "ASSETS"
   },
   "r2_buckets": [{ "binding": "MAP", "bucket_name": "asuka-map-apac" }],
   // 不開預覽網址：地圖只有 workers.dev 這一個入口
   "preview_urls": false
-  // ACCESS_TEAM_DOMAIN、ACCESS_AUD 存成 Worker 的機密（wrangler secret put），不寫在這裡：
-  // 這個 repo 是公開的，而且這裡寫 vars 的話，每次部署都會蓋掉。步驟見 tools/world-backup/README.md
 }

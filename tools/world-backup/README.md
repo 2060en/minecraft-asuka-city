@@ -145,14 +145,14 @@ restic -r rclone:gdrive:minecraft-backup --password-file %USERPROFILE%\.config\a
 │        ▼              │   rclone            ┌──────────────────┐
 │ 網頁地圖（圖磚）      │ ──────────────────▶ │ Cloudflare R2    │ 地圖資料
 └───────────────────────┘   只傳有變動的      │        │         │
-                                              │ Cloudflare Worker│ 檢查登入、檢視網頁、MCP
+                                              │ Cloudflare Worker│ 檢視網頁、MCP
                                               └────────┬─────────┘
                                          手機、電腦 ◀──┴──▶ AI（MCP）
 ```
 
 ### 看地圖
 
-用手機或電腦打開地圖網址，第一次要登入 Cloudflare 帳號，登入一次維持 7 天（Access 的設定可以改）。
+用手機或電腦打開地圖網址就能看，不用登入。地圖是公開的（作者決定，2026-11-05），知道網址的人都看得到，見下面的「安全」。
 
 介面是 Material 3 風格（作者從 iOS 風格和 Material 3 兩個預覽裡選的），深色、淺色跟著裝置的設定。
 
@@ -173,10 +173,8 @@ restic -r rclone:gdrive:minecraft-backup --password-file %USERPROFILE%\.config\a
 
 做法和要注意的地方：
 
-- 這個網站每個請求都要登入，所以 `index.html` 連結 `manifest.webmanifest` 時要帶 `crossorigin="use-credentials"`，不然瀏覽器讀不到
 - 圖標在 `viewer/icons/`，是世界真實的島嶼輪廓。`maskable-512.png` 給 Android 裁成各種形狀，島留在中央的安全範圍內；`apple-touch-icon.png` 給 iPhone，不可以透明
 - 沒有用 Service Worker：地圖只在連線時看，也避免舊網頁留在快取裡
-- 登入過期時要跳到 Cloudflare 的登入頁，那是另一個網域，app 裡的顯示方式要實測
 
 ### 地圖的外觀
 
@@ -213,7 +211,7 @@ Worker 的 `/mcp` 是一個 MCP 伺服器，AI 可以用這些工具：
 | `view_map` | 看某個座標周圍的俯視圖（回傳圖片，附上每張圖的座標範圍），例如「看 (1200, -340) 附近蓋了什麼」 |
 | `find_changes` | 比較兩次備份，找出有變動的區域，例如「上次備份之後蓋了哪些地方」 |
 
-雙擊 `setup-mcp.bat` 會把它加到 Claude Code（見下方「換電腦時重新設定」），**新開的對話才會生效**。目前只支援可以自訂標頭的 MCP 用戶端（例如 Claude Code）。claude.ai 網頁版和 App 的「連接器」要用 OAuth 登入，還沒做。
+雙擊 `setup-mcp.bat` 會把它加到 Claude Code（見下方「換電腦時重新設定」），**新開的對話才會生效**。不需要權杖。一次只接受一個呼叫，不支援批次（原因見「費用」）。claude.ai 網頁版和 App 的「連接器」應該也能直接加，這是推測，還沒試過。
 
 目前的工具看的是渲染好的俯視圖，看得到顏色和形狀，但不知道「座標 (x, y, z) 是什麼方塊」，也看不到屋頂底下。要做到這一點，要在備份時另外把方塊資料從存檔讀出來、上傳到雲端，再加上 `get_block`、`get_column`、`describe_area` 這類工具（待決定）。
 
@@ -231,7 +229,7 @@ Worker 的 `/mcp` 是一個 MCP 伺服器，AI 可以用這些工具：
 
 ### 換電腦時重新設定
 
-已經在作者的電腦上設定好了。Cloudflare 那邊的東西（R2、Worker、Access）都不用重做，換電腦時只要做第 1、3、6 步；權杖的密鑰看不到是正常的，第 3、6 步各建一組新的，舊的順手撤銷。
+已經在作者的電腦上設定好了。Cloudflare 那邊的東西（R2、Worker）都不用重做，換電腦時只要做第 1、3、5 步；R2 權杖的密鑰看不到是正常的，第 3 步建一組新的，舊的順手撤銷。
 
 Cloudflare 的介面常改版，以下是 2026-11-05 實際操作時的畫面。
 
@@ -268,38 +266,22 @@ cd tools\world-backup\worker
 npx wrangler deploy
 ```
 
-完成後會顯示網址（`https://asuka-map.<子網域>.workers.dev`），填進設定檔的 `map.url`。這時候打開會看到「尚未設定 Cloudflare Access」，這是正常的：沒設定登入之前，地圖不會開放給任何人。
+完成後會顯示網址（`https://asuka-map.<子網域>.workers.dev`），填進設定檔的 `map.url`。
 
 改了 `worker/` 或 `viewer/` 底下的程式才要重新部署；平常備份只傳圖磚，不用部署。
 
-#### 5. 設定登入（Cloudflare Access）
+#### 5. 給 AI 用的 MCP
 
-1. Workers & Pages → `asuka-map` → **Access** 分頁 → **Protect this Worker behind Access**。第一次用 Zero Trust 的帳號會先要求完成設定（依官方文件要填付款資料，免費方案不收費；作者的帳號之前就設定過，沒有實際走過這段）
-2. 範圍選 **All traffic**（Previews only 只保護預覽網址，正式地圖會沒有保護）
-3. 政策選 **Cloudflare account**。**不要選 Email domain 再填 `gmail.com`，那樣所有 Gmail 使用者都能登入**；清單裡的「任何Google帳號」也不要選
-4. 按 **Apply Access**
-5. 把 Access 的兩個值存成 Worker 的機密。沒有登入時打開地圖網址，會轉址到 `https://<團隊>.cloudflareaccess.com/cdn-cgi/access/login/...?kid=<AUD>`，兩個值都在這串網址裡（Access 分頁的 **Application values** 也有）：
+雙擊 `setup-mcp.bat`，它會用 `claude mcp add` 把地圖的 MCP 加到 `%USERPROFILE%\.claude.json`。地圖是公開的，不需要權杖。
 
-   ```
-   cd tools\world-backup\worker
-   npx wrangler secret put ACCESS_TEAM_DOMAIN
-   npx wrangler secret put ACCESS_AUD
-   ```
+#### 想改回只有自己看
 
-   不寫在 `wrangler.jsonc`：這個 repo 是公開的，而且寫在那裡的值每次部署都會蓋掉 Worker 上的設定。
+地圖原本用 Cloudflare Access 限制登入，2026-11-05 作者決定公開後拿掉了。想改回來的話：
 
-Worker 會用這兩個值再驗一次 Access 的簽章，所以就算 Access 被關掉，地圖也不會變成公開的。
+1. Workers & Pages → `asuka-map` → **Access** 分頁 → **Protect this Worker behind Access**，範圍選 **All traffic**，政策選 **Cloudflare account**。**不要選 Email domain 再填 `gmail.com`，那樣所有 Gmail 使用者都能登入**
+2. 想再加一層檢查的話，從 git 紀錄找回 `worker/src/access.js`（Worker 自己再驗一次 Access 的簽章，就算 Access 被關掉也不會公開），`ACCESS_TEAM_DOMAIN`、`ACCESS_AUD` 兩個機密還留在 Worker 上
 
-#### 6. 給 AI 用的服務權杖
-
-AI 沒辦法用瀏覽器登入，要用服務權杖：
-
-1. Zero Trust → **Access controls** → **Service credentials** → **Service Tokens** → **Create Service Token**，名稱 `claude-code`，期限 **Non-expiring**，按 **Generate token**
-2. 雙擊 `setup-mcp.bat`，貼上 **Client ID** 和 **Client Secret**（只顯示這一次）。存在 `%USERPROFILE%\.config\asuka\map-token.json`，並用 `claude mcp add` 加到 `%USERPROFILE%\.claude.json`，都不在 repo 裡
-3. Zero Trust → **Access controls** → **Policies** 新增政策：動作 **Service Auth**，Include 選 **Service Token** = `claude-code`
-4. 回到 Worker 的 Access 分頁 → **Manage access** → **Add policy** 選剛才的政策 → **Save changes**。要保留原本的 `Cloudflare account members`，不然手機就登入不了
-
-換電腦時第 3、4 步不用重做，只要新權杖換掉政策裡的舊權杖。
+已經公開過的內容收不回來，別人可能存過圖。
 
 #### 7. 設定檔
 
@@ -329,18 +311,25 @@ AI 沒辦法用瀏覽器登入，要用服務權杖：
 | R2 儲存空間 | 每月 10 GB | 107 MB（目前 5 次備份，其中兩份是改外觀前後各一整份圖磚） |
 | R2 寫入 | 每月 100 萬次 | 整份重傳一次約 4200 次，只有改外觀時才會 |
 | R2 讀取 | 每月 1000 萬次 | 看地圖時每張新圖磚一次，看過的留在瀏覽器快取 |
-| Workers 請求 | 每天 10 萬次 | 同上；一個人看不會碰到 |
+| Workers 請求 | 每天 10 萬次 | 地圖資料和 MCP 才算，網頁本身的檔案不算；幾個人看不會碰到 |
 | Workers 運算 | 每次請求 10 毫秒 CPU | 實測五個 MCP 工具都沒有超過 |
-| Zero Trust（Access） | 50 人以內 | 1 人 |
 
 每次備份增加多少要看改了多少（只傳有變動的圖磚，每次另外加一份 142 KB 的清單）。實測放一小塊方塊增加不到 1 MB；假設每次改 50 個區域，約增加 4 MB，10 GB 可以撐約 2000 次，這是推測。
 
+地圖公開之後，費用的上限這樣算（Workers 免費方案）：
+
+- 超過每天 10 萬次請求時，Cloudflare 回傳 Error 1027，世界協調時間午夜重置，地圖當天打不開但不收費
+- R2 讀取全部要經過 Worker。一個請求最多讀 6 個物件（MCP 的 `view_map`：備份清單、這次備份的清單、4 張圖磚），所以就算有人每天灌滿，一個月最多約 1800 萬次，超過免費額度的部分約 3 美元（依公告的每百萬次 0.36 美元推算）
+- 為了這個上限，MCP 不接受一次送多個呼叫
+
 ### 安全
 
-- 所有網址（檢視網頁、地圖資料、MCP）都要先通過 Cloudflare Access 登入，沒登入的請求會轉到登入頁
-- Worker 會再驗一次 Access 的簽章：就算 Access 被關掉或設定錯誤，地圖也不會變成公開的，只會顯示錯誤訊息
-- R2 的 bucket 不公開（`r2.dev` 網址是關閉的），只能透過 Worker 讀取
-- 機密都在 repo 外面：`%USERPROFILE%\.config\asuka\` 底下的 `rclone.conf`（R2 金鑰）、`map-token.json`（服務權杖），和 `%USERPROFILE%\.claude.json`（MCP 設定裡的服務權杖）
+- 地圖是公開的（作者決定，2026-11-05）：檢視網頁、地圖資料、MCP 都不用登入。看得到的內容是地圖圖磚、每次備份的日期和備註、存檔名，沒有玩家資料
+- 網站只能讀：Worker 沒有會改資料的功能，地圖資料的網址只接受 GET 和 HEAD，路徑也限定格式
+- 世界備份不公開：在 Google Drive，而且有 restic 的密碼
+- R2 的 bucket 不公開（`r2.dev` 網址是關閉的），只能透過 Worker 讀取；上傳要用 `rclone.conf` 裡的 R2 金鑰
+- `robots.txt` 請搜尋引擎不要收錄，主要是減少機器人流量，不算保護
+- 機密都在 repo 外面：`%USERPROFILE%\.config\asuka\` 底下的 `rclone.conf`（R2 金鑰）、`restic-password.txt`（備份密碼）
 
 ### 雲端的資料格式
 
@@ -371,7 +360,7 @@ AI 沒辦法用瀏覽器登入，要用服務權杖：
 | 作者雙擊 | 作者親手雙擊 `backup.bat` 三次都成功（快照 `ca6c106a`、`d7ca027a`、`46cc2721`） |
 | 手機 | 作者用手機登入看得到地圖，可以放大、拖曳，切換備份時位置不動，只有放的方塊消失又出現 |
 | 位置與方向 | 從新舊圖片算出方塊在 X 587～607、Z -167～-146，作者確認位置對，所以座標和方向都沒有顛倒 |
-| 沒登入看不到 | 首頁、程式檔、地圖資料、MCP 都轉到登入頁；假的登入資訊、錯誤的權杖密鑰也一樣；R2 的公開網址是關閉的 |
+| 公開之後 | 作者關掉 Access 後，完全不帶登入資訊實測：網頁、圖標、地圖資料、圖磚、MCP 都拿得到，`view_map` 回傳 4 張圖。對地圖資料送 PUT、POST、DELETE 一律 405，路徑不符合格式的一律 404，一次送多個 MCP 呼叫回 400。R2 的公開網址是關閉的（`wrangler r2 bucket dev-url get` 查的） |
 | MCP | 新開的 Claude Code 對話透過 `asuka-map` 呼叫四個工具都正常，`view_map` 回傳圖片，看得出跑道、飛機、河道。`find_changes` 比較真正有變動的兩次備份時，是用權杖直接呼叫同一個網址確認的，沒有再經過 Claude Code |
 | 運算限制 | 五次 MCP 呼叫都沒有超過免費方案每次 10 毫秒 CPU 的限制 |
 | 地圖失敗時 | 暫時把工具路徑改錯：世界照樣備份、紀錄照寫，畫面寫「世界已經備份好了，只有雲端地圖這次沒更新」 |
@@ -385,14 +374,11 @@ AI 沒辦法用瀏覽器登入，要用服務權杖：
 
 - [x] uNmINeD CLI 能渲染現在的基岩版世界，渲染整張地圖要多久、多大：可以，見上表
 - [x] rclone 上傳到 R2 是否順利：順利，見上表
-- [x] Cloudflare Access 的設定步驟：介面和原本寫的不同，上面「換電腦時重新設定」已經改成實際的畫面
 - [x] 手機登入後看地圖是否順暢：作者確認可以
 - [x] Claude Code 透過 MCP 呼叫 `view_map` 能不能看懂圖：看得懂
 
 還沒測過：
 
-- 第一次用 Zero Trust 的帳號要怎麼設定（作者的帳號之前就設定過）
-- 登入 7 天到期後，手機重新登入的流程（瀏覽器和裝成 app 都要看）
 - iPhone 上的介面和安裝
 - iPhone 上按「存成圖片」
 - 大改世界時，地圖和備份每次增加多少（目前只測過放一小塊方塊）
@@ -422,7 +408,7 @@ tools/world-backup/
 │   ├── run.js             執行外部程式、尋找程式位置、確認 Minecraft 是否開著
 │   └── report.js          備份紀錄
 ├── viewer/                檢視網頁（Leaflet 1.9.4，BSD 2-Clause 授權）
-├── worker/                Cloudflare Worker：登入驗證、地圖資料、MCP
+├── worker/                Cloudflare Worker：地圖資料、MCP
 │   ├── wrangler.jsonc
 │   └── src/
 └── test/                  自動測試
