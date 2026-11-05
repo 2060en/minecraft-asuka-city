@@ -34,5 +34,5 @@
 - `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
 - `tools/preview/`：把基岩版模型算成預覽圖的工具
 - `tools/converter/`：轉換程式：只讀的掃描與轉出原味版
-- `tools/asuka-toolkit/`：Asuka 工具包：獨立的行為包，木棍快速建造與破壞、烈焰棒物品收藏、旋風棒拿特殊物品
+- `tools/asuka-toolkit/`：Asuka toolkit：獨立的行為包，木棍快速建造與破壞、烈焰棒物品收藏、旋風棒拿特殊物品
 - [`tools/world-backup/`](tools/world-backup/README.md)：世界備份：雙擊 `backup.bat` 加密備份到 Google Drive 並更新雲端地圖（手機和 AI 都能看），雙擊 `restore.bat` 還原到新資料夾

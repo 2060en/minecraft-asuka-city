@@ -1,4 +1,4 @@
-// Asuka 工具包
+// Asuka toolkit
 //
 // 只使用穩定版 Script API（不需要開啟實驗性功能），只放原版方塊與原版物品，拔掉行為包不影響世界。
 //
@@ -45,7 +45,7 @@ async function safely(player, action) {
   try {
     await action(player);
   } catch (error) {
-    console.warn(`[Asuka 工具包] ${error}`);
+    console.warn(`[Asuka toolkit] ${error}`);
     if (player.isValid) notify(player, `§c發生錯誤：${error}`);
   }
 }
