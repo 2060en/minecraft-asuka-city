@@ -3,25 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1b2430">
+  <meta name="theme-color" content="#0849ab">
   <title>津蘭賀千良 地圖</title>
+  <!-- use-credentials：這個網站每個請求都要登入，不帶登入資訊的話讀不到 manifest，就裝不成 app -->
+  <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="津蘭賀千良">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="bar">
-    <h1 id="title">津蘭賀千良 地圖</h1>
-    <label class="snapshot">
-      <span>備份</span>
-      <select id="snapshot" aria-label="選擇備份"></select>
-    </label>
-    <output id="coords" class="coords" aria-live="polite">X —　Z —</output>
-    <button id="home" class="action" type="button">全圖</button>
-    <button id="save" class="action" type="button">存成圖片</button>
-  </header>
   <main id="map" aria-label="地圖"></main>
-  <div id="crosshair" class="crosshair" aria-hidden="true"></div>
+  <div class="crosshair" aria-hidden="true"></div>
+
+  <button id="open" class="searchbar ripple" type="button" aria-haspopup="dialog" aria-label="選擇備份">
+    <img class="logo" src="icons/icon-192.png" alt="" width="40" height="40">
+    <span class="searchbar-text">
+      <span class="title">津蘭賀千良</span>
+      <span id="current" class="supporting">讀取中…</span>
+    </span>
+    <span class="trailing">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+    </span>
+  </button>
+
+  <output class="chip coords" aria-live="polite">X <span id="x">—</span>　Z <span id="z">—</span></output>
+
+  <div class="fabs" role="group" aria-label="地圖工具">
+    <button id="zoom-in" class="fab small zoom ripple" type="button" aria-label="放大" title="放大">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+    </button>
+    <button id="zoom-out" class="fab small zoom ripple" type="button" aria-label="縮小" title="縮小">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13H5v-2h14v2z"/></svg>
+    </button>
+    <button id="save" class="fab extended ripple" type="button" aria-label="存成圖片">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      <span class="spinner" aria-hidden="true"></span>
+      <span class="label">存成圖片</span>
+    </button>
+  </div>
+
+  <div id="scrim" class="scrim"></div>
+  <section id="sheet" class="sheet" role="dialog" aria-modal="true" aria-label="選擇備份">
+    <header id="sheet-head" class="sheet-head">
+      <span class="handle"></span>
+      <h2>備份</h2>
+    </header>
+    <div id="list" class="list"></div>
+  </section>
+
+  <div id="snackbar" class="snackbar" role="status"></div>
   <div id="message" class="message" hidden></div>
+
   <script src="vendor/leaflet/leaflet.js"></script>
   <script type="module" src="app.js"></script>
 </body>
