@@ -75,7 +75,7 @@ Image map 做出的地圖畫只有兩種情況會消失：世界轉檔，或地�
 
 專門為這個世界製作的資源包與行為包，詳見[附加內容開發](addon.md)。
 
-[Asuka toolkit](../tools/asuka-toolkit/README.md)：只有腳本的獨立行為包，每樣工具拿在手上操作：木棍是快速建造與快速破壞，烈焰棒是物品收藏，旋風棒是拿特殊物品。放下的都是原版方塊，符合可拔除原則。作者在測試世界測過，都正常（2026-11-05），還沒用到主世界。
+[Asuka toolkit](../tools/asuka-toolkit/README.md)：只有腳本的獨立行為包，每樣工具拿在手上操作：木棍是快速建造與快速破壞，烈焰棒是物品收藏，旋風棒是拿特殊物品。放下的都是原版方塊，符合可拔除原則。作者在測試世界測過，都正常；v2.0.3 已經套用到主世界（2026-11-05）。
 
 ### 截圖
 
@@ -168,7 +168,7 @@ Clear Craft 作者近期都沒有在用。它只是作者用來說明可拔除�
 | 項目 | 內容 |
 | --- | --- |
 | 存檔位置 | `%APPDATA%\Minecraft Bedrock\Users\<使用者編號>\games\com.mojang\minecraftWorlds\<世界資料夾>` |
-| 主世界 | `CX198`，資料夾 `PXjOwjIpBg0=`（作者確認，2026-11-04）。它的包清單（`world_resource_packs.json`、`world_behavior_packs.json`）從 11-03 起是空的，作者 2026-11-04 重新啟用 Asuka tech v0.7.3，2026-11-05 換成 v0.7.6 |
+| 主世界 | `CX198`，資料夾 `PXjOwjIpBg0=`（作者確認，2026-11-04）。它的包清單（`world_resource_packs.json`、`world_behavior_packs.json`）從 11-03 起是空的，作者 2026-11-04 重新啟用 Asuka tech v0.7.3，2026-11-05 換成 v0.7.6，並啟用 Asuka toolkit v2.0.3 |
 | 測試世界 | `CX198-test`（2026-11-04 改名，之前叫 `CX198 (1)`），資料夾 `Wo+KcRbU1EQ=`：作者測試前幾版附加內容用的，所以內容比主世界新（作者說明，2026-11-04） |
 | 世界大小 | 主世界約 1.15 GB（2026-11-05 備份時實測）。之前記的是接近 2 GB，原因待查（見第 8 節） |
 | 備份方式 | 雙擊 `tools/world-backup/backup.bat`，加密備份到 Google Drive，同時更新雲端地圖（見下方「備份方案」「雲端地圖」） |

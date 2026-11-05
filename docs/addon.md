@@ -580,7 +580,7 @@ Claude 沒辦法操作 Blockbench 的畫面。預覽圖的明暗仿照遊戲裡�
 
 ## 5.3 Asuka toolkit
 
-建造用的工具，每樣工具拿在手上操作，介面幾乎只有一層（作者定的，2026-11-05）：木棍是快速建造與快速破壞，烈焰棒是物品收藏，旋風棒是拿特殊物品。做法與待驗證項目在 [`tools/asuka-toolkit/README.md`](../tools/asuka-toolkit/README.md)。作者在 `CX198-test` 測過，都正常（2026-11-05），還沒用到主世界。
+建造用的工具，每樣工具拿在手上操作，介面幾乎只有一層（作者定的，2026-11-05）：木棍是快速建造與快速破壞，烈焰棒是物品收藏，旋風棒是拿特殊物品。做法與待驗證項目在 [`tools/asuka-toolkit/README.md`](../tools/asuka-toolkit/README.md)。作者在 `CX198-test` 測過，都正常；v2.0.3 已經套用到主世界（2026-11-05）。
 
 - **名稱**（作者決定，2026-11-05）：遊戲裡顯示「Asuka toolkit」，開發版「Asuka toolkit DEV」，不用中文
 - **封面**（作者決定，2026-11-05）：Asuka tech 封面（`addon/pack/pack_icon.png`）的反白版本，背景和線條的顏色對調，才不會和 Asuka tech 搞混；上面的字樣維持「Asuka tech」。檔案是 `tools/asuka-toolkit/behavior_pack/pack_icon.png`
