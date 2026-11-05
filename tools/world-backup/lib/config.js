@@ -1,8 +1,8 @@
 // 讀設定檔。設定檔放在 repo 外面（%USERPROFILE%/.config/asuka/world-backup.json），
 // 和密碼檔同一個資料夾，這樣換分支、換工作資料夾都不用重設。
 
-import { existsSync, readFileSync } from 'node:fs';
-import { delimiter, dirname, isAbsolute, resolve } from 'node:path';
+import { copyFileSync, existsSync, readFileSync } from 'node:fs';
+import { delimiter, dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expandEnv, findExe } from './run.js';
 
@@ -17,6 +17,10 @@ export const rcloneConfigFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/r
 
 /** MCP 用的服務權杖（setup-mcp.bat 寫入） */
 export const mapTokenFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/map-token.json'));
+
+/** 地圖的外觀（uNmINeD 電腦版存出來的格式），見 README「地圖的外觀」 */
+export const mapSettingsFile = resolve(toolDir, 'unmined/map-settings.json');
+const blockStylesFile = resolve(toolDir, 'unmined/custom.blockstyles.txt');
 
 /**
  * @typedef {object} Config
@@ -35,12 +39,22 @@ export const mapTokenFile = resolve(expandEnv('%USERPROFILE%/.config/asuka/map-t
  *   不強制的話地圖會停在舊的樣子（2026-11-05 實測）。內容相同的圖磚編碼結果也相同，所以不會多傳。
  * - 預設的 JPEG 在 0.20.11-dev 一存檔就當掉（InvalidOperation_NoValue），所以沒指定格式時用 WebP（無損）。
  * - 預設每張圖磚印一行，一次幾千行，所以只顯示警告以上。
+ * - 外觀固定：3d 影子，水和草不隨生態域變色（作者決定，網頁上沒有開關）。
  * @param {Pick<Config, 'worldPath' | 'unmined' | 'map'>} config
  */
 export function unminedRenderArgs(config) {
   const { extraArgs } = config.unmined;
   const unlessGiven = (/** @type {string} */ name, /** @type {string} */ value) => (extraArgs.some((a) => a.startsWith(`--${name}`)) ? [] : [`--${name}=${value}`]);
-  return ['web', 'render', `--world=${config.worldPath}`, `--output=${config.map.renderDir}`, '--force', ...unlessGiven('imageformat', 'webp'), ...unlessGiven('log-level', 'warning'), ...extraArgs];
+  return ['web', 'render', `--world=${config.worldPath}`, `--output=${config.map.renderDir}`, '--force', ...unlessGiven('imageformat', 'webp'), ...unlessGiven('mapsettings', mapSettingsFile), ...unlessGiven('shadows', '3d'), ...unlessGiven('log-level', 'warning'), ...extraArgs];
+}
+
+/**
+ * uNmINeD 只讀自己 config 資料夾裡的 custom.blockstyles.txt，沒有參數可以指定別的位置，
+ * 所以每次渲染前複製過去（更新 uNmINeD 把它蓋掉時也會補回來）。
+ * @param {string} unminedExe
+ */
+export function installBlockStyles(unminedExe) {
+  copyFileSync(blockStylesFile, join(dirname(unminedExe), 'config', 'custom.blockstyles.txt'));
 }
 
 /**

@@ -1,0 +1,37 @@
+{
+  "BlockFilterSettings": {
+    "PredefinedFilters": {}
+  },
+  "DataPackSettings": {
+    "IsEnabled": true,
+    "LoadBiomeFoliageTint": true,
+    "LoadBiomeGrassTint": true,
+    "LoadBiomeWaterTint": true
+  },
+  "HighlightSettings": {
+    "Items": []
+  },
+  "RendererSettings": {
+    "InhabitedChunksOnly": false,
+    "ShadowMode": 1,
+    "Shadows": true,
+    "SunDirectionAngle": 120,
+    "TransparentUnderground": true
+  },
+  "SlicerSettings": {},
+  "StylesheetSettings": {
+    "Settings": {
+      "biomeTints": "True",
+      "biomeTintsWater": "False",
+      "biomeTintsGrass": "False",
+      "biomeTintsFoliage": "True",
+      "biomeColoring": "False",
+      "biomeColoringOcean": "False",
+      "biomeColoringBadlands": "False",
+      "biomeColoringDarkForest": "False",
+      "biomeColoringSavanna": "False",
+      "biomeColoringSwamp": "False",
+      "biomeColoringTaiga": "False"
+    }
+  }
+}

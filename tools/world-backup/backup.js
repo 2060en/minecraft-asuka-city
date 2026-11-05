@@ -15,7 +15,7 @@
 
 import { existsSync, appendFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { loadConfig, rcloneConfigFile, resticEnv, unminedRenderArgs } from './lib/config.js';
+import { installBlockStyles, loadConfig, rcloneConfigFile, resticEnv, unminedRenderArgs } from './lib/config.js';
 import { ask, runVisible, runLines, isRunning } from './lib/run.js';
 import { publishMap } from './lib/publish.js';
 import { formatBytes, reportRow, REPORT_HEADER } from './lib/report.js';
@@ -129,8 +129,9 @@ async function main() {
   if (!args.skipMap) {
     try {
       if (!args.publishOnly) {
-        console.log('\n[2/3] uNmINeD 渲染地圖（約 1～3 分鐘，這段不會顯示進度）');
+        console.log('\n[2/3] uNmINeD 渲染地圖（約 2～5 分鐘，這段不會顯示進度）');
         mkdirSync(config.map.renderDir, { recursive: true });
+        installBlockStyles(config.unmined.exe);
         await runVisible(config.unmined.exe, unminedRenderArgs(config));
       }
       console.log('\n[3/3] 上傳地圖（只傳有變動的圖磚）');
