@@ -35,4 +35,5 @@
 - `tools/preview/`：把基岩版模型算成預覽圖的工具
 - `tools/converter/`：轉換程式：只讀的掃描與轉出原味版
 - `tools/asuka-toolkit/`：Asuka toolkit：獨立的行為包，木棍快速建造與破壞、烈焰棒物品收藏、旋風棒拿特殊物品
+- [`tools/world-model/`](tools/world-model/README.md)：區域 3D 模型：把世界裡一個範圍（例如 AKQ 航廈）的方塊讀出來，做成能旋轉、逐層切開的 3D 網頁與各樓層平面圖，方便討論配置
 - [`tools/world-backup/`](tools/world-backup/README.md)：世界備份：雙擊 `backup.bat` 加密備份到 Google Drive 並更新雲端地圖（手機和 AI 都能看），雙擊 `restore.bat` 還原到新資料夾

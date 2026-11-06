@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>3D 模型</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #9cc3ea; font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; }
+  #app { position: absolute; inset: 0; }
+  #app canvas { display: block; }
+  #panel { position: absolute; top: 10px; left: 10px; width: 300px; max-height: calc(100% - 60px); overflow-y: auto;
+           background: rgba(255,255,255,0.94); border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #222;
+           box-shadow: 0 2px 10px rgba(0,0,0,0.25); }
+  #panel h1 { font-size: 15px; margin: 0 0 4px; }
+  #panel .sub { color: #666; font-size: 12px; margin-bottom: 8px; }
+  #panel h2 { font-size: 13px; margin: 12px 0 4px; border-top: 1px solid #ddd; padding-top: 8px; }
+  #panel button { font: inherit; font-size: 12px; margin: 2px 2px 2px 0; padding: 3px 7px; border: 1px solid #bbb; background: #f4f4f4; border-radius: 4px; cursor: pointer; }
+  #panel button:hover { background: #e4eefc; }
+  #panel button.on { background: #2f6fdb; color: #fff; border-color: #2f6fdb; }
+  #panel label { display: block; margin: 3px 0; }
+  #panel input[type=range] { width: 100%; }
+  #panel input[type=number] { width: 58px; font: inherit; }
+  .row { display: flex; align-items: center; gap: 6px; }
+  .row span.v { min-width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
+  #points button { display: block; width: 100%; text-align: left; }
+  #marks { font-family: Consolas, monospace; font-size: 12px; white-space: pre; background: #f6f6f6; padding: 4px; min-height: 18px; }
+  #status { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(20,20,20,0.78); color: #fff; font-size: 13px; padding: 5px 12px;
+            font-variant-numeric: tabular-nums; white-space: pre; }
+  #compass { position: absolute; right: 16px; top: 16px; width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.85);
+             box-shadow: 0 1px 6px rgba(0,0,0,0.3); }
+  #compass div { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+  #compass span { position: absolute; transform: translate(-50%, -50%); font-weight: bold; font-size: 13px; }
+  #loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #123; background: #9cc3ea; }
+  #hide { position: absolute; top: 10px; left: 322px; }
+  .note { color: #666; font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="panel">
+  <h1 id="title"></h1>
+  <div class="sub" id="subtitle"></div>
+
+  <h2>顯示高度</h2>
+  <div id="floors"></div>
+  <label>最高顯示到 Y <div class="row"><input type="range" id="hi"><span class="v" id="hiv"></span></div></label>
+  <label>最低從 Y <div class="row"><input type="range" id="lo"><span class="v" id="lov"></span></div></label>
+  <div class="note" id="floornote"></div>
+
+  <h2>顯示項目</h2>
+  <label><input type="checkbox" id="showGlass" checked> 玻璃（關掉可以看穿玻璃牆）</label>
+  <label><input type="checkbox" id="showSigns" checked> 告示牌文字</label>
+  <label><input type="checkbox" id="showPaint" checked> 畫（廣告）</label>
+  <label><input type="checkbox" id="showPeople" checked> NPC 與盔甲座</label>
+  <label><input type="checkbox" id="showRuler" checked> 座標尺（每 10 格）</label>
+
+  <h2>視角</h2>
+  <button id="vOrbit" class="on">環繞</button><button id="vWalk">漫遊</button><button id="vTop">平面圖</button><button id="vReset">回到全景</button>
+  <div class="note" id="help"></div>
+  <div class="row" style="margin-top:6px">到座標 <input type="number" id="gx"> <input type="number" id="gy"> <input type="number" id="gz"> <button id="go">前往</button></div>
+
+  <h2 id="pointsTitle"></h2>
+  <div id="points"></div>
+
+  <h2>標記（Shift＋點一下方塊）</h2>
+  <div id="marks"></div>
+  <button id="copyMarks">複製標記座標</button><button id="clearMarks">清除標記</button>
+</div>
+<button id="hide">收起面板</button>
+<div id="compass"><div id="needle"></div></div>
+<div id="status">載入中…</div>
+<div id="loading">載入模型中…</div>
+<script>/*THREE*/</script>
+<script>/*DATA*/</script>
+<script>/*APP*/</script>
+</body>
+</html>
