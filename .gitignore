@@ -2,3 +2,5 @@ __pycache__/
 addon/build/
 addon/rail_to_belt/icon_*
 tools/converter/.venv/
+tools/world-model/.venv/
+tools/world-model/.cache/
