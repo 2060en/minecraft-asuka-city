@@ -176,6 +176,12 @@ test('上傳流程：第一次全部上傳，第二次只傳有變動的圖磚�
   assert.equal(m2.tiles[0]['0,-1'], m1.tiles[0]['0,-1']);
   // 舊的清單還在，可以切回去看
   assert.ok(existsSync(join(remote, 'snapshots', `${first.id}.json`)));
+
+  // 補上舊的手動備份：日期比現有的早，排在最後面，最新的還是第一個
+  const old = await publishMap({ renderDir: render, stateDir: state, note: '舊手動備份', restic: 'aaaa1111', now: new Date(2023, 5, 8, 23, 54), upload });
+  assert.equal(old.id, '2023-06-08-2354');
+  const after = JSON.parse(readFileSync(join(remote, 'index.json'), 'utf8'));
+  assert.deepEqual(after.snapshots.map((s) => s.id), ['2026-11-02-0930', '2026-11-01-2100', '2023-06-08-2354']);
 });
 
 test('上傳失敗時不更新本機狀態，重跑會再傳一次', async () => {

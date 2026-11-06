@@ -149,7 +149,8 @@ export async function publishMap({ renderDir, stateDir, note, restic, now = new 
 
   /** @type {SnapshotSummary} */
   const summary = { id, createdAt: manifest.createdAt, note, restic, tiles: tiles.length, newTiles: fresh.size };
-  const nextIndex = { snapshots: [summary, ...index.snapshots] };
+  // 依時間排序，新的在前：補上舊的手動備份時，日期比現有的早，網頁才不會把它當成最新的
+  const nextIndex = { snapshots: [summary, ...index.snapshots].sort((a, b) => b.createdAt.localeCompare(a.createdAt)) };
   writeJson(join(staging, 'snapshots', `${id}.json`), manifest);
   writeJson(join(staging, 'index.json'), nextIndex);
 
