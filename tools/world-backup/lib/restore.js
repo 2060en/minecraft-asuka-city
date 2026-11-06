@@ -13,6 +13,29 @@ export function snapshotPath(worldPath) {
   return path.replace(/^([A-Za-z]):\//, '/$1/');
 }
 
+/**
+ * 從 `restic snapshots <編號> --json` 的結果取出要還原的那一份，和它在快照裡的資料夾。
+ * 舊的手動備份是從別的資料夾歸檔的（見 README「舊的手動備份」），路徑和現在的世界不同，所以要照快照自己記的路徑還原。
+ * @param {string} json
+ * @returns {{ id: string, shortId: string, time: string, path: string }}
+ */
+export function parseSnapshot(json) {
+  const list = /** @type {{ id: string, short_id: string, time: string, paths: string[] }[]} */ (JSON.parse(json || '[]'));
+  if (list.length === 0) throw new Error('找不到這一份備份，請確認輸入的 ID。');
+  const chosen = [...list].sort((a, b) => a.time.localeCompare(b.time))[list.length - 1];
+  if (chosen.paths.length !== 1) throw new Error(`這份備份有 ${chosen.paths.length} 個資料夾，不知道要還原哪一個。`);
+  return { id: chosen.id, shortId: chosen.short_id, time: chosen.time, path: snapshotPath(chosen.paths[0]) };
+}
+
+/**
+ * 快照裡的資料夾是不是現在的世界資料夾（Windows 不分大小寫）。
+ * @param {string} path snapshotPath 轉過的路徑
+ * @param {string} worldPath
+ */
+export function isCurrentWorld(path, worldPath) {
+  return path.toLowerCase() === snapshotPath(worldPath).toLowerCase();
+}
+
 /** @param {string} dir */
 function listFiles(dir) {
   return readdirSync(dir, { recursive: true, withFileTypes: true })

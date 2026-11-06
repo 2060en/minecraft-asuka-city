@@ -2,6 +2,7 @@
 //
 // 只還原到新的資料夾（%USERPROFILE%/AsukaRestore/<時間>），不會碰世界資料夾。
 // 還原完會和目前的世界逐檔比對；世界在備份之後玩過的話，有差異是正常的。
+// 舊的手動備份是從別的資料夾歸檔的，照快照自己記的資料夾還原，也不做比對。
 //
 // 參數：
 //   快照編號   要還原哪一份（沒給就會問，直接按 Enter 是最新的）
@@ -9,8 +10,8 @@
 import { mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { loadConfig, resticEnv } from './lib/config.js';
-import { ask, expandEnv, isRunning, runVisible } from './lib/run.js';
-import { compareFolders, snapshotPath } from './lib/restore.js';
+import { ask, expandEnv, isRunning, runLines, runVisible } from './lib/run.js';
+import { compareFolders, isCurrentWorld, parseSnapshot } from './lib/restore.js';
 
 /** @param {Date} date */
 function timestamp(date) {
@@ -25,14 +26,19 @@ async function main() {
   console.log('雲端上的備份：\n');
   await runVisible(config.restic.exe, ['snapshots', '--tag', 'minecraft'], env);
   const answer = process.argv[2] ?? (await ask('\n要還原哪一份？輸入左邊的 ID，直接按 Enter 是最新的：'));
-  const snapshot = answer || 'latest';
+  let json = '';
+  await runLines(config.restic.exe, ['snapshots', answer || 'latest', '--tag', 'minecraft', '--json'], (line) => (json += line), env);
+  const snapshot = parseSnapshot(json);
+  const current = isCurrentWorld(snapshot.path, config.worldPath);
 
   const target = join(resolve(expandEnv('%USERPROFILE%/AsukaRestore')), timestamp(new Date()));
   mkdirSync(target, { recursive: true });
-  console.log(`\n還原到 ${target}\n`);
-  await runVisible(config.restic.exe, ['restore', `${snapshot}:${snapshotPath(config.worldPath)}`, '--tag', 'minecraft', '--target', target], env);
+  console.log(`\n還原 ${snapshot.shortId}（${snapshot.time.slice(0, 16).replace('T', ' ')}）到 ${target}\n`);
+  await runVisible(config.restic.exe, ['restore', `${snapshot.id}:${snapshot.path}`, '--target', target], env);
 
-  if (isRunning(config.minecraftProcesses)) {
+  if (!current) {
+    console.log('\n這份是舊的手動備份，和現在的世界不是同一個資料夾，不做逐檔比對。');
+  } else if (isRunning(config.minecraftProcesses)) {
     console.log('\nMinecraft 開著，跳過和世界資料夾的比對。');
   } else {
     console.log('\n和目前的世界逐檔比對…');
