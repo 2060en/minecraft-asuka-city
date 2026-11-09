@@ -627,8 +627,35 @@
    ]
   },
   {
-   "label": "",
-   "objects": []
+   "label": "F14 雙丸子頭",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 20
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/hair_f_buns_twin.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/hair_f_buns_twin_hair.png",
+     "bones": [
+      "shell",
+      "buns_twin"
+     ]
+    }
+   ]
   },
   {
    "label": "F8（背面）",
@@ -816,8 +843,35 @@
    ]
   },
   {
-   "label": "",
-   "objects": []
+   "label": "F14（背面）",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 200
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/hair_f_buns_twin.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/hair_f_buns_twin_hair.png",
+     "bones": [
+      "shell",
+      "buns_twin"
+     ]
+    }
+   ]
   }
  ]
 }

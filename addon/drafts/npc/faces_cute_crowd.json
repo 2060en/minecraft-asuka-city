@@ -1,0 +1,663 @@
+{
+ "title": "試做：同樣七個年輕女生，在遊戲裡的距離看起來的差別",
+ "columns": 7,
+ "panelWidth": 165,
+ "panelHeight": 240,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "第二版・F1",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_0.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "第二版・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_1.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_1_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "第二版・F3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_2.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_2_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "第二版・F6",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_3.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_3_hair.png",
+     "bones": [
+      "shell",
+      "ponytail_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "第二版・F3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_4.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_4_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "第二版・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_5.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_5_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "第二版・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_6.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_0_6_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛A・F1",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_0.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛A・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_1.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_1_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛A・F3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_2.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_2_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛A・F6",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_3.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_3_hair.png",
+     "bones": [
+      "shell",
+      "ponytail_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛A・F3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_4.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_4_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛A・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_5.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_5_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛A・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_6.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_1_6_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛B・F1",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_0.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛B・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_1.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_1_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛B・F3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_2.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_2_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛B・F6",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_3.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_3_hair.png",
+     "bones": [
+      "shell",
+      "ponytail_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛B・F3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_4.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_4_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛B・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_5.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_5_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "可愛B・F9",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_6.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/cutecrowd_2_6_hair.png",
+     "bones": [
+      "shell",
+      "bun_high"
+     ]
+    }
+   ]
+  }
+ ]
+}
