@@ -3,22 +3,18 @@
 
 /** @typedef {{ x: number, y: number, z: number }} Vec3 */
 
-/** 方向模式 */
+/** 方向模式。正上、正下不在這裡，由「上下放」開關決定（作者定的，2026-11-08） */
 export const DirectionMode = Object.freeze({
-  /** 水平八方位；抬頭或低頭超過 VERTICAL_PITCH 時改成垂直 */
+  /** 水平八方位 */
   Horizontal: 'horizontal',
-  /** 立體 26 方位：水平八方位 × 上、平、下，包含 45° 斜線 */
+  /** 立體：水平八方位 × 上、平、下，包含 45° 斜線 */
   Snap3D: 'snap3d',
   /** 完全照視線方向，可以做出任意斜率 */
   Free: 'free',
 });
 
-/** 水平模式：抬頭或低頭超過這個角度（度）才算垂直 */
-export const VERTICAL_PITCH = 75;
 /** 立體模式：俯仰角超過這個角度算 45° 斜線 */
 export const DIAGONAL_PITCH = 22.5;
-/** 立體模式：俯仰角超過這個角度算垂直 */
-export const STEEP_PITCH = 67.5;
 
 /**
  * 四捨五入，.5 一律往遠離 0 的方向進位，讓左右對稱的線長得一樣。
@@ -52,29 +48,30 @@ export function snapHorizontal(view) {
  * 依照方向模式，把視線方向換算成每一步的位移。
  * 吸附模式回傳整數向量（每個分量 -1、0、1）；自由模式回傳「最大分量為 1」的小數向量，
  * 每一步沿主軸前進 1 格，其他軸按比例前進（3D Bresenham）。
+ *
+ * 「上下放」開關（作者定的，2026-11-08）：打開時不管方向模式和視線角度，一律正上或正下
+ * （抬頭往上、其他往下；放方塊時第一格是實心的會再反過來，見 shouldReverse）。
+ * 關掉時水平模式一律橫著長、立體模式最陡到 45° 斜線，低頭看腳邊放也不會長成柱子；
+ * 自由模式本來就完全照視線，不受影響。以前水平模式抬頭或低頭超過 75° 會自動改成垂直，
+ * 立體模式超過 67.5° 也是，看腳邊放時常常意外長出柱子。
  * @param {Vec3} view 視線方向
  * @param {string} mode DirectionMode
+ * @param {boolean} [vertical] 「上下放」開關
  * @returns {Vec3}
  */
-export function stepFromView(view, mode) {
+export function stepFromView(view, mode, vertical = false) {
+  const pitch = pitchOf(view);
+  const up = pitch > 0 ? 1 : -1;
+  if (vertical) return { x: 0, y: up, z: 0 };
+
   if (mode === DirectionMode.Free) {
     const m = Math.max(Math.abs(view.x), Math.abs(view.y), Math.abs(view.z));
     if (m === 0) return { x: 1, y: 0, z: 0 };
     return { x: view.x / m, y: view.y / m, z: view.z / m };
   }
 
-  const pitch = pitchOf(view);
-  const up = pitch > 0 ? 1 : -1;
   const h = snapHorizontal(view);
-
-  if (mode === DirectionMode.Snap3D) {
-    if (Math.abs(pitch) >= STEEP_PITCH) return { x: 0, y: up, z: 0 };
-    if (Math.abs(pitch) >= DIAGONAL_PITCH) return { x: h.x, y: up, z: h.z };
-    return { x: h.x, y: 0, z: h.z };
-  }
-
-  // 水平模式（預設）
-  if (Math.abs(pitch) >= VERTICAL_PITCH) return { x: 0, y: up, z: 0 };
+  if (mode === DirectionMode.Snap3D && Math.abs(pitch) >= DIAGONAL_PITCH) return { x: h.x, y: up, z: h.z };
   return { x: h.x, y: 0, z: h.z };
 }
 

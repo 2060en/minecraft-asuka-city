@@ -65,21 +65,35 @@ test('水平模式：吸附到八方位', () => {
   assert.deepEqual(stepFromView(view(180, 0), H), { x: -1, y: 0, z: 0 }); // 西
 });
 
-test('水平模式：低頭看地面放方塊時仍然是水平', () => {
+test('水平模式：低頭看地面、看腳邊放方塊時仍然是水平（上下放關掉，2026-11-08）', () => {
   assert.deepEqual(stepFromView(view(0, -60), H), { x: 1, y: 0, z: 0 });
   assert.deepEqual(stepFromView(view(0, -74), H), { x: 1, y: 0, z: 0 });
+  // 以前超過 75° 會變成垂直，現在不會
+  assert.deepEqual(stepFromView(view(0, -80), H), { x: 1, y: 0, z: 0 });
+  assert.deepEqual(stepFromView(view(90, -89), H), { x: 0, y: 0, z: 1 });
+  assert.deepEqual(stepFromView(view(180, 85), H), { x: -1, y: 0, z: 0 });
 });
 
-test('水平模式：看正上方、正下方時改成垂直', () => {
-  assert.deepEqual(stepFromView(view(0, 80), H), { x: 0, y: 1, z: 0 });
-  assert.deepEqual(stepFromView(view(0, -90), H), { x: 0, y: -1, z: 0 });
-});
-
-test('立體模式：45° 斜線與垂直', () => {
+test('立體模式：45° 斜線，上下放關掉時不會變成正上正下', () => {
   assert.deepEqual(stepFromView(view(90, 40), S), { x: 0, y: 1, z: 1 }); // 往南上方斜
   assert.deepEqual(stepFromView(view(45, -30), S), { x: 1, y: -1, z: 1 }); // 往東南下方斜
   assert.deepEqual(stepFromView(view(90, 10), S), { x: 0, y: 0, z: 1 }); // 接近水平
-  assert.deepEqual(stepFromView(view(90, 70), S), { x: 0, y: 1, z: 0 }); // 接近垂直
+  assert.deepEqual(stepFromView(view(90, 70), S), { x: 0, y: 1, z: 1 }); // 很陡也還是 45° 斜線
+  assert.deepEqual(stepFromView(view(0, -88), S), { x: 1, y: -1, z: 0 });
+});
+
+test('上下放打開：不管方向模式和視線，一律正上或正下（作者定的，2026-11-08）', () => {
+  for (const mode of [H, S, F]) {
+    assert.deepEqual(stepFromView(view(0, 0.5), mode, true), { x: 0, y: 1, z: 0 }); // 稍微抬頭 → 往上
+    assert.deepEqual(stepFromView(view(90, 80), mode, true), { x: 0, y: 1, z: 0 });
+    assert.deepEqual(stepFromView(view(45, -10), mode, true), { x: 0, y: -1, z: 0 }); // 低頭 → 往下
+    assert.deepEqual(stepFromView(view(-130, -90), mode, true), { x: 0, y: -1, z: 0 });
+  }
+  // 看地面放 → 第一格是地面（實心），反過來往上長柱子
+  const origin = { x: 0, y: 65, z: 0 };
+  assert.equal(shouldReverse(origin, stepFromView(view(0, -40), H, true), true), true);
+  // 打方塊沒有反過來的規則，照視線往下打
+  assert.deepEqual(stepFromView(view(0, -40), H, true), { x: 0, y: -1, z: 0 });
 });
 
 test('自由模式：主軸每步 1 格，其他軸按比例', () => {

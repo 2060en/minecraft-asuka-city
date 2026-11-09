@@ -81,6 +81,16 @@ BUILD = ROOT / "addon" / "build"
 NS = "asukatech"
 TURN_SIGN = 1                 # flip to -1 if every rotated block turns the wrong way
 BLOCK_FORMAT = "1.21.90"      # custom components v2 need 1.21.90 or later
+# Small things (the cups, the screen) must not pull the glass panes, iron bars,
+# walls and fences next to them into joining them (author, 2026-11-08). By
+# default every custom block takes those connections, as if it were a full
+# block. minecraft:connection_rule turns that off, but it is stable only in
+# block format 1.26.0 or later (Microsoft Learn, minecraft:connection_rule), so
+# only those blocks move to 1.26.0. Between 1.21.90 and 1.26.0 nothing these
+# blocks use changes meaning (Bedrock Wiki, block format history); the doors
+# stay on 1.21.90.
+NO_CONNECTIONS_FORMAT = "1.26.0"
+NO_CONNECTIONS = {"minecraft:connection_rule": {"accepts_connections_from": "none"}}
 
 # ---------- the custom blocks ----------
 # name: (zh_TW, en_US)
@@ -204,13 +214,13 @@ def cond(**states):
     return " && ".join(parts)
 
 
-def block(name, states, traits, components, permutations, category="construction"):
+def block(name, states, traits, components, permutations, category="construction", fmt=BLOCK_FORMAT):
     desc = {"identifier": f"{NS}:{name}", "menu_category": {"category": category}}
     if states:
         desc["states"] = states
     if traits:
         desc["traits"] = traits
-    return {"format_version": BLOCK_FORMAT,
+    return {"format_version": fmt,
             "minecraft:block": {"description": desc, "components": components, "permutations": permutations}}
 
 
@@ -308,11 +318,12 @@ def cup_block(key, color, render="alpha_test"):
         "minecraft:selection_box": box,
         "minecraft:light_dampening": 0,
         "minecraft:placement_filter": {"conditions": [{"allowed_faces": ["up"]}]},
+        **NO_CONNECTIONS,
         f"{NS}:coffee_cup": {},
     }
     states = {f"{NS}:count": [1, 2, 3, 4]}
     traits = {"minecraft:placement_direction": {"enabled_states": ["minecraft:cardinal_direction"], "y_rotation_offset": 0}}
-    return block(key, states, traits, comps, perms, category="items")
+    return block(key, states, traits, comps, perms, category="items", fmt=NO_CONNECTIONS_FORMAT)
 
 
 def coffee_cup():
@@ -350,9 +361,10 @@ def screen():
         "minecraft:selection_box": panel,
         "minecraft:light_emission": SCREEN_LIGHT,
         "minecraft:light_dampening": 0,
+        **NO_CONNECTIONS,
     }
     traits = {"minecraft:placement_position": {"enabled_states": ["minecraft:block_face"]}}
-    return block("screen", {}, traits, comps, perms, category="items")
+    return block("screen", {}, traits, comps, perms, category="items", fmt=NO_CONNECTIONS_FORMAT)
 
 
 SCREEN_LIGHT = 6     # how strongly the screen lights itself (and its surroundings); needs a test
