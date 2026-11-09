@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容 Asuka tech（`addon/pack/` 是資源包與行為包，`addon/drafts/` 是外觀草稿）與材質包 Rail to Belt（`addon/rail_to_belt/`）。附加內容的作者一律寫「asuka tech」，介紹（description）一律用英文，`tools/preview/` 是外觀預覽工具，`tools/converter/` 是轉換程式（只讀的掃描 `scan.py`、轉出原味版的 `convert.py`），`tools/asuka-toolkit/` 是 Asuka toolkit（獨立的行為包，不併進 Asuka tech），`tools/world-backup/` 是世界備份工具（雙擊備份到 Google Drive 與還原，同時更新 Cloudflare 上的雲端地圖；改程式後跑 `npm test`，改了 `worker/` 或 `viewer/` 要重新部署），`tools/world-model/` 是區域 3D 模型（只讀世界的副本，把一個範圍做成 3D 網頁與平面圖；範圍設定在 `presets/`），`tools/commerce-list/` 是商業清單（把 `docs/world/commerce.md` 的品牌一覽做成 HTML）。
+這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為茉波（Mahaki，2026-11-09 由津蘭賀千良改名），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容 Asuka tech（`addon/pack/` 是資源包與行為包，`addon/drafts/` 是外觀草稿）與材質包 Rail to Belt（`addon/rail_to_belt/`）。附加內容的作者一律寫「asuka tech」，介紹（description）一律用英文，`tools/preview/` 是外觀預覽工具，`tools/converter/` 是轉換程式（只讀的掃描 `scan.py`、轉出原味版的 `convert.py`），`tools/asuka-toolkit/` 是 Asuka toolkit（獨立的行為包，不併進 Asuka tech），`tools/world-backup/` 是世界備份工具（雙擊備份到 Google Drive 與還原，同時更新 Cloudflare 上的雲端地圖；改程式後跑 `npm test`，改了 `worker/` 或 `viewer/` 要重新部署），`tools/world-model/` 是區域 3D 模型（只讀世界的副本，把一個範圍做成 3D 網頁與平面圖；範圍設定在 `presets/`），`tools/commerce-list/` 是商業清單（把 `docs/world/commerce.md` 的品牌一覽做成 HTML）。
 
 ## 文件地圖
 

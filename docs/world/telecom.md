@@ -21,7 +21,7 @@
 | 品牌元素 | 學 Spark 的紫色與星形 | 已定 |
 | 日文寫法 | スポットオン（片假名） | 已定 |
 | Logo | 白色的手繪星形加三道訊號弧線，字標 Spoton，紫色混凝土色的底。見[Logo](#logo) | 已定 |
-| 舊名 | Tu Rangatira Telecom（1988～2015 年），民間至今仍有人叫它 Telecom | 已定 |
+| 舊名 | Mahaki Telecom（1988～2015 年），民間至今仍有人叫它 Telecom | 已定 |
 | 股權 | 主權基金持股過半，其餘股份上市 | 已定 |
 | 主色 | 紫色混凝土的紫 `#641F9C`，配白與薄荷色。見[Logo](#logo) | 已定 |
 
@@ -90,14 +90,14 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 | 日本外地時期 | 逓信省經營郵政、電報、電話 | — |
 | 英國託管時期 | 政府的郵政部門兼管國內的電話與電報；國際通訊交給英國的 Cable & Wireless 經營 | 紐西蘭的郵政局直到 1987 年都兼管電信；香港的國際通訊由 Cable & Wireless 獨家經營 |
 | 1960 年代獨立 | 郵政部門照舊兼管電信；政府買下 Cable & Wireless 在本國的國際業務，併入郵政部門 | — |
-| 1988 | 電信從郵政分出來，成立國營的 Tu Rangatira Telecom | Telecom NZ（1987 年從郵政局分出） |
+| 1988 | 電信從郵政分出來，成立國營的 Mahaki Telecom | Telecom NZ（1987 年從郵政局分出） |
 | 1994 | 上市，主權基金保留過半股份 | Singtel（1993 年上市，淡馬錫至今持股過半） |
 | 2015 | 改名 Spoton，換上紫色的星形 logo | Telecom 改名 Spark（2014 年） |
 | 2017 | 推出平價子品牌 Homie | Spark 的 Skinny（2012 年） |
 
 - 陸揚室（りくあげしつ）：海底電纜拉上岸的小屋，「陸揚」是日文的「卸到岸上」。電纜在這裡接上陸地的線路，再通到電信局。現代的同類設施叫海纜登陸站，例如中華電信的頭城海纜站
 - 從 1897 年起，本國就是海底電纜的中繼點，和現在居中者的角色接得上
-- 改名之後，民間仍有人叫它 Telecom，就像本國的別稱茉波
+- 改名之後，民間仍有人叫它 Telecom
 - 主權基金持股過半：國家掌握通訊這種關鍵基礎建設，經營上又是一般的上市公司
 
 ### 業務
@@ -113,6 +113,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 | 批發 | Spoton | 光纖線路留在 Spoton，不拆分，但必須用相同的條件批發給其他業者 |
 | 公共 Wi-Fi | Spoton | 公共電話亭改成免費的 Wi-Fi 熱點 |
 | 冠名贊助 | Spoton | 場館的冠名，像 Spark Arena |
+| 職棒球隊 | Spoton | 飛鳥スポットオン・スターズ，打日本職棒（2026-11-09），見[商業](commerce.md#運動) |
 | 公益 | Spoton Foundation | 基金會 |
 
 - 不做串流影音：Spark 的 Spark Sport 在 2023 年停止，Lightbox 在 2019 年賣給 Sky，小市場撐不起來
@@ -191,7 +192,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 - [x] 不採用的 logo 方向：以 Spotify 標誌的紫色版為原型、弧線下方加一個點、把三條線連成 S（順暢版、筆刷版）
 - [x] 名稱：Spoton；平價子品牌：Homie（都取自 Keep 筆記的英文候補）
 - [x] 沿革與業務：作者交由 Claude 決定，內容見[沿革](#沿革)與[業務](#業務)
-- [x] 舊名 Tu Rangatira Telecom，2015 年改名 Spoton；2017 年推出 Homie
+- [x] 舊名 Mahaki Telecom，2015 年改名 Spoton；2017 年推出 Homie
 - [x] 主權基金持股過半，其餘股份上市
 - [x] 光纖線路不拆分，留在 Spoton，用相同的條件批發給其他業者
 - [x] 不做串流影音
