@@ -24,6 +24,7 @@
 - [電信](docs/world/telecom.md)：第一大電信公司 Spoton（以 Spark 為藍本）的 logo、沿革、業務與色彩（logo 原圖在 `assets/spoton/`）
 - [銀行](docs/world/banks.md)：四大銀行（茉波銀行、國泰世華、三井住友銀行、KB國民銀行）、色調與 AKQ 的提款機
 - [AKQ 美食街](docs/world/akq-food-court.md)：3F 美食街各店的品牌、菜單與可以照打的告示牌文字
+- [商業](docs/world/commerce.md)：商家、品牌、店鋪、餐廳與商業活動：共用原則、商業版圖、品牌與店家一覽
 - [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
 - [總部地堡](docs/world/bunker.md)：Asuka Inc. 總部地底的總指揮中心兼末日地堡
 - [建造清單](docs/build-checklist.md)：Keep 筆記中的設施清單、城市細節、參考建築與品牌

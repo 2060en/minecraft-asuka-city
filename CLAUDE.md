@@ -20,6 +20,7 @@
 | `docs/world/telecom.md` | 第一大電信公司 Spoton（子品牌 Homie）：以 Spark 為藍本（紫色、星形），logo、沿革、業務、色彩、量體（logo 原圖在 `assets/spoton/`） |
 | `docs/world/banks.md` | 四大銀行：公股的茉波銀行，加上國泰世華、三井住友、KB國民三家外國銀行的子行；每家一種木頭色調（AKQ 提款機） |
 | `docs/world/akq-food-court.md` | AKQ 3F 美食街：自創店家的品牌故事、各店菜單（日本現價、含稅）、告示牌的寬度推算與照打文字 |
+| `docs/world/commerce.md` | 商業：商家、品牌、店鋪、餐廳與商業活動的共用原則、商業版圖、品牌與店家一覽。作者想到什麼講什麼，Claude 邊討論邊整理進來 |
 | `docs/world/naming.md` | 命名原則、討論流程、黑名單、命名素材、地名分層、地區風格、地名表、候補名單 |
 | `docs/world/bunker.md` | Asuka Inc. 總部地堡：總指揮、世界控制室、生活設施、監獄、戰備地鐵 |
 | `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
