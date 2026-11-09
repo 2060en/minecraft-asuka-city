@@ -40,7 +40,7 @@
 
 | 企業 | 角色 | 出處 |
 | --- | --- | --- |
-| Asuka Inc. | 作者的公司，包山包海，主要業務之一是地產開發與建築；也做零售（內容待補），經營主題樂園 Minecraft Studio；也是太平洋鐵路（太平洋特急くろしお号）的主要股東、金主；總部大樓只給自己用、不出租；另外開發商辦複合大樓出租，四季酒店、Google 都在它的商辦大樓，見[辦公與科技公司](#辦公與科技公司) | [世界觀總覽](overview.md#asuka-inc) |
+| Asuka Inc. | 作者的公司，包山包海；控股加上地產、航空、旅遊、重工、科技電子、電信（第二大）、百貨等全資子公司，見 [Asuka Inc.](asuka-inc.md)。主要業務之一是地產開發與建築；也做零售（內容待補），經營主題樂園 Minecraft Studio；也是太平洋鐵路（太平洋特急くろしお号）的主要股東、金主；總部大樓只給自己用、不出租；另外開發商辦複合大樓出租，四季酒店、Google 都在它的商辦大樓，見[辦公與科技公司](#辦公與科技公司) | [Asuka Inc.](asuka-inc.md) |
 | 主權基金 | 總部在 CBD，很會投資；持有 Spoton 過半的股份，也持有 MRC（茉波鉄道）、茉波石油和茉波電力 | [世界觀總覽](overview.md#經濟)、[電信](telecom.md)、[交通](transport.md#營運公司) |
 | 茉波銀行 | 公股銀行，四大銀行之一 | [銀行](banks.md) |
 | Spoton | 第一大電信公司 | [電信](telecom.md) |
@@ -258,7 +258,10 @@
 
 | 品牌 | 類別 | 參考 | 出處 |
 | --- | --- | --- | --- |
-| Asuka Inc. | 財團 | — | [世界觀總覽](overview.md#asuka-inc) |
+| Asuka Inc. | 財團 | — | [Asuka Inc.](asuka-inc.md) |
+| Asuka Inc. 的電信（名稱待定） | 電信，本國第二大 | 先例 SK Telecom（SK 集團） | [Asuka Inc.](asuka-inc.md#集團架構) |
+| Asuka Inc. 的百貨（名稱待定） | 百貨公司 | 先例新世界百貨（原本屬於三星） | [Asuka Inc.](asuka-inc.md#集團架構) |
+| Asuka Inc. 的旅行社（名稱待定） | 旅行團 | — | [Asuka Inc.](asuka-inc.md#集團架構) |
 | Asuka Air | 載旗航空 | 名稱和 logo 是作者自己的；設計借用紐西蘭航空的模式 | [交通](transport.md#航空)、[Asuka Air 標誌](asuka-air-logo.md) |
 | Minecraft Studio | 主題樂園 | Asuka Inc. 經營，Minecraft 的 IP 由 Mojang 授權 | [地理](geography.md#minecraft-studio) |
 | 茉波銀行 | 公股銀行 | 沿革參考臺灣銀行 | [銀行](banks.md) |
@@ -728,3 +731,4 @@
 - [x] 茉波石油的由來：1970 年代石油危機後，主權基金買下 Shell 在本國的加油站和油庫，換成本土品牌（Claude 提案，作者確認，2026-11-09）
 - [x] 電力公司：本島和茉波諸島是茉波電力（官股民營，主權基金持股，Oasis 是子公司），沖繩群島是沖縄電力（2026-11-09）
 - [x] 茉波電力：英文 Mahaki Electric Power Company；沿革是日本時代的電力會社、英國託管時期政府接收、1988 年官股民營；南島用海底電纜接上本島，另外留小型備用發電廠（Claude 提案，作者確認，2026-11-09）
+- [x] Asuka Inc. 的全資子公司：控股、地產開發、航空、旅遊（飯店、旅行團）、重工、科技電子、電信（第二大）、百貨（2026-11-09），見 [Asuka Inc.](asuka-inc.md)

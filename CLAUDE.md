@@ -22,6 +22,7 @@
 | `docs/world/akq-food-court.md` | AKQ 3F 美食街：自創店家的品牌故事、各店菜單（日本現價、含稅）、告示牌的寬度推算與照打文字 |
 | `docs/world/commerce.md` | 商業：商家、品牌、店鋪、餐廳與商業活動的共用原則、商業版圖、品牌與店家一覽。作者想到什麼講什麼，Claude 邊討論邊整理進來；每次回覆都用 `python3 tools/commerce-list/build.py --save` 產生 HTML 清單，用 SendUserFile 附上 |
 | `docs/world/naming.md` | 命名原則、討論流程、黑名單、命名素材、地名分層、地區風格、地名表、候補名單 |
+| `docs/world/asuka-inc.md` | Asuka Inc.：本國唯一的本土財團，控股與各全資子公司（地產、航空、旅遊、重工、科技電子、電信、百貨）、投資的公司 |
 | `docs/world/bunker.md` | Asuka Inc. 總部地堡：總指揮、世界控制室、生活設施、監獄、戰備地鐵 |
 | `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
 | `docs/prologue.md` | 新玩家序章：出生點、開場橋段、入境流程 |

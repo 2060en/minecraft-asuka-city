@@ -140,7 +140,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 - [ ] **向量化**：原圖是點陣圖，正式使用前描成 SVG（星形、訊號弧線、字標分開，像 Asuka Air 一樣）
 - [ ] **Homie 的片假名**，Claude 的提案：ホーミー
 - [ ] **冠名的場館**，Claude 的提案：北流（台北流行音樂中心類型的展演場館），叫 Spoton Arena
-- [ ] **業者數量**，Claude 的提案：全國共三家行動業者，Spoton 的市占約 45%，另外兩家之後再設計。人口相近的小國多半也是三家（紐西蘭三家：Spark、One NZ、2degrees）
+- [ ] **業者數量**，Claude 的提案：全國共三家行動業者，Spoton 的市占約 45%，另外兩家之後再設計。人口相近的小國多半也是三家（紐西蘭三家：Spark、One NZ、2degrees）。第二大是 Asuka Inc. 的電信子公司（作者 2026-11-09，見 [Asuka Inc.](asuka-inc.md#集團架構)）
 - [ ] **陸揚室的地點**：明治時期的主要港口在茉波城市，可以放在它附近；海底電纜的登陸點也常選在船少的偏僻海灣，避免被船錨勾斷（石垣島的陸揚室就在偏僻的屋良部半島）
 
 ### 色彩與主視覺
