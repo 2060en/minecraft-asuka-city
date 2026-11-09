@@ -19,6 +19,8 @@
 
 國名尤其一定要對作者有意義。
 
+小店、小餐廳的店名不用下方的命名素材，直接取一般的名字（避開現實中有名的店名）；素材大部分留給比較重要的東西（作者 2026-11-09，例子見 [AKQ 美食街](akq-food-court.md)）。
+
 ---
 
 ## 黑名單（已定）
@@ -60,7 +62,7 @@
 | 名井南（TWICE） | 名井（南方離島） |
 | 安俞真（IVE） | — |
 | 紐西蘭、毛利語 | 國名津蘭賀千良、茉波一系列的地名、紐西蘭地名轉換的候補 |
-| 大島璃音（Weathernews 主播） | 大島、瑠璃（保留，用在哪裡待決定） |
+| 大島璃音（Weathernews 主播） | 瑠璃：AKQ 美食街的沖縄そば店「沖縄そば 瑠璃」（作者選，2026-11-09）；大島保留，用在哪裡待決定 |
 | 作者的姓氏「壽」（日文漢字寫作「寿」） | 寿豊（靠海的小鎮）。國名不用 |
 | Keep 筆記的英文候補 | 沒有特別的人物，作者單純喜歡這些名字。Spoton、Homie 用於電信公司 |
 | 作者英文名字的縮寫「IS」 | Asuka Air 的代碼。國名不從作者的英文名字取 |
@@ -247,7 +249,7 @@
 
 ### 英文地名
 
-Gobning、Spoton（已用於電信公司）、Niqbury、Myna、Homie（已用於電信公司的子品牌）、Clayst、Clayville、Nite、Nitesign、Vastwood、Waterfront、North 1st.、Yunn、Yieldstone、Hina、Larna
+Gobning、Spoton（已用於電信公司）、Niqbury、Myna、Homie（已用於電信公司的子品牌）、Clayst、Clayville、Nite、Nitesign、Vastwood、Waterfront、North 1st.、Yunn、Yieldstone、Hina、Larna（已用於塔可飯連鎖 [Larna taco](akq-food-court.md#larna-taco)）
 
 ---
 
@@ -263,7 +265,7 @@ Gobning、Spoton（已用於電信公司）、Niqbury、Myna、Homie（已用於
 - [ ] **女王津的英文與由來**，Claude 的提議：英文叫 Queenstown（Queenstown Peninsula）。英國託管時期為了紀念 1953 年伊莉莎白二世加冕而命名，獨立後改成日文的女王津；先例是新加坡的 Queenstown，同樣是 1953 年為了紀念加冕而命名
 - [ ] **渡瀬用在哪裡**，Claude 的提案：本島北岸面向七島灘的海角或港口。渡也有渡船的意思，適合渡輪碼頭所在的地方。架空世界裡，從北邊海上通過的生物分界線就以這裡命名，叫渡瀬線
 - [ ] **大田**，Claude 的提案：取自安俞真的出生地大田（대전，Daejeon）。用在 Asuka City 機場一帶的地名，像東京的羽田機場就在大田區
-- [ ] **瑠璃（Ruri）**：作者決定保留，用在哪裡還沒想好。Claude 原本提議當國名：
+- [ ] **瑠璃（Ruri）**：作者決定保留，用在哪裡還沒想好。2026-11-09 作者選來當 AKQ 美食街沖縄そば店的店名「沖縄そば 瑠璃」，見 [AKQ 美食街](akq-food-court.md#沖縄そば-瑠璃)；作者想留給更重要的東西時，那家店再換名字。Claude 原本提議當國名：
   - 現實意義：取自大島璃音的「璃」
   - 設定上的由來：本國位在黑潮流出吐噶喇海峽的位置，四周是黑潮深藍色的海，因此稱為瑠璃
   - 瑠璃源自梵語，經佛教傳入東亞，是七寶之一，不專屬中日韓台任何一方（像新加坡的國名也源自梵語）；本國又剛好取代現實中「寶島」的位置
