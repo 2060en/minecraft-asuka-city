@@ -22,6 +22,7 @@
 - [AKQ 航班表](docs/world/flight-schedule.md)：Asuka City 機場的一週航班與 Asuka Air 機隊
 - [Asuka Air 標誌](docs/world/asuka-air-logo.md)：符號、字體、使用規則與檔案（`assets/asuka-air/`）
 - [電信](docs/world/telecom.md)：第一大電信公司 Spoton（以 Spark 為藍本）的 logo、沿革、業務與色彩（logo 原圖在 `assets/spoton/`）
+- [郵政](docs/world/post.md)：郵政 Maha Post（茉波郵便）的名稱、logo、業務、沿革、據點、郵筒與 AKQ 機場的櫃台（logo 檔在 `assets/maha-post/`）
 - [銀行](docs/world/banks.md)：四大銀行（茉波銀行、國泰世華、三井住友銀行、KB國民銀行）、色調與 AKQ 的提款機
 - [AKQ 美食街](docs/world/akq-food-court.md)：3F 美食街各店的品牌、菜單與可以照打的告示牌文字
 - [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
