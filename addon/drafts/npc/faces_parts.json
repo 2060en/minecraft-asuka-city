@@ -1,0 +1,920 @@
+{
+ "title": "隨機臉的零件：髮色、膚色、五官、年齡、配件（示意）",
+ "columns": 8,
+ "panelWidth": 160,
+ "panelHeight": 170,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "髮色：黑",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_0.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "髮色：深棕",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_1.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_1_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "髮色：棕",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_2.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_2_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "髮色：奶茶色",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_3.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_3_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "髮色：酒紅",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_4.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_4_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "髮色：灰",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_5.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_5_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "髮色：白",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_6.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_6_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "膚色：白皙",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_7.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_7_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "膚色：偏白",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_8.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_8_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "膚色：一般",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_9.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_9_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "膚色：小麥色",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_10.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_10_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "眼睛：一般",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_11.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_11_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "眼睛：細長",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_12.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_12_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "眼睛：大眼",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_13.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_13_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "眉毛：粗",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_14.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_14_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "眉毛：細",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_15.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_15_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "嘴：微笑",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_16.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_16_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "口紅",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_17.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_17_hair.png",
+     "bones": [
+      "shell",
+      "back_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "腮紅",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_18.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_18_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "中年：法令紋",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_19.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_19_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "年長：皺紋、白髮",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_20.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_20_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "痣",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_21.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_21_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "鬍渣",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_22.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_22_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "眼鏡：黑框",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_23.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_23_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "眼鏡：金屬細框",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_24.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_24_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "太陽眼鏡",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_25.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_25_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "口罩：白",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_26.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_26_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "口罩：黑",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_27.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_27_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "耳環",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_28.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_28_hair.png",
+     "bones": [
+      "shell",
+      "ponytail"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "髮夾",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_29.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_29_hair.png",
+     "bones": [
+      "shell",
+      "back_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "",
+   "objects": []
+  },
+  {
+   "label": "",
+   "objects": []
+  }
+ ]
+}

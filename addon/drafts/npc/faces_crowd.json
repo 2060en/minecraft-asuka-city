@@ -1,0 +1,735 @@
+{
+ "title": "隨機組合（示意）：上排站務員、中排上班族、下排市民，同一排是同一套衣服",
+ "columns": 8,
+ "panelWidth": 165,
+ "panelHeight": 240,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "齊瀏海長髮・深棕",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_0.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_0_hair.png",
+     "bones": [
+      "shell",
+      "back_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "低盤髮・深棕",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_1.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_1_hair.png",
+     "bones": [
+      "shell",
+      "bun_low"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "平頭・白",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_2.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_2_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "旁分油頭・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_3.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_3_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "兩側推短・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_4.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_4_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "鮑伯頭・深棕",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_5.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_5_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "地中海・灰",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_6.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_6_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "地中海・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_7.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_站務員_7_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "韓系中分・深棕",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_0.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "低馬尾・奶茶色",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_1.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_1_hair.png",
+     "bones": [
+      "shell",
+      "ponytail"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "兩側推短・酒紅",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_2.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_2_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "蘑菇頭・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_3.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_3_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "旁分油頭・白",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_4.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_4_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "清爽短髮・棕",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_5.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_5_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "旁分油頭・灰",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_6.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_6_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "長髮中分・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_7.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_上班族_7_hair.png",
+     "bones": [
+      "shell",
+      "back_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "低盤髮・灰",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_0.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_0_hair.png",
+     "bones": [
+      "shell",
+      "bun_low"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "韓系中分・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_1.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_1_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "旁分油頭・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_2.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_2_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "鮑伯頭・灰",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_3.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_3_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "長髮中分・黑",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_4.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_4_hair.png",
+     "bones": [
+      "shell",
+      "back_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "地中海・灰",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_5.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_5_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "逗號瀏海・深棕",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_6.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_6_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "女生短髮・深棕",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_7.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/crowd_市民_7_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  }
+ ]
+}
