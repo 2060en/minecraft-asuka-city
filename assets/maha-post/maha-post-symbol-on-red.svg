@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="102 102 820 820">
+  <!-- 放在紅底上用的符號：沒有外框，紅底本身就是外框 -->
+  <defs><clipPath id="inner"><rect x="102" y="102" width="820" height="820"/></clipPath></defs>
+  <rect x="102" y="102" width="820" height="820" fill="#FFFFFF"/>
+  <path d="M40 -10 L512 600 L984 -10" fill="none" stroke="#B02E26" stroke-width="140" stroke-linejoin="miter" stroke-miterlimit="10" clip-path="url(#inner)"/>
+</svg>

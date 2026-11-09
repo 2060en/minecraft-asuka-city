@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Maha Post 符號：紅色外框、白色信封、紅色 V 字封口。紅色是旗幟紅 #B02E26 -->
+  <defs><clipPath id="inner"><rect x="102" y="102" width="820" height="820"/></clipPath></defs>
+  <rect width="1024" height="1024" fill="#B02E26"/>
+  <rect x="102" y="102" width="820" height="820" fill="#FFFFFF"/>
+  <path d="M40 -10 L512 600 L984 -10" fill="none" stroke="#B02E26" stroke-width="140" stroke-linejoin="miter" stroke-miterlimit="10" clip-path="url(#inner)"/>
+</svg>

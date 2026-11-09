@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- App 圖示：紅色圓角方塊，中間放沒有外框的信封 -->
+  <defs><clipPath id="inner"><rect x="102" y="102" width="820" height="820"/></clipPath></defs>
+  <rect width="1024" height="1024" rx="180" fill="#B02E26"/>
+  <g transform="translate(192 192) scale(0.625)">
+    <rect x="102" y="102" width="820" height="820" fill="#FFFFFF"/>
+    <path d="M40 -10 L512 600 L984 -10" fill="none" stroke="#B02E26" stroke-width="140" stroke-linejoin="miter" stroke-miterlimit="10" clip-path="url(#inner)"/>
+  </g>
+</svg>
