@@ -62,9 +62,6 @@ EYE = (48, 36, 32)
 EYE_WHITE = (238, 238, 236)
 LASH = (34, 26, 28)
 IRIS = (112, 74, 52)
-IRIS_DARK = (66, 42, 34)
-IRIS_LIGHT = (156, 108, 74)
-CATCHLIGHT = (250, 248, 246)
 BLUSH = (240, 140, 140)
 RIBBON_COLOURS = [(214, 64, 80), (240, 150, 170), (250, 250, 250), (40, 40, 48), (120, 160, 220)]
 
@@ -417,21 +414,10 @@ def paint_face(s, look):
     if look["hair_colour"] in ("grey", "white"):
         brow = mix(skin, hair, 0.7)
     s.both("head", 1, 3, brow, 2, 1)
-    shift = 1 if look["eyes"] == "cute_b" else 0  # cute_b eyes sit a row lower and are taller
     if look["eyes"] == "lash":                    # lash line over a white and a brown iris
         s.both("head", 0, 4, LASH, 3, 1)          # flicks out at the outer corner
         s.both("head", 1, 5, EYE_WHITE)
         s.both("head", 2, 5, IRIS)
-    elif look["eyes"] == "cute_a":                # lash line over an all-brown eye
-        s.both("head", 0, 4, LASH, 3, 1)
-        s.both("head", 1, 5, IRIS)
-        s.both("head", 2, 5, IRIS_DARK)
-    elif look["eyes"] == "cute_b":                # lash line over a 2 x 2 eye with a catchlight
-        s.both("head", 0, 4, LASH, 3, 1)
-        s.both("head", 1, 5, CATCHLIGHT)
-        s.both("head", 2, 5, IRIS_DARK)
-        s.both("head", 1, 6, IRIS)
-        s.both("head", 2, 6, IRIS_LIGHT)
     elif look["eyes"] == "narrow":
         s.both("head", 1, 4, mix(EYE, skin, 0.25), 2, 1)
     else:
@@ -442,15 +428,13 @@ def paint_face(s, look):
             s.both("head", 2, 5, EYE)
     mouth = b.shade(skin, -4)
     if look.get("gender") == "f":
-        mouth = mix(skin, (200, 110, 110), 0.25 if look["eyes"].startswith("cute") else 0.35)
+        mouth = mix(skin, (200, 110, 110), 0.35)
     if look["mouth"] == "lips":
         mouth = mix(skin, (196, 92, 96), 0.7)
     s.paint("head", "front", 3, 8, mouth, 2, 1)
     if look["mouth"] == "smile":
         s.both("head", 2, 7, b.shade(skin, -3))
-    if look.get("blush") == "big":                # two pixels each, just outside and under the eyes
-        s.both("head", 0, 6 + shift, mix(skin, BLUSH, 0.5), 2, 1)
-    elif look.get("blush"):
+    if look.get("blush"):
         s.both("head", 1, 6, mix(skin, BLUSH, 0.45))
         s.both("head", 0, 6, mix(skin, BLUSH, 0.25))
     if look.get("wrinkles"):
@@ -470,26 +454,23 @@ def paint_face(s, look):
     glasses = look.get("glasses")
     if glasses:
         frame = {"black": (40, 38, 44), "metal": (168, 160, 140), "sun": (40, 40, 46)}[glasses]
-        r = 4 + shift
-        s.both("head", 0, r, frame)
-        s.paint("head", "front", 3, r, frame, 2, 1)
+        s.both("head", 0, 4, frame)
+        s.paint("head", "front", 3, 4, frame, 2, 1)
         if glasses == "black":                    # round rims above and below, corners open
-            if not shift:
-                s.both("head", 1, 3, frame, 2, 1)
-            s.both("head", 1, r + 1 + shift, frame, 2, 1)
+            s.both("head", 1, 3, frame, 2, 1)
+            s.both("head", 1, 5, frame, 2, 1)
         elif glasses == "metal":
-            s.both("head", 1, r + 1 + shift, frame, 2, 1)
+            s.both("head", 1, 5, frame, 2, 1)
         else:
-            s.both("head", 1, r, (54, 62, 76), 2, 2)
-        side(s, 0, r, frame, 3, 1)
+            s.both("head", 1, 4, (54, 62, 76), 2, 2)
+        side(s, 0, 4, frame, 3, 1)
     mask = look.get("mask")
     if mask:
         c = {"white": (236, 238, 240), "black": (44, 44, 48)}[mask]
-        top = 6 + shift
-        s.paint("head", "front", 0, top, c, 8, 10 - top, grain=1)
-        s.paint("head", "front", 1, top + 1, b.shade(c, -2), 6, 1)
+        s.paint("head", "front", 0, 6, c, 8, 4, grain=1)
+        s.paint("head", "front", 1, 7, b.shade(c, -2), 6, 1)
         s.paint("head", "front", 1, 9, b.shade(c, -2), 6, 1)
-        side(s, 0, top, c, 4, 1)
+        side(s, 0, 6, c, 4, 1)
     if look.get("earrings"):
         side(s, 3, 6, {"gold": (222, 184, 84), "silver": (206, 210, 216)}[look["earrings"]])
 
@@ -507,7 +488,7 @@ HAIR_POOLS = {
     ("m", "old"): {"m_short": 30, "m_side_part": 25, "m_buzz": 20, "m_balding": 25},
     ("f", "young"): {"f_long_airy": 14, "f_long_part": 12, "f_hime": 6, "f_bob": 10, "f_wavy": 10,
                      "f_pony_high": 10, "f_pony_low": 6, "f_twin": 6, "f_bun_high": 10, "f_half_up": 10,
-                     "f_short": 6},
+                     "f_buns_twin": 8, "f_short": 6},
     ("f", "middle"): {"f_bob": 20, "f_wavy": 15, "f_pony_low": 15, "f_bun_low": 20, "f_short": 15,
                       "f_long_part": 10, "f_perm": 5},
     ("f", "old"): {"f_short": 30, "f_perm": 35, "f_bun_low": 20, "f_bob": 15},
@@ -550,8 +531,11 @@ def random_look(rng, gender=None, age=None, hair=None, casual=False):
         look["mask"] = pick(rng, {"white": 75, "black": 25})
     if female and rng.random() < 0.35:
         look["earrings"] = rng.choice(["gold", "silver"])
-    if female and age == "young" and rng.random() < 0.25:
-        look["pin"] = rng.choice(PIN_COLOURS)
+    if female and age == "young" and rng.random() < 0.35:     # a hair ornament: ribbon or pin
+        if rng.random() < 0.5:
+            look["ribbon"] = rng.choice(RIBBON_COLOURS)
+        else:
+            look["pin"] = rng.choice(PIN_COLOURS)
     if not female and age != "young" and rng.random() < 0.12:
         look["stubble"] = True
     if rng.random() < 0.08:
@@ -730,6 +714,7 @@ def parts_sheet(rng):
         ("口罩：黑", base_look(mask="black", hair="m_center")),
         ("耳環", base_look(earrings="gold", hair="f_pony_high", gender="f", brows="thin", eyes="lash")),
         ("髮夾", base_look(pin=PIN_COLOURS[0], hair="f_long_airy", gender="f", brows="thin", eyes="lash")),
+        ("小緞帶", base_look(ribbon=RIBBON_COLOURS[0], hair="f_bob", gender="f", brows="thin", eyes="lash")),
     ]
     panels = []
     for i, (label, look) in enumerate(items):
@@ -754,55 +739,6 @@ def crowd_sheet(rng):
             "panelWidth": 165, "panelHeight": 240, "background": "#e8edf1", "panels": panels}
 
 
-CUTE_STYLES = ["f_bob", "f_long_airy", "f_pony_high", "f_twin", "f_bun_high", "f_half_up", "f_buns_twin"]
-CUTE_ROWS = [
-    ("第二版", {"eyes": "lash", "blush": True}),
-    ("可愛A", {"eyes": "cute_a", "blush": "big"}),
-    ("可愛B", {"eyes": "cute_b", "blush": "big"}),
-]
-
-
-def cute_sheet():
-    """The same young women drawn three ways, plus cute B with hair ornaments."""
-    panels = []
-    rows = CUTE_ROWS + [("B＋髮飾", {"eyes": "cute_b", "blush": "big"})]
-    for r, (name, face) in enumerate(rows):
-        for i, k in enumerate(CUTE_STYLES):
-            look = base_look(hair=k, gender="f", brows="thin", mouth="normal", **face)
-            if r == 3:
-                if i % 2 == 0:
-                    look["ribbon"] = RIBBON_COLOURS[i // 2 % len(RIBBON_COLOURS)]
-                else:
-                    look["pin"] = PIN_COLOURS[i // 2 % len(PIN_COLOURS)]
-            objs = make_npc(f"cute_{r}_{k}", look, outfit_plain, random.Random(3))
-            label = f"{style_code(k)} {HAIRSTYLES[k][0]}" if r == 0 else f"{name}・{style_code(k)}"
-            panels.append({"label": label, "camera": dict(HEAD_CAM, azimuth=18), "objects": objs})
-    return {"title": "試做：讓年輕的女生更可愛（上到下：第二版、可愛A、可愛B、可愛B＋髮飾；每一欄同一個髮型）",
-            "columns": 7,
-            "panelWidth": 175, "panelHeight": 180, "background": "#e8edf1", "panels": panels}
-
-
-def cute_crowd_sheet():
-    """Seven random young women, the same people in every row; only the face changes."""
-    people = []
-    rng = random.Random(77)
-    for _ in range(7):
-        look = random_look(rng, gender="f", age="young", casual=True)
-        look.pop("glasses", None) if rng.random() < 0.5 else None
-        people.append((look, rng.randrange(10 ** 6)))
-    panels = []
-    for r, (name, face) in enumerate(CUTE_ROWS):
-        for i, (look, seed) in enumerate(people):
-            look = dict(look, **face)
-            look["mouth"] = "normal" if face["eyes"].startswith("cute") and look["mouth"] == "lips" else look["mouth"]
-            objs = make_npc(f"cutecrowd_{r}_{i}", look, outfit_citizen, random.Random(seed))
-            panels.append({"label": f"{name}・{style_code(look['hair'])}",
-                           "camera": {"azimuth": 20, "elevation": 8, "size": 40, "target": [0, 17, 0]},
-                           "objects": objs})
-    return {"title": "試做：同樣七個年輕女生，在遊戲裡的距離看起來的差別", "columns": 7, "panelWidth": 165,
-            "panelHeight": 240, "background": "#e8edf1", "panels": panels}
-
-
 def render(name, sheet):
     (HERE / f"{name}.json").write_text(json.dumps(sheet, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     subprocess.run(["node", str(ROOT / "tools/preview/render.mjs"), str(HERE / f"{name}.json"),
@@ -816,8 +752,6 @@ def main():
     render("faces_hair_m", hair_sheet("m", 8))
     render("faces_hair_f", hair_sheet("f", 7))
     render("faces_parts", parts_sheet(rng))
-    render("faces_cute", cute_sheet())
-    render("faces_cute_crowd", cute_crowd_sheet())
     render("faces_crowd", crowd_sheet(rng))
 
 

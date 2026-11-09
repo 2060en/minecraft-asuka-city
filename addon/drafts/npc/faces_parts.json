@@ -941,8 +941,34 @@
    ]
   },
   {
-   "label": "",
-   "objects": []
+   "label": "小緞帶",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_31.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_31_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
   }
  ]
 }

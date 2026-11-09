@@ -280,7 +280,7 @@
    ]
   },
   {
-   "label": "高馬尾・奶茶色",
+   "label": "低馬尾・奶茶色",
    "camera": {
     "azimuth": 20,
     "elevation": 8,
@@ -305,7 +305,7 @@
      "texture": "/.scratch/faces/crowd_上班族_1_hair.png",
      "bones": [
       "shell",
-      "ponytail_high"
+      "ponytail"
      ]
     }
    ]
@@ -461,7 +461,7 @@
    ]
   },
   {
-   "label": "內彎鮑伯頭・黑",
+   "label": "中長捲髮・黑",
    "camera": {
     "azimuth": 20,
     "elevation": 8,
@@ -485,7 +485,8 @@
      "geo": "/addon/drafts/npc/hair_preview.geo.json",
      "texture": "/.scratch/faces/crowd_上班族_7_hair.png",
      "bones": [
-      "shell"
+      "shell",
+      "back_mid"
      ]
     }
    ]
