@@ -321,6 +321,7 @@
 
 - 業務範圍很廣，包山包海
 - 主要業務之一是地產開發與建築
+- 也做零售，經營主題樂園 Minecraft Studio（Minecraft 的 IP 由 Mojang 授權），見[商業](commerce.md#商業版圖)
 - 總部已經建成，位於 Asuka City 市中心
 
 構想：讓 AI 擔任公司的高層員工（待討論）。

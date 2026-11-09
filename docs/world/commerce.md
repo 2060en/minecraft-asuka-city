@@ -40,7 +40,7 @@
 
 | 企業 | 角色 | 出處 |
 | --- | --- | --- |
-| Asuka Inc. | 作者的公司，包山包海，主要業務之一是地產開發與建築；也做零售（內容待補） | [世界觀總覽](overview.md#asuka-inc) |
+| Asuka Inc. | 作者的公司，包山包海，主要業務之一是地產開發與建築；也做零售（內容待補），經營主題樂園 Minecraft Studio | [世界觀總覽](overview.md#asuka-inc) |
 | 主權基金 | 總部在 CBD，很會投資；持有 Spoton 過半的股份 | [世界觀總覽](overview.md#經濟)、[電信](telecom.md) |
 | 茉波銀行 | 公股銀行，四大銀行之一 | [銀行](banks.md) |
 | Spoton | 第一大電信公司 | [電信](telecom.md) |
@@ -56,10 +56,10 @@
 | 類 | 內容 | 例子 |
 | --- | --- | --- |
 | 一、現實進駐 | 現實中有的品牌，直接進駐本國 | 便利商店御三家、三家外國銀行、麥當勞 |
-| 二、現實原型改編 | 以現實的品牌為原型，作者改過 | Spoton、Taco eats |
+| 二、現實原型改編 | 以現實的品牌為原型，作者改過 | Spoton、TakoEats |
 | 三、完全虛構 | 作者自己虛構的 | Asuka Inc. |
 
-二和三的界線（Claude 的分法，待作者確認）：名稱、logo 或品牌色照某一個現實品牌改的放二；只參考業態或定位、品牌本身是新的放三。
+二和三的界線（已定，2026-11-09）：名稱、logo 或品牌色照某一個現實品牌改的放二；只參考業態或定位、品牌本身是新的放三。
 
 ### 一、現實進駐
 
@@ -126,26 +126,21 @@
 | --- | --- | --- | --- | --- |
 | Spoton | 電信 | Spark（紐西蘭） | 名稱、logo、沿革改成本國的；保留紫色與星形 | [電信](telecom.md) |
 | Homie | 平價電信 | Skinny（Spark 的平價子品牌） | 名稱 | [電信](telecom.md) |
-| Taco eats | 外送平台 | 待補 | 名字取自 VTuber Ina 的迷因 | [廣告](../ads.md) C5 |
+| TakoEats | 外送平台 | Uber Eats | 名字和 logo 取自 VTuber 一伊那尓栖（Ninomae Ina'nis）的迷因：Tako 是她的粉絲 takodachi，logo 是 takodachi 的剪影；品牌色是紫色。廣告上的促銷碼「WAH」也是她的口頭禪 | [廣告](../ads.md) C5 |
 
 ### 三、完全虛構
 
 | 品牌 | 類別 | 參考 | 出處 |
 | --- | --- | --- | --- |
 | Asuka Inc. | 財團 | — | [世界觀總覽](overview.md#asuka-inc) |
+| Asuka Air | 載旗航空 | 名稱和 logo 是作者自己的；設計借用紐西蘭航空的模式 | [交通](transport.md#航空)、[Asuka Air 標誌](asuka-air-logo.md) |
+| Minecraft Studio | 主題樂園 | Asuka Inc. 經營，Minecraft 的 IP 由 Mojang 授權 | [地理](geography.md#minecraft-studio) |
 | 茉波銀行 | 公股銀行 | 沿革參考臺灣銀行 | [銀行](banks.md) |
 | [Teppan Steak GEORGE](akq-food-court.md#teppan-steak-george) | 熱鐵盤牛排速食 | 業態像ペッパーランチ | AKQ 美食街 |
 | [Larna taco](akq-food-court.md#larna-taco) | 塔可飯連鎖 | 店的型態學 Taco Bell | AKQ 美食街 |
 | [沖縄そば 瑠璃](akq-food-court.md#沖縄そば-瑠璃) | 沖縄そば | 概念像拉麵連鎖 AFURI | AKQ 美食街 |
 | [中華そば 港屋](akq-food-court.md#中華そば-港屋) | 老派拉麵 | — | AKQ 美食街 |
 | [咖啡店（店名待定）](akq-food-court.md#咖啡店店名待定) | 中價位咖啡連鎖 | 定位介於羅多倫和星巴克 | AKQ 美食街 |
-
-### 還沒分類
-
-| 品牌 | 類別 | 為什麼不確定 |
-| --- | --- | --- |
-| Asuka Air | 載旗航空 | 名稱和 logo 是作者自己的，但[世界觀總覽](overview.md#已決定)寫它「借用紐航設計」 |
-| Minecraft Studio | 主題樂園 | 主題是現實的 Minecraft，名字的形式像環球影城（Universal Studios），見[地理](geography.md#minecraft-studio) |
 
 ---
 
@@ -190,9 +185,6 @@
 - [ ] **便利商店少了菸**：日本平均一家便利商店一年賣約 4,300 萬日圓的菸（[財務省 2016 年的調查](https://www.mof.go.jp/policy/tab_salt/reference/tab_stat/result2016.html)），約是營業額的兩成。本國的便利商店要靠其他東西補，例如鮮食、咖啡、繳費、包裹
 - [ ] **量體**：一個品牌在本島開幾家店合理，對照[量體基準](../scale.md)
 - [ ] **建造清單的「食物清」**：待確認是哪個品牌
-- [ ] **二和三的界線**：Claude 的分法見[品牌與店家一覽](#品牌與店家一覽)
-- [ ] **Asuka Air、Minecraft Studio 的分類**：見[還沒分類](#還沒分類)
-- [ ] **Taco eats 的拼法與原型**：廣告清單和圖檔寫 Taco eats，作者 2026-11-09 在對話中打成 Toko eats；原型是哪個外送平台待補
 - [ ] **現實的沖繩企業**，Claude 注意到的：這個世界的沖繩是本國領土，所以現實中在沖繩起家的企業（例如 ポーたま）在這個世界是本國的本土企業，照[本土中小企業](#商業版圖)的規則。琉球銀行已經決定不存在，其他沖繩企業要不要逐一處理待決定
 
 ### 已決定
@@ -206,3 +198,7 @@
 - [x] 便利商店的鮮食工廠與配送中心設在本島（2026-11-09）
 - [x] 御三家由日本總部設子公司直營（2026-11-09）。不採用：跟本地企業合資（現實中的沖縄ファミリーマート、ローソン沖縄是合資）
 - [x] 品牌分三大類：現實進駐、現實原型改編、完全虛構（2026-11-09）
+- [x] 二和三的界線：名稱、logo 或品牌色照某一個現實品牌改的放二；只參考業態或定位的放三（2026-11-09）
+- [x] Asuka Air 放第三類（2026-11-09）
+- [x] Minecraft Studio 是 Asuka Inc. 經營的樂園，Minecraft 的 IP 由 Mojang 授權（2026-11-09），放第三類
+- [x] 外送平台的名字是 TakoEats（廣告上的寫法），原型是 Uber Eats（2026-11-09）。廣告清單原本寫成 Taco eats

@@ -94,7 +94,7 @@
 | C2 | Bust | `kz.png` (32, 128) | 保險（萬用） | |
 | C3 | Stage | `kz.png` (64, 128) | 藥品（萬用） | |
 | C4 | Void | `kz.png` (96, 128) | iPhone | |
-| C5 | SkullAndRoses | `kz.png` (128, 128) | Taco eats（外送平台） | 取自 VTuber Ina 的迷因 |
+| C5 | SkullAndRoses | `kz.png` (128, 128) | TakoEats（外送平台，原型 Uber Eats） | 取自 VTuber Ina 的迷因，見[商業](world/commerce.md#二現實原型改編)。原圖檔名是 `Taco eats.jpg` |
 | C6 | Wither | `kz.png` (160, 128) | 銀行（萬用） | 圖上有 Olive 的品牌，作者刻意的。Olive 是三井住友銀行的服務，見[銀行](world/banks.md) |
 | C7 | baroque | `baroque.png` | Sony 耳機，milet 代言 | |
 | C8 | humble | `humble.png` | 信用卡（萬用） | |
