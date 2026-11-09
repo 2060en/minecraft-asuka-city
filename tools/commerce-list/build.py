@@ -21,7 +21,7 @@ OUT_DIR = Path(__file__).resolve().parent / "out"
 OUT = OUT_DIR / "commerce-list.html"
 STATE = OUT_DIR / "state.json"
 
-CATEGORY_STYLE = {"一": "c1", "二": "c2", "三": "c3"}
+CATEGORY_STYLE = {"一": "c1", "二": "c2", "三": "c3", "備": "c4"}
 
 
 def section(lines, title):
@@ -175,12 +175,12 @@ def main():
 <style>
 :root {{
   --bg: #f6f5f2; --card: #ffffff; --ink: #1d1d1f; --sub: #6b6b70; --line: #e4e2dc;
-  --c1: #2f6db5; --c2: #7a3db8; --c3: #b5701f; --new: #d6336c;
+  --c1: #2f6db5; --c2: #7a3db8; --c3: #b5701f; --c4: #6b7280; --new: #d6336c;
 }}
 @media (prefers-color-scheme: dark) {{
   :root {{
     --bg: #161618; --card: #202023; --ink: #ededee; --sub: #a0a0a6; --line: #34343a;
-    --c1: #6aa5ec; --c2: #b98ae6; --c3: #e3a75a; --new: #ff6b9a;
+    --c1: #6aa5ec; --c2: #b98ae6; --c3: #e3a75a; --c4: #9ca3af; --new: #ff6b9a;
   }}
 }}
 * {{ box-sizing: border-box; }}
@@ -199,7 +199,7 @@ header p {{ margin: 0; color: var(--sub); font-size: 13px; }}
 }}
 .chip span {{ color: var(--sub); font-size: 13px; }}
 .chip .chip-new {{ color: var(--new); font-weight: 600; }}
-.c1 {{ --accent: var(--c1); }} .c2 {{ --accent: var(--c2); }} .c3 {{ --accent: var(--c3); }}
+.c1 {{ --accent: var(--c1); }} .c2 {{ --accent: var(--c2); }} .c3 {{ --accent: var(--c3); }} .c4 {{ --accent: var(--c4); }}
 .cat {{
   background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--accent);
   border-radius: 12px; padding: 4px 16px 12px; margin-top: 16px;
