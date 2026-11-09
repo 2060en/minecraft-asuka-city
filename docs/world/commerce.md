@@ -40,7 +40,7 @@
 
 | 企業 | 角色 | 出處 |
 | --- | --- | --- |
-| Asuka Inc. | 作者的公司，包山包海；控股加上地產、航空、旅遊、重工、科技電子、電信（第二大，品牌 Links）、百貨等全資子公司，見 [Asuka Inc.](asuka-inc.md)。主要業務之一是地產開發與建築；也做零售（內容待補），經營主題樂園 Minecraft Studio；也是太平洋鐵路（太平洋特急くろしお号）的主要股東、金主；總部大樓只給自己用、不出租；另外開發商辦複合大樓出租，四季酒店、Google 都在它的商辦大樓，見[辦公與科技公司](#辦公與科技公司) | [Asuka Inc.](asuka-inc.md) |
+| Asuka Inc. | 作者的公司，包山包海；控股加上地產、航空、旅遊、重工、科技電子、電信（第二大，品牌 Links）、百貨（直井百貨店、ナオイ）等全資子公司，見 [Asuka Inc.](asuka-inc.md)。主要業務之一是地產開發與建築；也做零售（內容待補），經營主題樂園 Minecraft Studio；也是太平洋鐵路（太平洋特急くろしお号）的主要股東、金主；總部大樓只給自己用、不出租；另外開發商辦複合大樓出租，四季酒店、Google 都在它的商辦大樓，見[辦公與科技公司](#辦公與科技公司) | [Asuka Inc.](asuka-inc.md) |
 | 主權基金 | 總部在 CBD，很會投資；持有 Spoton 過半的股份，也持有 MRC（茉波鉄道）、茉波石油和茉波電力 | [世界觀總覽](overview.md#經濟)、[電信](telecom.md)、[交通](transport.md#營運公司) |
 | 茉波銀行 | 公股銀行，四大銀行之一 | [銀行](banks.md) |
 | Spoton | 第一大電信公司 | [電信](telecom.md) |
@@ -261,7 +261,7 @@
 | --- | --- | --- | --- |
 | Asuka Inc. | 財團 | — | [Asuka Inc.](asuka-inc.md) |
 | Links（リンクス） | 電信，本國第二大 | Asuka Inc. 的電信子公司；先例 SK Telecom（SK 集團） | [Asuka Inc.](asuka-inc.md#集團架構) |
-| Asuka Inc. 的百貨（名稱待定） | 百貨公司 | 先例新世界百貨（原本屬於三星） | [Asuka Inc.](asuka-inc.md#集團架構) |
+| 直井百貨店、ナオイ（Naoi） | 百貨公司、購物中心 | Asuka Inc. 收購的百貨，擴大後改成片假名的ナオイ；先例是丸井改成マルイ | [Asuka Inc.](asuka-inc.md#集團架構) |
 | Asuka Tour（アスカツアー） | 旅行社、旅行團 | Asuka Inc. 旅遊子公司的旅行社 | [Asuka Inc.](asuka-inc.md#集團架構) |
 | 阿須賀地所、阿須賀建設、阿須賀重工 | 地產、建設、重工 | — | [Asuka Inc.](asuka-inc.md#集團架構) |
 | Asuka tech（アスカテック） | 科技 | — | [Asuka Inc.](asuka-inc.md#asuka-tech-研發中心) |
@@ -330,6 +330,7 @@
 
 | 品牌 | 說明 |
 | --- | --- |
+| ナオイモール | Asuka Inc. 的購物中心，由收購來的直井百貨店擴大而來，見 [Asuka Inc.](asuka-inc.md#集團架構) |
 | イオンモール | AEON 的購物中心，見[超市與量販](#超市與量販) |
 | ららぽーと（LaLaport） | 三井不動產的購物中心，日本總部直營。現實中海外開到台中、台北南港、吉隆坡、上海。開在 Minecraft Studio 附近（作者 2026-11-09）；先例是東京迪士尼樂園旁的イクスピアリ、日本環球影城旁的 CityWalk |
 
