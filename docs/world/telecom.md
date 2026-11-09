@@ -10,6 +10,8 @@
 
 本國第一大的電信公司，以紐西蘭的 Spark 為藍本。
 
+第二大是 Asuka Inc. 的 Links（市占約 35%），見 [Asuka Inc.](asuka-inc.md#集團架構)。
+
 | 項目 | 設定 | 狀態 |
 | --- | --- | --- |
 | 名稱 | Spoton | 已定 |
@@ -178,7 +180,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 
 ### 已決定
 
-- [x] 業者數量：全國三家行動業者，Spoton 約 45%，第二大是 Asuka Inc. 的電信子公司約 35%，第三家約 20%（之後再設計）。人口相近的小國多半也是三家，紐西蘭是 Spark、One NZ、2degrees（Claude 提案，作者確認，2026-11-09）
+- [x] 業者數量：全國三家行動業者，Spoton 約 45%，第二大是 Asuka Inc. 的電信子公司 Links 約 35%，第三家約 20%（之後再設計）。人口相近的小國多半也是三家，紐西蘭是 Spark、One NZ、2degrees（Claude 提案，作者確認，2026-11-09）
 - [x] 本國第一大的電信公司，以紐西蘭的 Spark 為藍本，學它的紫色與星形
 - [x] 名稱取英文名，不另取日文漢字名（璃音、結迅、礼音這類漢字名不用）
 - [x] Logo 由作者自己設計；Claude 提的三案（流線光芒、桔梗星、閃光）都不採用，也不重畫
