@@ -426,7 +426,7 @@
    ]
   },
   {
-   "label": "眉毛：粗",
+   "label": "眼睛：睫毛（女生）",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -456,7 +456,7 @@
    ]
   },
   {
-   "label": "眉毛：細",
+   "label": "眉毛：粗",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -486,7 +486,7 @@
    ]
   },
   {
-   "label": "嘴：微笑",
+   "label": "眉毛：細",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -516,7 +516,7 @@
    ]
   },
   {
-   "label": "口紅",
+   "label": "嘴：微笑",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -540,14 +540,13 @@
      "geo": "/addon/drafts/npc/hair_preview.geo.json",
      "texture": "/.scratch/faces/part_17_hair.png",
      "bones": [
-      "shell",
-      "back_long"
+      "shell"
      ]
     }
    ]
   },
   {
-   "label": "腮紅",
+   "label": "口紅",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -571,13 +570,15 @@
      "geo": "/addon/drafts/npc/hair_preview.geo.json",
      "texture": "/.scratch/faces/part_18_hair.png",
      "bones": [
-      "shell"
+      "shell",
+      "back_long",
+      "locks_long"
      ]
     }
    ]
   },
   {
-   "label": "中年：法令紋",
+   "label": "腮紅",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -607,7 +608,7 @@
    ]
   },
   {
-   "label": "年長：皺紋、白髮",
+   "label": "中年：法令紋",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -637,7 +638,7 @@
    ]
   },
   {
-   "label": "痣",
+   "label": "年長：皺紋、白髮",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -667,7 +668,7 @@
    ]
   },
   {
-   "label": "鬍渣",
+   "label": "痣",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -697,7 +698,7 @@
    ]
   },
   {
-   "label": "眼鏡：黑框",
+   "label": "鬍渣",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -727,7 +728,7 @@
    ]
   },
   {
-   "label": "眼鏡：金屬細框",
+   "label": "眼鏡：黑框",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -757,7 +758,7 @@
    ]
   },
   {
-   "label": "太陽眼鏡",
+   "label": "眼鏡：金屬細框",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -787,7 +788,7 @@
    ]
   },
   {
-   "label": "口罩：白",
+   "label": "太陽眼鏡",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -817,7 +818,7 @@
    ]
   },
   {
-   "label": "口罩：黑",
+   "label": "口罩：白",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -847,7 +848,7 @@
    ]
   },
   {
-   "label": "耳環",
+   "label": "口罩：黑",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -871,14 +872,13 @@
      "geo": "/addon/drafts/npc/hair_preview.geo.json",
      "texture": "/.scratch/faces/part_28_hair.png",
      "bones": [
-      "shell",
-      "ponytail"
+      "shell"
      ]
     }
    ]
   },
   {
-   "label": "髮夾",
+   "label": "耳環",
    "camera": {
     "elevation": 8,
     "size": 27,
@@ -903,14 +903,42 @@
      "texture": "/.scratch/faces/part_29_hair.png",
      "bones": [
       "shell",
-      "back_long"
+      "ponytail_high"
      ]
     }
    ]
   },
   {
-   "label": "",
-   "objects": []
+   "label": "髮夾",
+   "camera": {
+    "elevation": 8,
+    "size": 27,
+    "target": [
+     0,
+     26,
+     0
+    ],
+    "azimuth": 25
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/part_30.png"
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/part_30_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
   },
   {
    "label": "",

@@ -60,6 +60,8 @@ HAIR_COLOURS = {
 }
 EYE = (48, 36, 32)
 EYE_WHITE = (238, 238, 236)
+LASH = (34, 26, 28)
+IRIS = (112, 74, 52)
 
 
 def mix(a, c, t):
@@ -76,10 +78,12 @@ class Hair:
     """Which head pixels have hair: FLAT on the head itself, VOL on the shell.
     On the top face row 0 is the back and row 7 the front."""
 
-    def __init__(self, parts=(), shaved=False):
+    def __init__(self, parts=(), shaved=False, tips=False, wave=None):
         self.g = {f: [[0] * w for _ in range(h)] for f, (w, h) in HEAD_FACES.items()}
         self.parts = set(parts)
         self.shaved = shaved      # flat hair shows the scalp (buzz cut, shaved sides)
+        self.tips = tips          # pointed strand ends at the bottom of the sides and back
+        self.wave = wave          # None, "wavy" (loose waves) or "curly" (a perm)
 
     def put(self, f, x, y, w, h, v):
         fw, fh = HEAD_FACES[f]
@@ -161,66 +165,126 @@ def m_balding():
     return h.back(1, 1, FLAT).back(2, 5)
 
 
+def airy_bangs(h):
+    """See-through bangs: a few thin strands below the hairline."""
+    for x in (1, 4, 6):
+        h.front(x, 3)
+    return h
+
+
+def strands(h, rows=5):
+    """Thin strands just in front of the ears, framing the face."""
+    return h.sides(0, 2, 1, rows)
+
+
 def f_bob():
     h = Hair().top().ring(0, 3)
-    h.front(1, 3).front(3, 3, 2).front(6, 3).front(0, 3, 1, 6).front(7, 3, 1, 6)
+    for x in (0, 2, 3, 5, 7):
+        h.front(x, 3)
+    h.front(0, 4, 1, 5).front(7, 4, 1, 5)
     return h.sides(0, 3, 8, 6).back(3, 6)
 
 
-def f_long():
-    h = Hair(parts=("back_long",)).top().ring(0, 3)
-    h.front(0, 3, 8).front(0, 4, 1, 6).front(7, 4, 1, 6)
+def f_hime():
+    h = Hair(parts=("back_long",)).top().ring(0, 4)                  # blunt bangs down to the brows
+    h.front(0, 4, 1, 4).front(7, 4, 1, 4)                            # blunt side locks at the cheeks
+    return h.sides(0, 4, 8, 6).back(4, 6)
+
+
+def f_long_airy():
+    h = airy_bangs(Hair(parts=("back_long", "locks_long"), tips=True).top().ring(0, 3))
+    h.front(0, 3, 1, 7).front(7, 3, 1, 7)
     return h.sides(0, 3, 8, 7).back(3, 7)
 
 
 def f_long_part():
-    h = Hair(parts=("back_long",)).top().ring(0, 2)
+    h = Hair(parts=("back_long", "locks_long"), tips=True).top().ring(0, 2)
+    h.front(3, 0, 2, 2, FLAT)                                        # the parting
     h.front(0, 2, 3).front(5, 2, 3).front(0, 3, 2).front(6, 3, 2).front(0, 4, 1, 6).front(7, 4, 1, 6)
     return h.sides(0, 2, 8, 8).back(2, 8)
 
 
-def f_ponytail():
-    h = Hair(parts=("ponytail",)).top().ring(0, 2)
-    h.front(0, 2, 4).front(0, 3).front(7, 2, 1, 2)
-    h.sides(0, 2, 8, 2).sides(5, 4, 3, 1)
+def f_wavy():
+    h = Hair(parts=("back_mid",), tips=True, wave="wavy").top().ring(0, 3)
+    h.front(0, 3, 4).front(7, 3).front(0, 4, 1, 5).front(7, 4, 1, 5)
+    return h.sides(0, 3, 8, 7).back(3, 7)
+
+
+def f_pony_high():
+    h = strands(Hair(parts=("ponytail_high",)).top().ring(0, 2))
+    h.front(0, 2, 3).front(0, 3).front(7, 2)
+    h.sides(4, 2, 4, 3)
     return h.back(2, 4).back(6, 1, FLAT)
 
 
-def f_high_bun():
-    h = Hair(parts=("bun_high",)).top().ring(0, 2)
-    h.front(0, 2, 1, 3, FLAT).front(7, 2, 1, 3, FLAT)
-    h.sides(0, 2, 8, 1).sides(4, 3, 4, 2)
-    return h.back(2, 5).back(7, 1, FLAT)
+def f_pony_low():
+    h = strands(Hair(parts=("ponytail",)).top().ring(0, 2))
+    h.front(0, 2, 4).front(0, 3).front(7, 2, 1, 2)
+    h.sides(4, 2, 4, 4)
+    return h.back(2, 5)
 
 
-def f_low_bun():
-    h = Hair(parts=("bun_low",)).top().ring(0, 2)
-    h.front(0, 2, 3).front(7, 2)
-    return h.sides(0, 2, 8, 2).sides(5, 4, 3, 1).back(2, 5)
+def f_twin():
+    h = airy_bangs(Hair(parts=("twins",)).top().ring(0, 3))
+    h.sides(0, 3, 8, 2)
+    h.back(3, 5).put("back", 3, 2, 2, 6, FLAT)                      # parted down the back
+    return h
+
+
+def f_bun_high():
+    h = strands(Hair(parts=("bun_high",)).top().ring(0, 2))
+    h.front(1, 2, 6).front(1, 3).front(6, 3)
+    h.sides(4, 2, 4, 3)
+    return h.back(2, 4).back(6, 1, FLAT)
+
+
+def f_half_up():
+    h = airy_bangs(Hair(parts=("back_long", "knot"), tips=True).top().ring(0, 3))
+    h.front(0, 3, 1, 6).front(7, 3, 1, 6)
+    return h.sides(0, 3, 8, 7).back(3, 7)
+
+
+def f_bun_low():
+    h = strands(Hair(parts=("bun_low",)).top().ring(0, 2), rows=3)
+    h.front(0, 2, 4).front(7, 2)
+    h.sides(4, 2, 4, 4)
+    return h.back(2, 5)
 
 
 def f_short():
-    h = Hair().top().ring(0, 3)
-    h.front(0, 3, 3).front(0, 4).front(7, 3)
-    h.sides(0, 3, 2, 2).sides(3, 3, 5, 3)
-    return h.back(3, 4).back(7, 1, FLAT)
+    h = Hair(tips=True).top().ring(0, 3)
+    h.front(0, 3, 3).front(7, 3).front(0, 4, 1, 3).front(7, 4, 1, 3)
+    return h.sides(0, 3, 8, 4).back(3, 5)
+
+
+def f_perm():
+    h = Hair(wave="curly").top().ring(0, 3)
+    h.front(0, 3).front(7, 3)
+    return h.sides(0, 3, 8, 4).sides(4, 7, 4, 1).back(3, 5)
 
 
 HAIRSTYLES = {
     "m_short": ("清爽短髮", m_short), "m_center": ("韓系中分", m_center), "m_comma": ("逗號瀏海", m_comma),
     "m_two_block": ("兩側推短", m_two_block), "m_side_part": ("旁分油頭", m_side_part), "m_buzz": ("平頭", m_buzz),
     "m_mash": ("蘑菇頭", m_mash), "m_balding": ("地中海", m_balding),
-    "f_bob": ("鮑伯頭", f_bob), "f_long": ("齊瀏海長髮", f_long), "f_long_part": ("長髮中分", f_long_part),
-    "f_ponytail": ("低馬尾", f_ponytail), "f_high_bun": ("丸子頭", f_high_bun), "f_low_bun": ("低盤髮", f_low_bun),
-    "f_short": ("女生短髮", f_short),
+    "f_bob": ("內彎鮑伯頭", f_bob), "f_hime": ("姬髮型", f_hime), "f_long_airy": ("空氣瀏海長髮", f_long_airy),
+    "f_long_part": ("韓系中分長髮", f_long_part), "f_wavy": ("中長捲髮", f_wavy), "f_pony_high": ("高馬尾", f_pony_high),
+    "f_pony_low": ("低馬尾", f_pony_low), "f_twin": ("低雙馬尾", f_twin), "f_bun_high": ("丸子頭", f_bun_high),
+    "f_half_up": ("公主頭", f_half_up), "f_bun_low": ("低盤髮", f_bun_low), "f_short": ("耳下短髮", f_short),
+    "f_perm": ("燙髮", f_perm),
 }
 
 # The hair texture: the head box (same UV as the NPC head), the shell, and
 # the extra boxes (u, v, width, height, depth).
 HAIR_BOXES = {
-    "head": (0, 0, 8, 10, 8), "shell": (32, 0, 8, 10, 8), "back_long": (0, 20, 8, 9, 1),
-    "ponytail": (20, 20, 2, 7, 2), "bun_low": (30, 20, 4, 4, 3), "bun_high": (46, 20, 4, 3, 4),
+    "head": (0, 0, 8, 10, 8), "shell": (32, 0, 8, 10, 8),
+    "back_long": (0, 20, 9, 11, 1), "back_mid": (0, 34, 9, 5, 1),
+    "ponytail": (20, 20, 2, 7, 2), "ponytail_high": (20, 30, 2, 10, 2),
+    "bun_low": (30, 20, 4, 4, 3), "bun_high": (46, 20, 4, 3, 4),
+    "locks_long": (30, 30, 1, 8, 1), "twins": (42, 30, 2, 5, 2), "knot": (52, 30, 3, 2, 1),
 }
+TIES = ("ponytail", "ponytail_high", "twins")
+JAGGED = ("back_long", "back_mid", "locks_long")
 
 
 class Tex(b.Skin):
@@ -247,18 +311,21 @@ class Tex(b.Skin):
 
 
 def hair_layer(look, hat=None, seed=0):
-    """The hair texture for one look; returns (Tex, extra bones to show)."""
+    """The hair texture for one look; returns (Tex, extra bones to show).
+    Shading: an angel ring of highlights across row 2, darker ends, thin
+    strands down the sides and back, and pointed tips where the style has them."""
     h = HAIRSTYLES[look["hair"]][1]()
     if hat:
         rows = 4 if hat == "helmet" else 3
         h.put("top", 0, 0, 8, 8, 0).ring(0, rows, 0)
         if hat == "cap":
             h.front(0, 3, 8, 1, 0)                # visor
-        h.parts.discard("bun_high")
+        h.parts -= {"bun_high", "knot"}
     base = HAIR_COLOURS[look["hair_colour"]][1]
     skin = SKIN_TONES[look["skin"]][1]
-    dark, light = b.shade(base, -2), b.shade(base, 2)
-    flat = mix(base, skin, 0.45) if h.shaved else b.shade(base, -1)
+    dark, mid_dark = b.shade(base, -2), b.shade(base, -1)
+    light, shine = b.shade(base, 2), b.shade(base, 4)
+    flat = mix(base, skin, 0.45) if h.shaved else mid_dark
     t = Tex(seed, HAIR_BOXES)
     for f, (fw, fh) in HEAD_FACES.items():
         for y in range(fh):
@@ -266,24 +333,48 @@ def hair_layer(look, hat=None, seed=0):
                 v = h.g[f][y][x]
                 if v >= FLAT:
                     t.paint("head", f, x, y, flat, grain=3)
-                if v == VOL:
-                    below = f != "top" and (y + 1 == fh or h.g[f][y + 1][x] != VOL)
-                    c = dark if below else light if (f != "top" and y == 1 and x % 3 != 2) else base
-                    t.paint("shell", f, x, y, c, grain=3)
+                if v != VOL:
+                    continue
+                if f == "top":
+                    c = light if (y >= 5 and x % 3 == 1) else base
+                else:
+                    end = y + 1 == fh or h.g[f][y + 1][x] != VOL
+                    if end and h.tips and f != "front" and y >= 4 and x % 2:
+                        continue                  # a strand tip: the flat hair shows behind it
+                    if end:
+                        c = mid_dark if f == "front" else dark
+                    elif y == 2:
+                        c = shine if x % 2 == 0 else light
+                    elif y == 1:
+                        c = light if x % 3 == 0 else base
+                    elif h.wave == "wavy" and y >= 4:
+                        c = (light, base, mid_dark, base)[(x + y) % 4]
+                    elif h.wave == "curly":
+                        c = {0: light, 1: mid_dark}.get((x * 7 + y * 13) % 5, base)
+                    elif y >= 3 and f != "front" and (x + y // 3) % 3 == 0:
+                        c = mid_dark
+                    else:
+                        c = base
+                t.paint("shell", f, x, y, c, grain=3)
     for part in h.parts:
         t.fill(part, base, grain=3)
-        _, hh = t.face_size(part, "front")
+        _, ph = t.face_size(part, "front")
         for f in b.SIDES:
             fw, _ = t.face_size(part, f)
-            t.paint(part, f, 0, hh - 1, dark, fw, 1, grain=2)
-    if "ponytail" in h.parts:                     # hair tie
-        t.ring("ponytail", 0, look.get("tie") or (40, 40, 44), 1, grain=1)
-    for part in ("bun_low", "bun_high"):            # a twist in the bun
-        if part in h.parts:
+            for x in range(fw):
+                if x % 2:
+                    t.paint(part, f, x, 1, mid_dark, 1, ph - 2, grain=2)          # strands
+                if part in JAGGED and x % 2:
+                    t.paint(part, f, x, ph - 1, None)                                # pointed ends
+                else:
+                    t.paint(part, f, x, ph - 1, dark, grain=2)
+        if part in TIES:
+            t.ring(part, 0, look.get("tie") or (40, 40, 44), 1, grain=1)
+        if part.startswith("bun"):                                                  # a twist
             t.paint(part, "back", 1, 1, dark, 2, 1)
             t.paint(part, "back", 1, 2, dark)
-    if look.get("pin") and h.g["front"][1][5] == VOL:     # hair pin
-        t.paint("shell", "front", 5, 1, look["pin"], 2, 1)
+    if look.get("pin") and h.g["front"][2][5] == VOL:                               # hair pin
+        t.paint("shell", "front", 5, 2, look["pin"], 2, 1)
     return t, ["shell"] + sorted(h.parts)
 
 
@@ -305,10 +396,16 @@ def paint_face(s, look):
     side(s, 3, 4, b.shade(skin, -2), 2, 2)                    # ears
     side(s, 3, 5, b.shade(skin, -4))
     brow = b.shade(hair, -1) if look["brows"] == "thick" else mix(skin, hair, 0.55)
+    if look["eyes"] == "lash":
+        brow = mix(skin, hair, 0.4)               # soft brows above the lash line
     if look["hair_colour"] in ("grey", "white"):
         brow = mix(skin, hair, 0.7)
     s.both("head", 1, 3, brow, 2, 1)
-    if look["eyes"] == "narrow":
+    if look["eyes"] == "lash":                    # lash line over a white and a brown iris
+        s.both("head", 0, 4, LASH, 3, 1)          # flicks out at the outer corner
+        s.both("head", 1, 5, EYE_WHITE)
+        s.both("head", 2, 5, IRIS)
+    elif look["eyes"] == "narrow":
         s.both("head", 1, 4, mix(EYE, skin, 0.25), 2, 1)
     else:
         s.both("head", 1, 4, EYE_WHITE)
@@ -317,6 +414,8 @@ def paint_face(s, look):
             s.both("head", 1, 5, mix(EYE_WHITE, skin, 0.4))
             s.both("head", 2, 5, EYE)
     mouth = b.shade(skin, -4)
+    if look.get("gender") == "f":
+        mouth = mix(skin, (200, 110, 110), 0.35)
     if look["mouth"] == "lips":
         mouth = mix(skin, (196, 92, 96), 0.7)
     s.paint("head", "front", 3, 8, mouth, 2, 1)
@@ -324,6 +423,7 @@ def paint_face(s, look):
         s.both("head", 2, 7, b.shade(skin, -3))
     if look.get("blush"):
         s.both("head", 1, 6, mix(skin, (240, 140, 140), 0.45))
+        s.both("head", 0, 6, mix(skin, (240, 140, 140), 0.25))
     if look.get("wrinkles"):
         s.both("head", 2, 7, b.shade(skin, -3))
         if look["wrinkles"] == "old":
@@ -373,14 +473,21 @@ HAIR_POOLS = {
     ("m", "young"): {"m_short": 25, "m_center": 20, "m_comma": 20, "m_two_block": 20, "m_mash": 15},
     ("m", "middle"): {"m_short": 35, "m_side_part": 30, "m_two_block": 15, "m_buzz": 10, "m_center": 10},
     ("m", "old"): {"m_short": 30, "m_side_part": 25, "m_buzz": 20, "m_balding": 25},
-    ("f", "young"): {"f_long": 20, "f_long_part": 20, "f_bob": 15, "f_ponytail": 15, "f_high_bun": 15, "f_short": 15},
-    ("f", "middle"): {"f_bob": 25, "f_short": 25, "f_low_bun": 20, "f_ponytail": 15, "f_long_part": 15},
-    ("f", "old"): {"f_short": 50, "f_bob": 25, "f_low_bun": 25},
+    ("f", "young"): {"f_long_airy": 14, "f_long_part": 12, "f_hime": 6, "f_bob": 10, "f_wavy": 10,
+                     "f_pony_high": 10, "f_pony_low": 6, "f_twin": 6, "f_bun_high": 10, "f_half_up": 10,
+                     "f_short": 6},
+    ("f", "middle"): {"f_bob": 20, "f_wavy": 15, "f_pony_low": 15, "f_bun_low": 20, "f_short": 15,
+                      "f_long_part": 10, "f_perm": 5},
+    ("f", "old"): {"f_short": 30, "f_perm": 35, "f_bun_low": 20, "f_bob": 15},
 }
 COLOUR_POOLS = {
     "young": {"black": 30, "dark_brown": 25, "brown": 20, "milk_tea": 15, "wine": 10},
     "middle": {"black": 45, "dark_brown": 30, "brown": 15, "grey": 10},
     "old": {"grey": 45, "white": 30, "black": 15, "dark_brown": 10},
+}
+EYE_POOLS = {
+    ("m", "other"): {"normal": 60, "narrow": 25, "round": 15}, ("m", "old"): {"normal": 60, "narrow": 40},
+    ("f", "other"): {"lash": 60, "normal": 20, "narrow": 20}, ("f", "old"): {"normal": 50, "narrow": 30, "lash": 20},
 }
 PIN_COLOURS = [(226, 120, 140), (240, 210, 120), (36, 36, 40), (140, 180, 220)]
 
@@ -396,7 +503,7 @@ def random_look(rng, gender=None, age=None, hair=None, casual=False):
         "skin": pick(rng, {k: v[2] for k, v in SKIN_TONES.items()}),
         "hair": hair or pick(rng, HAIR_POOLS[(gender, age)]),
         "hair_colour": pick(rng, COLOUR_POOLS[age]),
-        "eyes": pick(rng, {"normal": 60, "narrow": 20, "round": 20}),
+        "eyes": pick(rng, EYE_POOLS[(gender, "old" if age == "old" else "other")]),
         "brows": pick(rng, {"thin": 70, "thick": 30} if female else {"thick": 65, "thin": 35}),
         "mouth": pick(rng, {"lips": 45, "smile": 20, "normal": 35} if female and age != "old"
                       else {"normal": 70, "smile": 30}),
@@ -497,10 +604,18 @@ HAIR_GEO = {"format_version": "1.12.0", "minecraft:geometry": [{
     "description": {"identifier": "geometry.npc_hair_preview", "texture_width": 64, "texture_height": 64},
     "bones": [
         {"name": "shell", "pivot": [0, 24, 0], "cubes": [hair_cube("shell", [-4, 24, -4], [8, 10, 8], 0.5)]},
-        {"name": "back_long", "pivot": [0, 24, 0], "cubes": [hair_cube("back_long", [-4, 15, 3.6], [8, 9, 1], 0.25)]},
+        {"name": "back_long", "pivot": [0, 24, 0], "cubes": [hair_cube("back_long", [-4.5, 13, 3.6], [9, 11, 1])]},
+        {"name": "back_mid", "pivot": [0, 24, 0], "cubes": [hair_cube("back_mid", [-4.5, 19, 3.6], [9, 5, 1])]},
+        {"name": "locks_long", "pivot": [0, 24, 0], "cubes": [
+            hair_cube("locks_long", [3.2, 16, -4.4], [1.2, 8, 1.2]),
+            hair_cube("locks_long", [-4.4, 16, -4.4], [1.2, 8, 1.2])]},
         {"name": "ponytail", "pivot": [0, 24, 0], "cubes": [hair_cube("ponytail", [-1, 21, 4.5], [2, 7, 2])]},
+        {"name": "ponytail_high", "pivot": [0, 24, 0], "cubes": [hair_cube("ponytail_high", [-1, 22, 4.6], [2, 10, 2])]},
+        {"name": "twins", "pivot": [0, 24, 0], "cubes": [
+            hair_cube("twins", [3.4, 19.5, -4.2], [2, 5, 2]), hair_cube("twins", [-5.4, 19.5, -4.2], [2, 5, 2])]},
         {"name": "bun_low", "pivot": [0, 24, 0], "cubes": [hair_cube("bun_low", [-2, 25, 4.5], [4, 4, 3])]},
-        {"name": "bun_high", "pivot": [0, 24, 0], "cubes": [hair_cube("bun_high", [-2, 34.5, -1], [4, 3, 4])]},
+        {"name": "bun_high", "pivot": [0, 24, 0], "cubes": [hair_cube("bun_high", [-2, 34.3, -1], [4, 3.5, 4])]},
+        {"name": "knot", "pivot": [0, 24, 0], "cubes": [hair_cube("knot", [-1.5, 29, 4.5], [3, 2, 1.2])]},
     ]}]}
 
 
@@ -528,20 +643,30 @@ def base_look(**kw):
     return look
 
 
-def hair_sheet(rng):
-    names = list(HAIRSTYLES)
+def style_code(k):
+    """M1 ... M8, F1 ... F13: what the author can point at."""
+    same = [n for n in HAIRSTYLES if n[0] == k[0]]
+    return f"{k[0].upper()}{same.index(k) + 1}"
+
+
+def hair_sheet(gender, per_row):
+    names = [k for k in HAIRSTYLES if k.startswith(gender + "_")]
     panels = []
-    for group in (names[:8], names[8:]):
+    for i in range(0, len(names), per_row):
+        group = names[i:i + per_row]
         for az, view in ((20, "正面"), (200, "背面")):
             for k in group:
-                female = k.startswith("f_")
-                look = base_look(hair=k, gender="f" if female else "m", brows="thin" if female else "thick",
-                                 age="old" if k == "m_balding" else "young")
+                if gender == "f":
+                    look = base_look(hair=k, gender="f", eyes="lash", brows="thin",
+                                     age="old" if k == "f_perm" else "young")
+                else:
+                    look = base_look(hair=k, age="old" if k == "m_balding" else "young")
                 objs = make_npc(f"hair_{k}", look, outfit_plain, random.Random(1))
-                panels.append({"label": f"{HAIRSTYLES[k][0]}（{view}）", "camera": dict(HEAD_CAM, azimuth=az),
-                               "objects": objs})
-            panels += [{"label": "", "objects": []}] * (8 - len(group))
-    return {"title": "隨機臉的零件：髮型（日韓系，示意）", "columns": 8, "panelWidth": 160, "panelHeight": 170,
+                label = f"{style_code(k)} {HAIRSTYLES[k][0]}" if view == "正面" else f"{style_code(k)}（背面）"
+                panels.append({"label": label, "camera": dict(HEAD_CAM, azimuth=az), "objects": objs})
+            panels += [{"label": "", "objects": []}] * (per_row - len(group))
+    title = "女生的髮型（日韓系，第二版）" if gender == "f" else "男生的髮型（日韓系）"
+    return {"title": f"隨機臉的零件：{title}", "columns": per_row, "panelWidth": 165, "panelHeight": 180,
             "background": "#e8edf1", "panels": panels}
 
 
@@ -553,23 +678,24 @@ def parts_sheet(rng):
         items.append((f"膚色：{n}", base_look(skin=k)))
     for k, n in (("normal", "一般"), ("narrow", "細長"), ("round", "大眼")):
         items.append((f"眼睛：{n}", base_look(eyes=k)))
+    items.append(("眼睛：睫毛（女生）", base_look(eyes="lash", hair="f_bob", gender="f", brows="thin")))
     for k, n in (("thick", "粗"), ("thin", "細")):
         items.append((f"眉毛：{n}", base_look(brows=k, hair="f_bob", gender="f")))
     items += [
         ("嘴：微笑", base_look(mouth="smile")),
-        ("口紅", base_look(mouth="lips", hair="f_long_part", gender="f", brows="thin")),
-        ("腮紅", base_look(blush=True, mouth="lips", hair="f_bob", gender="f", brows="thin")),
+        ("口紅", base_look(mouth="lips", hair="f_long_part", gender="f", brows="thin", eyes="lash")),
+        ("腮紅", base_look(blush=True, mouth="lips", hair="f_bob", gender="f", brows="thin", eyes="lash")),
         ("中年：法令紋", base_look(wrinkles="middle", hair="m_side_part", hair_colour="black")),
         ("年長：皺紋、白髮", base_look(wrinkles="old", hair="m_balding", hair_colour="white", age="old")),
         ("痣", base_look(mole=(6, 6))),
         ("鬍渣", base_look(stubble=True, hair="m_side_part", hair_colour="black")),
         ("眼鏡：黑框", base_look(glasses="black")),
-        ("眼鏡：金屬細框", base_look(glasses="metal", hair="f_bob", gender="f", brows="thin")),
+        ("眼鏡：金屬細框", base_look(glasses="metal", hair="f_bob", gender="f", brows="thin", eyes="lash")),
         ("太陽眼鏡", base_look(glasses="sun", hair="m_two_block")),
         ("口罩：白", base_look(mask="white", hair="m_mash")),
         ("口罩：黑", base_look(mask="black", hair="m_center")),
-        ("耳環", base_look(earrings="gold", hair="f_ponytail", gender="f", brows="thin")),
-        ("髮夾", base_look(pin=PIN_COLOURS[0], hair="f_long", gender="f", brows="thin")),
+        ("耳環", base_look(earrings="gold", hair="f_pony_high", gender="f", brows="thin", eyes="lash")),
+        ("髮夾", base_look(pin=PIN_COLOURS[0], hair="f_long_airy", gender="f", brows="thin", eyes="lash")),
     ]
     panels = []
     for i, (label, look) in enumerate(items):
@@ -604,7 +730,8 @@ def main():
     TEX.mkdir(parents=True, exist_ok=True)
     (HERE / "hair_preview.geo.json").write_text(json.dumps(HAIR_GEO, indent=1) + "\n", encoding="utf-8")
     rng = random.Random(1109)
-    render("faces_hair", hair_sheet(rng))
+    render("faces_hair_m", hair_sheet("m", 8))
+    render("faces_hair_f", hair_sheet("f", 7))
     render("faces_parts", parts_sheet(rng))
     render("faces_crowd", crowd_sheet(rng))
 
