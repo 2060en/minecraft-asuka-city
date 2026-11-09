@@ -27,7 +27,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -53,7 +59,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -79,7 +91,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -105,7 +123,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -131,7 +155,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -157,7 +187,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -183,7 +219,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -209,7 +251,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -235,7 +283,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -261,7 +315,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -287,7 +347,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -313,7 +379,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -339,7 +411,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -365,7 +443,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   }

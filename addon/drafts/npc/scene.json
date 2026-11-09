@@ -1539,7 +1539,13 @@
       0,
       -10
      ],
-     "rotationY": 200
+     "rotationY": 200,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -1550,7 +1556,13 @@
       0,
       0
      ],
-     "rotationY": 150
+     "rotationY": 150,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -3340,7 +3352,13 @@
       0,
       0
      ],
-     "rotationY": 195
+     "rotationY": 195,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -3351,7 +3369,13 @@
       0,
       0
      ],
-     "rotationY": 170
+     "rotationY": 170,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -3362,7 +3386,13 @@
       0,
       4
      ],
-     "rotationY": 140
+     "rotationY": 140,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "block",
@@ -4872,7 +4902,13 @@
       0,
       -10
      ],
-     "rotationY": 190
+     "rotationY": 190,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -4883,7 +4919,13 @@
       0,
       8
      ],
-     "rotationY": 160
+     "rotationY": 160,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   },
@@ -4909,7 +4951,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -4920,7 +4968,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -4931,7 +4985,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -4942,7 +5002,13 @@
       0,
       0
      ],
-     "rotationY": 180
+     "rotationY": 180,
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     }
    ]
   }

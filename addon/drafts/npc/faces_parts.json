@@ -22,7 +22,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_0.png"
+     "texture": "/.scratch/faces/part_0.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -52,7 +58,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_1.png"
+     "texture": "/.scratch/faces/part_1.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -82,7 +94,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_2.png"
+     "texture": "/.scratch/faces/part_2.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -112,7 +130,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_3.png"
+     "texture": "/.scratch/faces/part_3.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -142,7 +166,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_4.png"
+     "texture": "/.scratch/faces/part_4.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -172,7 +202,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_5.png"
+     "texture": "/.scratch/faces/part_5.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -202,7 +238,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_6.png"
+     "texture": "/.scratch/faces/part_6.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -232,7 +274,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_7.png"
+     "texture": "/.scratch/faces/part_7.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -262,7 +310,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_8.png"
+     "texture": "/.scratch/faces/part_8.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -292,7 +346,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_9.png"
+     "texture": "/.scratch/faces/part_9.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -322,7 +382,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_10.png"
+     "texture": "/.scratch/faces/part_10.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -352,7 +418,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_11.png"
+     "texture": "/.scratch/faces/part_11.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -382,7 +454,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_12.png"
+     "texture": "/.scratch/faces/part_12.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -412,7 +490,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_13.png"
+     "texture": "/.scratch/faces/part_13.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -442,7 +526,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_14.png"
+     "texture": "/.scratch/faces/part_14.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -472,7 +562,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_15.png"
+     "texture": "/.scratch/faces/part_15.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -502,7 +598,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_16.png"
+     "texture": "/.scratch/faces/part_16.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -532,7 +634,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_17.png"
+     "texture": "/.scratch/faces/part_17.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -562,7 +670,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_18.png"
+     "texture": "/.scratch/faces/part_18.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -594,7 +708,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_19.png"
+     "texture": "/.scratch/faces/part_19.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -624,7 +744,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_20.png"
+     "texture": "/.scratch/faces/part_20.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -654,7 +780,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_21.png"
+     "texture": "/.scratch/faces/part_21.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -684,7 +816,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_22.png"
+     "texture": "/.scratch/faces/part_22.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -714,7 +852,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_23.png"
+     "texture": "/.scratch/faces/part_23.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -744,7 +888,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_24.png"
+     "texture": "/.scratch/faces/part_24.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -774,7 +924,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_25.png"
+     "texture": "/.scratch/faces/part_25.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -804,7 +960,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_26.png"
+     "texture": "/.scratch/faces/part_26.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -834,7 +996,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_27.png"
+     "texture": "/.scratch/faces/part_27.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -864,7 +1032,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_28.png"
+     "texture": "/.scratch/faces/part_28.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -894,7 +1068,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_29.png"
+     "texture": "/.scratch/faces/part_29.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -925,7 +1105,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_30.png"
+     "texture": "/.scratch/faces/part_30.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",
@@ -957,7 +1143,13 @@
      "type": "geo",
      "rotationY": 180,
      "geo": "/addon/drafts/npc/npc_preview.geo.json",
-     "texture": "/.scratch/faces/part_31.png"
+     "texture": "/.scratch/faces/part_31.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
     },
     {
      "type": "geo",

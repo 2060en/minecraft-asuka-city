@@ -46,6 +46,10 @@ BOXES = {
     "head": (0, 0, 8, 10, 8), "nose": (24, 0, 2, 4, 2), "body": (16, 20, 8, 12, 6),
     "robe": (0, 38, 8, 18, 6), "jacket": (16, 32, 8, 12, 4), "bar": (40, 38, 8, 4, 4),
     "arm_r": (44, 22, 4, 8, 4), "arm_l": (44, 46, 4, 8, 4), "leg": (0, 22, 4, 12, 4),
+    # Not in geometry.npc: a straight 4 x 12 x 4 arm for the arms-down poses
+    # (proposal), in a part of the texture the vanilla NPC never uses. Both
+    # arms share it, like the legs.
+    "arm_down": (28, 48, 4, 12, 4),
 }
 SIDES = ("right", "front", "left", "back")
 
@@ -277,6 +281,15 @@ def sleeves(s, color, cuff=None, hands=SKIN, short=False, skin=SKIN):
     # fingers of the top hand
     s.paint("bar", "front", 3, 1, shade(hands, -2), 1, 1)
     s.paint("bar", "front", 4, 2, shade(hands, -2), 1, 1)
+    # the same sleeve on a straight arm, for NPCs standing with their arms down
+    s.fill("arm_down", color, grain=3)
+    if short:
+        s.ring("arm_down", 4, skin, 8, grain=1)
+    elif cuff:
+        s.ring("arm_down", 9, cuff, 1, grain=1)
+    s.ring("arm_down", 10, hands, 2, grain=1)
+    s.paint("arm_down", "bottom", 0, 0, hands, 4, 4, grain=1)
+    s.paint("arm_down", "front", 1, 11, shade(hands, -2), 2, 1)
 
 
 # ---------- legs ----------
@@ -478,15 +491,24 @@ PREVIEW_GEO = {"format_version": "1.12.0", "minecraft:geometry": [{
             cube("arm_l", [-8, 15, -3], [4, 8, 4], **ARMS)]},
         {"name": "legs", "pivot": [0, 12, 0], "cubes": [
             cube("leg", [0, 0, -2], [4, 12, 4]), cube("leg", [-4, 0, -2], [4, 12, 4])]},
+        # proposal: arms hanging down, and hands clasped in front of the waist
+        {"name": "arms_down", "pivot": [0, 22, 0], "cubes": [
+            cube("arm_down", [4, 12, -2], [4, 12, 4]), cube("arm_down", [-8, 12, -2], [4, 12, 4])]},
+        {"name": "arms_clasp", "pivot": [0, 22, 0], "cubes": [
+            cube("arm_down", [4, 12, -2], [4, 12, 4], rotation=[25, 0, -20], pivot=[6, 23, 0]),
+            cube("arm_down", [-8, 12, -2], [4, 12, 4], rotation=[25, 0, 20], pivot=[-6, 23, 0])]},
     ]}]}
+POSES = {"cross": ["head", "body", "arms", "legs"], "down": ["head", "body", "arms_down", "legs"],
+         "clasp": ["head", "body", "arms_clasp", "legs"]}
 
 
 # ---------- preview sheets ----------
 
-def npc(name, x=0, z=0, turn=0):
-    """An NPC standing on y = 0, facing +z (towards the default camera) when turn = 0."""
+def npc(name, x=0, z=0, turn=0, pose="cross"):
+    """An NPC standing on y = 0, facing +z (towards the default camera) when turn = 0.
+    The vanilla NPC always folds its arms ("cross")."""
     return {"type": "geo", "geo": f"{REL}/npc_preview.geo.json", "texture": f"{REL}/skins/{name}.png",
-            "position": [x, 0, z], "rotationY": 180 + turn}
+            "position": [x, 0, z], "rotationY": 180 + turn, "bones": POSES[pose]}
 
 
 def block(x, y, z, color, size=(16, 16, 16)):

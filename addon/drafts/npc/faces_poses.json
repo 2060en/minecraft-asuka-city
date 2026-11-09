@@ -1,0 +1,672 @@
+{
+ "title": "手的姿勢（提案）：上排抱胸（原版）、中排放下、下排雙手交握在前",
+ "columns": 6,
+ "panelWidth": 170,
+ "panelHeight": 240,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "抱胸・站務員",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_0.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "抱胸・上班族",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_1.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_1_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "抱胸・上班族",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_2.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_2_hair.png",
+     "bones": [
+      "shell",
+      "bun_low"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "抱胸・市民",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_3.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_3_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "抱胸・市民",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_4.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_4_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "抱胸・側面",
+   "camera": {
+    "azimuth": 80,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_side.png",
+     "bones": [
+      "head",
+      "body",
+      "arms",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_cross_side_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "放下・站務員",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_0.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_down",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "放下・上班族",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_1.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_down",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_1_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "放下・上班族",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_2.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_down",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_2_hair.png",
+     "bones": [
+      "shell",
+      "bun_low"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "放下・市民",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_3.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_down",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_3_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "放下・市民",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_4.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_down",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_4_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "放下・側面",
+   "camera": {
+    "azimuth": 80,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_side.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_down",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_down_side_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "交握・站務員",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_0.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_clasp",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_0_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "交握・上班族",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_1.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_clasp",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_1_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "交握・上班族",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_2.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_clasp",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_2_hair.png",
+     "bones": [
+      "shell",
+      "bun_low"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "交握・市民",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_3.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_clasp",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_3_hair.png",
+     "bones": [
+      "shell"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "交握・市民",
+   "camera": {
+    "azimuth": 25,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_4.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_clasp",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_4_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "交握・側面",
+   "camera": {
+    "azimuth": 80,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_side.png",
+     "bones": [
+      "head",
+      "body",
+      "arms_clasp",
+      "legs"
+     ]
+    },
+    {
+     "type": "geo",
+     "rotationY": 180,
+     "geo": "/addon/drafts/npc/hair_preview.geo.json",
+     "texture": "/.scratch/faces/pose_clasp_side_hair.png",
+     "bones": [
+      "shell",
+      "back_long",
+      "locks_long"
+     ]
+    }
+   ]
+  }
+ ]
+}

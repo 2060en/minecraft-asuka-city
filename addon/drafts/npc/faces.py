@@ -505,7 +505,14 @@ EYE_POOLS = {
 PIN_COLOURS = [(226, 120, 140), (240, 210, 120), (36, 36, 40), (140, 180, 220)]
 
 
-def random_look(rng, gender=None, age=None, hair=None, casual=False):
+POSE_POOLS = {   # proposal: how the arms are held, per kind of slot
+    "casual": {"cross": 40, "down": 60},
+    "office": {"down": 50, "cross": 30, "clasp": 20},
+    "service": {"clasp": 45, "down": 45, "cross": 10},
+}
+
+
+def random_look(rng, gender=None, age=None, hair=None, casual=False, poses="casual"):
     """A random persona: gender style and age first, then features drawn from
     pools that depend on them. Sunglasses only in casual slots."""
     gender = gender or rng.choice("mf")
@@ -520,6 +527,7 @@ def random_look(rng, gender=None, age=None, hair=None, casual=False):
         "brows": pick(rng, {"thin": 70, "thick": 30} if female else {"thick": 65, "thin": 35}),
         "mouth": pick(rng, {"lips": 45, "smile": 20, "normal": 35} if female and age != "old"
                       else {"normal": 70, "smile": 30}),
+        "pose": pick(rng, POSE_POOLS[poses]),
     }
     if female and age != "old" and rng.random() < (0.5 if age == "young" else 0.2):
         look["blush"] = True
@@ -647,7 +655,8 @@ def make_npc(name, look, outfit, rng):
     s.img.save(TEX / f"{name}.png")
     hair.img.save(TEX / f"{name}_hair.png")
     common = {"type": "geo", "rotationY": 180}
-    return [dict(common, geo=f"{b.REL}/npc_preview.geo.json", texture=f"{TEX_REL}/{name}.png"),
+    return [dict(common, geo=f"{b.REL}/npc_preview.geo.json", texture=f"{TEX_REL}/{name}.png",
+                 bones=b.POSES[look.get("pose", "cross")]),
             dict(common, geo=f"{b.REL}/hair_preview.geo.json", texture=f"{TEX_REL}/{name}_hair.png", bones=bones)]
 
 
@@ -729,7 +738,8 @@ def crowd_sheet(rng):
     panels = []
     for outfit, label in ((outfit_staff, "站務員"), (outfit_office, "上班族"), (outfit_citizen, "市民")):
         for i in range(8):
-            look = random_look(rng, casual=outfit is outfit_citizen)
+            kind = {outfit_staff: "service", outfit_office: "office"}.get(outfit, "casual")
+            look = random_look(rng, casual=outfit is outfit_citizen, poses=kind)
             objs = make_npc(f"crowd_{label}_{i}", look, outfit, rng)
             tags = [HAIRSTYLES[look["hair"]][0], HAIR_COLOURS[look["hair_colour"]][0]]
             panels.append({"label": "・".join(tags),
@@ -737,6 +747,28 @@ def crowd_sheet(rng):
                            "objects": objs})
     return {"title": "隨機組合（示意）：上排站務員、中排上班族、下排市民，同一排是同一套衣服", "columns": 8,
             "panelWidth": 165, "panelHeight": 240, "background": "#e8edf1", "panels": panels}
+
+
+def pose_sheet():
+    """The three arm poses on the same people."""
+    people = [(outfit_staff, "站務員", base_look(hair="m_side_part", hair_colour="black")),
+              (outfit_office, "上班族", base_look(hair="m_short", hair_colour="black")),
+              (outfit_office, "上班族", base_look(hair="f_bun_low", gender="f", eyes="lash", brows="thin")),
+              (outfit_citizen, "市民", base_look(hair="m_center")),
+              (outfit_citizen, "市民", base_look(hair="f_long_airy", gender="f", eyes="lash", brows="thin",
+                                                 blush=True))]
+    panels = []
+    for pose, name in (("cross", "抱胸"), ("down", "放下"), ("clasp", "交握")):
+        for i, (outfit, label, look) in enumerate(people):
+            objs = make_npc(f"pose_{pose}_{i}", dict(look, pose=pose), outfit, random.Random(10 + i))
+            panels.append({"label": f"{name}・{label}",
+                           "camera": {"azimuth": 25, "elevation": 8, "size": 40, "target": [0, 17, 0]},
+                           "objects": objs})
+        objs = make_npc(f"pose_{pose}_side", dict(people[4][2], pose=pose), outfit_citizen, random.Random(14))
+        panels.append({"label": f"{name}・側面", "camera": {"azimuth": 80, "elevation": 8, "size": 40,
+                                                          "target": [0, 17, 0]}, "objects": objs})
+    return {"title": "手的姿勢（提案）：上排抱胸（原版）、中排放下、下排雙手交握在前", "columns": 6, "panelWidth": 170,
+            "panelHeight": 240, "background": "#e8edf1", "panels": panels}
 
 
 def render(name, sheet):
@@ -752,6 +784,7 @@ def main():
     render("faces_hair_m", hair_sheet("m", 8))
     render("faces_hair_f", hair_sheet("f", 7))
     render("faces_parts", parts_sheet(rng))
+    render("faces_poses", pose_sheet())
     render("faces_crowd", crowd_sheet(rng))
 
 
