@@ -263,6 +263,8 @@
 | Asuka Inc. 的電信（名稱待定） | 電信，本國第二大 | 先例 SK Telecom（SK 集團） | [Asuka Inc.](asuka-inc.md#集團架構) |
 | Asuka Inc. 的百貨（名稱待定） | 百貨公司 | 先例新世界百貨（原本屬於三星） | [Asuka Inc.](asuka-inc.md#集團架構) |
 | Asuka Inc. 的旅行社（名稱待定） | 旅行團 | — | [Asuka Inc.](asuka-inc.md#集團架構) |
+| 阿須賀地所、阿須賀工程、阿須賀重工 | 地產、建設、重工 | — | [Asuka Inc.](asuka-inc.md#集團架構) |
+| Asuka tech（アスカテック） | 科技 | — | [Asuka Inc.](asuka-inc.md#asuka-tech-研發中心) |
 | Asuka Air | 載旗航空 | 名稱和 logo 是作者自己的；設計借用紐西蘭航空的模式 | [交通](transport.md#航空)、[Asuka Air 標誌](asuka-air-logo.md) |
 | Minecraft Studio | 主題樂園 | Asuka Inc. 經營，Minecraft 的 IP 由 Mojang 授權 | [地理](geography.md#minecraft-studio) |
 | 茉波銀行 | 公股銀行 | 沿革參考臺灣銀行 | [銀行](banks.md) |
