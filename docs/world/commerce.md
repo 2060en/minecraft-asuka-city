@@ -262,7 +262,7 @@
 | Asuka Inc. | 財團 | — | [Asuka Inc.](asuka-inc.md) |
 | Links（リンクス） | 電信，本國第二大 | Asuka Inc. 的電信子公司；先例 SK Telecom（SK 集團） | [Asuka Inc.](asuka-inc.md#集團架構) |
 | Asuka Inc. 的百貨（名稱待定） | 百貨公司 | 先例新世界百貨（原本屬於三星） | [Asuka Inc.](asuka-inc.md#集團架構) |
-| Asuka Inc. 的旅行社（名稱待定） | 旅行團 | — | [Asuka Inc.](asuka-inc.md#集團架構) |
+| Asuka Tour（アスカツアー） | 旅行社、旅行團 | Asuka Inc. 旅遊子公司的旅行社 | [Asuka Inc.](asuka-inc.md#集團架構) |
 | 阿須賀地所、阿須賀建設、阿須賀重工 | 地產、建設、重工 | — | [Asuka Inc.](asuka-inc.md#集團架構) |
 | Asuka tech（アスカテック） | 科技 | — | [Asuka Inc.](asuka-inc.md#asuka-tech-研發中心) |
 | Asuka Air | 載旗航空 | 名稱和 logo 是作者自己的；設計借用紐西蘭航空的模式 | [交通](transport.md#航空)、[Asuka Air 標誌](asuka-air-logo.md) |
