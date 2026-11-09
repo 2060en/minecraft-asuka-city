@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容 Asuka tech（`addon/pack/` 是資源包與行為包，`addon/drafts/` 是外觀草稿）與材質包 Rail to Belt（`addon/rail_to_belt/`）。附加內容的作者一律寫「asuka tech」，介紹（description）一律用英文，`tools/preview/` 是外觀預覽工具，`tools/converter/` 是轉換程式（只讀的掃描 `scan.py`、轉出原味版的 `convert.py`），`tools/asuka-toolkit/` 是 Asuka toolkit（獨立的行為包，不併進 Asuka tech），`tools/world-backup/` 是世界備份工具（雙擊備份到 Google Drive 與還原，同時更新 Cloudflare 上的雲端地圖；改程式後跑 `npm test`，改了 `worker/` 或 `viewer/` 要重新部署），`tools/world-model/` 是區域 3D 模型（只讀世界的副本，把一個範圍做成 3D 網頁與平面圖；範圍設定在 `presets/`）。
+這個 repo 用來管理作者在 Minecraft 基岩版建造了約 10 年的架空島國世界，國名為津蘭賀千良（Tu Rangatira，簡稱津蘭，別稱茉波），首都為 Asuka City（飛鳥市）。repo 主要是設定文件；`addon/` 放自製附加內容 Asuka tech（`addon/pack/` 是資源包與行為包，`addon/drafts/` 是外觀草稿）與材質包 Rail to Belt（`addon/rail_to_belt/`）。附加內容的作者一律寫「asuka tech」，介紹（description）一律用英文，`tools/preview/` 是外觀預覽工具，`tools/converter/` 是轉換程式（只讀的掃描 `scan.py`、轉出原味版的 `convert.py`），`tools/asuka-toolkit/` 是 Asuka toolkit（獨立的行為包，不併進 Asuka tech），`tools/world-backup/` 是世界備份工具（雙擊備份到 Google Drive 與還原，同時更新 Cloudflare 上的雲端地圖；改程式後跑 `npm test`，改了 `worker/` 或 `viewer/` 要重新部署），`tools/world-model/` 是區域 3D 模型（只讀世界的副本，把一個範圍做成 3D 網頁與平面圖；範圍設定在 `presets/`），`tools/commerce-list/` 是商業清單（把 `docs/world/commerce.md` 的品牌一覽做成 HTML）。
 
 ## 文件地圖
 
@@ -20,7 +20,7 @@
 | `docs/world/telecom.md` | 第一大電信公司 Spoton（子品牌 Homie）：以 Spark 為藍本（紫色、星形），logo、沿革、業務、色彩、量體（logo 原圖在 `assets/spoton/`） |
 | `docs/world/banks.md` | 四大銀行：公股的茉波銀行，加上國泰世華、三井住友、KB國民三家外國銀行的子行；每家一種木頭色調（AKQ 提款機） |
 | `docs/world/akq-food-court.md` | AKQ 3F 美食街：自創店家的品牌故事、各店菜單（日本現價、含稅）、告示牌的寬度推算與照打文字 |
-| `docs/world/commerce.md` | 商業：商家、品牌、店鋪、餐廳與商業活動的共用原則、商業版圖、品牌與店家一覽。作者想到什麼講什麼，Claude 邊討論邊整理進來 |
+| `docs/world/commerce.md` | 商業：商家、品牌、店鋪、餐廳與商業活動的共用原則、商業版圖、品牌與店家一覽。作者想到什麼講什麼，Claude 邊討論邊整理進來；每次回覆都用 `python3 tools/commerce-list/build.py --save` 產生 HTML 清單，用 SendUserFile 附上 |
 | `docs/world/naming.md` | 命名原則、討論流程、黑名單、命名素材、地名分層、地區風格、地名表、候補名單 |
 | `docs/world/bunker.md` | Asuka Inc. 總部地堡：總指揮、世界控制室、生活設施、監獄、戰備地鐵 |
 | `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
