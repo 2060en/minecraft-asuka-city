@@ -1,0 +1,425 @@
+{
+ "title": "提案：臉、髮型、髮色、膚色用零件隨機組合（示意，待決定）",
+ "columns": 8,
+ "panelWidth": 170,
+ "panelHeight": 250,
+ "background": "#e8edf1",
+ "panels": [
+  {
+   "label": "站務員 1",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_0.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員 2",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_1.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員 3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_2.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員 4",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_3.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員 5",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_4.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員 6",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_5.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員 7",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_6.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "站務員 8",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/station_staff_7.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 1",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_0.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 2",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_1.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 3",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_2.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 4",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_3.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 5",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_4.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 6",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_5.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 7",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_6.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  },
+  {
+   "label": "一般市民 8",
+   "camera": {
+    "azimuth": 20,
+    "elevation": 8,
+    "size": 40,
+    "target": [
+     0,
+     17,
+     0
+    ]
+   },
+   "objects": [
+    {
+     "type": "geo",
+     "geo": "/addon/drafts/npc/npc_preview.geo.json",
+     "texture": "/.scratch/random_demo/citizen_7.png",
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotationY": 180
+    }
+   ]
+  }
+ ]
+}
