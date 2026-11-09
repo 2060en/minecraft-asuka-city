@@ -65,7 +65,7 @@
 | 大島璃音（Weathernews 主播） | 瑠璃：AKQ 美食街的沖縄そば店「沖縄そば 瑠璃」（作者選，2026-11-09）；大島保留，用在哪裡待決定 |
 | Karina（aespa，卡寶） | Karina：北部山間盆地的設計旅館，原型是策馬特的 Hotel Carina（作者 2026-11-09），見[商業](commerce.md#住宿) |
 | 作者的姓氏「壽」（日文漢字寫作「寿」） | 寿豊（靠海的小鎮）。國名不用 |
-| Keep 筆記的英文候補 | 沒有特別的人物，作者單純喜歡這些名字。Spoton、Homie 用於電信公司 |
+| Keep 筆記的英文候補 | 沒有特別的人物，作者單純喜歡這些名字。Spoton、Homie 用於電信公司；Nite 用於 MRC 的車站旅館 MRC Nite Inn |
 | 作者英文名字的縮寫「IS」 | Asuka Air 的代碼。國名不從作者的英文名字取 |
 
 作者不喜歡的風格：台味太重的名字（例如宝島）。
@@ -250,7 +250,7 @@
 
 ### 英文地名
 
-Gobning、Spoton（已用於電信公司）、Niqbury、Myna、Homie（已用於電信公司的子品牌）、Clayst、Clayville、Nite、Nitesign、Vastwood、Waterfront、North 1st.、Yunn、Yieldstone、Hina、Larna（已用於塔可飯連鎖 [Larna taco](akq-food-court.md#larna-taco)）
+Gobning、Spoton（已用於電信公司）、Niqbury、Myna、Homie（已用於電信公司的子品牌）、Clayst、Clayville、Nite（已用於 MRC 的車站旅館 [MRC Nite Inn](commerce.md#住宿)）、Nitesign、Vastwood、Waterfront、North 1st.、Yunn、Yieldstone、Hina、Larna（已用於塔可飯連鎖 [Larna taco](akq-food-court.md#larna-taco)）
 
 ---
 
