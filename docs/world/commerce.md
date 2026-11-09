@@ -40,10 +40,13 @@
 
 | 企業 | 角色 | 出處 |
 | --- | --- | --- |
-| Asuka Inc. | 作者的公司，包山包海，主要業務之一是地產開發與建築；也做零售（內容待補），經營主題樂園 Minecraft Studio | [世界觀總覽](overview.md#asuka-inc) |
+| Asuka Inc. | 作者的公司，包山包海，主要業務之一是地產開發與建築；也做零售（內容待補），經營主題樂園 Minecraft Studio；也是太平洋鐵路（太平洋特急くろしお号）的主要股東、金主 | [世界觀總覽](overview.md#asuka-inc) |
 | 主權基金 | 總部在 CBD，很會投資；持有 Spoton 過半的股份 | [世界觀總覽](overview.md#經濟)、[電信](telecom.md) |
 | 茉波銀行 | 公股銀行，四大銀行之一 | [銀行](banks.md) |
 | Spoton | 第一大電信公司 | [電信](telecom.md) |
+| Transuka（阿須賀市交通） | 首都地鐵、市區公車、部分長途巴士 | [交通](transport.md#營運公司) |
+| 太平洋鐵路（暫定） | 太平洋特急くろしお号；獨立公司，主要股東是 Asuka Inc. | [交通](transport.md#營運公司) |
+| Mahaki Rail Company（MRC） | 本土鐵路，國營公司 | [交通](transport.md#營運公司) |
 
 海外集團：談到哪家記哪家，見[品牌與店家一覽](#品牌與店家一覽)。
 
@@ -177,6 +180,9 @@
 | Asuka Air | 載旗航空 | 名稱和 logo 是作者自己的；設計借用紐西蘭航空的模式 | [交通](transport.md#航空)、[Asuka Air 標誌](asuka-air-logo.md) |
 | Minecraft Studio | 主題樂園 | Asuka Inc. 經營，Minecraft 的 IP 由 Mojang 授權 | [地理](geography.md#minecraft-studio) |
 | 茉波銀行 | 公股銀行 | 沿革參考臺灣銀行 | [銀行](banks.md) |
+| Transuka（阿須賀市交通） | 地鐵、公車 | — | [交通](transport.md#營運公司) |
+| 太平洋鐵路（暫定） | 國際鐵路 | 先例 Eurotunnel | [交通](transport.md#營運公司) |
+| Mahaki Rail Company（MRC） | 國營鐵路 | 先例 KiwiRail、台鐵 | [交通](transport.md#營運公司) |
 | [Teppan Steak GEORGE](akq-food-court.md#teppan-steak-george) | 熱鐵盤牛排速食 | 業態像ペッパーランチ | AKQ 美食街 |
 | 台式鐵板燒（店名待定） | 台式鐵板燒連鎖 | 業態參考台灣的大埔鐵板燒 | [鐵板燒](#鐵板燒) |
 | [Larna taco](akq-food-court.md#larna-taco) | 塔可飯連鎖 | 店的型態學 Taco Bell | AKQ 美食街 |
@@ -384,6 +390,7 @@
 - [x] 星野リゾート只開一間，在南島（2026-11-09）
 - [x] 南島的海生館：原型是沖縄美ら海水族館，名稱還沒想（2026-11-09）
 - [x] 服飾：UNIQLO、GU、MUJI、H&M、ZARA（2026-11-09）
+- [x] 交通的營運公司：Transuka（地鐵、市區公車、部分長途巴士）、太平洋鐵路（暫定名，黒潮特快，獨立公司，主要股東是 Asuka Inc.）、Mahaki Rail Company（MRC，國營的本土鐵路）（2026-11-09），見[交通](transport.md#營運公司)
 - [x] 台式鐵板燒：本土品牌，台灣人來開的，原型是大埔鐵板燒，只在茉波諸島連鎖；店名還沒想（2026-11-09）
 - [x] 住宿：星野リゾート一間；全季只開一間，在市區；北部的山間盆地開一間設計旅館 Karina，原型是策馬特的 Hotel Carina（2026-11-09）
 - [x] 住宿：全季、亞朵、萬豪集團旗下（一定要有 Fairfield，其他到時候再選）進駐；北部要有 Haka House（2026-11-09）
