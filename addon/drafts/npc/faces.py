@@ -527,7 +527,7 @@ def random_look(rng, gender=None, age=None, hair=None, casual=False):
         look["wrinkles"] = "old" if age == "old" else "middle"
     if rng.random() < {"young": 0.25, "middle": 0.35, "old": 0.45}[age]:
         look["glasses"] = pick(rng, {"black": 45, "metal": 45, "sun": 10 if casual else 0})
-    if rng.random() < 0.12:
+    if rng.random() < 0.05:                   # masks: 5% (the author's choice)
         look["mask"] = pick(rng, {"white": 75, "black": 25})
     if female and rng.random() < 0.35:
         look["earrings"] = rng.choice(["gold", "silver"])
