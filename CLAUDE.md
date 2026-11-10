@@ -21,6 +21,7 @@
 | `docs/world/post.md` | 郵政 Maha Post（茉波郵便）：以 NZ Post 為藍本，只做郵件與物流；名稱、logo（正方形的信封，旗幟紅）、業務、沿革、據點、郵筒、AKQ 機場的櫃台（logo 檔在 `assets/maha-post/`） |
 | `docs/world/banks.md` | 四大銀行：公股的茉波銀行，加上國泰世華、三井住友、KB國民三家外國銀行的子行；每家一種木頭色調（AKQ 提款機） |
 | `docs/world/akq-food-court.md` | AKQ 3F 美食街：自創店家的品牌故事、各店菜單（日本現價、含稅）、告示牌的寬度推算與照打文字 |
+| `docs/world/akq-departure-hall.md` | AKQ 出境大廳東側：由北到南各櫃台、電梯、廁所、全家、出發口、郵局的告示牌文字與共用原則（垂直牌、電梯樓層顯示、便利商店以廣告為主） |
 | `docs/world/naming.md` | 命名原則、討論流程、黑名單、命名素材、地名分層、地區風格、地名表、候補名單 |
 | `docs/world/bunker.md` | Asuka Inc. 總部地堡：總指揮、世界控制室、生活設施、監獄、戰備地鐵 |
 | `docs/build-checklist.md` | 設施清單與完成狀態、城市細節、參考建築、商店品牌 |
