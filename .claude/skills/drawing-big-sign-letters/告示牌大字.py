@@ -132,6 +132,9 @@ FONT = {
     "-": ".. ▄▄ ▀▀ ..",
     ":": ". █ . █",
     "'": "█ ▀ . .",
+    # 圈圈問號（2026-11-12 作者要「? 加一個圈圈包起來，獨立一張牌子」）：大問號左右各一道弧線，9 格寬、自己一塊。
+    # 上下封口的圈圈只放得下兩行高的小問號（STYLES「圈圈封口」），比較不好認
+    "⍰": "▟▛.▟█▙.▜▙ █...▄▛..█ █...▀...█ ▜▙..█..▟▛",
     # 漢字、假名（2026-11-12 作者要「中華そば」）：比英文寬，一塊板子放一個字、置中。
     # 直筆用整格 █、橫筆用半格 ▀▄，粗細跟英文字母一樣；告示牌上下行之間的縫剛好把相鄰的橫筆分開。
     # 新的字先畫 8 行的小方塊圖（筆畫對齊兩欄一格），用 from_bitmap() 換成這裡的寫法。
@@ -159,6 +162,11 @@ STYLES = {
     "隸書一": {"春": "..▃▃█▃▄.. .▀▀▛▀▜▀▀. ▁▂▟▃▃▃▙▅▇ ...▐▃▌...",
                "水": "....█..▄. .▀▀▜.█▞.. ▁▟▘.█.▚▄▇ ...▄█....",
                "堂": "..▗.█.▖.. ▛▀▀▀▀▀▀▀▜ ...▛▀▜... ▁▂▃▃█▃▃▅▇"},
+    # Costa Coffee 標誌的字形（2026-11-12 作者給標誌圖要「更還原」）：用 --upper --style Costa
+    #   S 是往下甩的窄弧線、尾巴往左下尖出去；A 是尖頂三角形、中間小三角窗加橫槓。只用整格的方塊字
+    "圈圈封口": {"⍰": ".▄▄▄▄▄. ▟.▀██.▙ ▜..▀..▛ .▀▀▀▀▀."},
+    "Costa": {"S": "▟▀ ▀▄ .█ ▄▀",
+              "A": ".█. ▟█▙ █▄█ █.█"},   # 頂端用整格：半格會讓 A 比其他字母矮（作者 2026-11-12）
     # 隸書第二版：收窄到 7 格、筆畫加粗、撇捺用斜方塊接。作者：「怪怪的，還不如上一版」
     "隸書二": {"春": ".▄▄█▄▄. ▀▀▀█▀▀▀ ▄▄▟█▙▄▄ ▂▀▐█▌▀▆",
                "水": "...█.▖. ▀▀▜█▞.. .▞.█▚.. ▝.▄█.▀▆",
@@ -216,12 +224,29 @@ ASCII_W = {' ': 4, '!': 2, '"': 4, '#': 6, '$': 6, '%': 6, '&': 6, "'": 2, '(': 
 def is_pixel_line(s):
     return all(0x20 <= ord(c) <= 0x7e for c in s)
 
+def is_cjk(c):
+    """直接打字的漢字、假名（等寬字型裡寬 9，2026-11-11 量過），可以放進字母表的格子裡"""
+    o = ord(c)
+    return 0x3041 <= o <= 0x30FF or 0x4E00 <= o <= 0x9FFF
+
+TAILS = {}   # --tail 做出來的「某一行接一般文字」的假字母：代號 → 文字
+
+def make_tail(spec):
+    """「3:案内所」→ 一個假字母：第 3 行是這幾個字（每字一格），其他行空白。接在整串字的最後面"""
+    line, text = spec.split(":", 1)
+    line = int(line)
+    assert 1 <= line <= 4 and all(is_cjk(c) for c in text), "格式是 行數:漢字，例如 3:案内所"
+    key = chr(0xE000 + len(TAILS))
+    FONT[key] = " ".join(text if r == line - 1 else "." * len(text) for r in range(4))
+    TAILS[key] = text
+    return key
+
 def glyph(ch):
     rows = FONT[ch].split(" ")
     assert len(rows) == 4 and len({len(r) for r in rows}) == 1, f"字母 {ch!r} 的 4 行格數不一樣"
     for r in rows:
         for c in r:
-            assert c == "." or block_mask(c), f"字母 {ch!r} 用了方塊字家族以外的字 {c!r}"
+            assert c == "." or block_mask(c) or is_cjk(c), f"字母 {ch!r} 用了方塊字家族以外的字 {c!r}"
     return rows
 
 def ideal_w(chs):
@@ -393,7 +418,7 @@ def layout_seg(text, mode, n_boards=None):
     if mode == "left":
         boards, breaks = pack(text)
         n = len(boards)
-        aligns = ["left"] if n == 1 else ["center"] * (n - 1) + ["left"]
+        aligns = hug_word(["left"] if n == 1 else ["center"] * (n - 1) + ["left"], breaks)
         return boards, breaks, [build_board(b, a) for b, a in zip(boards, aligns)], 0
     if mode == "right":
         rb, rbr = pack(text[::-1])
@@ -416,16 +441,29 @@ def layout_seg(text, mode, n_boards=None):
         sys.exit(f"排不成 {n_boards} 塊板子")
     _, boards, breaks, off = best
     n = len(boards)
-    aligns = ["center"] if n == 1 else ["right"] + ["center"] * (n - 2) + ["left"]
+    aligns = hug_word(["center"] if n == 1 else ["right"] + ["center"] * (n - 2) + ["left"], breaks, keep_first=True)
     return boards, breaks, [build_board(b, a) for b, a in zip(boards, aligns)], off
+
+def hug_word(aligns, breaks, keep_first=False):
+    """後面接著換單字的板子（沒塞滿時）改成靠左：字接著前一塊、空出來的位置當單字之間的空格。
+    2026-11-12「Costa Coffee」：第 2 塊只有 ta，置中的話會變成「Cos ta Coffee」"""
+    for i in range(len(aligns) - 1):
+        if (i + 1) in breaks and not (keep_first and i == 0):
+            aligns[i] = "left"
+    return aligns
 
 # ---------- 預覽圖：每個方塊字畫成 8×8 的格子（四分之一方塊各 4×4），前進 9 ----------
 # 遊戲字型圖裡這些字剛好就是整齊的四分之一格，所以直接畫就跟遊戲一樣，不需要附上遊戲的字型圖。
-def render(all_lines, dst, labels=None, white=False, per_row=None):
+# 告示牌木頭的大約顏色（跟告示牌試驗網頁一樣），預覽用 --wood 選
+WOODS = {"橡木": (162, 131, 79), "雲杉": (115, 85, 47), "白樺": (196, 176, 122), "叢林": (160, 115, 80),
+         "金合歡": (168, 90, 50), "深色橡木": (67, 43, 20), "紅樹林": (118, 54, 49), "櫻花": (227, 179, 173),
+         "竹": (194, 173, 82), "緋紅": (101, 48, 70), "詭異": (43, 104, 99)}
+
+def render(all_lines, dst, labels=None, white=False, per_row=None, wood=None):
     from PIL import Image, ImageDraw, ImageFont
     S = 6                      # 1 個告示牌單位畫成 6 像素
     BH, PITCH, TOP = 48, 10, 4 # 板子高 48、行距 10、字高 8（2026-11-11 用遊戲截圖量過）
-    wood = (64, 42, 26) if white else (176, 118, 66)
+    wood = WOODS[wood] if wood else ((64, 42, 26) if white else (176, 118, 66))
     base_ink = (235, 235, 235) if white else (24, 22, 20)
     per_row = per_row or len(all_lines)
     rows = (len(all_lines) + per_row - 1) // per_row
@@ -467,6 +505,9 @@ def render(all_lines, dst, labels=None, white=False, per_row=None):
                             if v:
                                 col = ink if v >= 1 else tuple(round(w * (1 - v) + k * v) for w, k in zip(wood, ink))
                                 d.rectangle([round(gx + xx * S), round(gy + yy * S), round(gx + (xx + 1) * S) - 1, round(gy + (yy + 1) * S) - 1], fill=col)
+                elif is_cjk(c) and F:                      # 漢字、假名：用電腦的中文字型畫（示意，遊戲裡是遊戲的字型）
+                    FK = ImageFont.truetype("C:/Windows/Fonts/msjh.ttc", 8 * S)
+                    d.text((round(gx), round(gy - S)), c, font=FK, fill=ink)
                 else:                                       # 其他字：畫個框表示這裡有字
                     d.rectangle([round(gx), round(gy), round(gx + 8 * S) - 1, round(gy + 8 * S) - 1], outline=ink, width=2)
                 x += FULL if ord(c) >= 0x1100 else HALF
@@ -500,11 +541,13 @@ def main():
     ap.add_argument("--png")
     ap.add_argument("--upper", action="store_true")
     ap.add_argument("--white", action="store_true")
+    ap.add_argument("--wood", choices=list(WOODS), help="預覽用的木頭顏色")
     ap.add_argument("--sheet")
     ap.add_argument("--center", action="store_true", help="整排置中（預設靠左）")
     ap.add_argument("--boards", type=int, help="置中時指定用幾塊板子")
     ap.add_argument("--list", action="store_true", help="列出可以用的符號")
     ap.add_argument("--style", help="字的其他寫法，例如：" + "、".join(STYLES))
+    ap.add_argument("--tail", help="在最後面的某一行接一般文字（漢字、假名），例如 3:案内所")
     a = ap.parse_args()
     if a.style:
         if a.style not in STYLES:
@@ -523,6 +566,8 @@ def main():
         print("字母表：", a.sheet)
         return
     text = a.text.upper() if a.upper else a.text
+    if a.tail:
+        text += make_tail(a.tail)
     bad = sorted(set(c for c in text if c not in FONT and c not in SYMBOLS))
     if bad:
         print("字母表裡還沒有這些字：", " ".join(repr(c) for c in bad)); sys.exit(1)
@@ -532,11 +577,11 @@ def main():
     text_boards = [b for b in boards if not isinstance(b, str)]
     all_wide = bool(text_boards) and all(len(b) == 1 and len(glyph(b[0])[0]) >= WIDE for b in text_boards)
     if has_sym and all_wide:
-        print("排法：每個符號、每個漢字各自一塊，每塊置中。")
+        print("排法：每個符號、每個寬的字各自一塊，每塊置中。")
     elif has_sym:
         print("排法：每個符號自己一塊；旁邊的文字靠向符號那一邊。")
     elif all_wide:
-        print("排法：漢字、假名一塊一個字，每塊置中（不用選靠左或置中）。")
+        print("排法：寬的字（漢字、假名、圈圈問號）一塊一個，每塊置中（不用選靠左或置中）。")
     elif not a.center:
         print("排法：靠左（空的位置都在最右邊那塊）。")
     elif abs(off) < 2.5:
@@ -549,13 +594,13 @@ def main():
         print("單字在這些板子之間換：" + "、".join(f"第 {i} 和第 {i+1} 塊" for i in breaks) + "（想看出空格可以中間空一個方塊）")
     for i, (b, ls) in enumerate(zip(boards, lines)):
         assert all(width(l) <= LIMIT for l in ls), "有一行超過 89"
-        what = f"符號 {b}（{SYMBOLS[b][0]}）" if isinstance(b, str) else " ".join(b)
+        what = f"符號 {b}（{SYMBOLS[b][0]}）" if isinstance(b, str) else " ".join(TAILS.get(c, c) for c in b)
         print(f"\n第 {i+1} 塊：{what}（寬 {' / '.join(str(width(l)) for l in ls)}）")
         print("```")
         print("\n".join(ls))
         print("```")
     if a.png:
-        render(lines, a.png, labels=[f"第 {i+1} 塊" for i in range(len(lines))], white=a.white)
+        render(lines, a.png, labels=[f"第 {i+1} 塊" for i in range(len(lines))], white=a.white, wood=a.wood)
         print("\n預覽圖：", a.png)
 
 if __name__ == "__main__":
