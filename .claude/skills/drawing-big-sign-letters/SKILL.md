@@ -19,6 +19,7 @@ description: Use when 作者 wants big letters, large English text, store names 
    python .claude/skills/drawing-big-sign-letters/告示牌大字.py "FamilyMart" --center --png <工作暫存資料夾>/預覽.png
    ```
    參數：`--center` 整排置中（不加就是靠左）；`--boards N` 置中時指定幾塊；`--upper` 全部轉大寫；`--white` 預覽成白字（深色木頭用）；`--wood 緋紅` 預覽用哪種木頭的顏色（橡木、雲杉、白樺、叢林、金合歡、深色橡木、紅樹林、櫻花、竹、緋紅、詭異）；`--style 名稱` 換用 `STYLES` 裡的字形；`--sheet 字母表.png` 畫整套字母。
+   - `--style 小`：小一號的大寫字母，寬度一樣、高度從 4 行縮成 3 行（第 1 行下半到第 4 行上半），只用整格字。作者 2026-11-12 看 INFORMATION 覺得「字有點太大太滿」做的；目前只有 I N F O R M A T，要別的字母先補進 `STYLES["小"]`。
    - `--tail 3:案内所`：在最後面接一般打字的漢字、假名，放在指定的那一行（每字寬 9，跟方塊一樣算）。2026-11-12「INFORMATION」第 4 塊的 O N 右邊、第 3 行接「案内所」，剛好 89。漢字用日文漢字（内，不是內）。
    - 要還原品牌標誌時，先看標誌圖：大小寫照標誌，特殊的字母（例如 Costa 的 S、A）做成 `STYLES` 裡的品牌字形，預覽用接近標誌底色的木頭給 作者 挑。2026-11-12「Costa Coffee」：`--upper --style Costa`，緋紅木或紅樹林木配白字。
 3. 回覆 作者，依序寫這四項：
