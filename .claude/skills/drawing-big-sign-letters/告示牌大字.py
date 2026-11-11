@@ -110,6 +110,27 @@ FONT = {
     "'": "█ ▀ . .",
 }
 
+# 符號：作者在遊戲裡確認過的現成寫法，照原樣輸出（空白也是調過的，不能動），每個符號自己佔一塊板子。
+# 照截圖抄的符號加在這裡；要用四分之一方塊重新設計、讓程式自動對齊的，加進上面的 FONT。
+SYMBOLS = {
+    "↑": ("往上：AKQ 出発口大箭頭（2026-11-11 蓋好）", ["▟▙", "▟██▙", "▀▀██▀▀", "██"]),
+    "←": ("往左：實心小頭＋細箭桿（AKQ 北端立牌）", ["  ▟      ", "▟█▄▄▄", "▜█▀▀▀", "  ▜      "]),
+    "→": ("往右：往左的左右翻過來（AKQ 北端電梯前立牌）", ["      ▙  ", "▄▄▄█▙", "▀▀▀█▛", "      ▛  "]),
+    "↙": ("往左下：作者改過的標準寫法（AKQ 北端樓梯口立牌）", ["     ▞", "█  ▞   ", "█▞     ", "▇▇▇   "]),
+    "↘": ("往右下：往左下的左右翻過來", ["▚     ", "   ▚  █", "     ▚█", "   ▇▇▇"]),
+    "🏃": ("逃生出口的跑步小人：一般英文符號拼的（像素字型），照 NextGamer 影片的 Java 版，基岩版字寬一樣",
+          ["_o", "//\\_", "_/\\    ", "/ "]),
+}
+
+# 像素字型（一整行都是一般英文符號時）的字寬，從遊戲字型量的（最右欄＋2），基岩版和 Java 版一樣
+ASCII_W = {' ': 4, '!': 2, '"': 4, '#': 6, '$': 6, '%': 6, '&': 6, "'": 2, '(': 4, ')': 4, '*': 4, '+': 6,
+           ',': 2, '-': 6, '.': 2, '/': 6, ':': 2, ';': 2, '<': 5, '=': 6, '>': 5, '?': 6, '@': 7,
+           'I': 4, '[': 4, '\\': 6, ']': 4, '^': 6, '_': 6, '`': 3, 'f': 5, 'i': 2, 'k': 5, 'l': 3,
+           't': 4, '{': 4, '|': 2, '}': 4, '~': 7}   # 沒列出來的英文字母和數字都是 6
+
+def is_pixel_line(s):
+    return all(0x20 <= ord(c) <= 0x7e for c in s)
+
 def glyph(ch):
     rows = FONT[ch].split(" ")
     assert len(rows) == 4 and len({len(r) for r in rows}) == 1, f"字母 {ch!r} 的 4 行格數不一樣"
@@ -239,17 +260,59 @@ def board_spread(chs, lines):
     return max((max(v) - min(v) for v in pos.values()), default=0)
 
 def width(line):
-    return sum(HALF if c == " " else FULL for c in line)
+    """一行在告示牌上的寬度：整行都是一般英文符號 → 像素字型；混了別的字 → 等寬字型（半形 4、全形 9）"""
+    if is_pixel_line(line):
+        return sum(ASCII_W.get(c, 6) for c in line)
+    return sum(HALF if ord(c) < 0x1100 else FULL for c in line)
+
+def split_items(text):
+    """把要寫的字拆成「文字段」和「符號」：[("seg", 文字) 或 ("sym", 符號)]"""
+    items, cur = [], ""
+    for ch in text:
+        if ch in SYMBOLS:
+            if cur.strip():
+                items.append(("seg", cur.strip()))
+            items.append(("sym", ch)); cur = ""
+        else:
+            cur += ch
+    if cur.strip():
+        items.append(("seg", cur.strip()))
+    return items
 
 def layout(text, center=False, n_boards=None):
-    """回傳（板子, 換單字處, 每塊的 4 行, 偏移）。
-    靠左（預設）：盡量塞滿，最後一塊靠左，空的都在右邊。
-    置中：第 1 塊靠右、最後一塊靠左、中間照常；試各種「第 1 塊放幾個字」，挑左右空白最接近的。
+    """回傳（板子, 換單字處, 每塊的 4 行, 偏移）。板子是字母清單，或是一個符號（字串）。
+    只有文字時照 center 靠左或置中；有符號時，每個符號自己一塊，旁邊的文字靠向符號那一邊。"""
+    items = split_items(text)
+    if not any(k == "sym" for k, _ in items):
+        return layout_seg(items[0][1] if items else "", "center" if center else "left", n_boards)
+    boards, breaks, lines = [], [], []
+    for i, (kind, v) in enumerate(items):
+        if kind == "sym":
+            boards.append(v); lines.append(list(SYMBOLS[v][1])); continue
+        left = i > 0 and items[i - 1][0] == "sym"
+        right = i + 1 < len(items) and items[i + 1][0] == "sym"
+        b, br, ls, _ = layout_seg(v, "center" if (left and right) else "left" if left else "right")
+        breaks += [len(boards) + x for x in br]
+        boards += b; lines += ls
+    return boards, breaks, lines, 0
+
+def layout_seg(text, mode, n_boards=None):
+    """一段文字分板子。mode：
+    left 靠左：盡量塞滿，最後一塊靠左，空的都在右邊。
+    right 靠右：從後面塞滿，第 1 塊靠右，空的都在左邊（文字右邊接著符號時用）。
+    center 置中：第 1 塊靠右、最後一塊靠左、中間照常；試各種「第 1 塊放幾個字」，挑左右空白最接近的。
       偏移＝整排字往右偏多少（告示牌單位，31 約一個字）；n_boards 可以指定用幾塊（多一塊常常就能正中間）。"""
-    if not center:
+    if mode == "left":
         boards, breaks = pack(text)
         n = len(boards)
         aligns = ["left"] if n == 1 else ["center"] * (n - 1) + ["left"]
+        return boards, breaks, [build_board(b, a) for b, a in zip(boards, aligns)], 0
+    if mode == "right":
+        rb, rbr = pack(text[::-1])
+        n = len(rb)
+        boards = [list(reversed(b)) for b in reversed(rb)]
+        breaks = sorted(n - i for i in rbr)
+        aligns = ["right"] + ["center"] * (n - 1)
         return boards, breaks, [build_board(b, a) for b, a in zip(boards, aligns)], 0
     best = None
     for cap1 in range(1, LIMIT + 1):
@@ -292,18 +355,47 @@ def render(all_lines, dst, labels=None, white=False, per_row=None):
         for r, ln in enumerate(lines):
             x = (BOARD_W - width(ln)) / 2
             y = TOP + r * PITCH
+            pixel = is_pixel_line(ln)
             for c in ln:
+                if pixel:                              # 像素字型：位置照字寬算，字形只畫示意
+                    w = ASCII_W.get(c, 6)
+                    if c != " ":
+                        draw_ascii(d, c, ox + x * S, oy + y * S, (w - 1) * S, S, ink)
+                    x += w; continue
                 if c == " ":
                     x += HALF; continue
                 gx, gy = ox + (x + 0.5) * S, oy + y * S     # 8 寬的字畫在 9 寬格子的中間
-                for q, on in enumerate(QUAD[c]):       # 左上、右上、左下、右下
-                    if on:
-                        qx, qy = gx + (q % 2) * 4 * S, gy + (q // 2) * 4 * S
-                        d.rectangle([round(qx), round(qy), round(qx + 4 * S) - 1, round(qy + 4 * S) - 1], fill=ink)
-                x += FULL
+                if c == "▇":                                # 下面 7/8
+                    d.rectangle([round(gx), round(gy + S), round(gx + 8 * S) - 1, round(gy + 8 * S) - 1], fill=ink)
+                elif c in QUAD:
+                    for q, on in enumerate(QUAD[c]):       # 左上、右上、左下、右下
+                        if on:
+                            qx, qy = gx + (q % 2) * 4 * S, gy + (q // 2) * 4 * S
+                            d.rectangle([round(qx), round(qy), round(qx + 4 * S) - 1, round(qy + 4 * S) - 1], fill=ink)
+                else:                                       # 其他字：畫個框表示這裡有字
+                    d.rectangle([round(gx), round(gy), round(gx + 8 * S) - 1, round(gy + 8 * S) - 1], outline=ink, width=2)
+                x += FULL if ord(c) >= 0x1100 else HALF
         if labels:
             d.text((ox + 10, oy + BH * S + 6), labels[k], font=F, fill=(90, 90, 90))
     img.save(dst)
+
+def draw_ascii(d, c, x, y, w, S, ink):
+    """像素字型的示意字形（只為了看位置；不附遊戲字型檔）。字高 8，第 7 列是底線。"""
+    lw = max(2, S // 2)
+    if c == "/":
+        d.line([(x, y + 7 * S), (x + w, y)], fill=ink, width=lw)
+    elif c == "\\":
+        d.line([(x, y), (x + w, y + 7 * S)], fill=ink, width=lw)
+    elif c == "_":
+        d.rectangle([x, y + 7 * S, x + w, y + 8 * S - 1], fill=ink)
+    elif c == "o":
+        d.ellipse([x, y + 2.5 * S, x + w, y + 7 * S], outline=ink, width=lw)
+    elif c == "-":
+        d.rectangle([x, y + 3.5 * S, x + w, y + 4.5 * S], fill=ink)
+    elif c in "|!":
+        d.rectangle([x, y, x + S, y + 7 * S], fill=ink)
+    else:
+        d.rectangle([x, y, x + w, y + 7 * S], outline=ink, width=lw)
 
 def main():
     if hasattr(sys.stdout, "reconfigure"):
@@ -316,21 +408,30 @@ def main():
     ap.add_argument("--sheet")
     ap.add_argument("--center", action="store_true", help="整排置中（預設靠左）")
     ap.add_argument("--boards", type=int, help="置中時指定用幾塊板子")
+    ap.add_argument("--list", action="store_true", help="列出可以用的符號")
     a = ap.parse_args()
+    if a.list:
+        for k, (desc, _) in SYMBOLS.items():
+            print(k, desc)
+        return
     if a.sheet:
         groups = ["ABC", "DEF", "GHI", "JKL", "MNO", "PQR", "STU", "VWX", "YZ",
                   "abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz",
                   "012", "345", "678", "9.,", "!?-", ":'"]
-        render([build_board(list(g), "center") for g in groups], a.sheet, labels=groups, white=a.white, per_row=5)
+        boards = [build_board(list(g), "center") for g in groups] + [list(v[1]) for v in SYMBOLS.values()]
+        render(boards, a.sheet, labels=groups + [{"🏃": "跑步小人"}.get(k, k) for k in SYMBOLS], white=a.white, per_row=5)
         print("字母表：", a.sheet)
         return
     text = a.text.upper() if a.upper else a.text
-    bad = sorted(set(c for c in text if c not in FONT))
+    bad = sorted(set(c for c in text if c not in FONT and c not in SYMBOLS))
     if bad:
         print("字母表裡還沒有這些字：", " ".join(repr(c) for c in bad)); sys.exit(1)
     boards, breaks, lines, off = layout(text, a.center, a.boards)
+    has_sym = any(isinstance(b, str) for b in boards)
     print(f"「{text}」共 {len(boards)} 塊告示牌，由左到右貼在相鄰的方塊上。")
-    if not a.center:
+    if has_sym:
+        print("排法：每個符號自己一塊；旁邊的文字靠向符號那一邊。")
+    elif not a.center:
         print("排法：靠左（空的位置都在最右邊那塊）。")
     elif abs(off) < 2.5:
         print("排法：置中（第 1 塊的字靠右、最後一塊靠左，左右空白一樣）。")
@@ -342,7 +443,8 @@ def main():
         print("單字在這些板子之間換：" + "、".join(f"第 {i} 和第 {i+1} 塊" for i in breaks) + "（想看出空格可以中間空一個方塊）")
     for i, (b, ls) in enumerate(zip(boards, lines)):
         assert all(width(l) <= LIMIT for l in ls), "有一行超過 89"
-        print(f"\n第 {i+1} 塊：{' '.join(b)}（寬 {' / '.join(str(width(l)) for l in ls)}）")
+        what = f"符號 {b}（{SYMBOLS[b][0]}）" if isinstance(b, str) else " ".join(b)
+        print(f"\n第 {i+1} 塊：{what}（寬 {' / '.join(str(width(l)) for l in ls)}）")
         print("```")
         print("\n".join(ls))
         print("```")

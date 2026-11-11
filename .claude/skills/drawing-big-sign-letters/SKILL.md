@@ -1,6 +1,6 @@
 ---
 name: drawing-big-sign-letters
-description: Use when the author wants big letters, large English text, store names or numbers drawn across one or more Minecraft Bedrock signs (告示牌大字、用告示牌拼大字母、一串字分到好幾塊板子、要每塊板子的複製區), or asks for the Hugleton / BigSignText sign-letter style.
+description: Use when the author wants big letters, large English text, store names or numbers drawn across one or more Minecraft Bedrock signs (告示牌大字、用告示牌拼大字母、一串字分到好幾塊板子、要每塊板子的複製區), or wants arrows or symbols drawn on a sign (告示牌畫箭頭、符號、逃生出口小人), or asks for the Hugleton / BigSignText sign-letter style.
 ---
 
 # 告示牌大字（基岩版）
@@ -13,7 +13,7 @@ description: Use when the author wants big letters, large English text, store na
 一般告示牌文字的寬度與字體規則見 `docs/world/akq-food-court.md` 的「告示牌」一節。
 
 ## 做法
-1. **先問作者要靠左還是置中**（要求裡已經講了就不用問）。問之前先把兩種都跑一次（不加 `--png`），看各要幾塊板子、置中有沒有偏，再用 AskUserQuestion 問：
+1. **只有文字時，先問作者要靠左還是置中**（要求裡已經講了、或剛好塞滿每塊板子兩種一樣，就不用問；有符號時也不用問，見「符號」）。問之前先把兩種都跑一次（不加 `--png`），看各要幾塊板子、置中有沒有偏，再用 AskUserQuestion 問：
    - 選項寫成「置中（N 塊）」「靠左（N 塊）」。
    - 置中那行如果印出「偏右／偏左約 …」，再加一個「置中多一塊（N+1 塊，正中間）」，對應 `--center --boards N+1`。
 2. 在 repo 根目錄跑產生器（只需要 Pillow 套件）。整串字一次給，程式會自己分板子：
@@ -40,6 +40,24 @@ description: Use when the author wants big letters, large English text, store na
 | 靠左 | 每塊盡量塞滿，空的位置都在最右邊那塊 |
 | 置中 | 第 1 塊的字靠右、最後一塊靠左、中間照常，板子交界的字距照樣平均；程式挑「第 1 塊放幾個字」讓左右空白一樣。字數不巧時會偏半個字，多一塊板子就能正中間 |
 | 行尾空白 | 有算進置中，**不能刪** |
+
+## 符號
+跑 `--list` 看有哪些。目前都是作者在遊戲裡確認過的現成寫法，存在程式的 `SYMBOLS`：
+
+| 符號 | 是什麼 |
+|---|---|
+| ↑ | 往上（往前直走）：AKQ 出発口大箭頭 |
+| ← → | 往左、往右：實心小頭＋細箭桿 |
+| ↙ ↘ | 往左下、往右下（往樓下）：作者改過的斜箭頭標準寫法 |
+| 🏃 | 逃生出口的跑步小人：一般英文符號拼的細線（像素字型），照 NextGamer 影片 |
+
+- 每個符號**自己佔一塊板子**，照原樣輸出，空白是調過的，不能動。
+- 字和符號可以一起給，例如 `"↑Departure"`、`"Gate 1→"`：文字照常分板子，並且**靠向符號那一邊**（符號在左就靠左、在右就靠右、兩邊都有就置中），所以不用問靠左還是置中。
+- 指示系統的規矩：↑ 是往前直走；往樓下不用 ↓，用 ↙ ↘；箭頭放在它指的那一側。
+- **新增符號**有兩種做法：
+  - 照截圖或作者改好的文字原樣抄進 `SYMBOLS`。抄之前算好每行寬度：一整行都是一般英文符號時是像素字型，字寬查 `ASCII_W`；混了方塊字就是方塊 9、空白 4。
+  - 新設計的用四分之一方塊畫進 `FONT`，程式會自動對齊。斜線用 ▞ ▚ 拼時，每行錯開 8 比錯開 9 連得順（作者改過的 ↙ 就是這樣），這種要手調的放 `SYMBOLS`。
+- 新加的符號一樣先跑 `--sheet` 看預覽再給作者。
 
 ## 字母表格式
 `FONT` 裡每個字母是「4 行用空白隔開，一個字元一格，`.` 是空格」，例如 `"A": "▟█▙ █.█ ███ █.█"`。4 行的格數必須一樣。只能用這些字：`█ ▀ ▄ ▌ ▐ ▘ ▝ ▖ ▗ ▚ ▞ ▛ ▜ ▙ ▟`。小寫的第 1 行留給往上伸的筆畫（b d f h i j k l t）。

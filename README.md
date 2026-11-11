@@ -33,7 +33,7 @@
 
 ## 其他資料夾
 
-- `.claude/skills/drawing-big-sign-letters/`：告示牌大字：用方塊字在告示牌上拼大英文字（照 Reddit 上 Hugleton 的字形改成基岩版能用的），自動分到好幾塊板子、補空白對齊，並畫預覽圖
+- `.claude/skills/drawing-big-sign-letters/`：告示牌大字：用方塊字在告示牌上拼大英文字（照 Reddit 上 Hugleton 的字形改成基岩版能用的），自動分到好幾塊板子、補空白對齊，並畫預覽圖；也有箭頭和逃生出口小人這類符號
 - `addon/pack/`：自製附加內容 Asuka tech 的資源包與行為包原始檔，`build.py` 組成可以安裝的 `.mcaddon`；`addon/mapping.json` 是原味版的對照表
 - `addon/rail_to_belt/`：只換材質的材質包「Rail to Belt」，把鐵軌換成履帶的樣子
 - `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
