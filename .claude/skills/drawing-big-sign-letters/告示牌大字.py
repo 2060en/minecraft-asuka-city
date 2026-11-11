@@ -29,6 +29,30 @@ QUAD = {"█": (1, 1, 1, 1), "▀": (1, 1, 0, 0), "▄": (0, 0, 1, 1), "▌": (1
         "▚": (1, 0, 0, 1), "▞": (0, 1, 1, 0), "▛": (1, 1, 1, 0), "▜": (1, 1, 0, 1),
         "▙": (1, 0, 1, 1), "▟": (0, 1, 1, 1), ".": (0, 0, 0, 0)}
 
+def block_mask(c):
+    """方塊字家族（U+2580～259F）在 8×8 單位格子裡的形狀，值是覆蓋率 0～1；不是方塊字回傳 None。
+    2026-11-12 跟遊戲字型圖逐格對過：▁～▇ 是下緣 1/8～7/8 高、▉～▏ 是左緣 7/8～1/8 寬、
+    ▔ 頂端 1/8、▕ 右緣 1/8、░▒▓ 是 1/4、1/2、3/4 的網點。"""
+    cp = ord(c)
+    if c in QUAD and c != ".":
+        q = QUAD[c]
+        return [[q[(y >= 4) * 2 + (x >= 4)] for x in range(8)] for y in range(8)]
+    if 0x2581 <= cp <= 0x2587:
+        k = cp - 0x2580
+        return [[1 if y >= 8 - k else 0 for x in range(8)] for y in range(8)]
+    if 0x2589 <= cp <= 0x258F:
+        k = 8 - (cp - 0x2588)
+        return [[1 if x < k else 0 for x in range(8)] for y in range(8)]
+    if 0x2591 <= cp <= 0x2593:
+        return [[(cp - 0x2590) / 4] * 8 for y in range(8)]
+    if cp == 0x2594:
+        return [[1 if y == 0 else 0 for x in range(8)] for y in range(8)]
+    if cp == 0x2595:
+        return [[1 if x == 7 else 0 for x in range(8)] for y in range(8)]
+    return None
+
+BLOCKS = [chr(cp) for cp in range(0x2580, 0x25A0) if block_mask(chr(cp))]
+
 # 字母表：4 行用空白隔開，每個字元是一格（"." 是空格）。每個字母 4 行的格數要一樣。
 # 新增字母時照這個格式加一行，跑 --sheet 看樣子。
 FONT = {
@@ -115,7 +139,32 @@ FONT = {
     "華": "▄█▄▄▄█▄ ▀▜▀█▀▛▀ ▀▜▀█▀▛▀ ▀▀▀█▀▀▀",   # 兩側直筆變細；三根一樣粗的版本是 "▄█▄▄▄█▄ ▀█▀█▀█▀ ▀█▀█▀█▀ ▀▀▀█▀▀▀"（像「井」）
     "そ": ".▀▀█▀ ▄▄█▄▄ .▄▀.. .▀▄▄▄",
     "ば": "▄...█▐▐ █..▀█▀. █.▄▄█.. ▀.█▄▄▀▄",
+    # 書法風「春水堂」（2026-11-12）：預設是標楷體自動轉換、只用整格字的版本，其他版本在下面的 STYLES。
+    "春": ".▂▟▄.. .▂█▄▄. ▂▞▄█▚▃ ..▙▟..",   # 「日」補上左半邊（作者 2026-11-12）
+    "水": "..▜.▁. ▄▅▟▞▔. ▂▀▜▀▄▁ ..▇..▔",
+    "堂": ".▃▜... ▟▀▂▃▔▀ ..▆▀.. .▃▟▄▅.",
 }
+# 同一個字的其他寫法，用 --style 切換（會蓋掉 FONT 裡同名的字）
+STYLES = {
+    # 標楷體自動轉換：python 字型轉方塊.py 春水堂 --font kaiu.ttf --cells 8 --stretch 1.4 --bold 0.5
+    # 作者 2026-11-12 從五種字型的比較圖裡圈了這組「感覺不錯」。
+    # 「楷書」只用整格字（現在的預設）；「楷書含半邊」是當時那組，用了 ▏▎▐▝ 等半邊字，作者蓋出來歪掉
+    "楷書": {"春": ".▂▟▄.. .▂█▄▄. ▂▞▄█▚▃ ..▙▟..",   # 「日」補上左半邊（作者 2026-11-12）
+             "水": "..▜.▁. ▄▅▟▞▔. ▂▀▜▀▄▁ ..▇..▔",
+             "堂": ".▃▜... ▟▀▂▃▔▀ ..▆▀.. .▃▟▄▅."},
+    "楷書含半邊": {"春": ".▂▟▄.. .▂█▄▄. ▂▝▏▜▚▃ .▕▏▟..",
+                  "水": "..▐▎▁. ▗▅▟▖▘. ▗▘▐▝▄▁ ..▇..▔",
+                  "堂": ".▃▐▗▎. ▟▀▂▃▔▘ .▕▆▀.. ▗▃▟▄▅."},
+    # 隸書第一版：參考隸書手工畫，9 格寬、長橫起筆細收筆粗上翹（蠶頭燕尾）。作者蓋了：「有一點形狀但不夠好」
+    "隸書一": {"春": "..▃▃█▃▄.. .▀▀▛▀▜▀▀. ▁▂▟▃▃▃▙▅▇ ...▐▃▌...",
+               "水": "....█..▄. .▀▀▜.█▞.. ▁▟▘.█.▚▄▇ ...▄█....",
+               "堂": "..▗.█.▖.. ▛▀▀▀▀▀▀▀▜ ...▛▀▜... ▁▂▃▃█▃▃▅▇"},
+    # 隸書第二版：收窄到 7 格、筆畫加粗、撇捺用斜方塊接。作者：「怪怪的，還不如上一版」
+    "隸書二": {"春": ".▄▄█▄▄. ▀▀▀█▀▀▀ ▄▄▟█▙▄▄ ▂▀▐█▌▀▆",
+               "水": "...█.▖. ▀▀▜█▞.. .▞.█▚.. ▝.▄█.▀▆",
+               "堂": ".▚.█.▞. ▛▀▀▀▀▀▜ .▛▀█▀▜. ▄▄▄█▄▄▆"},
+}
+
 WIDE = 5   # 寬到 5 格以上的字（漢字、假名）一塊板子只放一個、置中
 
 def from_bitmap(rows):
@@ -138,7 +187,25 @@ SYMBOLS = {
     "↘": ("往右下：往左下的左右翻過來", ["▚     ", "   ▚  █", "     ▚█", "   ▇▇▇"]),
     "🏃": ("逃生出口的跑步小人：一般英文符號拼的（像素字型），照 NextGamer 影片的 Java 版，基岩版字寬一樣",
           ["_o", "//\\_", "_/\\    ", "/ "]),
+    # 印章（2026-11-12 作者要在春水堂前面加紅色印章）：實心紅方塊、中間刻出白色菱形花紋、四角缺口，只用整格字；
+    # 每行開頭的 §4 是深紅色代碼（不顯示、不佔寬度）。跟字一樣高；比字小的版本 ▄▄▄／▙▀▟／▛▄▜／▀▀▀ 太空、像方框，沒用
+    "㊞": ("紅色印章：§4 深紅，實心方塊刻白色菱形花紋", ["§4▛██▜", "§4█▞▚█", "§4█▚▞█", "§4▙██▟"]),
 }
+
+# 基岩版的顏色代碼：§ 加一個字，不顯示、不佔寬度，後面的字換成這個顏色（每行開頭都要再打一次比較保險）
+COLOR_CODES = {"0": (0, 0, 0), "1": (0, 0, 170), "2": (0, 170, 0), "3": (0, 170, 170), "4": (170, 0, 0),
+               "5": (170, 0, 170), "6": (255, 170, 0), "7": (170, 170, 170), "8": (85, 85, 85), "9": (85, 85, 255),
+               "a": (85, 255, 85), "b": (85, 255, 255), "c": (255, 85, 85), "d": (255, 85, 255), "e": (255, 255, 85),
+               "f": (255, 255, 255), "g": (221, 214, 5), "m": (151, 22, 7), "p": (222, 177, 45), "q": (71, 160, 54)}
+
+def strip_codes(s):
+    """拿掉 §x 顏色代碼（遊戲裡不顯示、不佔寬度）"""
+    out, i = "", 0
+    while i < len(s):
+        if s[i] == "§" and i + 1 < len(s):
+            i += 2; continue
+        out += s[i]; i += 1
+    return out
 
 # 像素字型（一整行都是一般英文符號時）的字寬，從遊戲字型量的（最右欄＋2），基岩版和 Java 版一樣
 ASCII_W = {' ': 4, '!': 2, '"': 4, '#': 6, '$': 6, '%': 6, '&': 6, "'": 2, '(': 4, ')': 4, '*': 4, '+': 6,
@@ -154,7 +221,7 @@ def glyph(ch):
     assert len(rows) == 4 and len({len(r) for r in rows}) == 1, f"字母 {ch!r} 的 4 行格數不一樣"
     for r in rows:
         for c in r:
-            assert c in QUAD, f"字母 {ch!r} 用了沒驗證過的字 {c!r}"
+            assert c == "." or block_mask(c), f"字母 {ch!r} 用了方塊字家族以外的字 {c!r}"
     return rows
 
 def ideal_w(chs):
@@ -280,7 +347,8 @@ def board_spread(chs, lines):
     return max((max(v) - min(v) for v in pos.values()), default=0)
 
 def width(line):
-    """一行在告示牌上的寬度：整行都是一般英文符號 → 像素字型；混了別的字 → 等寬字型（半形 4、全形 9）"""
+    """一行在告示牌上的寬度：整行都是一般英文符號 → 像素字型；混了別的字 → 等寬字型（半形 4、全形 9）。§ 顏色代碼不算"""
+    line = strip_codes(line)
     if is_pixel_line(line):
         return sum(ASCII_W.get(c, 6) for c in line)
     return sum(HALF if ord(c) < 0x1100 else FULL for c in line)
@@ -358,7 +426,7 @@ def render(all_lines, dst, labels=None, white=False, per_row=None):
     S = 6                      # 1 個告示牌單位畫成 6 像素
     BH, PITCH, TOP = 48, 10, 4 # 板子高 48、行距 10、字高 8（2026-11-11 用遊戲截圖量過）
     wood = (64, 42, 26) if white else (176, 118, 66)
-    ink = (235, 235, 235) if white else (24, 22, 20)
+    base_ink = (235, 235, 235) if white else (24, 22, 20)
     per_row = per_row or len(all_lines)
     rows = (len(all_lines) + per_row - 1) // per_row
     label_h = 40 if labels else 0
@@ -375,8 +443,14 @@ def render(all_lines, dst, labels=None, white=False, per_row=None):
         for r, ln in enumerate(lines):
             x = (BOARD_W - width(ln)) / 2
             y = TOP + r * PITCH
-            pixel = is_pixel_line(ln)
-            for c in ln:
+            pixel = is_pixel_line(strip_codes(ln))
+            ink = base_ink
+            chars = list(ln); i = -1
+            while i + 1 < len(chars):
+                i += 1; c = chars[i]
+                if c == "§" and i + 1 < len(chars):     # 顏色代碼：換顏色，不畫、不佔寬度
+                    ink = COLOR_CODES.get(chars[i + 1], base_ink) if chars[i + 1] != "r" else base_ink
+                    i += 1; continue
                 if pixel:                              # 像素字型：位置照字寬算，字形只畫示意
                     w = ASCII_W.get(c, 6)
                     if c != " ":
@@ -385,13 +459,14 @@ def render(all_lines, dst, labels=None, white=False, per_row=None):
                 if c == " ":
                     x += HALF; continue
                 gx, gy = ox + (x + 0.5) * S, oy + y * S     # 8 寬的字畫在 9 寬格子的中間
-                if c == "▇":                                # 下面 7/8
-                    d.rectangle([round(gx), round(gy + S), round(gx + 8 * S) - 1, round(gy + 8 * S) - 1], fill=ink)
-                elif c in QUAD:
-                    for q, on in enumerate(QUAD[c]):       # 左上、右上、左下、右下
-                        if on:
-                            qx, qy = gx + (q % 2) * 4 * S, gy + (q // 2) * 4 * S
-                            d.rectangle([round(qx), round(qy), round(qx + 4 * S) - 1, round(qy + 4 * S) - 1], fill=ink)
+                m = block_mask(c)
+                if m:                                       # 方塊字家族：照 8×8 形狀畫；網點用顏色深淺表示
+                    for yy in range(8):
+                        for xx in range(8):
+                            v = m[yy][xx]
+                            if v:
+                                col = ink if v >= 1 else tuple(round(w * (1 - v) + k * v) for w, k in zip(wood, ink))
+                                d.rectangle([round(gx + xx * S), round(gy + yy * S), round(gx + (xx + 1) * S) - 1, round(gy + (yy + 1) * S) - 1], fill=col)
                 else:                                       # 其他字：畫個框表示這裡有字
                     d.rectangle([round(gx), round(gy), round(gx + 8 * S) - 1, round(gy + 8 * S) - 1], outline=ink, width=2)
                 x += FULL if ord(c) >= 0x1100 else HALF
@@ -429,7 +504,12 @@ def main():
     ap.add_argument("--center", action="store_true", help="整排置中（預設靠左）")
     ap.add_argument("--boards", type=int, help="置中時指定用幾塊板子")
     ap.add_argument("--list", action="store_true", help="列出可以用的符號")
+    ap.add_argument("--style", help="字的其他寫法，例如：" + "、".join(STYLES))
     a = ap.parse_args()
+    if a.style:
+        if a.style not in STYLES:
+            sys.exit("沒有這個風格，可以用：" + "、".join(STYLES))
+        FONT.update(STYLES[a.style])
     if a.list:
         for k, (desc, _) in SYMBOLS.items():
             print(k, desc)
@@ -449,8 +529,11 @@ def main():
     boards, breaks, lines, off = layout(text, a.center, a.boards)
     has_sym = any(isinstance(b, str) for b in boards)
     print(f"「{text}」共 {len(boards)} 塊告示牌，由左到右貼在相鄰的方塊上。")
-    all_wide = all(not isinstance(b, str) and len(b) == 1 and len(glyph(b[0])[0]) >= WIDE for b in boards)
-    if has_sym:
+    text_boards = [b for b in boards if not isinstance(b, str)]
+    all_wide = bool(text_boards) and all(len(b) == 1 and len(glyph(b[0])[0]) >= WIDE for b in text_boards)
+    if has_sym and all_wide:
+        print("排法：每個符號、每個漢字各自一塊，每塊置中。")
+    elif has_sym:
         print("排法：每個符號自己一塊；旁邊的文字靠向符號那一邊。")
     elif all_wide:
         print("排法：漢字、假名一塊一個字，每塊置中（不用選靠左或置中）。")
