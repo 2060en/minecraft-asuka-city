@@ -146,6 +146,20 @@ FONT = {
     "春": ".▂▟▄.. .▂█▄▄. ▂▞▄█▚▃ ..▙▟..",   # 「日」補上左半邊（作者 2026-11-12）
     "水": "..▜.▁. ▄▅▟▞▔. ▂▀▜▀▄▁ ..▇..▔",
     "堂": ".▃▜... ▟▀▂▃▔▀ ..▆▀.. .▃▟▄▅.",
+    # AKQ 出發口「出発口」「保安検査場」（2026-11-12 作者要日文畫大字）：照遊戲字型圖手工畫，只用整格的方塊字。
+    # 告示牌只有 8 個小方塊高，同一行（兩個小方塊）裡上下相鄰的橫筆會黏在一起，橫筆要錯開到不同行，
+    # 所以筆畫多的字有刪減：場的「日」底線跟下面的長橫共用、勿只剩一行；検右邊的「口口」畫成一個「日」橫放；
+    # 安的「女」下半只剩交叉的「メ」。寬度 6～9 格，一塊一個字、置中
+    "出": "▄..█..▄ █▄▄█▄▄█ ▄..█..▄ █▄▄█▄▄█",   # 上下兩個凵一樣寬（作者 2026-11-12：下面比上面寬「有透視感、斜的」，
+    #   要寫正）。舊版是 ".▄.█.▄. .█▄█▄█. ▄..█..▄ █▄▄█▄▄█"
+    "発": "▀▀▛.▜.▞ ▄▟▄▄▄▙▄ .▄█▄█▄. ▄▟▀.█▄▟",
+    "口": "▄▄▄▄▄▄ █....█ █....█ █▄▄▄▄█",
+    "保": ".▟.█▀▀▀█ ▞█.▀▀█▀▀ .█.▀▜█▛▀ .█.▄▞█▚▄",
+    "安": "▄▄▄█▄▄▄ ▀.▄▀..▀ ▀▀█▀█▀▀ .▄▄▀▄▄.",
+    "検": ".█...▟▀▙. ▜█▛..▄▄▄. ▞█▚.█▀█▀█ .█..▀▛▀▜▀",
+    "査": "▄▄▄█▄▄▄ ▄▛.█.▜▄ .█▀▀▀█. ▄█▄▄▄█▄",   # 作者 2026-11-12：「木」的兩撇要明顯，往外分開、跟直筆脫開；
+    #   空間不夠，「且」裡面的中間橫線拿掉了。舊版（兩撇只是小缺口）是 "▄▄▄█▄▄▄ .▄▟█▙▄. .█▄▄▄█. ▄█▄▄▄█▄"
+    "場": ".█...█▀█. ▀█▀..█▀█. .█..▀▀▀▀▀ ▄▟▀.▄▀▛▀█",
 }
 # 同一個字的其他寫法，用 --style 切換（會蓋掉 FONT 裡同名的字）
 STYLES = {
@@ -390,31 +404,59 @@ def width(line):
     return sum(HALF if ord(c) < 0x1100 else FULL for c in line)
 
 def split_items(text):
-    """把要寫的字拆成「文字段」和「符號」：[("seg", 文字) 或 ("sym", 符號)]"""
-    items, cur = [], ""
-    for ch in text:
-        if ch in SYMBOLS:
+    """把要寫的字拆成「文字段」「符號」「打字板」：[("seg", 文字)、("sym", 符號) 或 ("typed", "行:文字")]。
+    打字板寫成 [3:Departures]：自己一塊板子，第 3 行直接打這串字（不畫大字），其他行空白；[] 是一塊空白板子"""
+    items, cur, i = [], "", 0
+    while i < len(text):
+        ch = text[i]
+        if ch in SYMBOLS or ch == "[":
             if cur.strip():
                 items.append(("seg", cur.strip()))
-            items.append(("sym", ch)); cur = ""
+            cur = ""
+            if ch == "[":
+                j = text.index("]", i)
+                items.append(("typed", text[i + 1:j])); i = j + 1; continue
+            items.append(("sym", ch))
         else:
             cur += ch
+        i += 1
     if cur.strip():
         items.append(("seg", cur.strip()))
     return items
+
+def typed_board(spec, align):
+    """打字板的 4 行。spec 是「行:文字」（空字串＝空白板子）；align 是 left／right／center：
+    靠左時在行尾補空白（行尾空白有算進置中），字就往左貼著前一塊的字"""
+    lines = [""] * 4
+    if not spec.strip():
+        return lines
+    line, txt = spec.split(":", 1)
+    line = int(line)
+    assert 1 <= line <= 4, "打字板的格式是 [行數:文字]，例如 [3:Departures]"
+    w = width(txt)
+    assert w <= LIMIT, f"「{txt}」寬 {w}，超過一行的 89"
+    pad = " " * ((LIMIT - w) // HALF) if align != "center" else ""
+    lines[line - 1] = txt + pad if align == "left" else pad + txt
+    return lines
 
 def layout(text, center=False, n_boards=None):
     """回傳（板子, 換單字處, 每塊的 4 行, 偏移）。板子是字母清單，或是一個符號（字串）。
     只有文字時照 center 靠左或置中；有符號時，每個符號自己一塊，旁邊的文字靠向符號那一邊。"""
     items = split_items(text)
-    if not any(k == "sym" for k, _ in items):
+    if all(k == "seg" for k, _ in items):
         return layout_seg(items[0][1] if items else "", "center" if center else "left", n_boards)
     boards, breaks, lines = [], [], []
     for i, (kind, v) in enumerate(items):
         if kind == "sym":
             boards.append(v); lines.append(list(SYMBOLS[v][1])); continue
-        left = i > 0 and items[i - 1][0] == "sym"
-        right = i + 1 < len(items) and items[i + 1][0] == "sym"
+        if kind == "typed":   # 打字板：前面是文字就靠左貼著它，否則後面是文字就靠右，都不是就置中
+            after = i > 0 and items[i - 1][0] == "seg"
+            before = i + 1 < len(items) and items[i + 1][0] == "seg"
+            boards.append("[" + v + "]")
+            lines.append(typed_board(v, "left" if after else "right" if before else "center")); continue
+        anchor = lambda it: it[0] == "sym" or (it[0] == "typed" and it[1].strip())   # 空白板子不算
+        left = i > 0 and anchor(items[i - 1])
+        right = i + 1 < len(items) and anchor(items[i + 1])
         b, br, ls, _ = layout_seg(v, "center" if (left and right) else "left" if left else "right")
         breaks += [len(boards) + x for x in br]
         boards += b; lines += ls
@@ -541,6 +583,13 @@ def draw_ascii(d, c, x, y, w, S, ink):
         d.rectangle([x, y + 3.5 * S, x + w, y + 4.5 * S], fill=ink)
     elif c in "|!":
         d.rectangle([x, y, x + S, y + 7 * S], fill=ink)
+    elif c.isalnum():   # 英文字母、數字：用電腦的字型畫（示意，遊戲裡是遊戲的像素字）
+        from PIL import ImageFont
+        try:
+            f = ImageFont.truetype("C:/Windows/Fonts/arial.ttf", round(10 * S))
+            d.text((x + w / 2, y + 7 * S), c, font=f, fill=ink, anchor="ms")
+        except OSError:
+            d.rectangle([x, y, x + w, y + 7 * S], outline=ink, width=lw)
     else:
         d.rectangle([x, y, x + w, y + 7 * S], outline=ink, width=lw)
 
@@ -579,7 +628,8 @@ def main():
     text = a.text.upper() if a.upper else a.text
     if a.tail:
         text += make_tail(a.tail)
-    bad = sorted(set(c for c in text if c not in FONT and c not in SYMBOLS))
+    drawn = "".join(v for k, v in split_items(text) if k != "typed")   # 打字板裡的字直接打，不用在字母表裡
+    bad = sorted(set(c for c in drawn if c not in FONT and c not in SYMBOLS))
     if bad:
         print("字母表裡還沒有這些字：", " ".join(repr(c) for c in bad)); sys.exit(1)
     boards, breaks, lines, off = layout(text, a.center, a.boards)
@@ -601,11 +651,22 @@ def main():
         side = "右" if off > 0 else "左"
         print(f"排法：置中，但整排偏{side}約 {abs(off):.0f}（一個字約 31，等於偏{side}半個字左右）。"
               f"用 --boards {len(boards) + 1} 多一塊板子通常就能正中間。")
+    if any(isinstance(b, str) and b.startswith("[") and b[1:-1].strip() for b in boards):
+        print("打字的板子：字直接打在那一行，前面接著大字時靠左貼過去（行尾補了空白，不能刪）。")
     if breaks:
         print("單字在這些板子之間換：" + "、".join(f"第 {i} 和第 {i+1} 塊" for i in breaks) + "（想看出空格可以中間空一個方塊）")
     for i, (b, ls) in enumerate(zip(boards, lines)):
         assert all(width(l) <= LIMIT for l in ls), "有一行超過 89"
-        what = f"符號 {b}（{SYMBOLS[b][0]}）" if isinstance(b, str) else " ".join(TAILS.get(c, c) for c in b)
+        if isinstance(b, str) and b.startswith("["):
+            if not b[1:-1].strip():
+                print(f"\n第 {i+1} 塊：空白板子（不用寫字）")
+                continue
+            ln, txt = b[1:-1].split(":", 1)
+            what = f"第 {ln} 行直接打「{txt}」"
+        elif isinstance(b, str):
+            what = f"符號 {b}（{SYMBOLS[b][0]}）"
+        else:
+            what = " ".join(TAILS.get(c, c) for c in b)
         print(f"\n第 {i+1} 塊：{what}（寬 {' / '.join(str(width(l)) for l in ls)}）")
         print("```")
         print("\n".join(ls))
