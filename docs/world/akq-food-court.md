@@ -149,6 +149,8 @@
 | 功夫麺（小碗） | Kung Fu Noodles (Small) | ¥605 |
 | 豆花 | Douhua | ¥770 |
 
+店門招牌（2026-11-12）：櫃台上方一排 4 塊告示牌，紅色印章加「春水堂」三個方塊大字，照現實的招牌（書法字前面一顆紅印）。用技能 `.claude/skills/drawing-big-sign-letters/` 產生（`"㊞春水堂"`）：字是標楷體轉換、只用整格的方塊字（隸書手工版作者看過覺得不夠好），印章每行開頭加 `§4` 深紅色代碼。
+
 ### Costa Coffee
 
 1971 年在倫敦創業的英國咖啡連鎖，現在屬於可口可樂。日本從 2023 年起由双日ロイヤルカフェ開門市，2025 年 7 月是第 12 家（[AdverTimes](https://www.advertimes.com/?p=429760)、[流通ニュース](https://www.ryutsuu.biz/store/r071774.html)）。現實中福岡機場國際線航廈的 3 樓也有一家（[Aviation Wire](https://www.aviationwire.jp/?p=288720)），跟這裡一樣在國際線的 3F。這個世界曾經被英國託管，有英國的咖啡連鎖也說得通。
