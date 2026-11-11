@@ -1,6 +1,6 @@
 ---
 name: drawing-big-sign-letters
-description: Use when the author wants big letters, large English text, store names or numbers drawn across one or more Minecraft Bedrock signs (告示牌大字、用告示牌拼大字母、一串字分到好幾塊板子、要每塊板子的複製區), or wants arrows or symbols drawn on a sign (告示牌畫箭頭、符號、逃生出口小人), or asks for the Hugleton / BigSignText sign-letter style.
+description: Use when the author wants big letters, large English text, store names or numbers drawn across one or more Minecraft Bedrock signs (告示牌大字、用告示牌拼大字母、一串字分到好幾塊板子、要每塊板子的複製區), or wants arrows or symbols drawn on a sign (告示牌畫箭頭、符號、逃生出口小人), or big kanji / kana (告示牌大漢字、大假名), or asks for the Hugleton / BigSignText sign-letter style.
 ---
 
 # 告示牌大字（基岩版）
@@ -58,6 +58,18 @@ description: Use when the author wants big letters, large English text, store na
   - 照截圖或作者改好的文字原樣抄進 `SYMBOLS`。抄之前算好每行寬度：一整行都是一般英文符號時是像素字型，字寬查 `ASCII_W`；混了方塊字就是方塊 9、空白 4。
   - 新設計的用四分之一方塊畫進 `FONT`，程式會自動對齊。斜線用 ▞ ▚ 拼時，每行錯開 8 比錯開 9 連得順（作者改過的 ↙ 就是這樣），這種要手調的放 `SYMBOLS`。
 - 新加的符號一樣先跑 `--sheet` 看預覽再給作者。
+
+## 漢字、假名
+目前有：中 華 そ ば（2026-11-12 作者要「中華そば」）。
+
+- 告示牌只有 4 行，直的只有 8 個小方塊，所以漢字、假名做得比英文寬（5～7 格），**一塊板子一個字、每塊置中**，不用問靠左或置中。上下疊兩塊不行：上下兩塊告示牌之間會隔半格方塊的縫。
+- 筆畫粗細跟英文字母一樣：直筆用整格 █、橫筆用半格 ▀▄。上下兩行之間本來就有縫，剛好把相鄰的橫筆分開。
+- **新增一個字**：
+  1. 先看遊戲字型裡這個字的 16×16 原形（遊戲字型圖只在作者本機，不在 repo）。
+  2. 畫成 8 行的小方塊圖，筆畫要對齊「兩欄一格」，不要跨格，跨格會被格子縫切成兩條細線。
+  3. 筆畫太多的字（例如華有 5 條橫線）要刪掉次要的筆畫。
+  4. 用 `from_bitmap()` 換成 FONT 的寫法，跑 `--sheet` 看，最後給作者看。
+- 華有兩版：兩側直筆變細（現在用的）、三根一樣粗（比較像「井」，寫在程式註解裡）。
 
 ## 字母表格式
 `FONT` 裡每個字母是「4 行用空白隔開，一個字元一格，`.` 是空格」，例如 `"A": "▟█▙ █.█ ███ █.█"`。4 行的格數必須一樣。只能用這些字：`█ ▀ ▄ ▌ ▐ ▘ ▝ ▖ ▗ ▚ ▞ ▛ ▜ ▙ ▟`。小寫的第 1 行留給往上伸的筆畫（b d f h i j k l t）。

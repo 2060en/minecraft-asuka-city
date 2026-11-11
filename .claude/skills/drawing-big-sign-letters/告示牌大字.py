@@ -108,7 +108,25 @@ FONT = {
     "-": ".. ▄▄ ▀▀ ..",
     ":": ". █ . █",
     "'": "█ ▀ . .",
+    # 漢字、假名（2026-11-12 作者要「中華そば」）：比英文寬，一塊板子放一個字、置中。
+    # 直筆用整格 █、橫筆用半格 ▀▄，粗細跟英文字母一樣；告示牌上下行之間的縫剛好把相鄰的橫筆分開。
+    # 新的字先畫 8 行的小方塊圖（筆畫對齊兩欄一格），用 from_bitmap() 換成這裡的寫法。
+    "中": "▄▄█▄▄ █.█.█ ▀▀█▀▀ ..█..",
+    "華": "▄█▄▄▄█▄ ▀▜▀█▀▛▀ ▀▜▀█▀▛▀ ▀▀▀█▀▀▀",   # 兩側直筆變細；三根一樣粗的版本是 "▄█▄▄▄█▄ ▀█▀█▀█▀ ▀█▀█▀█▀ ▀▀▀█▀▀▀"（像「井」）
+    "そ": ".▀▀█▀ ▄▄█▄▄ .▄▀.. .▀▄▄▄",
+    "ば": "▄...█▐▐ █..▀█▀. █.▄▄█.. ▀.█▄▄▀▄",
 }
+WIDE = 5   # 寬到 5 格以上的字（漢字、假名）一塊板子只放一個、置中
+
+def from_bitmap(rows):
+    """把 8 行的小方塊圖（"#" 有、"." 沒有，每兩欄是一格）換成 FONT 的寫法。設計新漢字時用：
+    print(from_bitmap(["....", ...]))，再把結果貼進 FONT。"""
+    rev = {v: k for k, v in QUAD.items()}
+    w = max(len(r) for r in rows); w += w % 2
+    rows = [r.ljust(w, ".") for r in rows]
+    return " ".join("".join(rev[(rows[2 * L][c] == "#", rows[2 * L][c + 1] == "#",
+                                 rows[2 * L + 1][c] == "#", rows[2 * L + 1][c + 1] == "#")]
+                            for c in range(0, w, 2)) for L in range(4))
 
 # 符號：作者在遊戲裡確認過的現成寫法，照原樣輸出（空白也是調過的，不能動），每個符號自己佔一塊板子。
 # 照截圖抄的符號加在這裡；要用四分之一方塊重新設計、讓程式自動對齊的，加進上面的 FONT。
@@ -193,6 +211,8 @@ def row_seq(chs, r):
 def build_board(chs, align):
     """回傳 4 行字串。align：'center' 置中、'left' 靠左、'right' 靠右。
     多塊板子時，最後一塊靠左、（置中排法的）第 1 塊靠右，板子交界的字距才接得上。"""
+    if len(chs) == 1 and len(glyph(chs[0])[0]) >= WIDE:   # 漢字、假名一塊一個字，一律置中
+        align = "center"
     W = ideal_w(chs)
     frame = (BOARD_W - LIMIT) / 2
     x_ideal = {"left": frame, "right": frame + LIMIT - W, "center": (BOARD_W - W) / 2}[align]
@@ -417,7 +437,7 @@ def main():
     if a.sheet:
         groups = ["ABC", "DEF", "GHI", "JKL", "MNO", "PQR", "STU", "VWX", "YZ",
                   "abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yz",
-                  "012", "345", "678", "9.,", "!?-", ":'"]
+                  "012", "345", "678", "9.,", "!?-", ":'"] + [k for k in FONT if len(glyph(k)[0]) >= WIDE]
         boards = [build_board(list(g), "center") for g in groups] + [list(v[1]) for v in SYMBOLS.values()]
         render(boards, a.sheet, labels=groups + [{"🏃": "跑步小人"}.get(k, k) for k in SYMBOLS], white=a.white, per_row=5)
         print("字母表：", a.sheet)
@@ -429,8 +449,11 @@ def main():
     boards, breaks, lines, off = layout(text, a.center, a.boards)
     has_sym = any(isinstance(b, str) for b in boards)
     print(f"「{text}」共 {len(boards)} 塊告示牌，由左到右貼在相鄰的方塊上。")
+    all_wide = all(not isinstance(b, str) and len(b) == 1 and len(glyph(b[0])[0]) >= WIDE for b in boards)
     if has_sym:
         print("排法：每個符號自己一塊；旁邊的文字靠向符號那一邊。")
+    elif all_wide:
+        print("排法：漢字、假名一塊一個字，每塊置中（不用選靠左或置中）。")
     elif not a.center:
         print("排法：靠左（空的位置都在最右邊那塊）。")
     elif abs(off) < 2.5:
