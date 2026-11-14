@@ -135,6 +135,18 @@ FONT = {
     # 圈圈問號（2026-11-12 作者要「? 加一個圈圈包起來，獨立一張牌子」）：大問號左右各一道弧線，9 格寬、自己一塊。
     # 上下封口的圈圈只放得下兩行高的小問號（STYLES「圈圈封口」），比較不好認
     "⍰": "▟▛.▟█▙.▜▙ █...▄▛..█ █...▀...█ ▜▙..█..▟▛",
+    # 星巴克人魚標誌（2026-11-12 作者給標誌圖要放在 STARBUCKS 前面）：用 "🧜STARBUCKS"，自己一塊。
+    #   作者：「最重要的是至少要是圓形的」→ 照告示牌格子的比例 5 格寬、4 行高（約 44×40）才接近正圓。
+    #   外形是圓的剪影：上面皇冠三個尖＋星星、兩側往內收、頭髮用 ▞▚ 交錯做波浪、底下身體往外變寬。只用整格的方塊字。
+    #   第一版 7 格寬（".▙▄█▄▟. ▙▞▞█▚▚▟ ▀▚▚█▞▞▀ .▞▟█▙▚."）太扁不圓，作者說不行
+    "🧜": ".▙█▟. ▟▞█▚▙ █▚█▞█ ▀▙█▟▀",
+    # 片假名（2026-11-14 作者要「トイレ」）：4 格寬，一塊放兩個。直筆在第 2 格（イ 在第 3 格），
+    #   ト 的點和 イ 的撇用 ▟▛／▜▙ 接成粗斜筆，レ 底下用 ▟▀ 往右上勾。只用整格的方塊字。
+    #   ト 和 イ 不能放同一塊，會湊成 M（作者：「ト跟イ放著很像 M」），所以寫成 "ト|イレ"：ト 一塊、イレ 一塊。
+    #   一個字一塊的 5 格版在 STYLES「假名大」；最早的 3 格版（三個擠一塊）就是像 M 的那版
+    "ト": ".█.. .█▜. .█.▙ .█..",
+    "イ": "..▟▛ ▟▛█. ..█. ..█.",
+    "レ": ".█.. .█.. .█.▟ .█▟▀",
     # 漢字、假名（2026-11-12 作者要「中華そば」）：比英文寬，一塊板子放一個字、置中。
     # 直筆用整格 █、橫筆用半格 ▀▄，粗細跟英文字母一樣；告示牌上下行之間的縫剛好把相鄰的橫筆分開。
     # 新的字先畫 8 行的小方塊圖（筆畫對齊兩欄一格），用 from_bitmap() 換成這裡的寫法。
@@ -163,6 +175,16 @@ FONT = {
 }
 # 同一個字的其他寫法，用 --style 切換（會蓋掉 FONT 裡同名的字）
 STYLES = {
+    # 正方形的漢字（2026-11-12 作者看出發口：「所有漢字做成正方形，不要扁扁的」）：5 格寬（約 44×38），
+    #   左右兩半各要 3 格的「検」「場」是 6 格。一塊板子還是只放一個字（兩個 5 格的字放不下 89）。只用整格的方塊字
+    "正方": {"出": "▄.█.▄ █▄█▄█ ▄.█.▄ █▄█▄█",
+             "発": "▀▛.▜▞ ▟▄▄▄▙ ▄█▄█▄ ▄▛.█▟",
+             "口": "▄▄▄▄▄ █...█ █...█ █▄▄▄█",
+             "保": "▟.█▀█ █.▀█▀ █.▀█▀ █.▞█▚",
+             "安": "▄▄█▄▄ ▀▄▀.▀ ▀█▀█▀ ▄▄▀▄▄",
+             "検": ".█.▟▀▙ ▀█▀▄▄▄ ▞█.█▀█ .█.▛▀▜",
+             "査": "▄▄█▄▄ ▄▀█▀▄ .█▀█. ▄█▄█▄",
+             "場": ".█.█▀█ ▄█▄█▀█ .█.▀▀▀ ▄▟.▛▛█"},
     # 標楷體自動轉換：python 字型轉方塊.py 春水堂 --font kaiu.ttf --cells 8 --stretch 1.4 --bold 0.5
     # 作者 2026-11-12 從五種字型的比較圖裡圈了這組「感覺不錯」。
     # 「楷書」只用整格字（現在的預設）；「楷書含半邊」是當時那組，用了 ▏▎▐▝ 等半邊字，作者蓋出來歪掉
@@ -187,9 +209,15 @@ STYLES = {
            "R": "▄▄▄ █▄▛ █▚. ▀.▀",
            "M": "▄.▄ █▀█ █.█ ▀.▀",
            "A": "▄▄▄ █.█ █▀█ ▀.▀",
-           "T": "▄▄▄ .█. .█. .▀."},
+           "T": "▄▄▄ .█. .█. .▀.",
+           "L": "▄.. █.. █.. ▀▀▀",   # 2026-11-14 給 TOILET 補的
+           "E": "▄▄▄ █▄▄ █.. ▀▀▀"},
     # Costa Coffee 標誌的字形（2026-11-12 作者給標誌圖要「更還原」）：用 --upper --style Costa
     #   S 是往下甩的窄弧線、尾巴往左下尖出去；A 是尖頂三角形、中間小三角窗加橫槓。只用整格的方塊字
+    # 5 格寬、一個字一塊的片假名（2026-11-14 トイレ 第二版，作者要「兩塊牌子以內」後改成 4 格）
+    "假名大": {"ト": ".█... .█▜.. .█.▙. .█...",
+              "イ": "...▟▛ .▟▛█. ▟▛.█. ...█.",
+              "レ": ".█... .█... .█..▟ .█▄▟▀"},
     "Costa": {"S": "▟▀ ▀▄ .█ ▄▀",
               "A": ".█. ▟█▙ █▄█ █.█"},   # 頂端用整格：半格會讓 A 比其他字母矮（作者 2026-11-12）
     # 隸書第二版：收窄到 7 格、筆畫加粗、撇捺用斜方塊接。作者：「怪怪的，還不如上一版」
@@ -216,6 +244,20 @@ SYMBOLS = {
     "↑": ("往上：AKQ 出発口大箭頭（2026-11-11 蓋好）", ["▟▙", "▟██▙", "▀▀██▀▀", "██"]),
     "←": ("往左：實心小頭＋細箭桿（AKQ 北端立牌）", ["  ▟      ", "▟█▄▄▄", "▜█▀▀▀", "  ▜      "]),
     "→": ("往右：往左的左右翻過來（AKQ 北端電梯前立牌）", ["      ▙  ", "▄▄▄█▙", "▀▀▀█▛", "      ▛  "]),
+    # 向右大箭頭（2026-11-14 作者要放在「トイレ Toilet」前面）：4 行高、7 格寬，箭頭頭佔滿 4 行、箭桿在中間兩行（▄＋▀）。
+    #   用產生器從 "....█▙. ▄▄▄▄██▙ ▀▀▀▀██▛ ....█▛." 算好置中的空白
+    "➡": ("往右大箭頭：箭頭頭佔滿 4 行、箭桿在中間", ['         █▙  ', '▄▄▄▄██▙', '▀▀▀▀██▛', '         █▛  ']),
+    # 向左大箭頭（2026-11-14 作者把「トイレ TOILET」前面的箭頭改成往左）：往右大箭頭左右翻過來，
+    #   用產生器從 ".▟█.... ▟██▄▄▄▄ ▜██▀▀▀▀ .▜█...." 算好置中的空白
+    "⬅": ("往左大箭頭：往右大箭頭左右翻過來", ['  ▟█         ', '▟██▄▄▄▄', '▜██▀▀▀▀', '  ▜█         ']),
+    # 廁所標誌（2026-11-14 作者：「只保留藍紅元素，男女身形用倒三角、正三角加上圓形頭」，再要「總體太寬，男女左右各消掉一行」）：
+    #   男 §9 藍 "██ ██ ▜▛"（下面收尖）、女 §m 紅石紅 "▟▙ ██ ██"（上面收尖），各 2 格寬，中間空一格。
+    #   頭用遊戲字型的大實心圓 ⬤（字型圖 14×13，約 7×6.5 單位，畫在行的下半），寬度照規則估 8；頭的空白挑成寬 8 或 9 都對得準。
+    #   方塊字拼不出圓（▟▙ 像屋頂、▄▄ 太扁），所以頭不用方塊字。
+    #   4 格寬的三角形版（太寬）：['§9⬤         §m⬤', '§9████    §m▟▙  ', '§9▜██▛  §m▟██▙', '§9  ▜▛    §m████']
+    #   3 格寬、保留斜邊的版本：['§9⬤      §m⬤', '§9███    §m█  ', '§9▜█▛  §m▟█▙', '§9  █    §m███']
+    #   前兩版：方正像機器人；簡約風（小扁頭＋分隔線）['§9  ▄    §7▄    §m▄  ', '§9▟█▙  §7█    §m█  ', '§9███  §7█  §m▟█▙', '§9▜  ▛  §7▀  §m▜  ▛']
+    "🚻": ("廁所標誌：男藍、女紅，各 2 格寬，圓頭 ⬤", ['§9⬤    §m⬤', '§9██  §m▟▙', '§9██  §m██', '§9▜▛  §m██']),
     "↙": ("往左下：作者改過的標準寫法（AKQ 北端樓梯口立牌）", ["     ▞", "█  ▞   ", "█▞     ", "▇▇▇   "]),
     "↘": ("往右下：往左下的左右翻過來", ["▚     ", "   ▚  █", "     ▚█", "   ▇▇▇"]),
     "🏃": ("逃生出口的跑步小人：一般英文符號拼的（像素字型），照 NextGamer 影片的 Java 版，基岩版字寬一樣",
@@ -226,10 +268,8 @@ SYMBOLS = {
 }
 
 # 基岩版的顏色代碼：§ 加一個字，不顯示、不佔寬度，後面的字換成這個顏色（每行開頭都要再打一次比較保險）
-COLOR_CODES = {"0": (0, 0, 0), "1": (0, 0, 170), "2": (0, 170, 0), "3": (0, 170, 170), "4": (170, 0, 0),
-               "5": (170, 0, 170), "6": (255, 170, 0), "7": (170, 170, 170), "8": (85, 85, 85), "9": (85, 85, 255),
-               "a": (85, 255, 85), "b": (85, 255, 255), "c": (255, 85, 85), "d": (255, 85, 255), "e": (255, 255, 85),
-               "f": (255, 255, 255), "g": (221, 214, 5), "m": (151, 22, 7), "p": (222, 177, 45), "q": (71, 160, 54)}
+# 26.50 之後的新顏色值（29 色；作者的遊戲是 26.63）
+COLOR_CODES = {"0": (0, 0, 0), "1": (0, 0, 170), "2": (0, 170, 0), "3": (0, 170, 170), "4": (170, 0, 0), "5": (170, 0, 170), "6": (255, 170, 0), "7": (197, 197, 197), "8": (84, 84, 84), "9": (68, 127, 255), "a": (84, 255, 84), "b": (84, 255, 255), "c": (255, 84, 84), "d": (255, 84, 255), "e": (255, 255, 84), "f": (255, 255, 255), "g": (239, 206, 22), "h": (217, 204, 184), "i": (169, 180, 183), "j": (143, 114, 125), "m": (238, 34, 44), "n": (200, 115, 99), "p": (255, 191, 30), "q": (19, 160, 69), "s": (95, 236, 255), "t": (87, 123, 255), "u": (182, 108, 221), "v": (255, 106, 0), "w": (139, 179, 255)}
 
 def strip_codes(s):
     """拿掉 §x 顏色代碼（遊戲裡不顯示、不佔寬度）"""
@@ -255,6 +295,7 @@ def is_cjk(c):
     return 0x3041 <= o <= 0x30FF or 0x4E00 <= o <= 0x9FFF
 
 TAILS = {}   # --tail 做出來的「某一行接一般文字」的假字母：代號 → 文字
+SPLITS = {}  # {字:n} 拆開的半個字：代號 → 說明
 
 def make_tail(spec):
     """「3:案内所」→ 一個假字母：第 3 行是這幾個字（每字一格），其他行空白。接在整串字的最後面"""
@@ -265,6 +306,23 @@ def make_tail(spec):
     FONT[key] = " ".join(text if r == line - 1 else "." * len(text) for r in range(4))
     TAILS[key] = text
     return key
+
+def make_splits(text):
+    """把 {イ:2} 換成「イ的前 2 格」＋ | ＋「イ剩下的格」：一個字拆在兩塊板子上，前一塊靠右、後一塊靠左，
+    在板子交界接起來（2026-11-14 作者：「イ分開兩個板子畫，黏的夠緊就看不出來」）"""
+    import re
+    def one(m):
+        ch, n = m.group(1), int(m.group(2))
+        rows = FONT[ch].split(" ")
+        assert 0 < n < len(rows[0]), f"{ch} 只有 {len(rows[0])} 格，不能從第 {n} 格切"
+        out = ""
+        for part, name in ((" ".join(r[:n] for r in rows), f"{ch}（前 {n} 格）"),
+                           (" ".join(r[n:] for r in rows), f"{ch}（後 {len(rows[0]) - n} 格）")):
+            key = chr(0xE100 + len(SPLITS))
+            FONT[key] = part; SPLITS[key] = name
+            out += key + ("|" if not out else "")
+        return out
+    return re.sub(r"\{(.):(\d+)\}", one, text)
 
 def glyph(ch):
     rows = FONT[ch].split(" ")
@@ -277,6 +335,8 @@ def glyph(ch):
 def ideal_w(chs):
     """一塊板子上這些字母的理想寬度（每格都算 9）"""
     return sum(len(glyph(c)[0]) * FULL for c in chs) + HALF * (len(chs) - 1)
+
+FORCED = set()   # pack() 記下用 | 指定換板子的位置（第幾塊之前）
 
 def pack(text, cap1=LIMIT):
     """一個字母都不切開，盡量塞滿每塊板子（一行不超過 89）。板子頭尾的空白字元拿掉，記下單字在哪裡換板子。
@@ -294,7 +354,16 @@ def pack(text, cap1=LIMIT):
             breaks.add(len(boards))
         cur = []
 
+    FORCED.clear()
     for ch in text:
+        if ch == "|":                      # 指定在這裡換板子（不算單字間隔）
+            close()
+            FORCED.add(len(boards))
+            continue
+        if ch not in TAILS and len(glyph(ch)[0]) >= WIDE:   # 寬字（漢字、標誌）一律自己一塊（2026-11-12 人魚標誌 5 格寬，
+            close()                                        #   不分開的話會跟 S 擠同一塊，STARBUCKS 被拆成 S｜TAR｜BUC｜KS）
+            boards.append([ch])
+            continue
         if ch == " " and not cur:          # 板子開頭的空白：不寫，記成換板子處的單字間隔
             if boards:
                 breaks.add(len(boards))
@@ -396,12 +465,15 @@ def board_spread(chs, lines):
                 pos.setdefault(cols[k], []).append(x); k += 1; x += FULL
     return max((max(v) - min(v) for v in pos.values()), default=0)
 
+# 不是方塊字也不是漢字的符號，寬度照字型圖估（（右－左＋1）÷2＋1，從字的左緣畫起；2026-11-12 量過的規則）
+OTHER_W = {"⬤": 8}   # 大實心圓：字型圖寬 14、高 13 格（約 7×6.5 單位），畫在那一行的下半
+
 def width(line):
     """一行在告示牌上的寬度：整行都是一般英文符號 → 像素字型；混了別的字 → 等寬字型（半形 4、全形 9）。§ 顏色代碼不算"""
     line = strip_codes(line)
     if is_pixel_line(line):
         return sum(ASCII_W.get(c, 6) for c in line)
-    return sum(HALF if ord(c) < 0x1100 else FULL for c in line)
+    return sum(OTHER_W.get(c, HALF if ord(c) < 0x1100 else FULL) for c in line)
 
 def split_items(text):
     """把要寫的字拆成「文字段」「符號」「打字板」：[("seg", 文字)、("sym", 符號) 或 ("typed", "行:文字")]。
@@ -471,14 +543,15 @@ def layout_seg(text, mode, n_boards=None):
     if mode == "left":
         boards, breaks = pack(text)
         n = len(boards)
-        aligns = hug_word(["left"] if n == 1 else ["center"] * (n - 1) + ["left"], breaks)
+        aligns = hug_forced(hug_word(["left"] if n == 1 else ["center"] * (n - 1) + ["left"], breaks))
         return boards, breaks, [build_board(b, a) for b, a in zip(boards, aligns)], 0
     if mode == "right":
-        rb, rbr = pack(text[::-1])
+        rb, rbr = pack(text[::-1]); forced_r = set(FORCED)
         n = len(rb)
         boards = [list(reversed(b)) for b in reversed(rb)]
         breaks = sorted(n - i for i in rbr)
-        aligns = ["right"] + ["center"] * (n - 1)
+        FORCED.clear(); FORCED.update(n - k for k in forced_r)
+        aligns = hug_forced(["right"] + ["center"] * (n - 1))
         return boards, breaks, [build_board(b, a) for b, a in zip(boards, aligns)], 0
     best = None
     for cap1 in range(1, LIMIT + 1):
@@ -489,13 +562,22 @@ def layout_seg(text, mode, n_boards=None):
         off = 0 if n == 1 else ((LIMIT - ideal_w(boards[0])) - (LIMIT - ideal_w(boards[-1]))) / 2
         key = (n, abs(off))
         if best is None or key < best[0]:
-            best = (key, boards, breaks, off)
+            best = (key, boards, breaks, off, cap1)
     if best is None:
         sys.exit(f"排不成 {n_boards} 塊板子")
-    _, boards, breaks, off = best
+    _, boards, breaks, off, best_cap = best
     n = len(boards)
-    aligns = hug_word(["center"] if n == 1 else ["right"] + ["center"] * (n - 2) + ["left"], breaks, keep_first=True)
+    pack(text, best_cap)   # 重跑一次，讓 FORCED 對應選中的排法
+    aligns = hug_forced(hug_word(["center"] if n == 1 else ["right"] + ["center"] * (n - 2) + ["left"], breaks, keep_first=True))
     return boards, breaks, [build_board(b, a) for b, a in zip(boards, aligns)], off
+
+def hug_forced(aligns):
+    """用 | 指定換板子時，前一塊靠右、後一塊靠左，字距接得上（2026-11-14「ト|イレ」）"""
+    for k in FORCED:
+        if 0 < k < len(aligns):
+            aligns[k - 1] = "right"
+            aligns[k] = "left"
+    return aligns
 
 def hug_word(aligns, breaks, keep_first=False):
     """後面接著換單字的板子（沒塞滿時）改成靠左：字接著前一塊、空出來的位置當單字之間的空格。
@@ -558,12 +640,14 @@ def render(all_lines, dst, labels=None, white=False, per_row=None, wood=None):
                             if v:
                                 col = ink if v >= 1 else tuple(round(w * (1 - v) + k * v) for w, k in zip(wood, ink))
                                 d.rectangle([round(gx + xx * S), round(gy + yy * S), round(gx + (xx + 1) * S) - 1, round(gy + (yy + 1) * S) - 1], fill=col)
+                elif c == "⬤":                             # 大實心圓：照字型圖，約 7×6.5，貼在那一行的下面
+                    d.ellipse([round(ox + (x + 0.5) * S), round(oy + (y + 1.5) * S), round(ox + (x + 7.5) * S), round(oy + (y + 8) * S)], fill=ink)
                 elif is_cjk(c) and F:                      # 漢字、假名：用電腦的中文字型畫（示意，遊戲裡是遊戲的字型）
                     FK = ImageFont.truetype("C:/Windows/Fonts/msjh.ttc", 8 * S)
                     d.text((round(gx), round(gy - S)), c, font=FK, fill=ink)
                 else:                                       # 其他字：畫個框表示這裡有字
                     d.rectangle([round(gx), round(gy), round(gx + 8 * S) - 1, round(gy + 8 * S) - 1], outline=ink, width=2)
-                x += FULL if ord(c) >= 0x1100 else HALF
+                x += OTHER_W.get(c, FULL if ord(c) >= 0x1100 else HALF)
         if labels:
             d.text((ox + 10, oy + BH * S + 6), labels[k], font=F, fill=(90, 90, 90))
     img.save(dst)
@@ -628,13 +712,15 @@ def main():
     text = a.text.upper() if a.upper else a.text
     if a.tail:
         text += make_tail(a.tail)
+    shown = text
+    text = make_splits(text)
     drawn = "".join(v for k, v in split_items(text) if k != "typed")   # 打字板裡的字直接打，不用在字母表裡
-    bad = sorted(set(c for c in drawn if c not in FONT and c not in SYMBOLS))
+    bad = sorted(set(c for c in drawn if c not in FONT and c not in SYMBOLS and c != "|"))
     if bad:
         print("字母表裡還沒有這些字：", " ".join(repr(c) for c in bad)); sys.exit(1)
     boards, breaks, lines, off = layout(text, a.center, a.boards)
     has_sym = any(isinstance(b, str) for b in boards)
-    print(f"「{text}」共 {len(boards)} 塊告示牌，由左到右貼在相鄰的方塊上。")
+    print(f"「{shown}」共 {len(boards)} 塊告示牌，由左到右貼在相鄰的方塊上。")
     text_boards = [b for b in boards if not isinstance(b, str)]
     all_wide = bool(text_boards) and all(len(b) == 1 and len(glyph(b[0])[0]) >= WIDE for b in text_boards)
     if has_sym and all_wide:
@@ -666,7 +752,7 @@ def main():
         elif isinstance(b, str):
             what = f"符號 {b}（{SYMBOLS[b][0]}）"
         else:
-            what = " ".join(TAILS.get(c, c) for c in b)
+            what = " ".join(SPLITS.get(c, TAILS.get(c, c)) for c in b)
         print(f"\n第 {i+1} 塊：{what}（寬 {' / '.join(str(width(l)) for l in ls)}）")
         print("```")
         print("\n".join(ls))
