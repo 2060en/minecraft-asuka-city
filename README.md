@@ -25,8 +25,10 @@
 - [郵政](docs/world/post.md)：郵政 Maha Post（茉波郵便）的名稱、logo、業務、沿革、據點、郵筒與 AKQ 機場的櫃台（logo 檔在 `assets/maha-post/`）
 - [銀行](docs/world/banks.md)：四大銀行（茉波銀行、國泰世華、三井住友銀行、KB國民銀行）、色調與 AKQ 的提款機
 - [AKQ 美食街](docs/world/akq-food-court.md)：3F 美食街各店的品牌、菜單與可以照打的告示牌文字
+- [商業](docs/world/commerce.md)：商家、品牌、店鋪、餐廳與商業活動：共用原則、商業版圖、品牌與店家一覽
 - [AKQ 出境大廳東側](docs/world/akq-departure-hall.md)：出境大廳東側那排櫃台、電梯、廁所、便利商店全家、出發口、郵局的告示牌文字
 - [命名](docs/world/naming.md)：命名原則、黑名單、地名分層、地名表與 Keep 筆記中的候補地名
+- [Asuka Inc.](docs/world/asuka-inc.md)：作者的公司 Asuka Inc. 的集團架構：控股與各全資子公司（地產、航空、旅遊、重工、科技電子、電信、百貨）
 - [總部地堡](docs/world/bunker.md)：Asuka Inc. 總部地底的總指揮中心兼末日地堡
 - [建造清單](docs/build-checklist.md)：Keep 筆記中的設施清單、城市細節、參考建築與品牌
 - [新玩家序章](docs/prologue.md)：新玩家的出生點與開場橋段
@@ -39,6 +41,7 @@
 - `addon/drafts/`：自製附加內容的外觀草稿（模型、材質、預覽圖）
 - `tools/preview/`：把基岩版模型算成預覽圖的工具
 - `tools/converter/`：轉換程式：只讀的掃描與轉出原味版
+- `tools/commerce-list/`：商業清單：把[商業](docs/world/commerce.md)的品牌與店家一覽做成一頁 HTML（`python3 tools/commerce-list/build.py`），討論商業時每次回覆都附上
 - `tools/asuka-toolkit/`：Asuka toolkit：獨立的行為包，木棍快速建造與破壞、烈焰棒物品收藏、旋風棒拿特殊物品
 - [`tools/world-model/`](tools/world-model/README.md)：區域 3D 模型：把世界裡一個範圍（例如 AKQ 航廈）的方塊讀出來，做成能旋轉、逐層切開的 3D 網頁與各樓層平面圖，方便討論配置
 - [`tools/world-backup/`](tools/world-backup/README.md)：世界備份：雙擊 `backup.bat` 加密備份到 Google Drive 並更新雲端地圖（手機和 AI 都能看），雙擊 `restore.bat` 還原到新資料夾

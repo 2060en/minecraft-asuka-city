@@ -10,6 +10,8 @@
 
 本國第一大的電信公司，以紐西蘭的 Spark 為藍本。
 
+第二大是 Asuka Inc. 的 Links（市占約 35%），見 [Asuka Inc.](asuka-inc.md#集團架構)。第三是沖縄セルラー電話（au），市占約 20%。
+
 | 項目 | 設定 | 狀態 |
 | --- | --- | --- |
 | 名稱 | Spoton | 已定 |
@@ -19,7 +21,7 @@
 | 品牌元素 | 學 Spark 的紫色與星形 | 已定 |
 | 日文寫法 | スポットオン（片假名） | 已定 |
 | Logo | 白色的手繪星形加三道訊號弧線，字標 Spoton，紫色混凝土色的底。見[Logo](#logo) | 已定 |
-| 舊名 | Tu Rangatira Telecom（1988～2015 年），民間至今仍有人叫它 Telecom | 已定 |
+| 舊名 | Mahaki Telecom（1988～2015 年），民間至今仍有人叫它 Telecom | 已定 |
 | 股權 | 主權基金持股過半，其餘股份上市 | 已定 |
 | 主色 | 紫色混凝土的紫 `#641F9C`，配白與薄荷色。見[Logo](#logo) | 已定 |
 
@@ -88,14 +90,14 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 | 日本外地時期 | 逓信省經營郵政、電報、電話 | — |
 | 英國託管時期 | 政府的郵政部門兼管國內的電話與電報；國際通訊交給英國的 Cable & Wireless 經營 | 紐西蘭的郵政局直到 1987 年都兼管電信；香港的國際通訊由 Cable & Wireless 獨家經營 |
 | 1960 年代獨立 | 郵政部門照舊兼管電信；政府買下 Cable & Wireless 在本國的國際業務，併入郵政部門 | — |
-| 1988 | 電信從郵政分出來，成立國營的 Tu Rangatira Telecom | Telecom NZ（1987 年從郵政局分出） |
+| 1988 | 電信從郵政分出來，成立國營的 Mahaki Telecom | Telecom NZ（1987 年從郵政局分出） |
 | 1994 | 上市，主權基金保留過半股份 | Singtel（1993 年上市，淡馬錫至今持股過半） |
 | 2015 | 改名 Spoton，換上紫色的星形 logo | Telecom 改名 Spark（2014 年） |
 | 2017 | 推出平價子品牌 Homie | Spark 的 Skinny（2012 年） |
 
 - 陸揚室（りくあげしつ）：海底電纜拉上岸的小屋，「陸揚」是日文的「卸到岸上」。電纜在這裡接上陸地的線路，再通到電信局。現代的同類設施叫海纜登陸站，例如中華電信的頭城海纜站
 - 從 1897 年起，本國就是海底電纜的中繼點，和現在居中者的角色接得上
-- 改名之後，民間仍有人叫它 Telecom，就像本國的別稱茉波
+- 改名之後，民間仍有人叫它 Telecom
 - 主權基金持股過半：國家掌握通訊這種關鍵基礎建設，經營上又是一般的上市公司
 
 ### 業務
@@ -111,6 +113,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 | 批發 | Spoton | 光纖線路留在 Spoton，不拆分，但必須用相同的條件批發給其他業者 |
 | 公共 Wi-Fi | Spoton | 公共電話亭改成免費的 Wi-Fi 熱點 |
 | 冠名贊助 | Spoton | 場館的冠名，像 Spark Arena |
+| 職棒球隊 | Spoton | 飛鳥スポットオン・スターズ，打日本職棒（2026-11-09），見[商業](commerce.md#運動) |
 | 公益 | Spoton Foundation | 基金會 |
 
 - 不做串流影音：Spark 的 Spark Sport 在 2023 年停止，Lightbox 在 2019 年賣給 Sky，小市場撐不起來
@@ -140,8 +143,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 - [ ] **向量化**：原圖是點陣圖，正式使用前描成 SVG（星形、訊號弧線、字標分開，像 Asuka Air 一樣）
 - [ ] **Homie 的片假名**，Claude 的提案：ホーミー
 - [ ] **冠名的場館**，Claude 的提案：北流（台北流行音樂中心類型的展演場館），叫 Spoton Arena
-- [ ] **業者數量**，Claude 的提案：全國共三家行動業者，Spoton 的市占約 45%，另外兩家之後再設計。人口相近的小國多半也是三家（紐西蘭三家：Spark、One NZ、2degrees）
-- [ ] **陸揚室的地點**：明治時期的主要港口在茉波城市，可以放在它附近；海底電纜的登陸點也常選在船少的偏僻海灣，避免被船錨勾斷（石垣島的陸揚室就在偏僻的屋良部半島）
+- [ ] **陸揚室的地點**：明治時期的主要港口在犬山港，可以放在它附近；海底電纜的登陸點也常選在船少的偏僻海灣，避免被船錨勾斷（石垣島的陸揚室就在偏僻的屋良部半島）
 
 ### 色彩與主視覺
 
@@ -163,7 +165,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
   | --- | --- | --- |
   | 員工 | 約 1,700 人 | Spark 5,291 人，紐西蘭約 530 萬人、市占約 4 成；本國 150 萬人、市占約 45% |
   | 總部 | 10～15 層的大樓，約 15,000 m² | 辦公室人員約 1,000 人，每人約 15 m²；其餘在門市、機房與外勤 |
-  | 門市 | 全國約 15～20 家：首都約 10 家、茉波城市約 5 家、地方幾家 | 粗估。Homie 沒有門市 |
+  | 門市 | 全國約 15～20 家：首都約 10 家、犬山港約 5 家、地方幾家 | 粗估。Homie 沒有門市 |
 
 ### 遊戲中的建築
 
@@ -179,6 +181,8 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 
 ### 已決定
 
+- [x] 業者數量：全國三家行動業者，Spoton 約 45%，第二大是 Asuka Inc. 的電信子公司 Links 約 35%，第三家約 20% 是沖縄セルラー電話（au），見下面。人口相近的小國多半也是三家，紐西蘭是 Spark、One NZ、2degrees（Claude 提案，作者確認，2026-11-09）
+- [x] 第三家：沖縄セルラー電話（au 品牌），KDDI 的關係企業。現實中它就是沖繩的 au，這個世界的沖繩是本國領土，所以它本來就是本國的電信公司，後來擴展到本島（作者交由 Claude 決定，2026-11-09）。先例：KDDI 也在蒙古經營 MobiCom
 - [x] 本國第一大的電信公司，以紐西蘭的 Spark 為藍本，學它的紫色與星形
 - [x] 名稱取英文名，不另取日文漢字名（璃音、結迅、礼音這類漢字名不用）
 - [x] Logo 由作者自己設計；Claude 提的三案（流線光芒、桔梗星、閃光）都不採用，也不重畫
@@ -188,7 +192,7 @@ python3 -I assets/spoton/tools/recolor.py assets/spoton/original/spoton-symbol-o
 - [x] 不採用的 logo 方向：以 Spotify 標誌的紫色版為原型、弧線下方加一個點、把三條線連成 S（順暢版、筆刷版）
 - [x] 名稱：Spoton；平價子品牌：Homie（都取自 Keep 筆記的英文候補）
 - [x] 沿革與業務：作者交由 Claude 決定，內容見[沿革](#沿革)與[業務](#業務)
-- [x] 舊名 Tu Rangatira Telecom，2015 年改名 Spoton；2017 年推出 Homie
+- [x] 舊名 Mahaki Telecom，2015 年改名 Spoton；2017 年推出 Homie
 - [x] 主權基金持股過半，其餘股份上市
 - [x] 光纖線路不拆分，留在 Spoton，用相同的條件批發給其他業者
 - [x] 不做串流影音
